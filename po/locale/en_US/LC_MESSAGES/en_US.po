@@ -1,0 +1,649 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"POT-Creation-Date: 2016-09-08 17:52+0200\n"
+"PO-Revision-Date: 2016-09-08 17:52+0200\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: en_US\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.8.8\n"
+"X-Poedit-Basepath: ../../../..\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: extension.py:57
+msgid "Houston, we have a problem"
+msgstr ""
+
+#: extension.py:59
+msgid ""
+"An AdBlockPlus filter has been detected in your 'filters' folder but "
+"actually AdKiller only works with AdAway filters"
+msgstr ""
+
+#: extension.py:60
+msgid ""
+"In order to avoid any issues or incompatibilities, remove that filter and "
+"restart this program"
+msgstr ""
+
+#: extension.py:61
+msgid "Get your AdAway filter list here"
+msgstr ""
+
+#: include/functions.py:33 poseidon.py:840 poseidon.py:2177 poseidon.py:2360
+msgid "Bookmarks"
+msgstr ""
+
+#: include/menu.py:47
+msgid "Apply as theme"
+msgstr ""
+
+#: include/menu.py:74
+msgid "Go to"
+msgstr ""
+
+#: include/menu.py:77
+msgid "Search"
+msgstr ""
+
+#: include/menu.py:77
+msgid "in the web"
+msgstr ""
+
+#: include/pathchooser.py:30 include/pathchooser.py:64
+msgid "Save as"
+msgstr ""
+
+#: include/pathchooser.py:105
+msgid "Overwrite"
+msgstr ""
+
+#: include/pathchooser.py:107
+msgid "already exists, wanna overwrite it?"
+msgstr ""
+
+#: include/secure.py:32
+msgid "Country Name"
+msgstr ""
+
+#: include/secure.py:33
+msgid "State Or Province Name"
+msgstr ""
+
+#: include/secure.py:34
+msgid "Locality"
+msgstr ""
+
+#: include/secure.py:35
+msgid "Organization"
+msgstr ""
+
+#: include/secure.py:36
+msgid "Common Name"
+msgstr ""
+
+#: include/secure.py:37
+msgid "Organizational Unit"
+msgstr ""
+
+#: include/secure.py:38
+msgid "Surname"
+msgstr ""
+
+#: include/secure.py:39
+msgid "Given Name"
+msgstr ""
+
+#: include/secure.py:48
+msgid "has no security"
+msgstr ""
+
+#: include/secure.py:49
+msgid ""
+"An attacker could see any information you send, or control the content that "
+"you see"
+msgstr ""
+
+#: include/secure.py:54 include/secure.py:57
+msgid "Connected to"
+msgstr ""
+
+#: include/secure.py:55
+msgid "Your connection seems to be secure. Want to know more about?"
+msgstr ""
+
+#: include/secure.py:58
+msgid ""
+"This web site did not properly secure your connection. Want to know more "
+"about?"
+msgstr ""
+
+#: include/secure.py:91
+msgid "Subject"
+msgstr ""
+
+#: include/secure.py:99
+msgid "Issuer"
+msgstr ""
+
+#: include/secure.py:109
+msgid "Valid Time Range"
+msgstr ""
+
+#: include/secure.py:115
+msgid "Subject Alternative Names"
+msgstr ""
+
+#: include/secure.py:122
+msgid "Subject Key Identifier"
+msgstr ""
+
+#: include/secure.py:134
+msgid "Key Usage"
+msgstr ""
+
+#: include/secure.py:141
+msgid "Extended Key Usage"
+msgstr ""
+
+#: include/secure.py:148
+msgid "Distribution Points"
+msgstr ""
+
+#: include/secure.py:155
+msgid "Certificate Policies"
+msgstr ""
+
+#: include/secure.py:162
+msgid "Basic Constraints"
+msgstr ""
+
+#: include/secure.py:169
+msgid "Authority Key Identifier"
+msgstr ""
+
+#: include/secure.py:176
+msgid "Authority Info Access"
+msgstr ""
+
+#: include/secure.py:183
+msgid "Signature Algorithm"
+msgstr ""
+
+#: include/settings.py:55
+msgid "A fast, minimal and lightweight browser"
+msgstr ""
+
+#: include/settings.py:65
+msgid "Empty"
+msgstr ""
+
+#: poseidon.py:528
+msgid "Give the approval for geolocation?"
+msgstr ""
+
+#: poseidon.py:643
+msgid "Open a new tab"
+msgstr ""
+
+#: poseidon.py:647
+msgid "Close current tab"
+msgstr ""
+
+#: poseidon.py:661
+msgid "Open a file"
+msgstr ""
+
+#: poseidon.py:665
+msgid "Save a file"
+msgstr ""
+
+#: poseidon.py:700 poseidon.py:804
+msgid "Defcon Mode"
+msgstr ""
+
+#: poseidon.py:752
+msgid "Add this page to bookmarks"
+msgstr ""
+
+#: poseidon.py:800
+msgid "New Window"
+msgstr ""
+
+#: poseidon.py:808
+msgid "Finder"
+msgstr ""
+
+#: poseidon.py:812
+msgid "Zoom In"
+msgstr ""
+
+#: poseidon.py:816
+msgid "Zoom Out"
+msgstr ""
+
+#: poseidon.py:820
+msgid "Zoom Restore"
+msgstr ""
+
+#: poseidon.py:824
+msgid "Delete Theme"
+msgstr ""
+
+#: poseidon.py:828
+msgid "Print"
+msgstr ""
+
+#: poseidon.py:832
+msgid "View Source"
+msgstr ""
+
+#: poseidon.py:836
+msgid "View History"
+msgstr ""
+
+#: poseidon.py:844
+msgid "Cookies Manager"
+msgstr ""
+
+#: poseidon.py:847
+msgid "Empty Cache"
+msgstr ""
+
+#: poseidon.py:851 poseidon.py:854 poseidon.py:1761
+msgid "AdKiller (experimental)"
+msgstr ""
+
+#: poseidon.py:851 poseidon.py:1761
+msgid "Enabled, Ads blocked"
+msgstr ""
+
+#: poseidon.py:854
+msgid "Disabled"
+msgstr ""
+
+#: poseidon.py:871
+msgid "SSL Navigation Secure"
+msgstr ""
+
+#: poseidon.py:871 poseidon.py:874
+msgid "Access to insecure SSL"
+msgstr ""
+
+#: poseidon.py:871
+msgid "websites will be denied"
+msgstr ""
+
+#: poseidon.py:874
+msgid "SSL Navigation Insecure"
+msgstr ""
+
+#: poseidon.py:874
+msgid "websites will be allowed"
+msgstr ""
+
+#: poseidon.py:894
+msgid "Javascript is actually enabled"
+msgstr ""
+
+#: poseidon.py:897
+msgid "Javascript is actually disabled"
+msgstr ""
+
+#: poseidon.py:914
+msgid "Plugins are actually enabled"
+msgstr ""
+
+#: poseidon.py:917
+msgid "Plugins are actually disabled"
+msgstr ""
+
+#: poseidon.py:1189
+msgid "Connection Failed"
+msgstr ""
+
+#: poseidon.py:1190
+msgid "seems to be not available"
+msgstr ""
+
+#: poseidon.py:1191
+msgid "It may be temporarily unavailable or moved to a new address"
+msgstr ""
+
+#: poseidon.py:1192
+msgid ""
+"You may also wish to verify that your internet connection is working "
+"correctly"
+msgstr ""
+
+#: poseidon.py:1200
+msgid "Invalid Certificate"
+msgstr ""
+
+#: poseidon.py:1201
+msgid "seems to be an insecure website"
+msgstr ""
+
+#: poseidon.py:1202
+msgid ""
+"If you think this website do NOT represent a menace for you then click on OK"
+msgstr ""
+
+#: poseidon.py:1203
+msgid ""
+"Note: Clicking on OK, 'SSL Secure Navigation' will be disabled but you can "
+"re-enable it back from browser menu"
+msgstr ""
+
+#: poseidon.py:1579
+msgid "Hmm, 499 Error..."
+msgstr ""
+
+#: poseidon.py:1581
+msgid "Seems that WebKit2 got some issues downloading this file or web page"
+msgstr ""
+
+#: poseidon.py:1582
+msgid ""
+"But there is a trick, wanna try forcing the download using the requests "
+"module"
+msgstr ""
+
+#: poseidon.py:1615
+msgid "Downloading"
+msgstr ""
+
+#: poseidon.py:1615
+msgid "In"
+msgstr ""
+
+#: poseidon.py:1654
+msgid "Download complete for"
+msgstr ""
+
+#: poseidon.py:1759
+msgid "LOTS!"
+msgstr ""
+
+#: poseidon.py:1826
+msgid "Setting a new theme"
+msgstr ""
+
+#: poseidon.py:1827
+msgid "This operation may take a while"
+msgstr ""
+
+#: poseidon.py:1828
+msgid "It all depends on your internet speed and requested image size"
+msgstr ""
+
+#: poseidon.py:1929
+msgid "Source"
+msgstr ""
+
+#: poseidon.py:1948 poseidon.py:2003
+msgid "Name"
+msgstr ""
+
+#: poseidon.py:1949 poseidon.py:2003
+msgid "Value"
+msgstr ""
+
+#: poseidon.py:1950 poseidon.py:2003
+msgid "Host"
+msgstr ""
+
+#: poseidon.py:1951 poseidon.py:2003
+msgid "Path"
+msgstr ""
+
+#: poseidon.py:1952 poseidon.py:2004
+msgid "Expiry"
+msgstr ""
+
+#: poseidon.py:1953 poseidon.py:2004
+msgid "LastAccessed"
+msgstr ""
+
+#: poseidon.py:1954 poseidon.py:2004
+msgid "IsSecure"
+msgstr ""
+
+#: poseidon.py:1955 poseidon.py:2004
+msgid "IsHttpOnly"
+msgstr ""
+
+#: poseidon.py:2003
+msgid "Id"
+msgstr ""
+
+#: poseidon.py:2023
+msgid "Cookies"
+msgstr ""
+
+#: poseidon.py:2072
+msgid "Today"
+msgstr ""
+
+#: poseidon.py:2073
+msgid "Yesterday"
+msgstr ""
+
+#: poseidon.py:2074
+msgid "Two days ago"
+msgstr ""
+
+#: poseidon.py:2075
+msgid "This week"
+msgstr ""
+
+#: poseidon.py:2087 poseidon.py:2161
+msgid "Date"
+msgstr ""
+
+#: poseidon.py:2087 poseidon.py:2161
+msgid "Title"
+msgstr ""
+
+#: poseidon.py:2087 poseidon.py:2161
+msgid "URL"
+msgstr ""
+
+#: poseidon.py:2104
+msgid "History"
+msgstr ""
+
+#: poseidon.py:2145
+msgid "Type here your description"
+msgstr ""
+
+#: poseidon.py:2146
+msgid "Type here your URL address"
+msgstr ""
+
+#: poseidon.py:2234
+msgid "Plugins"
+msgstr ""
+
+#: poseidon.py:2418
+msgid "WebKit Error"
+msgstr ""
+
+#: poseidon.py:2419
+msgid "requires atleast WebKit 2.12.3 or superior"
+msgstr ""
+
+#: poseidon.py:2420
+msgid "In some distros you probably need to add a third-party repository"
+msgstr ""
+
+#: poseidon.py:2430
+msgid "Welcome to"
+msgstr ""
+
+#: poseidon.py:2430
+msgid "shows this menu"
+msgstr ""
+
+#: poseidon.py:2430
+msgid "opens the browser in defcon mode"
+msgstr ""
+
+#: poseidon.py:2431
+msgid "shows the version"
+msgstr ""
+
+#: poseidon.py:2431
+msgid "Usage"
+msgstr ""
+
+#~ msgid "Actually AdKiller only works with AdAway filters"
+#~ msgstr "Attualmente AdKiller funziona soltanto con i filtri di AdAway"
+
+#~ msgid "Further info on"
+#~ msgstr "Ulteriori informazioni su"
+
+#~ msgid "Type here your URL"
+#~ msgstr "Inserisci qui il tuo indirizzo URL"
+
+#~ msgid "View source"
+#~ msgstr "Vedi sorgente"
+
+#~ msgid "Add to bookmarks..."
+#~ msgstr "Aggiungi segnalibro..."
+
+#~ msgid "PEM Certificate"
+#~ msgstr "Certificato PEM"
+
+#~ msgid "disable 'TLS Secure Navigation' from the browser menu, then click"
+#~ msgstr ""
+#~ "disabilita l'opzione 'TLS Navigazione Sicura' dal menu del browser, e "
+#~ "clicca"
+
+#~ msgid "History is empty!"
+#~ msgstr "La cronologia è vuota!"
+
+#~ msgid "TLS Navigation Secure"
+#~ msgstr "Navigazione TLS Sicura"
+
+#~ msgid "Access to insecure TLS"
+#~ msgstr "Il tentativo di accesso a siti"
+
+#~ msgid "TLS Navigation Insecure"
+#~ msgstr "Navigazione TLS Non Sicura"
+
+#~ msgid "Delete Cache"
+#~ msgstr "Svuota Cache"
+
+#~ msgid "Annoying stuff will be blocked"
+#~ msgstr "La robaccia sara' bloccata"
+
+#~ msgid "Annoying stuff will pass"
+#~ msgstr "La robaccia non sara' bloccata"
+
+#~ msgid "Access to insecure TLS websites will be denied"
+#~ msgstr "Il tentativo di accesso a siti web TLS non sicuri sara' negato"
+
+#~ msgid "Access to insecure TLS websites will be allowed"
+#~ msgstr "Il tentativo di accesso a siti web TLS non sicuri sara' permesso"
+
+#~ msgid "Source:"
+#~ msgstr "Sorgente:"
+
+#~ msgid "Distribution Points:"
+#~ msgstr "Punti di Distribuzione:"
+
+#~ msgid "Basic Constraints:"
+#~ msgstr "Restrizioni di Base:"
+
+#~ msgid "Authority Key Identifier:"
+#~ msgstr "Identificatore Chiave Autorita':"
+
+#~ msgid "Authority Info Access:"
+#~ msgstr "Accesso Informazioni Autorita':"
+
+#~ msgid "Signature Algorithm:"
+#~ msgstr "Algoritmo della Firma:"
+
+#~ msgid "PEM Certificate:"
+#~ msgstr "Certificato PEM:"
+
+#~ msgid "Certificate Policies:"
+#~ msgstr "Politiche del Certificato:"
+
+#~ msgid "Extended Key Usage:"
+#~ msgstr "Utilizzo Chiave Esteso:"
+
+#~ msgid "Key Usage:"
+#~ msgstr "Utilizzo Chiave:"
+
+#~ msgid "Subject Key Identifier:"
+#~ msgstr "Identificatore Chiave Soggetto:"
+
+#~ msgid "Subject Alternative Names:"
+#~ msgstr "Nomi Alternativi Soggetto:"
+
+#~ msgid "Valid Time Range:"
+#~ msgstr "Periodo di Validita':"
+
+#~ msgid "Issuer:"
+#~ msgstr "Emanatore:"
+
+#~ msgid "Subject:"
+#~ msgstr "Soggetto:"
+
+#~ msgid ""
+#~ "An attacker could see any information you send, or control the content "
+#~ "that you see."
+#~ msgstr ""
+#~ "Un utente malintenzionato potrebbe vedere qualsiasi informazione che si "
+#~ "sta inviando, o controllare il contenuto che si sta visualizzando."
+
+#~ msgid "has no security."
+#~ msgstr "non ha nessuna sicurezza."
+
+#~ msgid "Downloading: "
+#~ msgstr "Scarico: "
+
+#~ msgid "access to insecure TLS websites will be denied"
+#~ msgstr "il tentativo di accesso a siti TLS non sicuri sara' negato"
+
+#~ msgid "access to insecure TLS websites will be allowed"
+#~ msgstr "il tentativo di accesso a siti TLS non sicuri sara' permesso"
+
+#~ msgid "TLS Security"
+#~ msgstr "Sicurezza TLS"
+
+#~ msgid "TLS Secure"
+#~ msgstr "TLS Sicuro"
+
+#~ msgid "TLS Insecure"
+#~ msgstr "TLS Non Sicuro"
+
+#~ msgid "TLS Secure Navigation"
+#~ msgstr "Navigazione TLS Sicura"
+
+#~ msgid "Secure Navigation"
+#~ msgstr "Navigazione Sicura"
+
+#~ msgid "Extensions:"
+#~ msgstr "Estensioni:"
+
+#~ msgid "Country"
+#~ msgstr "Paese"
+
+#~ msgid "State"
+#~ msgstr "Stato"
+
+#~ msgid "Location"
+#~ msgstr "Localita'"
+
+#~ msgid ""
+#~ "this web site did not properly secure your connection. Want to know more "
+#~ "about?"
+#~ msgstr ""
+#~ "Questo sito web non può mettere correttamente in sicurezza la connessione."

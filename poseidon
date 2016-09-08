@@ -1,0 +1,6 @@
+#!/bin/bash
+
+cd "$(dirname "$0")"
+export PYTHONPATH=$(pwd)
+export MOZ_PLUGIN_PATH=/usr/lib/epiphany/plugins
+python3 ./poseidon.py "$@"
