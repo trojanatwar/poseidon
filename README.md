@@ -1,6 +1,10 @@
 # Poseidon
 A fast, minimal and lightweight browser
 
+### Screenshot
+
+![Alt text](http://m-net.arbornet.org/~sidus/images/gscreenshot_2016-09-09-150033.png "Poseidon on Arch Linux")
+
 ### Requirements
 
 * Requires [WebKit](https://webkitgtk.org/) 2.12.3 or higher
