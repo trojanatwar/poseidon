@@ -38,11 +38,11 @@ along with Poseidon. If not, see <http://www.gnu.org/licenses/>.
 
 class dialog(Gtk.Window):
 
-    def about(self, window, logo):
+    def about(self, window, logo, ver):
 
         dialog = Gtk.AboutDialog(self)
         dialog.set_program_name(browser_name)
-        dialog.set_version(version)
+        dialog.set_version("{} (WebKit {})".format(version, ver))
         dialog.set_logo(logo)
         dialog.set_authors([authors])
         dialog.set_website(website)

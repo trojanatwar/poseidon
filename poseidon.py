@@ -392,6 +392,7 @@ class BrowserTab(Gtk.VBox):
         self.go_button = go_button
         self.refresh = refresh
         self.cancel = cancel
+        self.download_icon = download_icon
         self.download_button = download_button
         self.bookmarks_button = bookmarks_button
         self.tools = tools
@@ -1077,7 +1078,10 @@ class Browser(Gtk.Window):
 
     def on_logo(self):
 
-        dialog().about(self, self.pixbuf)
+        ver = WebKit2.get_major_version(), WebKit2.get_minor_version(), WebKit2.get_micro_version()
+        ver = str(ver).replace("(", "").replace(")", "").replace(", ", ".")
+
+        dialog().about(self, self.pixbuf, ver)
 
         return True
 
@@ -1545,9 +1549,13 @@ class Browser(Gtk.Window):
 
     def on_download_menu(self):
 
+        page = self.tabs[self.current_page][0]
+        button = page.download_button
+        button.set_image(page.download_icon)
+
         for child in self.dlview:
             if child:
-                self.downloads_menu.set_relative_to(self.tabs[self.current_page][0].download_button)
+                self.downloads_menu.set_relative_to(button)
                 self.downloads_menu.show_all()
 
     def on_download_started(self, context, download):
@@ -1640,12 +1648,21 @@ class Browser(Gtk.Window):
         for child in self.dlview:
             for child in child:
                 if child.get_name() == download.get_destination():
+
                     if type(child) == Gtk.ModelButton:
+
                         name = get_filename(download.get_destination())
                         child.get_child().set_markup("<span size='small'>{}: {}</span>".\
                         format(_("Download complete for"), minify(name, 25)))
+
+                        if not self.downloads_menu.get_visible():
+                            icon = make_icon("notification.svg")
+                            self.tabs[self.current_page][0].download_button.set_image(icon)
+
                     if type(child) == Gtk.ProgressBar:
                         child.set_fraction(1.0)
+
+                    child.set_name("")
 
     def on_context_menu(self, view, menu, event, htr):
         on_context_menu(self, view, menu, event, htr)
@@ -2404,14 +2421,14 @@ class Browser(Gtk.Window):
 
 def init():
 
-    try: v = WebKit2.get_major_version(), WebKit2.get_minor_version(), WebKit2.get_micro_version()
+    try: ver = WebKit2.get_major_version(), WebKit2.get_minor_version(), WebKit2.get_micro_version()
     except:
-        v = None
+        ver = None
         pass
 
-    if v and v < (2,12,3): v = None
+    if ver and ver < (2,12,3): ver = None
 
-    if not v:
+    if not ver:
 
         dialog().error(_("WebKit Error"), "<span size='small'>{} {}.\n{}.</span>"\
         .format(browser_name, _("requires atleast WebKit 2.12.3 or superior"),\
