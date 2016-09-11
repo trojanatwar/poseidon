@@ -11,6 +11,10 @@ A fast, minimal and lightweight browser
 
 ### Dependencies
 
+* Arch Linux
+
+`# pacman -S python3 python-gobject python-decorator python-six python-requests python-pillow pyopenssl gtk3 gtksourceview3 webkit2gtk`
+
 * Ubuntu/Mint
 
 `# apt-get install gir1.2-evince-3.0 gir1.2-webkit2-4.0 python3-decorator python3-openssl evince-browser-plugin (external)`
