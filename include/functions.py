@@ -44,7 +44,7 @@ def do_export_bookmarks(list):
         content.append("<DT><A HREF=\"{}\" ADD_DATE=\"{}\">{}</a>".format(url, timestamp, title))
  
     content.append(footer)
-    content = ''.join([s for s in content])
+    content = "".join([s for s in content])
 
     return content
 
@@ -173,8 +173,8 @@ def digits_only(entry):
     value = entry.get_text()
     digit = entry.get_name()
     
-    if digit == str(1): value = ''.join([c for c in value if c.isdigit()])
-    if digit == str(2): value = ''.join([c for c in value if c.isdigit() and value < str(2)])
+    if digit == str(1): value = "".join([c for c in value if c.isdigit()])
+    if digit == str(2): value = "".join([c for c in value if c.isdigit() and value < str(2)])
 
     entry.set_text(value)
 

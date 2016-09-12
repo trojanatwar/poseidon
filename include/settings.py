@@ -49,7 +49,7 @@ lang.install()
 ##################
 '''
 
-version = "0.1.1"
+version = "0.1.2"
 browser_name = "Poseidon"
 website = "https://github.com/sidus-dev/poseidon"
 authors = "Andrea Pasciuta  <sidus@arbornet.org>"

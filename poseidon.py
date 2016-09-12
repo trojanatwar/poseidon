@@ -783,12 +783,15 @@ class Browser(Gtk.Window):
         ##############
         '''
 
-        tools_menu = Gtk.Popover()
+        tools_menu = Gtk.PopoverMenu()
         tools_menu.set_position(Gtk.PositionType.BOTTOM)
 
         menu = Gtk.Box(orientation = Gtk.Orientation.VERTICAL)
+        utilities_menu = Gtk.Box(orientation = Gtk.Orientation.VERTICAL)
 
         tools_menu.add(menu)
+        tools_menu.get_child().add(utilities_menu)
+        tools_menu.child_set_property(utilities_menu, "submenu", "utilities-menu")
 
         new_window_button = make_modelbutton(_("New Window"), xalign, yalign)
         new_window_button.connect("clicked", lambda x: init())
@@ -814,10 +817,6 @@ class Browser(Gtk.Window):
         zoom_restore_button.connect("clicked", lambda x: self.zoom_restore())
         zoom_restore_label = make_modelbutton_label("[Ctrl+M]", 0.95, 0.5)
 
-        del_theme_button = make_modelbutton(_("Delete Theme"), xalign, yalign)
-        del_theme_button.connect("clicked", lambda x: self.delete_theme())
-        del_theme_label = make_modelbutton_label("[Ctrl+K]", 0.95, 0.5)
-
         print_button = make_modelbutton(_("Print"), xalign, yalign)
         print_button.connect("clicked", lambda x: self.page_print())
         print_label = make_modelbutton_label("[Ctrl+P]", 0.95, 0.5)
@@ -833,12 +832,6 @@ class Browser(Gtk.Window):
         bookmarks_button = make_modelbutton(_("Bookmarks"), xalign, yalign)
         bookmarks_button.connect("clicked", lambda x: self.view_bookmarks(None, None))
         bookmarks_label = make_modelbutton_label("[Ctrl+D]", 0.95, 0.5)
-
-        manager_cookies_button = make_modelbutton(_("Cookies Manager"), xalign, yalign)
-        manager_cookies_button.connect("clicked", lambda x: self.cookies_manager())
-
-        delete_cache_button = make_modelbutton(_("Empty Cache"), xalign, yalign)
-        delete_cache_button.connect("clicked", lambda x: self.tabs[self.current_page][0].context.clear_cache())
 
         adke_label_text = "<span size='small'>{}</span>\r<span size='x-small'>{}: 0</span>\r"\
         .format(_("AdKiller (experimental)"), _("Enabled, Ads blocked"))
@@ -923,6 +916,26 @@ class Browser(Gtk.Window):
             pg_switch.set_sensitive(False)
             pg_switch.set_active(False)
 
+        utilities_button = make_modelbutton(_("Utilities"), xalign, yalign)
+        utilities_button.set_property("menu-name", "utilities-menu")
+
+        back_main_button = make_modelbutton(_("Back..."), xalign, yalign)
+        back_main_button.set_property("menu-name", "main")
+
+        del_theme_button = make_modelbutton(_("Delete Theme"), xalign, yalign)
+        del_theme_button.connect("clicked", lambda x: self.delete_theme())
+        del_theme_label = make_modelbutton_label("[Ctrl+K]", 0.95, 0.5)
+
+        plugins_button = make_modelbutton(_("View Plugins"), xalign, yalign)
+        plugins_button.connect("clicked", lambda x: self.view_plugins())
+        plugins_label = make_modelbutton_label("[Ctrl+L]", 0.95, 0.5)
+
+        manager_cookies_button = make_modelbutton(_("Cookies Manager"), xalign, yalign)
+        manager_cookies_button.connect("clicked", lambda x: self.cookies_manager())
+
+        delete_cache_button = make_modelbutton(_("Empty Cache"), xalign, yalign)
+        delete_cache_button.connect("clicked", lambda x: self.tabs[self.current_page][0].context.clear_cache())
+
         grid_buttons = Gtk.Grid()
         grid_buttons.set_column_spacing(10)
         grid_buttons.attach(new_window_button, 0, 0, 1, 1)
@@ -938,8 +951,7 @@ class Browser(Gtk.Window):
         grid_buttons.attach(zoom_out_label, 0, 6, 1, 1)
         grid_buttons.attach(zoom_restore_button, 0, 7, 1, 1)
         grid_buttons.attach(zoom_restore_label, 0, 7, 1, 1)
-        grid_buttons.attach(del_theme_button, 0, 8, 1, 1)
-        grid_buttons.attach(del_theme_label, 0, 8, 1, 1)
+        grid_buttons.attach(utilities_button, 0, 8, 1, 1)
         grid_buttons.attach(Gtk.Separator.new(Gtk.Orientation.HORIZONTAL), 0, 9, 1, 1)
         grid_buttons.attach(print_button, 0, 10, 1, 1)
         grid_buttons.attach(print_label, 0, 10, 1, 1)
@@ -951,12 +963,6 @@ class Browser(Gtk.Window):
         grid_buttons.attach(bookmarks_label, 0, 13, 1, 1)
         grid_buttons.attach(Gtk.Separator.new(Gtk.Orientation.HORIZONTAL), 0, 14, 1, 1)
         grid_buttons.set_column_homogeneous(True)
-
-        grid_data = Gtk.Grid()
-        grid_data.set_column_spacing(10)
-        grid_data.attach(manager_cookies_button, 0, 1, 1, 1)
-        grid_data.attach(delete_cache_button, 1, 1, 1, 1)
-        grid_data.set_column_homogeneous(True)
 
         grid_switches = Gtk.Grid()
         grid_switches.set_column_spacing(10)
@@ -970,10 +976,22 @@ class Browser(Gtk.Window):
         grid_switches.attach(pg_switch, 1, 3, 1, 1)
         grid_switches.set_column_homogeneous(True)
 
+        grid_utilities = Gtk.Grid()
+        grid_utilities.set_column_spacing(10)
+        grid_utilities.attach(back_main_button, 0, 0, 1, 1)
+        grid_utilities.attach(Gtk.Separator.new(Gtk.Orientation.HORIZONTAL), 0, 1, 1, 1)
+        grid_utilities.attach(del_theme_button, 0, 2, 1, 1)
+        grid_utilities.attach(del_theme_label, 0, 2, 1, 1)
+        grid_utilities.attach(plugins_button, 0, 3, 1, 1)
+        grid_utilities.attach(plugins_label, 0, 3, 1, 1)
+        grid_utilities.attach(Gtk.Separator.new(Gtk.Orientation.HORIZONTAL), 0, 4, 1, 1)
+        grid_utilities.attach(manager_cookies_button, 0, 5, 1, 1)
+        grid_utilities.attach(delete_cache_button, 0, 6, 1, 1)
+        grid_utilities.set_column_homogeneous(True)
+
         menu.pack_start(grid_buttons, False, False, 0)
-        menu.pack_start(grid_data, False, False, 0)
-        menu.pack_start(Gtk.Separator.new(Gtk.Orientation.HORIZONTAL), False, False, 0)
         menu.pack_start(grid_switches, False, False, 10)
+        utilities_menu.pack_start(grid_utilities, False, False, 0)
 
         '''
         #####################
@@ -1001,6 +1019,7 @@ class Browser(Gtk.Window):
         dlscroll.set_property('margin', 15)
         dlview.set_property('margin-right', 15)
         menu.set_property('margin', 15)
+        utilities_menu.set_property('margin', 15)
 
         '''
         ###########
@@ -1851,9 +1870,14 @@ class Browser(Gtk.Window):
     def delete_theme(self):
 
         if os.path.exists(theme_file):
-            os.remove(theme_file)
-            apply_css()
-            self.present()
+
+            decision = dialog().decision(_("Delete Theme"), "<span size='small'>{}?</span>"\
+            .format(_("Do you really want to delete this theme")))
+
+            if decision:
+                os.remove(theme_file)
+                apply_css()
+                self.present()
 
         return True
 
@@ -2404,6 +2428,7 @@ class Browser(Gtk.Window):
                    Gdk.KEY_m: self.zoom_restore,
                    Gdk.KEY_k: self.delete_theme,
                    Gdk.KEY_i: self.defcon,
+                   Gdk.KEY_l: self.view_plugins,
                    Gdk.KEY_d: lambda: self.view_bookmarks(None, None),
                    Gdk.KEY_n: lambda: init(),
                    Gdk.KEY_q: lambda: quit(self)}
