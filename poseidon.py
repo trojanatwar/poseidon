@@ -795,43 +795,31 @@ class Browser(Gtk.Window):
 
         new_window_button = make_modelbutton(_("New Window"), xalign, yalign)
         new_window_button.connect("clicked", lambda x: init())
-        new_window_label = make_modelbutton_label("[Ctrl+N]", 0.95, 0.5)
+        new_window_label = make_modelbutton_label("[ Ctrl+N ]", 0.95, 0.5)
 
         defcon_button = make_modelbutton(_("Defcon Mode"), xalign, yalign)
         defcon_button.connect("clicked", lambda x: self.defcon())
-        defcon_label = make_modelbutton_label("[Ctrl+I]", 0.95, 0.5)
+        defcon_label = make_modelbutton_label("[ Ctrl+I ]", 0.95, 0.5)
 
         finder_button = make_modelbutton(_("Finder"), xalign, yalign)
         finder_button.connect("clicked", lambda x: self.finder())
-        finder_label = make_modelbutton_label("[Ctrl+F]", 0.95, 0.5)
+        finder_label = make_modelbutton_label("[ Ctrl+F ]", 0.95, 0.5)
 
         zoom_in_button = make_modelbutton(_("Zoom In"), xalign, yalign)
         zoom_in_button.connect("clicked", lambda x: self.zoom_in())
-        zoom_in_label = make_modelbutton_label("[Ctrl+]", 0.95, 0.5)
+        zoom_in_label = make_modelbutton_label("[ Ctrl+ ]", 0.95, 0.5)
 
         zoom_out_button = make_modelbutton(_("Zoom Out"), xalign, yalign)
         zoom_out_button.connect("clicked", lambda x: self.zoom_out())
-        zoom_out_label = make_modelbutton_label("[Ctrl-]", 0.95, 0.5)
+        zoom_out_label = make_modelbutton_label("[ Ctrl- ]", 0.95, 0.5)
 
         zoom_restore_button = make_modelbutton(_("Zoom Restore"), xalign, yalign)
         zoom_restore_button.connect("clicked", lambda x: self.zoom_restore())
-        zoom_restore_label = make_modelbutton_label("[Ctrl+M]", 0.95, 0.5)
+        zoom_restore_label = make_modelbutton_label("[ Ctrl+M ]", 0.95, 0.5)
 
         print_button = make_modelbutton(_("Print"), xalign, yalign)
         print_button.connect("clicked", lambda x: self.page_print())
-        print_label = make_modelbutton_label("[Ctrl+P]", 0.95, 0.5)
-
-        source_button = make_modelbutton(_("View Source"), xalign, yalign)
-        source_button.connect("clicked", lambda x: self.view_source())
-        source_label = make_modelbutton_label("[Ctrl+U]", 0.95, 0.5)
-
-        history_button = make_modelbutton(_("View History"), xalign, yalign)
-        history_button.connect("clicked", lambda x: self.view_history())
-        history_label = make_modelbutton_label("[Ctrl+H]", 0.95, 0.5)
-
-        bookmarks_button = make_modelbutton(_("Bookmarks"), xalign, yalign)
-        bookmarks_button.connect("clicked", lambda x: self.view_bookmarks(None, None))
-        bookmarks_label = make_modelbutton_label("[Ctrl+D]", 0.95, 0.5)
+        print_label = make_modelbutton_label("[ Ctrl+P ]", 0.95, 0.5)
 
         adke_label_text = "<span size='small'>{}</span>\r<span size='x-small'>{}: 0</span>\r"\
         .format(_("AdKiller (experimental)"), _("Enabled, Ads blocked"))
@@ -924,11 +912,23 @@ class Browser(Gtk.Window):
 
         del_theme_button = make_modelbutton(_("Delete Theme"), xalign, yalign)
         del_theme_button.connect("clicked", lambda x: self.delete_theme())
-        del_theme_label = make_modelbutton_label("[Ctrl+K]", 0.95, 0.5)
+        del_theme_label = make_modelbutton_label("[ Ctrl+K ]", 0.95, 0.5)
 
         plugins_button = make_modelbutton(_("View Plugins"), xalign, yalign)
         plugins_button.connect("clicked", lambda x: self.view_plugins())
-        plugins_label = make_modelbutton_label("[Ctrl+L]", 0.95, 0.5)
+        plugins_label = make_modelbutton_label("[ Ctrl+L ]", 0.95, 0.5)
+
+        source_button = make_modelbutton(_("View Source"), xalign, yalign)
+        source_button.connect("clicked", lambda x: self.view_source())
+        source_label = make_modelbutton_label("[ Ctrl+U ]", 0.95, 0.5)
+
+        history_button = make_modelbutton(_("View History"), xalign, yalign)
+        history_button.connect("clicked", lambda x: self.view_history())
+        history_label = make_modelbutton_label("[ Ctrl+H ]", 0.95, 0.5)
+
+        bookmarks_button = make_modelbutton(_("View Bookmarks"), xalign, yalign)
+        bookmarks_button.connect("clicked", lambda x: self.view_bookmarks(None, None))
+        bookmarks_label = make_modelbutton_label("[ Ctrl+D ]", 0.95, 0.5)
 
         manager_cookies_button = make_modelbutton(_("Cookies Manager"), xalign, yalign)
         manager_cookies_button.connect("clicked", lambda x: self.cookies_manager())
@@ -940,9 +940,11 @@ class Browser(Gtk.Window):
         grid_buttons.set_column_spacing(10)
         grid_buttons.attach(new_window_button, 0, 0, 1, 1)
         grid_buttons.attach(new_window_label, 0, 0, 1, 1)
-        grid_buttons.attach(defcon_button, 0, 2, 1, 1)
-        grid_buttons.attach(defcon_label, 0, 2, 1, 1)
-        grid_buttons.attach(Gtk.Separator.new(Gtk.Orientation.HORIZONTAL), 0, 3, 1, 1)
+        grid_buttons.attach(defcon_button, 0, 1, 1, 1)
+        grid_buttons.attach(defcon_label, 0, 1, 1, 1)
+        grid_buttons.attach(Gtk.Separator.new(Gtk.Orientation.HORIZONTAL), 0, 2, 1, 1)
+        grid_buttons.attach(print_button, 0, 3, 1, 1)
+        grid_buttons.attach(print_label, 0, 3, 1, 1)
         grid_buttons.attach(finder_button, 0, 4, 1, 1)
         grid_buttons.attach(finder_label, 0, 4, 1, 1)
         grid_buttons.attach(zoom_in_button, 0, 5, 1, 1)
@@ -951,16 +953,8 @@ class Browser(Gtk.Window):
         grid_buttons.attach(zoom_out_label, 0, 6, 1, 1)
         grid_buttons.attach(zoom_restore_button, 0, 7, 1, 1)
         grid_buttons.attach(zoom_restore_label, 0, 7, 1, 1)
-        grid_buttons.attach(utilities_button, 0, 8, 1, 1)
-        grid_buttons.attach(Gtk.Separator.new(Gtk.Orientation.HORIZONTAL), 0, 9, 1, 1)
-        grid_buttons.attach(print_button, 0, 10, 1, 1)
-        grid_buttons.attach(print_label, 0, 10, 1, 1)
-        grid_buttons.attach(source_button, 0, 11, 1, 1)
-        grid_buttons.attach(source_label, 0, 11, 1, 1)
-        grid_buttons.attach(history_button, 0, 12, 1, 1)
-        grid_buttons.attach(history_label, 0, 12, 1, 1)
-        grid_buttons.attach(bookmarks_button, 0, 13, 1, 1)
-        grid_buttons.attach(bookmarks_label, 0, 13, 1, 1)
+        grid_buttons.attach(Gtk.Separator.new(Gtk.Orientation.HORIZONTAL), 0, 8, 1, 1)
+        grid_buttons.attach(utilities_button, 0, 9, 1, 1)
         grid_buttons.attach(Gtk.Separator.new(Gtk.Orientation.HORIZONTAL), 0, 14, 1, 1)
         grid_buttons.set_column_homogeneous(True)
 
@@ -982,11 +976,18 @@ class Browser(Gtk.Window):
         grid_utilities.attach(Gtk.Separator.new(Gtk.Orientation.HORIZONTAL), 0, 1, 1, 1)
         grid_utilities.attach(del_theme_button, 0, 2, 1, 1)
         grid_utilities.attach(del_theme_label, 0, 2, 1, 1)
-        grid_utilities.attach(plugins_button, 0, 3, 1, 1)
-        grid_utilities.attach(plugins_label, 0, 3, 1, 1)
-        grid_utilities.attach(Gtk.Separator.new(Gtk.Orientation.HORIZONTAL), 0, 4, 1, 1)
-        grid_utilities.attach(manager_cookies_button, 0, 5, 1, 1)
-        grid_utilities.attach(delete_cache_button, 0, 6, 1, 1)
+        grid_utilities.attach(Gtk.Separator.new(Gtk.Orientation.HORIZONTAL), 0, 3, 1, 1)
+        grid_utilities.attach(plugins_button, 0, 4, 1, 1)
+        grid_utilities.attach(plugins_label, 0, 4, 1, 1)
+        grid_utilities.attach(source_button, 0, 5, 1, 1)
+        grid_utilities.attach(source_label, 0, 5, 1, 1)
+        grid_utilities.attach(history_button, 0, 6, 1, 1)
+        grid_utilities.attach(history_label, 0, 6, 1, 1)
+        grid_utilities.attach(bookmarks_button, 0, 7, 1, 1)
+        grid_utilities.attach(bookmarks_label, 0, 7, 1, 1)
+        grid_utilities.attach(Gtk.Separator.new(Gtk.Orientation.HORIZONTAL), 0, 8, 1, 1)
+        grid_utilities.attach(manager_cookies_button, 0, 9, 1, 1)
+        grid_utilities.attach(delete_cache_button, 0, 10, 1, 1)
         grid_utilities.set_column_homogeneous(True)
 
         menu.pack_start(grid_buttons, False, False, 0)
@@ -1716,11 +1717,9 @@ class Browser(Gtk.Window):
 
             if mime_request in evince_mime:
 
-                try:
-                    from gi.repository import EvinceView
-                    return True
-                except ImportError:
-                    pass
+                try: gi.require_version("EvinceView", "3.0")
+                except: pass
+                else: return True
 
             if mime_request in mime_view: return True
             if "application/" in mime_request: decision.download()

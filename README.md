@@ -17,15 +17,34 @@ A fast, minimal and lightweight browser
 
 * Ubuntu/Mint
 
-`# apt-get install gir1.2-evince-3.0 gir1.2-webkit2-4.0 python3-decorator python3-openssl evince-browser-plugin (external)`
+`# apt-get install gir1.2-evince-3.0 gir1.2-webkit2-4.0 python3-decorator python3-openssl`
+
+Optional: [evince-browser-plugin](http://packages.ubuntu.com/en/yakkety/browser-plugin-evince)
 
 If your WebKit version is too old, upgrade it from [here](https://launchpad.net/~webkit-team/+archive/ubuntu/ppa):
 
-`$ sudo add-apt-repository ppa:webkit-team/ppa`
+`# add-apt-repository ppa:webkit-team/ppa && apt-get update && apt-get upgrade`
 
 * Fedora
 
 `# dnf install python3-pyOpenSSL.noarch`
+
+* FreeBSD (10.3*)
+
+`# pkg install python3 py34-gobject3 py34-sqlite3 py34-pillow gtksourceview3`
+
+then (ignore the first two lines if you already have pip3 installed):
+
+```
+python3.4 -m ensurepip
+pip3.4 install --upgrade pip
+pip3 install six decorator pyopenssl
+rehash
+```
+
+[Compile](https://trac.webkit.org/wiki/BuildingGtk) [WebKitGTK](https://webkit.org/getting-the-code/) manually if the one provided by the ports is obsolete, viceversa:
+
+`# pkg install webkit2-gtk3`
 
 ### Shortcuts
 
