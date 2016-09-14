@@ -96,8 +96,7 @@ def adk_init(filters_path):
     return combined(filters)
 
 def adk(arg, rules):
-    for i in rules:
-        if i in arg: return True
+    if any(c for c in rules if c in arg): return True
 
 def combined(filenames):
     for filename in filenames:
