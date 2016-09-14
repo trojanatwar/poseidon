@@ -914,6 +914,10 @@ class Browser(Gtk.Window):
         del_theme_button.connect("clicked", lambda x: self.delete_theme())
         del_theme_label = make_modelbutton_label("[ Ctrl+K ]", 0.95, 0.5)
 
+        pass_gen_button = make_modelbutton(_("Password Generator"), xalign, yalign)
+        pass_gen_button.connect("clicked", lambda x: pass_generator(self))
+        pass_gen_label = make_modelbutton_label("[ Ctrl+J ]", 0.95, 0.5)
+
         plugins_button = make_modelbutton(_("View Plugins"), xalign, yalign)
         plugins_button.connect("clicked", lambda x: self.view_plugins())
         plugins_label = make_modelbutton_label("[ Ctrl+L ]", 0.95, 0.5)
@@ -976,18 +980,20 @@ class Browser(Gtk.Window):
         grid_utilities.attach(Gtk.Separator.new(Gtk.Orientation.HORIZONTAL), 0, 1, 1, 1)
         grid_utilities.attach(del_theme_button, 0, 2, 1, 1)
         grid_utilities.attach(del_theme_label, 0, 2, 1, 1)
-        grid_utilities.attach(Gtk.Separator.new(Gtk.Orientation.HORIZONTAL), 0, 3, 1, 1)
-        grid_utilities.attach(plugins_button, 0, 4, 1, 1)
-        grid_utilities.attach(plugins_label, 0, 4, 1, 1)
-        grid_utilities.attach(source_button, 0, 5, 1, 1)
-        grid_utilities.attach(source_label, 0, 5, 1, 1)
-        grid_utilities.attach(history_button, 0, 6, 1, 1)
-        grid_utilities.attach(history_label, 0, 6, 1, 1)
-        grid_utilities.attach(bookmarks_button, 0, 7, 1, 1)
-        grid_utilities.attach(bookmarks_label, 0, 7, 1, 1)
-        grid_utilities.attach(Gtk.Separator.new(Gtk.Orientation.HORIZONTAL), 0, 8, 1, 1)
-        grid_utilities.attach(manager_cookies_button, 0, 9, 1, 1)
-        grid_utilities.attach(delete_cache_button, 0, 10, 1, 1)
+        grid_utilities.attach(pass_gen_button, 0, 3, 1, 1)
+        grid_utilities.attach(pass_gen_label, 0, 3, 1, 1)
+        grid_utilities.attach(Gtk.Separator.new(Gtk.Orientation.HORIZONTAL), 0, 4, 1, 1)
+        grid_utilities.attach(plugins_button, 0, 5, 1, 1)
+        grid_utilities.attach(plugins_label, 0, 5, 1, 1)
+        grid_utilities.attach(source_button, 0, 6, 1, 1)
+        grid_utilities.attach(source_label, 0, 6, 1, 1)
+        grid_utilities.attach(history_button, 0, 7, 1, 1)
+        grid_utilities.attach(history_label, 0, 7, 1, 1)
+        grid_utilities.attach(bookmarks_button, 0, 8, 1, 1)
+        grid_utilities.attach(bookmarks_label, 0, 8, 1, 1)
+        grid_utilities.attach(Gtk.Separator.new(Gtk.Orientation.HORIZONTAL), 0, 9, 1, 1)
+        grid_utilities.attach(manager_cookies_button, 0, 10, 1, 1)
+        grid_utilities.attach(delete_cache_button, 0, 11, 1, 1)
         grid_utilities.set_column_homogeneous(True)
 
         menu.pack_start(grid_buttons, False, False, 0)
@@ -2428,6 +2434,7 @@ class Browser(Gtk.Window):
                    Gdk.KEY_k: self.delete_theme,
                    Gdk.KEY_i: self.defcon,
                    Gdk.KEY_l: self.view_plugins,
+                   Gdk.KEY_j: lambda: pass_generator(self),
                    Gdk.KEY_d: lambda: self.view_bookmarks(None, None),
                    Gdk.KEY_n: lambda: init(),
                    Gdk.KEY_q: lambda: quit(self)}

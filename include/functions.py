@@ -16,10 +16,10 @@
 # You should have received a copy of the GNU General Public License
 # along with Poseidon. If not, see <http://www.gnu.org/licenses/>.
 
-import os, sys, gi, requests, datetime,\
+import os, sys, gi, requests, datetime, random,\
 requests.exceptions as ecs, urllib.parse as urlparse
 from PIL import Image
-from gi.repository import Gtk
+from gi.repository import Gtk, Gdk
 sys.path.append(".")
 from settings import verify_req, icns
 from dialog import *
@@ -220,4 +220,70 @@ def timelist(action, view, bflist, button, margin, xalign, yalign, hover, icns):
         menu.pack_start(grid_timelist, False, False, 0)
 
     popover.show_all()
+
+def pass_generator(self):
+
+    window = Gtk.Window()
+    window.set_title(_("Password Generator"))
+    window.set_position(Gtk.WindowPosition.CENTER)
+    window.set_transient_for(self)
+
+    entry = make_box("{} (Def: 32) (Max: 99999)".format(_("Password Length")), 5, 1)
+    button = Gtk.Button(label=_("Generate"))
+    copy = Gtk.Button(label=_("Copy"))
+    result = Gtk.TextView()
+    scrolled_window = Gtk.ScrolledWindow()
+    scrolled_window.set_size_request(500,200)
+    scrolled_window.add(result)
+
+    bt_grid = Gtk.Grid()
+    bt_grid.set_column_spacing(10)
+    bt_grid.attach(button, 1, 0, 1, 1)
+    bt_grid.attach(copy, 2, 0, 1, 1)
+    bt_grid.set_column_homogeneous(True)
+
+    grid = Gtk.Grid()
+    grid.attach(entry, 0, 0, 1, 1)
+    grid.attach(scrolled_window, 0, 1, 1, 1)
+    grid.attach(bt_grid, 0, 2, 1, 1)
+
+    entry.set_property("margin-bottom", 15)
+    bt_grid.set_property("margin-top", 15)
+    grid.set_property("margin", 15)
+
+    window.add(grid)
+    window.show_all()
+
+    clipboard = Gtk.Clipboard.get(Gdk.SELECTION_CLIPBOARD)
+
+    for i in entry:
+        if type(i) == Gtk.Entry: entry = i
+
+    button.connect("clicked", lambda x: pass_generate(entry.get_text(), 32, result))
+    copy.connect("clicked", lambda x: clipboard.set_text(result.get_buffer().\
+    get_text(result.get_buffer().get_start_iter(),result.get_buffer().get_end_iter(), False), -1))
+
+def pass_generate(length, default_length, result):
+
+    charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789^!\$%&/()=?{[]}+~#-_.:,;<>|\\"
+    password = str()
+
+    if not length:
+        length = int(default_length)
+    else:
+        length = int(length)
+
+    for i in range(length):
+        n = random.randrange(len(charset))
+        password = password + charset[n]
+
+    for i in range(random.randrange(1,3)):
+        r = random.randrange(len(password)//2)
+        password = password[0:r] + str(random.randrange(10)) + password[r+1:]
+
+    for i in range(random.randrange(1,3)):
+        r = random.randrange(len(password)//2,len(password))
+        password = password[0:r] + password[r].upper() + password[r+1:]
+
+    result.get_buffer().set_text(password)
 
