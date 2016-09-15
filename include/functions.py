@@ -232,6 +232,7 @@ def pass_generator(self):
     button = Gtk.Button(label=_("Generate"))
     copy = Gtk.Button(label=_("Copy"))
     result = Gtk.TextView()
+    result.set_wrap_mode(Gtk.WrapMode.WORD)
     scrolled_window = Gtk.ScrolledWindow()
     scrolled_window.set_size_request(500,200)
     scrolled_window.add(result)

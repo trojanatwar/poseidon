@@ -21,7 +21,8 @@ gi.require_version('Gtk', '3.0')
 gi.require_version('WebKit2', '4.0')
 gi.require_version('GtkSource', '3.0')
 from gi.repository import Gtk, Gdk, GdkPixbuf, GObject, WebKit2, GLib
-from gi.repository.GtkSource import LanguageManager, Buffer, View
+from gi.repository.GtkSource import LanguageManager, Buffer,\
+View, SearchContext, SearchSettings
 from os import path
 
 sys.path.append("modules")
@@ -1931,6 +1932,30 @@ class Browser(Gtk.Window):
 
         return scrolled_window
 
+    def find_source(self, entry, view):
+
+        buf = view.get_buffer()
+        i = buf.get_iter_at_mark(buf.get_insert())
+
+        settings = SearchSettings()
+        settings.set_case_sensitive(False)
+        settings.set_at_word_boundaries(False)
+        settings.set_regex_enabled(True)
+        settings.set_property('search-text', entry.get_text())
+        settings.set_wrap_around(True)
+
+        context = SearchContext.new(buf, settings)
+        context.set_highlight(True)
+
+        i.forward_chars(1)
+        match, start_iter, end_iter = context.forward(i)
+
+        if match:
+            buf.place_cursor(start_iter)
+            buf.move_mark(buf.get_selection_bound(), end_iter)
+            view.scroll_to_mark(buf.get_insert(), 0.25, True, 0.5, 0.5)
+            return True
+
     def view_source(self):
 
         url = self.tabs[self.current_page][0].webview.get_uri()
@@ -1949,20 +1974,28 @@ class Browser(Gtk.Window):
             source = ''.join([s.decode("utf8", "replace") + "\n" for s in source.splitlines()])            
             scrolled_window = self.get_clean_page(page, "source", False)
 
-            self.tabs[page][0].url_box.pack_start(Gtk.Label(), False, False, 0)
+            pixbuf = GdkPixbuf.Pixbuf.new_from_file("{}system-search.svg".format(icns))
+            entry = Gtk.Entry()
+            entry.set_icon_from_pixbuf(Gtk.EntryIconPosition.PRIMARY, pixbuf)
+
+            self.tabs[page][0].url_box.pack_end(entry, False, False, 0)
             self.tabs[page][0].show_all()
 
-            source_view = View(name=get_domain(url))
-            source_view.set_auto_indent(True)
-            source_view.set_show_line_numbers(True)
-            source_view.set_wrap_mode(Gtk.WrapMode.WORD)
-            source_view.set_monospace(True)
-            source_view.get_buffer().set_text(source)
-            scrolled_window.add(source_view)
+            view = View(name=get_domain(url))
+            view.set_auto_indent(True)
+            view.set_show_line_numbers(True)
+            view.set_wrap_mode(Gtk.WrapMode.WORD)
+            view.set_monospace(True)
+            view.get_buffer().set_text(source)
+            scrolled_window.add(view)
             lang = LanguageManager.get_default().guess_language(None, content_type)
-            source_view.get_buffer().set_language(lang)
-            source_view.get_buffer().set_highlight_syntax(True)
+            view.get_buffer().set_language(lang)
+            view.get_buffer().set_highlight_syntax(True)
             scrolled_window.show_all()
+
+            entry.connect("activate", lambda x: self.find_source(entry, view))
+            entry.connect("changed", lambda x: self.find_source(entry, view))
+            entry.grab_focus()
 
             self.tabs[page][1].set_text("{}: {}".format(_("Source"), minify(url, 50)))
 
