@@ -121,9 +121,10 @@ def make_label_selectable(x, y):
 
     return label
 
-def make_button(icon):
+def make_button(icon, toggle):
 
-    button = Gtk.Button()
+    if toggle: button = Gtk.ToggleButton()
+    else: button = Gtk.Button()
     button.set_always_show_image(True)
     button.set_image(icon)
     button.set_border_width(3)
