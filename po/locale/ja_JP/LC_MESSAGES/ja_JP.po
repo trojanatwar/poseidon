@@ -1,0 +1,562 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"POT-Creation-Date: 2016-09-14 06:18+0200\n"
+"PO-Revision-Date: 2016-09-16 15:35+0200\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: ja_JP\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.8.9\n"
+"X-Poedit-Basepath: ../../../..\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: extension.py:72
+msgid "Houston, we have a problem"
+msgstr "ヒューストン、我々は問題を抱えています"
+
+#: extension.py:74
+msgid ""
+"An AdBlockPlus filter has been detected in your 'filters' folder but "
+"actually AdKiller only works with AdAway filters"
+msgstr ""
+"AdBlockをプラスフィルターはあなたの「フィルタ」フォルダ内に検出されたが、実"
+"際にAdKillerのみAdAwayフィルタと連携してきました"
+
+#: extension.py:75
+msgid ""
+"In order to avoid any issues or incompatibilities, remove that filter and "
+"restart this program"
+msgstr ""
+"すべての問題や非互換性を回避するために、そのフィルタを削除し、このプログラム"
+"を再起動します"
+
+#: extension.py:76
+msgid "Get your AdAway filter list here"
+msgstr "ここにあなたのAdAwayフィルタリストを取得します。"
+
+#: include/functions.py:33 poseidon.py:2215 poseidon.py:2398
+msgid "Bookmarks"
+msgstr "ブックマーク"
+
+#: include/functions.py:227 poseidon.py:917
+msgid "Password Generator"
+msgstr "パスワードジェネレータ"
+
+#: include/functions.py:231
+msgid "Password Length"
+msgstr "パスワードの長さ"
+
+#: include/functions.py:232
+msgid "Generate"
+msgstr "生成します"
+
+#: include/functions.py:233
+msgid "Copy"
+msgstr "コピー"
+
+#: include/menu.py:47
+msgid "Apply as theme"
+msgstr "テーマとして適用"
+
+#: include/menu.py:74
+msgid "Go to"
+msgstr "に行きます"
+
+#: include/menu.py:77
+msgid "Search"
+msgstr "サーチ"
+
+#: include/menu.py:77
+msgid "in the web"
+msgstr "ウェブで"
+
+#: include/pathchooser.py:30 include/pathchooser.py:64
+msgid "Save as"
+msgstr "名前を付けて保存"
+
+#: include/pathchooser.py:105
+msgid "Overwrite"
+msgstr "上書きします"
+
+#: include/pathchooser.py:107
+msgid "already exists, wanna overwrite it?"
+msgstr "がすでに存在している、したいが、それを上書き？"
+
+#: include/secure.py:32
+msgid "Country Name"
+msgstr "国の名前"
+
+#: include/secure.py:33
+msgid "State Or Province Name"
+msgstr "州または県名"
+
+#: include/secure.py:34
+msgid "Locality"
+msgstr "地域"
+
+#: include/secure.py:35
+msgid "Organization"
+msgstr "組織"
+
+#: include/secure.py:36
+msgid "Common Name"
+msgstr "一般名"
+
+#: include/secure.py:37
+msgid "Organizational Unit"
+msgstr "組織単位"
+
+#: include/secure.py:38
+msgid "Surname"
+msgstr "姓"
+
+#: include/secure.py:39
+msgid "Given Name"
+msgstr "名"
+
+#: include/secure.py:48
+msgid "has no security"
+msgstr "にはセキュリティがありません"
+
+#: include/secure.py:49
+msgid ""
+"An attacker could see any information you send, or control the content that "
+"you see"
+msgstr ""
+"攻撃者は、あなたが送信するすべての情報を参照するか、あなたが見るコンテンツを"
+"制御することができます"
+
+#: include/secure.py:54 include/secure.py:57
+msgid "Connected to"
+msgstr "に接続されています"
+
+#: include/secure.py:55
+msgid "Your connection seems to be secure. Want to know more about?"
+msgstr "あなたの接続が安全であるように思われます。詳細を知りたいですか？"
+
+#: include/secure.py:58
+msgid ""
+"This web site did not properly secure your connection. Want to know more "
+"about?"
+msgstr ""
+"このウェブサイトは正しくあなたの接続を保護しませんでした。詳細を知りたいです"
+"か？"
+
+#: include/secure.py:91
+msgid "Subject"
+msgstr "テーマ"
+
+#: include/secure.py:99
+msgid "Issuer"
+msgstr "発行者"
+
+#: include/secure.py:109
+msgid "Valid Time Range"
+msgstr "有効な時間範囲"
+
+#: include/secure.py:115
+msgid "Subject Alternative Names"
+msgstr "サブジェクトの別名"
+
+#: include/secure.py:122
+msgid "Subject Key Identifier"
+msgstr "サブジェクトキー識別子"
+
+#: include/secure.py:134
+msgid "Key Usage"
+msgstr "キー使用法"
+
+#: include/secure.py:141
+msgid "Extended Key Usage"
+msgstr "拡張キー使用法"
+
+#: include/secure.py:148
+msgid "Distribution Points"
+msgstr "配布ポイント"
+
+#: include/secure.py:155
+msgid "Certificate Policies"
+msgstr "証明書ポリシー"
+
+#: include/secure.py:162
+msgid "Basic Constraints"
+msgstr "基本的な制約"
+
+#: include/secure.py:169
+msgid "Authority Key Identifier"
+msgstr "機関キー識別子"
+
+#: include/secure.py:176
+msgid "Authority Info Access"
+msgstr "機関情報アクセス"
+
+#: include/secure.py:183
+msgid "Signature Algorithm"
+msgstr "署名アルゴリズム"
+
+#: include/settings.py:56
+msgid "A fast, minimal and lightweight browser"
+msgstr "、高速最小限かつ軽量なブラウザ"
+
+#: include/settings.py:66
+msgid "Empty"
+msgstr "空のタブ"
+
+#: poseidon.py:521
+msgid "Give the approval for geolocation?"
+msgstr "ジオロケーションの承認を与えますか？"
+
+#: poseidon.py:636
+msgid "Open a new tab"
+msgstr "新しいタブを開きます。"
+
+#: poseidon.py:640
+msgid "Close current tab"
+msgstr "閉じる現在のタブ"
+
+#: poseidon.py:654
+msgid "Open a file"
+msgstr "ファイルをオープンします"
+
+#: poseidon.py:658
+msgid "Save a file"
+msgstr "ファイルを保存します"
+
+#: poseidon.py:693 poseidon.py:800
+msgid "Defcon Mode"
+msgstr "デフコンのモード"
+
+#: poseidon.py:745
+msgid "Add this page to bookmarks"
+msgstr "ブックマークにこのページを追加します。"
+
+#: poseidon.py:796
+msgid "New Window"
+msgstr "新しい窓"
+
+#: poseidon.py:804
+msgid "Finder"
+msgstr "ファインダ"
+
+#: poseidon.py:808
+msgid "Zoom In"
+msgstr "ズームイン"
+
+#: poseidon.py:812
+msgid "Zoom Out"
+msgstr "ズームアウトする"
+
+#: poseidon.py:816
+msgid "Zoom Restore"
+msgstr "ズーム復元します"
+
+#: poseidon.py:820
+msgid "Print"
+msgstr "このページを印刷"
+
+#: poseidon.py:825 poseidon.py:828 poseidon.py:1794
+msgid "AdKiller (experimental)"
+msgstr "AdKiller (実験的)"
+
+#: poseidon.py:825 poseidon.py:1794
+msgid "Enabled, Ads blocked"
+msgstr ""
+"有効にすると、広告\n"
+"がブロックされました"
+
+#: poseidon.py:828
+msgid "Disabled"
+msgstr "使用禁止"
+
+#: poseidon.py:845
+msgid "SSL Navigation Secure"
+msgstr "SSLナビゲーションセキュア"
+
+#: poseidon.py:845 poseidon.py:848
+msgid "Access to insecure SSL"
+msgstr "安全でないSSLのウェブサイト"
+
+#: poseidon.py:845
+msgid "websites will be denied"
+msgstr "へのアクセスが拒否されます"
+
+#: poseidon.py:848
+msgid "SSL Navigation Insecure"
+msgstr "SSLナビゲーション安全でありません"
+
+#: poseidon.py:848
+msgid "websites will be allowed"
+msgstr "へのアクセスが許可されます"
+
+#: poseidon.py:868
+msgid "Javascript is actually enabled"
+msgstr "Javascriptが有効になっています"
+
+#: poseidon.py:871
+msgid "Javascript is actually disabled"
+msgstr "Javascriptが無効になっています"
+
+#: poseidon.py:888
+msgid "Plugins are actually enabled"
+msgstr "プラグインが有効になっています"
+
+#: poseidon.py:891
+msgid "Plugins are actually disabled"
+msgstr "プラグインは無効になっています"
+
+#: poseidon.py:907
+msgid "Utilities"
+msgstr "公益事業"
+
+#: poseidon.py:910
+msgid "Back..."
+msgstr "戻る..."
+
+#: poseidon.py:913 poseidon.py:1879
+msgid "Delete Theme"
+msgstr "テーマを削除します"
+
+#: poseidon.py:921
+msgid "View Plugins"
+msgstr "表示プラグイン"
+
+#: poseidon.py:925
+msgid "View Source"
+msgstr "ソースを表示します"
+
+#: poseidon.py:929
+msgid "View History"
+msgstr "履歴の表示"
+
+#: poseidon.py:933
+msgid "View Bookmarks"
+msgstr "ビューのブックマーク"
+
+#: poseidon.py:937
+msgid "Cookies Manager"
+msgstr "クッキーマネージャ"
+
+#: poseidon.py:940
+msgid "Empty Cache"
+msgstr "キャッシュを空にする"
+
+#: poseidon.py:1211
+msgid "Connection Failed"
+msgstr "接続に失敗しました"
+
+#: poseidon.py:1212
+msgid "seems to be not available"
+msgstr "は利用できないように思わ"
+
+#: poseidon.py:1213
+msgid "It may be temporarily unavailable or moved to a new address"
+msgstr ""
+"これは、一時的に利用できないか、新しいアドレスに移動することができます"
+
+#: poseidon.py:1214
+msgid ""
+"You may also wish to verify that your internet connection is working "
+"correctly"
+msgstr ""
+"また、あなたのインターネット接続が正常に動作することを確認したい場合があり"
+
+#: poseidon.py:1222
+msgid "Invalid Certificate"
+msgstr "無効な証明書"
+
+#: poseidon.py:1223
+msgid "seems to be an insecure website"
+msgstr "は安全でないWebサイトのようです"
+
+#: poseidon.py:1224
+msgid ""
+"If you think this website do NOT represent a menace for you then click on OK"
+msgstr ""
+"あなたは[OK]をクリックし、このウェブサイトは、脅威を表すものではありませんと"
+"思われる場合"
+
+#: poseidon.py:1225
+msgid ""
+"Note: Clicking on OK, 'SSL Secure Navigation' will be disabled but you can "
+"re-enable it back from browser menu"
+msgstr ""
+"注：上の[OK]をクリックすると、「SSLセキュアナビゲーション'は無効になります"
+"が、あなたは戻って、ブラウザのメニューから、それを再度有効にすることができま"
+"す"
+
+#: poseidon.py:1605
+msgid "Hmm, 499 Error..."
+msgstr "うーん、499エラー..."
+
+#: poseidon.py:1607
+msgid "Seems that WebKit2 got some issues downloading this file or web page"
+msgstr ""
+"WebKit2このファイルやWebページをダウンロードするいくつかの問題を持っているよ"
+"うです"
+
+#: poseidon.py:1608
+msgid ""
+"But there is a trick, wanna try forcing the download using the requests "
+"module"
+msgstr ""
+"しかし、トリック、たくは要求モジュールを使用してダウンロードを強制的にそこに"
+"しようとしているのですか"
+
+#: poseidon.py:1641
+msgid "Downloading"
+msgstr "ダウンロード"
+
+#: poseidon.py:1641
+msgid "In"
+msgstr "に"
+
+#: poseidon.py:1682
+msgid "Download complete for"
+msgstr "のための完全なダウンロード"
+
+#: poseidon.py:1792
+msgid "LOTS!"
+msgstr "多目に"
+
+#: poseidon.py:1859
+msgid "Setting a new theme"
+msgstr "新しいテーマを設定します"
+
+#: poseidon.py:1860
+msgid "This operation may take a while"
+msgstr "この操作は、しばらく時間がかかる場合があります"
+
+#: poseidon.py:1861
+msgid "It all depends on your internet speed and requested image size"
+msgstr ""
+"それはすべてあなたのインターネットの速度と要求された画像サイズに依存します"
+
+#: poseidon.py:1880
+msgid "Do you really want to delete this theme"
+msgstr "あなたは本当にこのテーマを削除しますか"
+
+#: poseidon.py:1967
+msgid "Source"
+msgstr "ソース"
+
+#: poseidon.py:1986 poseidon.py:2041
+msgid "Name"
+msgstr "名"
+
+#: poseidon.py:1987 poseidon.py:2041
+msgid "Value"
+msgstr "値"
+
+#: poseidon.py:1988 poseidon.py:2041
+msgid "Host"
+msgstr "ホスト (Host)"
+
+#: poseidon.py:1989 poseidon.py:2041
+msgid "Path"
+msgstr "パス"
+
+#: poseidon.py:1990 poseidon.py:2042
+msgid "Expiry"
+msgstr "満了"
+
+#: poseidon.py:1991 poseidon.py:2042
+msgid "LastAccessed"
+msgstr "最終アクセス日 (LastAccessed)"
+
+#: poseidon.py:1992 poseidon.py:2042
+msgid "IsSecure"
+msgstr "セキュアです。 (isSecure)"
+
+#: poseidon.py:1993 poseidon.py:2042
+msgid "IsHttpOnly"
+msgstr "されているのHttpのみ (isHttpOnly)"
+
+#: poseidon.py:2041
+msgid "Id"
+msgstr "イド"
+
+#: poseidon.py:2061
+msgid "Cookies"
+msgstr "クッキー"
+
+#: poseidon.py:2110
+msgid "Today"
+msgstr "今日"
+
+#: poseidon.py:2111
+msgid "Yesterday"
+msgstr "昨日"
+
+#: poseidon.py:2112
+msgid "Two days ago"
+msgstr "二日前"
+
+#: poseidon.py:2113
+msgid "This week"
+msgstr "今週"
+
+#: poseidon.py:2125 poseidon.py:2199
+msgid "Date"
+msgstr "日付"
+
+#: poseidon.py:2125 poseidon.py:2199
+msgid "Title"
+msgstr "タイトル"
+
+#: poseidon.py:2125 poseidon.py:2199
+msgid "URL"
+msgstr "URLアドレス"
+
+#: poseidon.py:2142
+msgid "History"
+msgstr "歴史"
+
+#: poseidon.py:2183
+msgid "Type here your description"
+msgstr "あなたの説明ここで入力"
+
+#: poseidon.py:2184
+msgid "Type here your URL address"
+msgstr "あなたのURLアドレスここに入力し"
+
+#: poseidon.py:2272
+msgid "Plugins"
+msgstr "プラグイン"
+
+#: poseidon.py:2464
+msgid "WebKit Error"
+msgstr "WebKitのエラー"
+
+#: poseidon.py:2465
+msgid "requires atleast WebKit 2.12.3 or superior"
+msgstr "少なくともWebKitの2.12.3またはより優れたを必要とします"
+
+#: poseidon.py:2466
+msgid "In some distros you probably need to add a third-party repository"
+msgstr ""
+"いくつかのディストリビューションでは、おそらく、サードパーティのリポジトリを"
+"追加する必要があります"
+
+#: poseidon.py:2476
+msgid "Welcome to"
+msgstr "へようこそ"
+
+#: poseidon.py:2476
+msgid "shows this menu"
+msgstr "このメニューを示しています"
+
+#: poseidon.py:2476
+msgid "opens the browser in defcon mode"
+msgstr "DEFCONモードでブラウザを開き、"
+
+#: poseidon.py:2477
+msgid "shows the version"
+msgstr "バージョンを示しています"
+
+#: poseidon.py:2477
+msgid "Usage"
+msgstr "使用法"
