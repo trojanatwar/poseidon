@@ -66,6 +66,7 @@ Available languages:
 * English (`en_US`)
 * Italian (`it_IT`)
 * French (`fr_FR`)
+* Japanese (`ja_JP`)
 
 ### Themes
 
