@@ -49,7 +49,7 @@ lang.install()
 ##################
 '''
 
-version = "0.1.5"
+version = "0.1.6"
 browser_name = "Poseidon"
 website = "https://github.com/sidus-dev/poseidon"
 authors = "Andrea Pasciuta  <sidus@arbornet.org>"
@@ -110,6 +110,11 @@ find = 1                                                   # Finding type (Defau
                                                            # At Words Starts = 2, Treat Medial Capial As Word Start = 4, Backwards = 8)
                                                            # Info: https://lazka.github.io/pgi-docs/WebKit2-4.0/flags.html#WebKit2.FindOptions
 cache_model = 1                                            # Cache model (Default: 1) (eg. set 0 to disable cache) (Document Viewer = 0, Web Browser = 1, Document Browser = 2)
+adk_policy = 1                                             # AdKiller policy (Default: 1) (Global = 0, Precise = 1)
+                                                           # If "Global", AdKiller will check if the requested url is in list.
+                                                           # This method is ultra simple and fast but can misunderstand a request like "downloads.domain.com" for "ads.domain.com".
+                                                           # If "Precise", AdKiller will check if the requested url is identical to one of the listed urls.
+                                                           # This method is a bit slower (anyway, not so considerably) but 100% precise.
 
                                                            # Booleans
 

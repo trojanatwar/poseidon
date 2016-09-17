@@ -19,7 +19,7 @@
 import os, sys, pickle
 from os import path
 sys.path.append("include")
-from settings import adk_filters_path, pickle_path, adk_name, adb_name
+from settings import adk_filters_path, pickle_path, adk_name, adb_name, adk_policy
 from dialog import *
 
 adk_rules = []
@@ -48,14 +48,10 @@ def on_send_request(webpage, request, redirect):
 
     if pickle.load(open("{}{}".format(adk_data[0], adk_data[1]), "rb")):
 
-        url = request.get_uri()
-
         if "://" in url and not "file://" in url:
             if adk(url, adk_rules):
-
                 adk_blocks.append(" ")
                 pickle.dump(len(adk_blocks), open("{}{}".format(adk_data[0], adk_data[2]), "wb"))
-
                 return True
 
 '''
@@ -78,9 +74,7 @@ def replacement(combo):
             return True
  
         if i.startswith("#"): continue
-
         i = i.replace("\t","").replace(" ","").strip().replace("127.0.0.1","").replace("0.0.0.0","").split("#")[0]
-
         if i != '': adk_rules.append(i)
 
 def adk_init(filters_path):
@@ -95,8 +89,13 @@ def adk_init(filters_path):
 
     return combined(filters)
 
-def adk(arg, rules):
-    if any(c for c in rules if c in arg): return True
+def adk(url, rules):
+
+    if adk_policy == 0:
+        if any(c for c in rules if c in url): return True
+    else:
+        domain = url.split("://",1)[1].split("/",1)[0]
+        if any(c for c in rules if c == domain): return True
 
 def combined(filenames):
     for filename in filenames:
