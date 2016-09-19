@@ -33,12 +33,12 @@ def apply_css():
 
     #notebook.header.top, #notebook header tabs { background: none; }
     #notebook tab { padding: 10px 15px 10px 15px; }
-    #frame_main border, #frame_find border, #frame_status border,
+    #frame_main border, #frame_find border, #frame_vte border, #frame_status border,
     #frame_permission border, #frame_cert border, #frame_cookies border { border-style: none; }
-    #frame_main, #frame_find, #frame_status, #frame_permission, #frame_cert, #frame_cookies
+    #frame_main, #frame_find, #frame_vte, #frame_status, #frame_permission, #frame_cert, #frame_cookies
     { border-style: solid; padding: 5px; border-color: rgba(50, 50, 50, 0.20); }
     #frame_main, #frame_permission, #frame_cert { border-width: 0px 0px 1px 0px; }
-    #frame_find, #frame_status, #frame_cookies { border-width: 1px 0px 0px 0px; }
+    #frame_find, #frame_vte, #frame_status, #frame_cookies { border-width: 1px 0px 0px 0px; }
     #entry border { border-style: solid; }
     #frame_x509 border, #frame_x509 { border-width: 0px 1px 1px 0px;
     border-color: rgba(50, 50, 50, 0.20); border-radius: 0px; }

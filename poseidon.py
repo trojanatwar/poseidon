@@ -279,6 +279,42 @@ class BrowserTab(Gtk.VBox):
         frame_find.add(find_box)
 
         '''
+        ###########
+        # VTE Box #
+        ###########
+        '''
+
+        if vte_terminal:
+
+            gi.require_version('Vte', '2.91')
+            from gi.repository import Vte
+
+            frame_vte = Gtk.Frame(name="frame_vte")
+
+            terminal = Vte.Terminal()
+            terminal.spawn_sync(Vte.PtyFlags.DEFAULT,\
+            os.environ['HOME'], [shell], [], GLib.SpawnFlags\
+            .DO_NOT_REAP_CHILD, None, None,)
+
+            vte_sw = Gtk.ScrolledWindow()
+            vte_sw.set_size_request(-1,250)
+            vte_sw.add(terminal)
+
+            close_vte_button = make_button(make_icon("edit-delete.svg"), False)
+            close_vte_button.connect("clicked", lambda x: frame_vte.hide())
+
+            vte_box = Gtk.HBox()
+            vte_box.pack_end(close_vte_button, False, True, 0)
+
+            grid = Gtk.Grid()
+            grid.set_column_spacing(0)
+            grid.attach(vte_box, 0, 1, 1, 1)
+            grid.attach(vte_sw, 0, 2, 1, 1)
+            grid.set_column_homogeneous(True)
+
+            frame_vte.add(grid)
+
+        '''
         ##############
         # Status Box #
         ##############
@@ -344,6 +380,7 @@ class BrowserTab(Gtk.VBox):
         self.pack_start(progress_box, False, False, 0)
         self.pack_start(scrolled_window, True, True, 0)
         self.pack_start(frame_find, False, False, 0)
+        if vte_terminal: self.pack_start(frame_vte, False, False, 0)
         self.pack_start(frame_status, False, False, 0)
 
         '''
@@ -388,6 +425,9 @@ class BrowserTab(Gtk.VBox):
         self.progress_box = progress_box
         self.find_entry = find_entry
         self.frame_find = frame_find
+        if vte_terminal:
+            self.frame_vte = frame_vte
+            self.terminal = terminal
         self.link_hover = link_hover
         self.frame_permission = frame_permission
         self.permission_message = permission_message
@@ -899,6 +939,12 @@ class Browser(Gtk.Window):
         pass_gen_button.connect("clicked", lambda x: pass_generator(self))
         pass_gen_label = make_modelbutton_label("[ Ctrl+J ]", 0.95, 0.5)
 
+        vte_button = make_modelbutton(_("VTE Terminal"), xalign, yalign)
+        vte_button.connect("clicked", lambda x: self.vte())
+        vte_label = make_modelbutton_label("[ Ctrl+F4 ]", 0.95, 0.5)
+
+        if not vte_terminal: vte_button.set_sensitive(False)
+
         plugins_button = make_modelbutton(_("View Plugins"), xalign, yalign)
         plugins_button.connect("clicked", lambda x: self.view_plugins())
         plugins_label = make_modelbutton_label("[ Ctrl+L ]", 0.95, 0.5)
@@ -963,18 +1009,20 @@ class Browser(Gtk.Window):
         grid_utilities.attach(del_theme_label, 0, 2, 1, 1)
         grid_utilities.attach(pass_gen_button, 0, 3, 1, 1)
         grid_utilities.attach(pass_gen_label, 0, 3, 1, 1)
-        grid_utilities.attach(Gtk.Separator.new(Gtk.Orientation.HORIZONTAL), 0, 4, 1, 1)
-        grid_utilities.attach(plugins_button, 0, 5, 1, 1)
-        grid_utilities.attach(plugins_label, 0, 5, 1, 1)
-        grid_utilities.attach(source_button, 0, 6, 1, 1)
-        grid_utilities.attach(source_label, 0, 6, 1, 1)
-        grid_utilities.attach(history_button, 0, 7, 1, 1)
-        grid_utilities.attach(history_label, 0, 7, 1, 1)
-        grid_utilities.attach(bookmarks_button, 0, 8, 1, 1)
-        grid_utilities.attach(bookmarks_label, 0, 8, 1, 1)
-        grid_utilities.attach(Gtk.Separator.new(Gtk.Orientation.HORIZONTAL), 0, 9, 1, 1)
-        grid_utilities.attach(manager_cookies_button, 0, 10, 1, 1)
-        grid_utilities.attach(delete_cache_button, 0, 11, 1, 1)
+        grid_utilities.attach(vte_button, 0, 4, 1, 1)
+        grid_utilities.attach(vte_label, 0, 4, 1, 1)
+        grid_utilities.attach(Gtk.Separator.new(Gtk.Orientation.HORIZONTAL), 0, 5, 1, 1)
+        grid_utilities.attach(plugins_button, 0, 6, 1, 1)
+        grid_utilities.attach(plugins_label, 0, 6, 1, 1)
+        grid_utilities.attach(source_button, 0, 7, 1, 1)
+        grid_utilities.attach(source_label, 0, 7, 1, 1)
+        grid_utilities.attach(history_button, 0, 8, 1, 1)
+        grid_utilities.attach(history_label, 0, 8, 1, 1)
+        grid_utilities.attach(bookmarks_button, 0, 9, 1, 1)
+        grid_utilities.attach(bookmarks_label, 0, 9, 1, 1)
+        grid_utilities.attach(Gtk.Separator.new(Gtk.Orientation.HORIZONTAL), 0, 10, 1, 1)
+        grid_utilities.attach(manager_cookies_button, 0, 11, 1, 1)
+        grid_utilities.attach(delete_cache_button, 0, 12, 1, 1)
         grid_utilities.set_column_homogeneous(True)
 
         menu.pack_start(grid_buttons, False, False, 0)
@@ -2372,6 +2420,16 @@ class Browser(Gtk.Window):
 
         return True
 
+    def vte(self):
+
+        if not vte_terminal: return True
+
+        page = self.tabs[self.current_page][0]
+        page.frame_vte.show_all()
+        page.terminal.grab_focus()
+
+        return True
+
     def reload_tab(self):
 
         page = self.tabs[self.current_page][0]
@@ -2443,13 +2501,14 @@ class Browser(Gtk.Window):
                    Gdk.KEY_k: self.delete_theme,
                    Gdk.KEY_i: self.defcon,
                    Gdk.KEY_l: self.view_plugins,
+                   Gdk.KEY_F4: self.vte,
                    Gdk.KEY_j: lambda: pass_generator(self),
                    Gdk.KEY_d: lambda: self.view_bookmarks(None, None),
                    Gdk.KEY_n: lambda: init(),
                    Gdk.KEY_q: lambda: quit(self)}
 
-        if event.state & modifiers == Gdk.ModifierType.CONTROL_MASK \
-          and event.keyval in mapping:
+        if event.state & modifiers == Gdk.ModifierType.CONTROL_MASK\
+        and event.keyval in mapping:
             mapping[event.keyval]()
             return True
 

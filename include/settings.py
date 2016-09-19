@@ -49,7 +49,7 @@ lang.install()
 ##################
 '''
 
-version = "0.1.6"
+version = "0.1.7"
 browser_name = "Poseidon"
 website = "https://github.com/sidus-dev/poseidon"
 authors = "Andrea Pasciuta  <sidus@arbornet.org>"
@@ -118,12 +118,18 @@ adk_policy = 1                                             # AdKiller policy (De
 
                                                            # Booleans
 
-verify_req = True                                          # If 'False', 'requests' module will ignore verifying the SSL certificate (Default: True)
+vte_terminal = False                                       # VTE terminal (Default: False)
+                                                           # If 'True' you are able to open a terminal embedded in the browser
+                                                           # NOTE: Any new tab opened will automatically start a new shell process, if this annoy you set to 'False'
+verify_req = True                                          # Requests module SSL verification (Default: True)
+                                                           # If 'False', 'requests' module will ignore verifying the SSL certificate
                                                            # False = insecure (but faster), True = secure (but slower)
 
                                                            # Misc
 
-app_launcher = "xdg-open"                                  # Apps Launcher (Default: "xdg-open") alternatives to xdg-utils:
+shell = "/bin/bash"                                        # Shell type (Default: "/bin/bash") (eg. For Korn shell set: "/bin/zsh")
+                                                           # https://wiki.archlinux.org/index.php/Command-line_shell#List_of_shells
+app_launcher = "xdg-open"                                  # Apps launcher (Default: "xdg-open") alternatives to xdg-utils:
                                                            # https://wiki.archlinux.org/index.php/default_applications#mimeopen
 cookies_db = "cookies.sqlite"                              # Cookies database (Default: "cookies.sqlite")
 history_db = "history.sqlite"                              # History database (Default: "history.sqlite")
