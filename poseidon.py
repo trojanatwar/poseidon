@@ -2421,9 +2421,12 @@ class Browser(Gtk.Window):
         .DO_NOT_REAP_CHILD, None, None,)
 
         page = self.tabs[self.current_page][0]
-        page.vte_sw.add(terminal)
+
+        if not page.vte_sw.get_children(): page.vte_sw.add(terminal)
+
         page.frame_vte.show_all()
-        terminal.grab_focus()
+
+        if page.vte_sw.get_children(): page.vte_sw.get_children()[0].grab_focus()
 
         return True
 
