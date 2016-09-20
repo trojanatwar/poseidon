@@ -284,35 +284,24 @@ class BrowserTab(Gtk.VBox):
         ###########
         '''
 
-        if vte_terminal:
+        frame_vte = Gtk.Frame(name="frame_vte")
 
-            gi.require_version('Vte', '2.91')
-            from gi.repository import Vte
+        vte_sw = Gtk.ScrolledWindow()
+        vte_sw.set_size_request(-1,250)
 
-            frame_vte = Gtk.Frame(name="frame_vte")
+        close_vte_button = make_button(make_icon("edit-delete.svg"), False)
+        close_vte_button.connect("clicked", lambda x: frame_vte.hide())
 
-            terminal = Vte.Terminal()
-            terminal.spawn_sync(Vte.PtyFlags.DEFAULT,\
-            os.environ['HOME'], [shell], [], GLib.SpawnFlags\
-            .DO_NOT_REAP_CHILD, None, None,)
+        vte_box = Gtk.HBox()
+        vte_box.pack_end(close_vte_button, False, True, 0)
 
-            vte_sw = Gtk.ScrolledWindow()
-            vte_sw.set_size_request(-1,250)
-            vte_sw.add(terminal)
+        grid = Gtk.Grid()
+        grid.set_column_spacing(0)
+        grid.attach(vte_box, 0, 1, 1, 1)
+        grid.attach(vte_sw, 0, 2, 1, 1)
+        grid.set_column_homogeneous(True)
 
-            close_vte_button = make_button(make_icon("edit-delete.svg"), False)
-            close_vte_button.connect("clicked", lambda x: frame_vte.hide())
-
-            vte_box = Gtk.HBox()
-            vte_box.pack_end(close_vte_button, False, True, 0)
-
-            grid = Gtk.Grid()
-            grid.set_column_spacing(0)
-            grid.attach(vte_box, 0, 1, 1, 1)
-            grid.attach(vte_sw, 0, 2, 1, 1)
-            grid.set_column_homogeneous(True)
-
-            frame_vte.add(grid)
+        frame_vte.add(grid)
 
         '''
         ##############
@@ -380,7 +369,7 @@ class BrowserTab(Gtk.VBox):
         self.pack_start(progress_box, False, False, 0)
         self.pack_start(scrolled_window, True, True, 0)
         self.pack_start(frame_find, False, False, 0)
-        if vte_terminal: self.pack_start(frame_vte, False, False, 0)
+        self.pack_start(frame_vte, False, False, 0)
         self.pack_start(frame_status, False, False, 0)
 
         '''
@@ -425,9 +414,8 @@ class BrowserTab(Gtk.VBox):
         self.progress_box = progress_box
         self.find_entry = find_entry
         self.frame_find = frame_find
-        if vte_terminal:
-            self.frame_vte = frame_vte
-            self.terminal = terminal
+        self.frame_vte = frame_vte
+        self.vte_sw = vte_sw
         self.link_hover = link_hover
         self.frame_permission = frame_permission
         self.permission_message = permission_message
@@ -942,8 +930,6 @@ class Browser(Gtk.Window):
         vte_button = make_modelbutton(_("VTE Terminal"), xalign, yalign)
         vte_button.connect("clicked", lambda x: self.vte())
         vte_label = make_modelbutton_label("[ Ctrl+F4 ]", 0.95, 0.5)
-
-        if not vte_terminal: vte_button.set_sensitive(False)
 
         plugins_button = make_modelbutton(_("View Plugins"), xalign, yalign)
         plugins_button.connect("clicked", lambda x: self.view_plugins())
@@ -2422,11 +2408,22 @@ class Browser(Gtk.Window):
 
     def vte(self):
 
-        if not vte_terminal: return True
+        try: gi.require_version('Vte', '2.91')
+        except:
+            dialog().error(_("VTE missing"), "<span size='small'>{} {}.</span>"\
+            .format(browser_name, _("requires at least Vte 2.91 or higher")))
+            return True
+        else: from gi.repository import Vte
+
+        terminal = Vte.Terminal()
+        terminal.spawn_sync(Vte.PtyFlags.DEFAULT,\
+        os.environ['HOME'], [shell], [], GLib.SpawnFlags\
+        .DO_NOT_REAP_CHILD, None, None,)
 
         page = self.tabs[self.current_page][0]
+        page.vte_sw.add(terminal)
         page.frame_vte.show_all()
-        page.terminal.grab_focus()
+        terminal.grab_focus()
 
         return True
 
@@ -2530,7 +2527,7 @@ def init():
     if not ver:
 
         dialog().error(_("WebKit Error"), "<span size='small'>{} {}.\n{}.</span>"\
-        .format(browser_name, _("requires atleast WebKit 2.12.3 or superior"),\
+        .format(browser_name, _("requires at least WebKit 2.12.3 or higher"),\
         _("In some distros you probably need to add a third-party repository")))
 
         return

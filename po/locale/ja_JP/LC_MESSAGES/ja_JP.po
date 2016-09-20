@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2016-09-14 06:18+0200\n"
-"PO-Revision-Date: 2016-09-16 15:35+0200\n"
+"POT-Creation-Date: 2016-09-20 08:49+0200\n"
+"PO-Revision-Date: 2016-09-20 08:50+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ja_JP\n"
@@ -14,11 +14,11 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: extension.py:72
+#: extension.py:68
 msgid "Houston, we have a problem"
 msgstr "ヒューストン、我々は問題を抱えています"
 
-#: extension.py:74
+#: extension.py:70
 msgid ""
 "An AdBlockPlus filter has been detected in your 'filters' folder but "
 "actually AdKiller only works with AdAway filters"
@@ -26,7 +26,7 @@ msgstr ""
 "AdBlockをプラスフィルターはあなたの「フィルタ」フォルダ内に検出されたが、実"
 "際にAdKillerのみAdAwayフィルタと連携してきました"
 
-#: extension.py:75
+#: extension.py:71
 msgid ""
 "In order to avoid any issues or incompatibilities, remove that filter and "
 "restart this program"
@@ -34,27 +34,27 @@ msgstr ""
 "すべての問題や非互換性を回避するために、そのフィルタを削除し、このプログラム"
 "を再起動します"
 
-#: extension.py:76
+#: extension.py:72
 msgid "Get your AdAway filter list here"
 msgstr "ここにあなたのAdAwayフィルタリストを取得します。"
 
-#: include/functions.py:33 poseidon.py:2215 poseidon.py:2398
+#: include/functions.py:33 poseidon.py:2260 poseidon.py:2462
 msgid "Bookmarks"
 msgstr "ブックマーク"
 
-#: include/functions.py:227 poseidon.py:917
+#: include/functions.py:228 poseidon.py:926
 msgid "Password Generator"
 msgstr "パスワードジェネレータ"
 
-#: include/functions.py:231
+#: include/functions.py:232
 msgid "Password Length"
 msgstr "パスワードの長さ"
 
-#: include/functions.py:232
+#: include/functions.py:233
 msgid "Generate"
 msgstr "生成します"
 
-#: include/functions.py:233
+#: include/functions.py:234
 msgid "Copy"
 msgstr "コピー"
 
@@ -206,180 +206,184 @@ msgstr "、高速最小限かつ軽量なブラウザ"
 msgid "Empty"
 msgstr "空のタブ"
 
-#: poseidon.py:521
+#: poseidon.py:536
 msgid "Give the approval for geolocation?"
 msgstr "ジオロケーションの承認を与えますか？"
 
-#: poseidon.py:636
+#: poseidon.py:642
 msgid "Open a new tab"
 msgstr "新しいタブを開きます。"
 
-#: poseidon.py:640
+#: poseidon.py:646
 msgid "Close current tab"
 msgstr "閉じる現在のタブ"
 
-#: poseidon.py:654
+#: poseidon.py:660
 msgid "Open a file"
 msgstr "ファイルをオープンします"
 
-#: poseidon.py:658
+#: poseidon.py:664
 msgid "Save a file"
 msgstr "ファイルを保存します"
 
-#: poseidon.py:693 poseidon.py:800
+#: poseidon.py:699 poseidon.py:809
 msgid "Defcon Mode"
 msgstr "デフコンのモード"
 
-#: poseidon.py:745
+#: poseidon.py:752
 msgid "Add this page to bookmarks"
 msgstr "ブックマークにこのページを追加します。"
 
-#: poseidon.py:796
+#: poseidon.py:805
 msgid "New Window"
 msgstr "新しい窓"
 
-#: poseidon.py:804
+#: poseidon.py:813
 msgid "Finder"
 msgstr "ファインダ"
 
-#: poseidon.py:808
+#: poseidon.py:817
 msgid "Zoom In"
 msgstr "ズームイン"
 
-#: poseidon.py:812
+#: poseidon.py:821
 msgid "Zoom Out"
 msgstr "ズームアウトする"
 
-#: poseidon.py:816
+#: poseidon.py:825
 msgid "Zoom Restore"
 msgstr "ズーム復元します"
 
-#: poseidon.py:820
+#: poseidon.py:829
 msgid "Print"
 msgstr "このページを印刷"
 
-#: poseidon.py:825 poseidon.py:828 poseidon.py:1794
+#: poseidon.py:834 poseidon.py:837 poseidon.py:1817
 msgid "AdKiller (experimental)"
 msgstr "AdKiller (実験的)"
 
-#: poseidon.py:825 poseidon.py:1794
+#: poseidon.py:834 poseidon.py:1817
 msgid "Enabled, Ads blocked"
 msgstr ""
 "有効にすると、広告\n"
 "がブロックされました"
 
-#: poseidon.py:828
+#: poseidon.py:837
 msgid "Disabled"
 msgstr "使用禁止"
 
-#: poseidon.py:845
+#: poseidon.py:854
 msgid "SSL Navigation Secure"
 msgstr "SSLナビゲーションセキュア"
 
-#: poseidon.py:845 poseidon.py:848
+#: poseidon.py:854 poseidon.py:857
 msgid "Access to insecure SSL"
 msgstr "安全でないSSLのウェブサイト"
 
-#: poseidon.py:845
+#: poseidon.py:854
 msgid "websites will be denied"
 msgstr "へのアクセスが拒否されます"
 
-#: poseidon.py:848
+#: poseidon.py:857
 msgid "SSL Navigation Insecure"
 msgstr "SSLナビゲーション安全でありません"
 
-#: poseidon.py:848
+#: poseidon.py:857
 msgid "websites will be allowed"
 msgstr "へのアクセスが許可されます"
 
-#: poseidon.py:868
+#: poseidon.py:877
 msgid "Javascript is actually enabled"
 msgstr "Javascriptが有効になっています"
 
-#: poseidon.py:871
+#: poseidon.py:880
 msgid "Javascript is actually disabled"
 msgstr "Javascriptが無効になっています"
 
-#: poseidon.py:888
+#: poseidon.py:897
 msgid "Plugins are actually enabled"
 msgstr "プラグインが有効になっています"
 
-#: poseidon.py:891
+#: poseidon.py:900
 msgid "Plugins are actually disabled"
 msgstr "プラグインは無効になっています"
 
-#: poseidon.py:907
+#: poseidon.py:916
 msgid "Utilities"
 msgstr "公益事業"
 
-#: poseidon.py:910
+#: poseidon.py:919
 msgid "Back..."
 msgstr "戻る..."
 
-#: poseidon.py:913 poseidon.py:1879
+#: poseidon.py:922 poseidon.py:1902
 msgid "Delete Theme"
 msgstr "テーマを削除します"
 
-#: poseidon.py:921
+#: poseidon.py:930
+msgid "VTE Terminal"
+msgstr "VTE 端末"
+
+#: poseidon.py:934
 msgid "View Plugins"
 msgstr "表示プラグイン"
 
-#: poseidon.py:925
+#: poseidon.py:938
 msgid "View Source"
 msgstr "ソースを表示します"
 
-#: poseidon.py:929
+#: poseidon.py:942
 msgid "View History"
 msgstr "履歴の表示"
 
-#: poseidon.py:933
+#: poseidon.py:946
 msgid "View Bookmarks"
 msgstr "ビューのブックマーク"
 
-#: poseidon.py:937
+#: poseidon.py:950
 msgid "Cookies Manager"
 msgstr "クッキーマネージャ"
 
-#: poseidon.py:940
+#: poseidon.py:953
 msgid "Empty Cache"
 msgstr "キャッシュを空にする"
 
-#: poseidon.py:1211
+#: poseidon.py:1234
 msgid "Connection Failed"
 msgstr "接続に失敗しました"
 
-#: poseidon.py:1212
+#: poseidon.py:1235
 msgid "seems to be not available"
 msgstr "は利用できないように思わ"
 
-#: poseidon.py:1213
+#: poseidon.py:1236
 msgid "It may be temporarily unavailable or moved to a new address"
 msgstr ""
 "これは、一時的に利用できないか、新しいアドレスに移動することができます"
 
-#: poseidon.py:1214
+#: poseidon.py:1237
 msgid ""
 "You may also wish to verify that your internet connection is working "
 "correctly"
 msgstr ""
 "また、あなたのインターネット接続が正常に動作することを確認したい場合があり"
 
-#: poseidon.py:1222
+#: poseidon.py:1245
 msgid "Invalid Certificate"
 msgstr "無効な証明書"
 
-#: poseidon.py:1223
+#: poseidon.py:1246
 msgid "seems to be an insecure website"
 msgstr "は安全でないWebサイトのようです"
 
-#: poseidon.py:1224
+#: poseidon.py:1247
 msgid ""
 "If you think this website do NOT represent a menace for you then click on OK"
 msgstr ""
 "あなたは[OK]をクリックし、このウェブサイトは、脅威を表すものではありませんと"
 "思われる場合"
 
-#: poseidon.py:1225
+#: poseidon.py:1248
 msgid ""
 "Note: Clicking on OK, 'SSL Secure Navigation' will be disabled but you can "
 "re-enable it back from browser menu"
@@ -388,17 +392,17 @@ msgstr ""
 "が、あなたは戻って、ブラウザのメニューから、それを再度有効にすることができま"
 "す"
 
-#: poseidon.py:1605
+#: poseidon.py:1630
 msgid "Hmm, 499 Error..."
 msgstr "うーん、499エラー..."
 
-#: poseidon.py:1607
+#: poseidon.py:1632
 msgid "Seems that WebKit2 got some issues downloading this file or web page"
 msgstr ""
 "WebKit2このファイルやWebページをダウンロードするいくつかの問題を持っているよ"
 "うです"
 
-#: poseidon.py:1608
+#: poseidon.py:1633
 msgid ""
 "But there is a trick, wanna try forcing the download using the requests "
 "module"
@@ -406,157 +410,168 @@ msgstr ""
 "しかし、トリック、たくは要求モジュールを使用してダウンロードを強制的にそこに"
 "しようとしているのですか"
 
-#: poseidon.py:1641
+#: poseidon.py:1664
 msgid "Downloading"
 msgstr "ダウンロード"
 
-#: poseidon.py:1641
+#: poseidon.py:1664
 msgid "In"
 msgstr "に"
 
-#: poseidon.py:1682
+#: poseidon.py:1705
 msgid "Download complete for"
 msgstr "のための完全なダウンロード"
 
-#: poseidon.py:1792
+#: poseidon.py:1815
 msgid "LOTS!"
 msgstr "多目に"
 
-#: poseidon.py:1859
+#: poseidon.py:1882
 msgid "Setting a new theme"
 msgstr "新しいテーマを設定します"
 
-#: poseidon.py:1860
+#: poseidon.py:1883
 msgid "This operation may take a while"
 msgstr "この操作は、しばらく時間がかかる場合があります"
 
-#: poseidon.py:1861
+#: poseidon.py:1884
 msgid "It all depends on your internet speed and requested image size"
 msgstr ""
 "それはすべてあなたのインターネットの速度と要求された画像サイズに依存します"
 
-#: poseidon.py:1880
+#: poseidon.py:1903
 msgid "Do you really want to delete this theme"
 msgstr "あなたは本当にこのテーマを削除しますか"
 
-#: poseidon.py:1967
+#: poseidon.py:2027
 msgid "Source"
 msgstr "ソース"
 
-#: poseidon.py:1986 poseidon.py:2041
+#: poseidon.py:2043 poseidon.py:2093
 msgid "Name"
 msgstr "名"
 
-#: poseidon.py:1987 poseidon.py:2041
+#: poseidon.py:2044 poseidon.py:2093
 msgid "Value"
 msgstr "値"
 
-#: poseidon.py:1988 poseidon.py:2041
+#: poseidon.py:2045 poseidon.py:2093
 msgid "Host"
 msgstr "ホスト (Host)"
 
-#: poseidon.py:1989 poseidon.py:2041
+#: poseidon.py:2046 poseidon.py:2093
 msgid "Path"
 msgstr "パス"
 
-#: poseidon.py:1990 poseidon.py:2042
+#: poseidon.py:2047 poseidon.py:2094
 msgid "Expiry"
 msgstr "満了"
 
-#: poseidon.py:1991 poseidon.py:2042
+#: poseidon.py:2048 poseidon.py:2094
 msgid "LastAccessed"
 msgstr "最終アクセス日 (LastAccessed)"
 
-#: poseidon.py:1992 poseidon.py:2042
+#: poseidon.py:2049 poseidon.py:2094
 msgid "IsSecure"
 msgstr "セキュアです。 (isSecure)"
 
-#: poseidon.py:1993 poseidon.py:2042
+#: poseidon.py:2050 poseidon.py:2094
 msgid "IsHttpOnly"
 msgstr "されているのHttpのみ (isHttpOnly)"
 
-#: poseidon.py:2041
+#: poseidon.py:2093
 msgid "Id"
 msgstr "イド"
 
-#: poseidon.py:2061
+#: poseidon.py:2113
 msgid "Cookies"
 msgstr "クッキー"
 
-#: poseidon.py:2110
+#: poseidon.py:2159
 msgid "Today"
 msgstr "今日"
 
-#: poseidon.py:2111
+#: poseidon.py:2160
 msgid "Yesterday"
 msgstr "昨日"
 
-#: poseidon.py:2112
+#: poseidon.py:2161
 msgid "Two days ago"
 msgstr "二日前"
 
-#: poseidon.py:2113
+#: poseidon.py:2162
 msgid "This week"
 msgstr "今週"
 
-#: poseidon.py:2125 poseidon.py:2199
+#: poseidon.py:2174 poseidon.py:2244
 msgid "Date"
 msgstr "日付"
 
-#: poseidon.py:2125 poseidon.py:2199
+#: poseidon.py:2174 poseidon.py:2244
 msgid "Title"
 msgstr "タイトル"
 
-#: poseidon.py:2125 poseidon.py:2199
+#: poseidon.py:2174 poseidon.py:2244
 msgid "URL"
 msgstr "URLアドレス"
 
-#: poseidon.py:2142
+#: poseidon.py:2191
 msgid "History"
 msgstr "歴史"
 
-#: poseidon.py:2183
+#: poseidon.py:2228
 msgid "Type here your description"
 msgstr "あなたの説明ここで入力"
 
-#: poseidon.py:2184
+#: poseidon.py:2229
 msgid "Type here your URL address"
 msgstr "あなたのURLアドレスここに入力し"
 
-#: poseidon.py:2272
+#: poseidon.py:2315
 msgid "Plugins"
 msgstr "プラグイン"
 
-#: poseidon.py:2464
+#: poseidon.py:2413
+msgid "VTE missing"
+msgstr "VTE の欠落"
+
+#: poseidon.py:2414
+msgid "requires at least Vte 2.91 or higher"
+msgstr "は、少なくともVTEを必要とする2.91以上"
+
+#: poseidon.py:2529
 msgid "WebKit Error"
 msgstr "WebKitのエラー"
 
-#: poseidon.py:2465
-msgid "requires atleast WebKit 2.12.3 or superior"
-msgstr "少なくともWebKitの2.12.3またはより優れたを必要とします"
+#: poseidon.py:2530
+msgid "requires at least WebKit 2.12.3 or higher"
+msgstr "は、少なくともWebKitのを必要と2.12.3以上"
 
-#: poseidon.py:2466
+#: poseidon.py:2531
 msgid "In some distros you probably need to add a third-party repository"
 msgstr ""
 "いくつかのディストリビューションでは、おそらく、サードパーティのリポジトリを"
 "追加する必要があります"
 
-#: poseidon.py:2476
+#: poseidon.py:2541
 msgid "Welcome to"
 msgstr "へようこそ"
 
-#: poseidon.py:2476
+#: poseidon.py:2541
 msgid "shows this menu"
 msgstr "このメニューを示しています"
 
-#: poseidon.py:2476
+#: poseidon.py:2541
 msgid "opens the browser in defcon mode"
 msgstr "DEFCONモードでブラウザを開き、"
 
-#: poseidon.py:2477
+#: poseidon.py:2542
 msgid "shows the version"
 msgstr "バージョンを示しています"
 
-#: poseidon.py:2477
+#: poseidon.py:2542
 msgid "Usage"
 msgstr "使用法"
+
+#~ msgid "requires atleast WebKit 2.12.3 or superior"
+#~ msgstr "少なくともWebKitの2.12.3またはより優れたを必要とします"

@@ -49,7 +49,7 @@ lang.install()
 ##################
 '''
 
-version = "0.1.7"
+version = "0.1.8"
 browser_name = "Poseidon"
 website = "https://github.com/sidus-dev/poseidon"
 authors = "Andrea Pasciuta  <sidus@arbornet.org>"
@@ -118,9 +118,6 @@ adk_policy = 1                                             # AdKiller policy (De
 
                                                            # Booleans
 
-vte_terminal = False                                       # VTE terminal (Default: False)
-                                                           # If 'True' you are able to open a terminal embedded in the browser
-                                                           # NOTE: Any new tab opened will automatically start a new shell process, if this annoy you set to 'False'
 verify_req = True                                          # Requests module SSL verification (Default: True)
                                                            # If 'False', 'requests' module will ignore verifying the SSL certificate
                                                            # False = insecure (but faster), True = secure (but slower)

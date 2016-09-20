@@ -13,13 +13,7 @@ A fast, minimal and lightweight browser
 
 * Arch Linux
 
-`# pacman -S python3 python-gobject python-decorator python-six python-requests python-pillow pyopenssl gtk3 gtksourceview3 webkit2gtk evince`
-
-Since 0.1.7, if you want to use a VTE terminal embedded in the browser, also install 'vte3':
-
-`# pacman -S vte3`
-
-and enable the option 'vte_terminal' in 'include/settings.py'
+`# pacman -S python3 python-gobject python-decorator python-six python-requests python-pillow pyopenssl gtk3 gtksourceview3 webkit2gtk evince vte3`
 
 * Ubuntu/Mint
 
