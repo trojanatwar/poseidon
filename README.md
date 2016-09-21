@@ -13,7 +13,7 @@ A fast, minimal and lightweight browser
 
 * Arch Linux
 
-`# pacman -S python3 python-gobject python-decorator python-six python-requests python-pillow pyopenssl gtk3 gtksourceview3 webkit2gtk evince vte3`
+`# pacman -S python3 python-gobject python-decorator python-six python-requests python-pillow python-cairo pyopenssl gtk3 gtksourceview3 webkit2gtk evince vte3`
 
 * Ubuntu/Mint
 
