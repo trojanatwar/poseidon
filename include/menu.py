@@ -24,6 +24,24 @@ sys.path.append(".")
 from settings import search_engine
 from functions import minify
 
+def vte_menu(widget):
+
+    menu = Gtk.Menu()
+
+    copy = Gtk.ImageMenuItem.new_from_stock(Gtk.STOCK_COPY, None)
+    copy.connect("activate", lambda x: widget.copy_clipboard())
+
+    paste = Gtk.ImageMenuItem.new_from_stock(Gtk.STOCK_PASTE, None)
+    paste.connect("activate", lambda x: widget.paste_clipboard())
+
+    menu.append(copy)
+    menu.append(paste)
+
+    menu.show_all()
+    menu.popup(None, None, None, None, 0, Gtk.get_current_event_time())
+
+    return True
+
 def on_context_menu(self, view, menu, event, htr):
 
     '''

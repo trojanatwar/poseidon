@@ -372,8 +372,8 @@ class BrowserTab(Gtk.VBox):
         self.pack_start(frame_cert, False, False, 0)
         self.pack_start(progress_box, False, False, 0)
         self.pack_start(scrolled_window, True, True, 0)
-        self.pack_start(frame_find, False, False, 0)
         self.pack_start(frame_vte, False, False, 0)
+        self.pack_start(frame_find, False, False, 0)
         self.pack_start(frame_status, False, False, 0)
 
         '''
@@ -2431,6 +2431,8 @@ class Browser(Gtk.Window):
         os.environ['HOME'], [shell], [], GLib.SpawnFlags\
         .DO_NOT_REAP_CHILD, None, None,)
 
+        terminal.connect("button-press-event", self.on_vte_button_press)
+
         page = self.tabs[self.current_page][0]
 
         if not page.vte_sw.get_children(): page.vte_sw.add(terminal)
@@ -2438,6 +2440,10 @@ class Browser(Gtk.Window):
         if page.vte_sw.get_children(): page.vte_sw.get_children()[0].grab_focus()
 
         return True
+
+    def on_vte_button_press(self, widget, event):
+
+        if event.button == 3: vte_menu(widget)
 
     def reload_tab(self):
 
