@@ -100,6 +100,8 @@ yalign = 0.5                                               # Gtk.Popover yalign 
                                                            # Integers
 
 autocomplete_policy = 0                                    # Autocomplete policy (Default: 0) (Disabled = None, History = 0, DuckDuckGo = 1)
+autocomplete_limit = -1                                    # Autocomplete limit (Default: -1) (Disabled = -1)
+                                                           # For example, setting 500 will show 500 results if autocomplete policy is 0
 favicon_size = 16                                          # Favicon size (Default: 16)
 bf_timeout = 1000                                          # Back/Forward buttons holding time (Default: 1000) (1000 = 1 second)
                                                            # Visited links will show in a popover when you hold back/forward buttons for these seconds.

@@ -19,7 +19,8 @@
 import sys, requests, sqlite3 as lite
 sys.path.append(".")
 from functions import minify
-from settings import autocomplete_policy, history_con, bookmarks_con, cookies_con, verify_req
+from settings import autocomplete_policy, autocomplete_limit,\
+history_con, bookmarks_con, cookies_con, verify_req
 
 def autocomplete(query, liststore):
 
@@ -34,7 +35,7 @@ def autocomplete(query, liststore):
 
             with history_con:    
                 history_cur = history_con.cursor()
-                history_cur.execute("SELECT DISTINCT title,url FROM history LIMIT 200;")
+                history_cur.execute("SELECT DISTINCT title,url FROM history LIMIT {};".format(autocomplete_limit))
                 urls = history_cur.fetchall()
 
                 if len(urls) != 0:
