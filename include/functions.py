@@ -69,16 +69,16 @@ def is_image_valid(file):
 def is_url_valid(url, bool):
 
     try:
-        request = requests.get(url, verify=bool)
-        if request.status_code == 200: return True
+        request = requests.head(url, verify=bool)
+        if request.status_code < 400: return True
     except ecs.ConnectionError: return False
     except ecs.InvalidURL: return False
 
 def catch_error(url, bool):
 
     try:
-        request = requests.get(url, verify=bool, timeout=1)
-        if request.status_code == 200: return True
+        request = requests.head(url, verify=bool, timeout=1)
+        if request.status_code < 400: return True
     except ecs.RequestException as e: return e
     except ecs.SSLError as e: return e
 
