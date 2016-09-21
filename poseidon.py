@@ -290,10 +290,14 @@ class BrowserTab(Gtk.VBox):
         vte_sw.set_size_request(-1,250)
 
         close_vte_button = make_button(make_icon("edit-delete.svg"), False)
-        close_vte_button.connect("clicked", lambda x: frame_vte.hide())
+        close_vte_button.connect("clicked", lambda x: self.close_terminal(vte_sw, frame_vte))
+
+        hide_vte_button = make_button(make_icon("minimize.svg"), False)
+        hide_vte_button.connect("clicked", lambda x: frame_vte.hide())
 
         vte_box = Gtk.HBox()
         vte_box.pack_end(close_vte_button, False, True, 0)
+        vte_box.pack_end(hide_vte_button, False, True, 0)
 
         grid = Gtk.Grid()
         grid.set_column_spacing(0)
@@ -442,6 +446,13 @@ class BrowserTab(Gtk.VBox):
             self.controller.connect("counted-matches", self.on_counted_matches)
             self.main_url_entry.connect("icon-press", self.on_icon_pressed)
         except: pass
+
+    def close_terminal(self, sw, frame):
+
+        sw.get_children()[0].destroy()
+        frame.hide()
+
+        return True
 
     def autocomplete_search(self, completion, model, iter):
 
@@ -2423,9 +2434,7 @@ class Browser(Gtk.Window):
         page = self.tabs[self.current_page][0]
 
         if not page.vte_sw.get_children(): page.vte_sw.add(terminal)
-
         page.frame_vte.show_all()
-
         if page.vte_sw.get_children(): page.vte_sw.get_children()[0].grab_focus()
 
         return True
