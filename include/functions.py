@@ -77,8 +77,8 @@ def is_url_valid(url, bool):
 def catch_error(url, bool):
 
     try:
-        request = requests.head(url, verify=bool, timeout=1)
-        if request.status_code < 400: return True
+        request = requests.get(url, verify=bool, timeout=1)
+        if request.status_code == 200: return True
     except ecs.RequestException as e: return e
     except ecs.SSLError as e: return e
 
