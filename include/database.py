@@ -16,7 +16,7 @@
 # You should have received a copy of the GNU General Public License
 # along with Poseidon. If not, see <http://www.gnu.org/licenses/>.
 
-import sys, requests, sqlite3 as lite
+import sys, requests, sqlite3 as lite, json
 sys.path.append(".")
 from functions import minify
 from settings import autocomplete_policy, autocomplete_limit,\
@@ -46,15 +46,22 @@ def autocomplete(query, liststore):
 
             return True
 
-        elif autocomplete_policy == 1:
+        else:
 
-            url = ("https://ac.duckduckgo.com/ac/?q={}&type=list".format(query))
+            if autocomplete_policy == 1: url = ("https://ac.duckduckgo.com/ac/?q={}&type=list".format(query))
+            if autocomplete_policy == 2: url = ("https://en.wikipedia.org/w/api.php?action=opensearch&search={}".format(query))
+            if autocomplete_policy == 3: url = ("https://suggestqueries.google.com/complete/search?json&client=firefox&q={}".format(query))
+            if autocomplete_policy == 4: url = ("https://suggestqueries.google.com/complete/search?json&client=firefox&ds=yt&q={}".format(query))
+            if autocomplete_policy == 5: url = ("https://completion.amazon.co.uk/search/complete?method=completion&q={}&search-alias=aps&mkt=4".format(query))
 
             request = requests.get(url, stream=True, verify=verify_req)
-            request = request.text.replace('[" ' + query + ' ",', "").replace("]", "").replace("[", "").replace('"', "").split(",")
+            request = json.loads(request.content.decode('utf-8'))
 
             for i in request:
-                if i: liststore.append([i])
+                if i and type(i) == list:
+                    for a in i:
+                        try: liststore.append([a])
+                        except ValueError: pass
 
             return True
 

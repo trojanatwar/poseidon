@@ -49,7 +49,7 @@ lang.install()
 ##################
 '''
 
-version = "0.1.9"
+version = "0.2.0"
 browser_name = "Poseidon"
 website = "https://github.com/sidus-dev/poseidon"
 authors = "Andrea Pasciuta  <sidus@arbornet.org>"
@@ -99,7 +99,9 @@ yalign = 0.5                                               # Gtk.Popover yalign 
 
                                                            # Integers
 
-autocomplete_policy = 0                                    # Autocomplete policy (Default: 0) (Disabled = None, History = 0, DuckDuckGo = 1)
+autocomplete_policy = 0                                    # Autocomplete policy (Default: 0)
+                                                           # Secure Services: Disabled = None, History = 0, DuckDuckGo = 1, Wikipedia = 2
+                                                           # Spyware Services: Google = 3, Youtube = 4, Amazon = 5
 autocomplete_limit = -1                                    # Autocomplete limit (Default: -1) (Disabled = -1)
                                                            # For example, setting 500 will show 500 results if autocomplete policy is 0
 favicon_size = 16                                          # Favicon size (Default: 16)

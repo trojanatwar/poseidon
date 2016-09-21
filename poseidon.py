@@ -224,17 +224,19 @@ class BrowserTab(Gtk.VBox):
         if autocomplete_policy != None:
 
             if autocomplete_policy == 0: liststore = Gtk.ListStore(str, str)
-            elif autocomplete_policy == 1: liststore = Gtk.ListStore(str)
+            else: liststore = Gtk.ListStore(str)
 
             entrycompletion = Gtk.EntryCompletion()
             entrycompletion.set_model(liststore)
             entrycompletion.set_text_column(0)
 
-            main_url_entry.set_completion(entrycompletion)
-            main_url_entry.connect("changed", lambda x: autocomplete(main_url_entry.get_text(), liststore))
+            if autocomplete_policy == 0: entrycompletion.set_minimum_key_length(2)
 
-            if autocomplete_policy == 0: entrycompletion.connect('match-selected', self.autocomplete_match)
-            if autocomplete_policy == 1 and search_engine: entrycompletion.connect('match-selected', self.autocomplete_search)
+            main_url_entry.set_completion(entrycompletion)
+
+            if autocomplete_policy == 0: entrycompletion.connect('match-selected', self.on_autocomplete_match)
+            else:
+                if search_engine: entrycompletion.connect('match-selected', self.on_autocomplete_search)
 
         '''
         ################
@@ -290,7 +292,7 @@ class BrowserTab(Gtk.VBox):
         vte_sw.set_size_request(-1,250)
 
         close_vte_button = make_button(make_icon("edit-delete.svg"), False)
-        close_vte_button.connect("clicked", lambda x: self.close_terminal(vte_sw, frame_vte))
+        close_vte_button.connect("clicked", lambda x: self.on_close_terminal(vte_sw, frame_vte))
 
         hide_vte_button = make_button(make_icon("minimize.svg"), False)
         hide_vte_button.connect("clicked", lambda x: frame_vte.hide())
@@ -445,24 +447,46 @@ class BrowserTab(Gtk.VBox):
             self.webview.connect("notify::uri", self.on_uri_changed)
             self.controller.connect("counted-matches", self.on_counted_matches)
             self.main_url_entry.connect("icon-press", self.on_icon_pressed)
+            self.main_url_entry.connect("changed", lambda x: self.on_entry_timeout(main_url_entry.get_text(), liststore))
         except: pass
 
-    def close_terminal(self, sw, frame):
+    def stop_ac_timeout(self, query, liststore):
 
-        sw.get_children()[0].destroy()
-        frame.hide()
+        try:
+            if self.ac_timeout_id:
+                GObject.source_remove(self.ac_timeout_id)
+                self.ac_timeout_id = 0
+        except ValueError: pass
+        except: pass
+
+        if query and liststore:
+            autocomplete(query, liststore)
 
         return True
 
-    def autocomplete_search(self, completion, model, iter):
+    def on_entry_timeout(self, query, liststore):
+
+        self.stop_ac_timeout(None, None)
+        self.ac_timeout_id = GObject.timeout_add(300, lambda x: self.stop_ac_timeout(query, liststore), None)
+
+        return True
+
+    def on_autocomplete_search(self, completion, model, iter):
 
         self.webview.load_uri("{}{}".format(search_engine, model[iter][0]))
 
         return True
 
-    def autocomplete_match(self, completion, model, iter):
+    def on_autocomplete_match(self, completion, model, iter):
 
         self.webview.load_uri(model[iter][1])
+
+        return True
+
+    def on_close_terminal(self, sw, frame):
+
+        sw.get_children()[0].destroy()
+        frame.hide()
 
         return True
 
