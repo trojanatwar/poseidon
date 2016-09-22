@@ -13,7 +13,23 @@ A fast, minimal and lightweight browser
 
 * Arch Linux
 
-`# pacman -S python3 python-gobject python-decorator python-six python-requests python-pillow python-cairo pyopenssl gtk3 gtksourceview3 webkit2gtk evince vte3`
+`# pacman -S python3 python-gobject python-decorator python-six python-requests python-pillow python-cairo pyopenssl gtk3 gtksourceview3 webkit2gtk`
+
+Optionally:
+
+```
+gst-libav: HTML5 H264 videos support
+gst-plugins-base: HTML5 OGG videos support
+gst-plugins-good: HTML5 H264 and WebM videos support
+evince: Embed PDFs support
+vte3: Embed terminal support
+flashplugin: Adobe Flash Player
+icedtea-web: Free web browser plugin to run applets written in Java and an implementation of Java Web Start
+```
+
+Full command:
+
+`# pacman -S gst-libav gst-plugins-base gst-plugins-good evince vte3 flashplugin icedtea-web`
 
 * Ubuntu/Mint
 
