@@ -95,9 +95,7 @@ def minify(arg, num):
 
 def get_filename(dest):
 
-    name_split = dest.split("/")
-    name = name_split[-1]
-    return name
+    return dest.split("/")[-1]
 
 def make_icon(filename):
 

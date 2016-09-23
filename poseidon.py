@@ -1680,13 +1680,24 @@ class Browser(Gtk.Window):
 
     def on_decide_destination(self, download, name):
 
-        url = self.tabs[self.current_page][0].webview.get_uri()
+        for i in self.dlview:
+            for a in i:
+                if type(a) == Gtk.ModelButton:
+                    if a.get_name().split("/")[-1] == name:
+                        self.downloads_menu.show()
+                        return True
 
+        url = download.get_web_view().get_uri()
         if url: pathchooser().save(name, download, url)
 
     def on_cancel_download(self):
 
         if len(self.dlview) == 0: self.downloads_menu.hide()
+
+    def on_restart_download(self, download):
+
+        url = download.get_request().get_uri()
+        download.get_web_view().download_uri(url)
 
     def on_created_destination(self, download, destination):
 
@@ -1696,23 +1707,31 @@ class Browser(Gtk.Window):
         item.set_alignment(xalign, yalign)
 
         item.set_label("<span size='small'>{}: {}</span>\r<span size='x-small'>{}: {}</span>"\
-                       .format(_("Downloading"),minify(name, 50),_("In"),minify(destination.replace("file://", ""), 50)))
+        .format(_("Downloading"),minify(name, 50),_("In"),minify(destination.replace("file://", ""), 50)))
 
         item.get_child().set_use_markup(True)
         item.get_child().set_padding(5, 5)
 
-        item.connect("clicked", lambda x: subprocess.call([app_launcher, os.path.dirname(destination)]))
+        item.connect("clicked", lambda x: subprocess.call\
+        ([app_launcher, os.path.dirname(destination)]))
 
         canc = make_button(make_icon("edit-delete.svg"), False)
-        canc.connect("clicked", lambda x: [download.cancel(), self.dlview.remove(grid), self.on_cancel_download()])
+        canc.connect("clicked", lambda x: [download.cancel(),\
+        self.dlview.remove(grid), self.on_cancel_download()])
+
+        rest = make_button(make_icon("refresh.svg"), False)
+        rest.connect("clicked", lambda x: [download.cancel(),\
+        self.dlview.remove(grid), self.on_cancel_download(),\
+        self.on_restart_download(download)])
 
         pbar = Gtk.ProgressBar(name=destination)
 
         grid = Gtk.Grid()
         grid.set_column_spacing(0)
         grid.attach(canc, 0, 0, 1, 1)
-        grid.attach(item, 1, 0, 1, 1)
-        grid.attach(pbar, 1, 1, 1, 1)
+        grid.attach(rest, 1, 0, 1, 1)
+        grid.attach(item, 2, 0, 1, 1)
+        grid.attach(pbar, 2, 1, 1, 1)
         grid.set_column_homogeneous(False)
 
         self.dlview.add(grid)
@@ -1721,32 +1740,32 @@ class Browser(Gtk.Window):
 
     def on_received_data(self, download, data_length):
 
-        for child in self.dlview:
-            for child in child:
-                if child.get_name() == download.get_destination():
-                    if type(child) == Gtk.ProgressBar:
-                        child.set_fraction(download.props.estimated_progress)
+        for i in self.dlview:
+            for a in i:
+                if a.get_name() == download.get_destination():
+                    if type(a) == Gtk.ProgressBar:
+                        a.set_fraction(download.props.estimated_progress)
 
     def on_finished(self, download):
 
-        for child in self.dlview:
-            for child in child:
-                if child.get_name() == download.get_destination():
+        for i in self.dlview:
+            for a in i:
+                if a.get_name() == download.get_destination():
 
-                    if type(child) == Gtk.ModelButton:
+                    if type(a) == Gtk.ModelButton:
 
                         name = get_filename(download.get_destination())
-                        child.get_child().set_markup("<span size='small'>{}: {}</span>".\
+                        a.get_child().set_markup("<span size='small'>{}: {}</span>".\
                         format(_("Download complete for"), minify(name, 25)))
 
                         if not self.downloads_menu.get_visible():
                             self.tabs[self.current_page][0].\
                             download_button.set_image(make_icon("notification.svg"))
 
-                    if type(child) == Gtk.ProgressBar:
-                        child.set_fraction(1.0)
+                    if type(a) == Gtk.ProgressBar:
+                        a.set_fraction(1.0)
 
-                    child.set_name("")
+                    a.set_name("")
 
     def on_context_menu(self, view, menu, event, htr):
         on_context_menu(self, view, menu, event, htr)

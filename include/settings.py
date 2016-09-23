@@ -49,7 +49,7 @@ lang.install()
 ##################
 '''
 
-version = "0.2.0"
+version = "0.2.1"
 browser_name = "Poseidon"
 website = "https://github.com/sidus-dev/poseidon"
 authors = "Andrea Pasciuta  <sidus@arbornet.org>"
@@ -164,7 +164,7 @@ set_enable_hyperlink_auditing = False                      # (Default: False)
 set_enable_java = True                                     # (Default: True)
 set_enable_javascript = True                               # (Default: True)
 set_enable_media_stream = False                            # (Default: False)
-set_enable_mediasource = False                             # (Default: False)
+set_enable_mediasource = True                              # (Default: False)
 set_enable_offline_web_application_cache = True            # (Default: True)
 set_enable_page_cache = True                               # (Default: True)
 set_enable_plugins = True                                  # (Default: True)
