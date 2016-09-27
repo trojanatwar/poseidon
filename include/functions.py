@@ -146,13 +146,14 @@ def make_modelbutton_label(text, xalign, yalign):
     label.set_markup("<span color='gray' size='x-small'>{}</span>".format(text))
 
     return label
-
+     
 def make_box(text, length, digit):
 
     label = Gtk.Label()
     label.set_markup("<span size='small'>{}</span>".format(text))
     label.set_alignment(0.0, 0.5)
     label.set_property("margin-top", 10)
+    label.set_property("margin-bottom", 10)
     entry = Gtk.Entry()
 
     if length: entry.set_max_length(length)
@@ -164,6 +165,35 @@ def make_box(text, length, digit):
     grid = Gtk.Grid()
     grid.attach(label, 0, 0, 1, 1)
     grid.attach(entry, 0, 1, 1, 1)
+  
+    return grid
+
+def make_option(self, title, value, width, combo, desc):
+
+    label = Gtk.Label()
+
+    if desc: label.set_markup(\
+    "{}\n<span size='small'>{}</span>".format(title, desc))
+    else: label.set_markup(title)
+
+    label.set_alignment(0.0, 0.5)
+    label.set_property("margin-bottom", 10)
+
+    if combo:
+        combobox = Gtk.ComboBoxText(name=title)
+        combobox.set_entry_text_column(0)
+        for i in combo: combobox.append_text(i)
+        combobox.set_active(combo.index(value))
+    else:
+        entry = Gtk.Entry(name=title)
+        entry.set_width_chars(width)
+        entry.set_text(value)
+
+    grid = Gtk.Grid()
+    grid.attach(label, 0, 0, 1, 1)
+    if combo: grid.attach(combobox, 0, 1, 1, 1)
+    else: grid.attach(entry, 0, 1, 1, 1)
+    grid.set_property("margin", 10)
   
     return grid
 
@@ -233,7 +263,7 @@ def pass_generator(self):
     result = Gtk.TextView()
     result.set_wrap_mode(Gtk.WrapMode.WORD)
     scrolled_window = Gtk.ScrolledWindow()
-    scrolled_window.set_size_request(500,200)
+    scrolled_window.set_size_request(500, 200)
     scrolled_window.add(result)
 
     bt_grid = Gtk.Grid()

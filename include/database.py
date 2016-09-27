@@ -28,15 +28,15 @@ def autocomplete(query, liststore):
 
         liststore.clear()
 
-        if autocomplete_policy == 0:
+        if autocomplete_policy == 1:
 
             tmp = []
             tmp_ap = tmp.append
 
             with history_con:    
-                history_cur = history_con.cursor()
-                history_cur.execute("SELECT DISTINCT title,url FROM history LIMIT {};".format(autocomplete_limit))
-                urls = history_cur.fetchall()
+                cur = history_con.cursor()
+                cur.execute("SELECT DISTINCT title,url FROM history LIMIT {};".format(autocomplete_limit))
+                urls = cur.fetchall()
 
                 if len(urls) != 0:
                     for url in urls:
@@ -48,11 +48,11 @@ def autocomplete(query, liststore):
 
         else:
 
-            if autocomplete_policy == 1: url = ("https://ac.duckduckgo.com/ac/?q={}&type=list".format(query))
-            if autocomplete_policy == 2: url = ("https://en.wikipedia.org/w/api.php?action=opensearch&search={}".format(query))
-            if autocomplete_policy == 3: url = ("https://suggestqueries.google.com/complete/search?json&client=firefox&q={}".format(query))
-            if autocomplete_policy == 4: url = ("https://suggestqueries.google.com/complete/search?json&client=firefox&ds=yt&q={}".format(query))
-            if autocomplete_policy == 5: url = ("https://completion.amazon.co.uk/search/complete?method=completion&q={}&search-alias=aps&mkt=4".format(query))
+            if autocomplete_policy == 2: url = ("https://ac.duckduckgo.com/ac/?q={}&type=list".format(query))
+            if autocomplete_policy == 3: url = ("https://en.wikipedia.org/w/api.php?action=opensearch&search={}".format(query))
+            if autocomplete_policy == 4: url = ("https://suggestqueries.google.com/complete/search?json&client=firefox&q={}".format(query))
+            if autocomplete_policy == 5: url = ("https://suggestqueries.google.com/complete/search?json&client=firefox&ds=yt&q={}".format(query))
+            if autocomplete_policy == 6: url = ("https://completion.amazon.co.uk/search/complete?method=completion&q={}&search-alias=aps&mkt=4".format(query))
 
             request = requests.get(url, stream=True, verify=verify_req)
             request = json.loads(request.content.decode('utf-8'))
@@ -73,9 +73,9 @@ def cookiesview():
     cookies_ap = cookies.append
         
     with cookies_con:    
-        cookies_cur = cookies_con.cursor()
-        cookies_cur.execute("SELECT * FROM moz_cookies;")
-        cks = cookies_cur.fetchall()
+        cur = cookies_con.cursor()
+        cur.execute("SELECT * FROM moz_cookies;")
+        cks = cur.fetchall()
 
         for i in cks:
             tmp_ap([i[0]] + [i[1]] + [minify(i[2],50)] + [i[3]] + [i[4]] +\
@@ -93,9 +93,9 @@ def bookmarksview():
     bookmarks_ap = bookmarks.append
         
     with bookmarks_con:    
-        bookmarks_cur = bookmarks_con.cursor()
-        bookmarks_cur.execute("SELECT * FROM bookmarks ORDER BY date DESC;")
-        urls = bookmarks_cur.fetchall()
+        cur = bookmarks_con.cursor()
+        cur.execute("SELECT * FROM bookmarks ORDER BY date DESC;")
+        urls = cur.fetchall()
 
         for i in urls: tmp_ap([i[2]] + [minify(i[0],50)] + [minify(i[1],50)] + [i[1]])
         for i in tmp: bookmarks_ap(tuple(i))
@@ -110,9 +110,9 @@ def historyview():
     history_ap = history.append
         
     with history_con:    
-        history_cur = history_con.cursor()
-        history_cur.execute("SELECT * FROM history ORDER BY date DESC;")
-        urls = history_cur.fetchall()
+        cur = history_con.cursor()
+        cur.execute("SELECT * FROM history ORDER BY date DESC;")
+        urls = cur.fetchall()
 
         for i in urls: tmp_ap([i[2]] + [minify(i[0],50)] + [minify(i[1],50)] + [i[1]])
         for i in tmp: history_ap(tuple(i))

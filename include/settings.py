@@ -16,56 +16,16 @@
 # You should have received a copy of the GNU General Public License
 # along with Poseidon. If not, see <http://www.gnu.org/licenses/>.
 
-import os, gettext, pickle, sqlite3 as lite
+import os, gettext, pickle, sqlite3 as lite, subprocess
 
 '''
-############
-# Language #
-############
+#####################
+# Advanced Settings #
+#############################################
+# The following variables can be manually   #
+# edited as long you know what you're doing #
+#############################################
 '''
-
-language = "en_US"                                         # Language (Default: "en_US")
-                                                           # Check "po/locale" folder to know how many languages are currently available.
-
-'''
-##################
-# Languages List #
-##########################################################################################
-# Set here your languages. eg. ['it_IT', 'jp_JA', 'fr_FR'] etc..                         #
-# You can use Poedit to create new translations, it's cool and free: https://poedit.net/ #
-##########################################################################################
-'''
-
-translations = ['en_US', 'ru_RU', 'de_DE', 'nl_NL', 'fr_FR', 'es_ES', 'it_IT', 'ja_JP',\
-                'tr_TR', 'pl_PL', 'zh_CN', 'da_DK', 'zh_TW']
-
-lc_path = "po/locale"
-lang = gettext.translation(language, localedir=lc_path, languages=translations)
-lang.install()
-
-'''
-##################
-# About Settings #
-##################
-'''
-
-version = "0.2.1"
-browser_name = "Poseidon"
-website = "https://github.com/sidus-dev/poseidon"
-authors = "Andrea Pasciuta  <sidus@arbornet.org>"
-comments = _("A fast, minimal and lightweight browser")
-
-'''
-####################
-# Browser Settings #
-####################
-'''
-
-width = 800                                                # Window width size (Default: 800)
-height = 600                                               # Window height size (Default: 600)
-tab_name = _("Empty")                                      # Empty tab label name (Default: _("Empty"))
-search_engine = "https://duckduckgo.com/?q="               # Default search engine (Default: "https://duckduckgo.com/?q=")
-home_page = "https://www.duckduckgo.com/"                  # Home page (Default: "https://www.duckduckgo.com/") set None to disable it
 
 '''
 #########
@@ -80,40 +40,35 @@ cache_path = "{}cache".format(base_path)                   # Cache path
 cookies_path = "{}cookies".format(base_path)               # Cookies path
 history_path = "{}history/".format(base_path)              # History path
 bookmarks_path = "{}bookmarks/".format(base_path)          # Bookmarks path
+settings_path = "{}settings/".format(base_path)            # Settings path
 pickle_path = "{}pickle/".format(base_path)                # Pickle path
 theme_path = "{}theme/".format(base_path)                  # Theme path
+theme_file = "{}theme".format(theme_path)                  # Theme file path
 pages_path = "pages"                                       # Pages path
 lib_path = "lib"                                           # Library path
+lc_path = "po/locale"                                      # Languages path
+
+cookies_db = "cookies.sqlite"                              # Cookies database (Default: "cookies.sqlite")
+history_db = "history.sqlite"                              # History database (Default: "history.sqlite")
+bookmarks_db = "bookmarks.sqlite"                          # Bookmarks database (Default: "bookmarks.sqlite")
+settings_db = "settings.sqlite"                            # Settings database (Default: "settings.sqlite")
 
 '''
 #####################
 # Autistic Settings #                                      One String to rule them all, One String to find them, One String to bring them all and in the Memory store them.
 #####################
 '''
-
-                                                           # Floats
-
-zoom_level_float = 0.05                                    # Zoom level speed (Default: 0.05)
-xalign = 0.0                                               # Gtk.Popover xalign (Default: 0.0)
-yalign = 0.5                                               # Gtk.Popover yalign (Default: 0.5)
-
                                                            # Integers
 
-autocomplete_policy = 0                                    # Autocomplete policy (Default: 0)
-                                                           # Secure Services: Disabled = None, History = 0, DuckDuckGo = 1, Wikipedia = 2
-                                                           # Spyware Services: Google = 3, Youtube = 4, Amazon = 5
+width = 800                                                # Window width size (Default: 800)
+height = 600                                               # Window height size (Default: 600)
 autocomplete_limit = -1                                    # Autocomplete limit (Default: -1) (Disabled = -1)
                                                            # For example, setting 500 will show 500 results if autocomplete policy is 0
 favicon_size = 16                                          # Favicon size (Default: 16)
-bf_timeout = 1000                                          # Back/Forward buttons holding time (Default: 1000) (1000 = 1 second)
                                                            # Visited links will show in a popover when you hold back/forward buttons for these seconds.
 load_timeout = 0                                           # Load timeout (Default: 0) (30000 = 30 seconds) (set 0 to disable it)
                                                            # If loading a website takes longer than set seconds browser will return a popup dialog with the issue.
                                                            # Increase the value in case your connection is very slow, 25000 is a good deal.
-find = 1                                                   # Finding type (Default: 1) (eg. set 0 for case sensitive) (None = 0, Case Insensitive = 1, Wrap Around = 16
-                                                           # At Words Starts = 2, Treat Medial Capial As Word Start = 4, Backwards = 8)
-                                                           # Info: https://lazka.github.io/pgi-docs/WebKit2-4.0/flags.html#WebKit2.FindOptions
-cache_model = 1                                            # Cache model (Default: 1) (eg. set 0 to disable cache) (Document Viewer = 0, Web Browser = 1, Document Browser = 2)
 adk_policy = 1                                             # AdKiller policy (Default: 1) (Global = 0, Precise = 1)
                                                            # If "Global", AdKiller will check if the requested url is in list.
                                                            # This method is ultra simple and fast but can misunderstand a request like "downloads.domain.com" for "ads.domain.com".
@@ -125,17 +80,6 @@ adk_policy = 1                                             # AdKiller policy (De
 verify_req = True                                          # Requests module SSL verification (Default: True)
                                                            # If 'False', 'requests' module will ignore verifying the SSL certificate
                                                            # False = insecure (but faster), True = secure (but slower)
-
-                                                           # Misc
-
-shell = "/bin/bash"                                        # Shell type (Default: "/bin/bash") (eg. For Korn shell set: "/bin/zsh")
-                                                           # https://wiki.archlinux.org/index.php/Command-line_shell#List_of_shells
-app_launcher = "xdg-open"                                  # Apps launcher (Default: "xdg-open") alternatives to xdg-utils:
-                                                           # https://wiki.archlinux.org/index.php/default_applications#mimeopen
-cookies_db = "cookies.sqlite"                              # Cookies database (Default: "cookies.sqlite")
-history_db = "history.sqlite"                              # History database (Default: "history.sqlite")
-bookmarks_db = "bookmarks.sqlite"                          # Bookmarks database (Default: "bookmarks.sqlite")
-theme_file = "{}theme".format(theme_path)                  # Theme file
 
 '''
 ####################
@@ -168,7 +112,7 @@ set_enable_mediasource = True                              # (Default: False)
 set_enable_offline_web_application_cache = True            # (Default: True)
 set_enable_page_cache = True                               # (Default: True)
 set_enable_plugins = True                                  # (Default: True)
-#set_enable_private_browsing                               # Look for "defcon" in "Paranoid Settings"
+#set_enable_private_browsing                               # (Managed by Defcon Mode)
 set_enable_resizable_text_areas = True                     # (Default: True)
 set_enable_site_specific_quirks = True                     # (Default: True)
 set_enable_smooth_scrolling = False                        # (Default: False)
@@ -192,19 +136,6 @@ set_sans_serif_font_family = "sans-serif"                  # (Default: "sans-ser
 set_serif_font_family = "serif"                            # (Default: "serif")
 set_user_agent = None                                      # (Default: None)
 set_zoom_text_only = False                                 # (Default: False)
-
-'''
-#####################
-# Paranoid Settings #                                      HINT: Enable/Disable Javascript, Java, Flash and other security compromising stuff directly from WebKit2 settings
-#####################
-'''
-
-cookies_policy = 2                                         # Cookies policy (Default: 2) (eg. set 1 to disable cookies) (Always = 0, Never = 1, No Third Party = 2)
-geolocation_policy = 2                                     # Geolocation policy (Default: 2) (eg. set 1 to disable geolocation) (Always = 0, Never = 1, Ask Everytime = 2)
-adkiller = True                                            # AdKiller (a pseudo-alternative to AdBlock Plus) (Default: True) (Experimental)
-                                                           # It's actually experimental and at the moment it won't manipulate the DOM to remove ads.
-defcon = False                                             # Defcon mode (Default: False) If 'True', browser will disable cache, ignore history and cookies
-                                                           # independently from their policies.
 
 '''
 ########
@@ -242,15 +173,202 @@ uri_schemes = [
 ]
 
 '''
+########################
+# !!! WARNING ZONE !!! #
+###################################################
+# Do not touch the following stuff or Kim Jong Un #
+# will launch an atomic firecracker over your PC  #
+###################################################
+'''
+
+'''
 ###############
 # Paths Check #
 ###############
 '''
 
 if not os.path.exists(base_path): os.makedirs(base_path)
+if not os.path.exists(settings_path): os.makedirs(settings_path)
+if not os.path.exists(history_path): os.makedirs(history_path)
+if not os.path.exists(bookmarks_path): os.makedirs(bookmarks_path)
 if not os.path.exists(cookies_path): os.makedirs(cookies_path)
 if not os.path.exists(pickle_path): os.makedirs(pickle_path)
 if not os.path.exists(theme_path): os.makedirs(theme_path)
+
+'''
+#############
+# Databases #
+#############
+'''
+
+if not os.path.exists("{}{}".format(history_path, history_db)):
+
+    con = lite.connect("{}/{}".format(history_path, history_db))
+
+    with con:
+        cur = con.cursor()    
+        cur.execute("CREATE TABLE history(title TEXT, url TEXT, date TEXT);")
+
+if not os.path.exists("{}{}".format(bookmarks_path, bookmarks_db)):
+
+    con = lite.connect("{}/{}".format(bookmarks_path, bookmarks_db))
+
+    with con:
+        cur = con.cursor()    
+        cur.execute("CREATE TABLE bookmarks(title TEXT, url TEXT, date TEXT);")
+
+history_con = lite.connect("{}/{}".format(history_path, history_db))
+bookmarks_con = lite.connect("{}/{}".format(bookmarks_path, bookmarks_db))
+cookies_con = lite.connect("{}/{}".format(cookies_path, cookies_db))
+
+'''
+################################
+# Initialize Settings Database #
+################################
+'''
+
+slist = []
+
+if os.path.exists("{}{}".format(settings_path, settings_db)):
+
+    con = lite.connect("{}/{}".format(settings_path, settings_db))
+
+    with con:    
+        cur = con.cursor()
+        cur.execute("SELECT * FROM settings;")
+        opts = cur.fetchall()
+        slist = opts
+
+'''
+###########
+# Methods #
+###########
+'''
+
+def std():
+    if len(slist) == 0: return True
+
+def rop(value, list, bool):
+    for a in range(len(list)):
+        if bool:
+            if value == list[a]:
+                return a
+        else:
+            if value == a:
+                return list[a]
+
+def ctt(s): return s.title().replace("_", " ")
+
+def get_available_shells():
+
+     list = []
+
+     for i in subprocess.check_output(["cat", "/etc/shells"])\
+     .decode("utf8", "replace").split("\n"):
+         if not i.startswith("#") and i != "": list.append(i)
+
+     return list
+
+'''
+##################################
+# Default Settings for GUI Usage #
+##################################
+'''
+
+search_engine = "https://duckduckgo.com/?q="
+home_page = "https://www.duckduckgo.com/"
+app_launcher = "xdg-open"
+language = 0
+autocomplete_policy = 1
+shell = 0
+find = 1
+cache_model = 1
+cookies_policy = 2
+geolocation_policy = 2
+adkiller = 1
+
+'''
+#########
+# Lists #
+#########
+'''
+
+language_list = ["en_US", "it_IT"]                         # Languages list
+adkiller_list = ["Disabled", "Enabled"]                    # Adkiller list
+autocomplete_policy_list = ["Disable Autocomplete",\
+"Secure: History", "Secure: DuckDuckGo",\
+"Secure: Wikipedia", "Spyware: Google",\
+"Spyware: Youtube", "Spyware: Amazon"]                     # Autocomplete list
+find_list = ["Case Insensitive",\
+"Wrap Around" ,"At Words Starts",\
+"Treat Medial Capial As Word Start", "Backwards"]          # Find list
+cache_model_list = ["Disable Cache",\
+"Improved for Speed",\
+"Optimized for Local Files"]                               # Cache list
+cookies_policy_list = ["Always Enabled",\
+"Never Enabled", "No Third Party"]                         # Cookies list
+geolocation_policy_list = ["Always Enabled",\
+"Never Enabled", "Ask Everytime"]                          # Geolocation list
+shell_list = get_available_shells()                        # Shells list
+
+'''
+#######################################
+# Save/Load Settings to/from Database #
+#######################################
+'''
+
+sdlist = ["search_engine", "home_page", "app_launcher", "language",\
+"adkiller", "shell", "cache_model", "find", "autocomplete_policy",\
+"cookies_policy", "geolocation_policy"]
+
+if not std():
+
+    for c, i in enumerate(sdlist):
+
+        value = slist[c][1]
+        vlist = slist[c][2]
+
+        if vlist:
+            if i == sdlist[c]: value = rop(value, globals()[vlist], 1)
+
+        if i == "find":
+            if value == find_list[0]: value = 1
+            if value == find_list[1]: value = 16
+            if value == find_list[2]: value = 2
+            if value == find_list[3]: value = 4
+            if value == find_list[4]: value = 8
+
+        globals()[i] = value
+
+if not os.path.exists("{}{}".format(settings_path, settings_db)):
+
+    con = lite.connect("{}/{}".format(settings_path, settings_db))
+
+    with con:
+        cur = con.cursor()
+        cur.execute("CREATE TABLE settings(option TEXT, value TEXT, list TEXT);")
+
+        for c, i in enumerate(sdlist):
+
+            value = globals()[i]
+            vlist = ""
+
+            if type(value) == int:
+
+                if i == sdlist[c]:
+                    vlist = "{}_list".format(i)
+                    value = rop(value, globals()[vlist], 0)
+
+                if i == "find":
+                    if value == 1: value = find_list[0]
+                    if value == 16: value = find_list[1]
+                    if value == 2: value = find_list[2]
+                    if value == 4: value = find_list[3]
+                    if value == 8: value = find_list[4]
+
+            cur.execute("INSERT INTO settings VALUES(?, ?, ?);", (ctt(i), value, vlist))
+
+settings_con = lite.connect("{}/{}".format(settings_path, settings_db))
 
 '''
 ##########
@@ -263,37 +381,27 @@ adb_name = "adblocks.p"
 
 if adkiller: pickle.dump(True, open("{}{}".format(pickle_path, adk_name), "wb"))
 else: pickle.dump(False, open("{}{}".format(pickle_path, adk_name), "wb"))
-
 pickle.dump(0, open("{}{}".format(pickle_path, adb_name), "wb"))
 
 '''
-#############
-# Databases #
-#############
+####################
+# Install Language #
+####################
 '''
 
-cookies_con = lite.connect("{}/{}".format(cookies_path, cookies_db))
+lang = gettext.translation(language_list[language], localedir=lc_path, languages=language_list)
+lang.install()
 
-if not os.path.exists("{}{}".format(history_path,history_db)):
+'''
+################
+# Dev Settings #
+################
+'''
 
-    os.makedirs(history_path)
-
-    history_con = lite.connect("{}/{}".format(history_path, history_db))
-
-    with history_con:
-        history_cur = history_con.cursor()    
-        history_cur.execute("CREATE TABLE history(title TEXT, url TEXT, date TEXT);")
-
-if not os.path.exists("{}{}".format(bookmarks_path, bookmarks_db)):
-
-    os.makedirs(bookmarks_path)
-
-    bookmarks_con = lite.connect("{}/{}".format(bookmarks_path, bookmarks_db))
-
-    with bookmarks_con:
-        bookmarks_cur = bookmarks_con.cursor()    
-        bookmarks_cur.execute("CREATE TABLE bookmarks(title TEXT, url TEXT, date TEXT);")
-
-history_con = lite.connect("{}/{}".format(history_path, history_db))
-bookmarks_con = lite.connect("{}/{}".format(bookmarks_path, bookmarks_db))
+version = "0.2.2"
+browser_name = "Poseidon"
+website = "https://github.com/sidus-dev/poseidon"
+authors = "Andrea Pasciuta  <sidus@arbornet.org>"
+comments = _("A fast, minimal and lightweight browser")
+tab_name = _("Empty")
 

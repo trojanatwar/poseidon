@@ -70,6 +70,7 @@ In the main entry, type:
 * `about:bookmarks` to open bookmarks tab
 * `about:history` to open history tab
 * `about:cookies` to open cookies manager tab
+* `about:settings` to open settings tab
 
 ### Settings
 
@@ -81,8 +82,6 @@ Available languages:
 
 * English (`en_US`)
 * Italian (`it_IT`)
-* French (`fr_FR`)
-* Japanese (`ja_JP`)
 
 ### Themes
 

@@ -197,7 +197,7 @@ class BrowserTab(Gtk.VBox):
         go_button = make_button(make_icon("go-up.svg"), False)
 
         download_button = make_button(download_icon, True)
-        bookmarks_button = make_button(make_icon("user-bookmarks-gray.svg"), True)
+        bookmarks_button = make_button(make_icon("bookmarks.svg"), True)
         tools = make_button(make_icon("open-menu.svg"), True)
 
         url_box = Gtk.HBox(False)
@@ -221,22 +221,26 @@ class BrowserTab(Gtk.VBox):
         ################
         '''
 
-        if autocomplete_policy != None:
-
-            if autocomplete_policy == 0: liststore = Gtk.ListStore(str, str)
-            else: liststore = Gtk.ListStore(str)
+        if autocomplete_policy != 0:
 
             entrycompletion = Gtk.EntryCompletion()
-            entrycompletion.set_model(liststore)
             entrycompletion.set_text_column(0)
 
-            if autocomplete_policy == 0: entrycompletion.set_minimum_key_length(2)
+            if autocomplete_policy == 1:
 
+                liststore = Gtk.ListStore(str, str)
+                entrycompletion.set_minimum_key_length(2)
+
+            else: liststore = Gtk.ListStore(str)
+
+            entrycompletion.set_model(liststore)
             main_url_entry.set_completion(entrycompletion)
 
-            if autocomplete_policy == 0: entrycompletion.connect('match-selected', self.on_autocomplete_match)
+            if autocomplete_policy == 1:
+                entrycompletion.connect('match-selected', self.on_autocomplete_match)
             else:
-                if search_engine: entrycompletion.connect('match-selected', self.on_autocomplete_search)
+                if search_engine:
+                    entrycompletion.connect('match-selected', self.on_autocomplete_search)
 
         '''
         ################
@@ -292,10 +296,10 @@ class BrowserTab(Gtk.VBox):
         vte_sw.set_size_request(-1,250)
 
         close_vte_button = make_button(make_icon("edit-delete.svg"), False)
-        close_vte_button.connect("clicked", lambda x: self.on_close_terminal(vte_sw, frame_vte))
+        close_vte_button.connect("clicked", lambda x: [self.on_close_terminal(vte_sw, frame_vte), iconified_vte.hide()])
 
         hide_vte_button = make_button(make_icon("minimize.svg"), False)
-        hide_vte_button.connect("clicked", lambda x: frame_vte.hide())
+        hide_vte_button.connect("clicked", lambda x: [frame_vte.hide(), iconified_vte.show()])
 
         vte_box = Gtk.HBox()
         vte_box.pack_end(close_vte_button, False, True, 0)
@@ -316,8 +320,13 @@ class BrowserTab(Gtk.VBox):
         '''
 
         link_hover = make_label(0.0, 0.5)
+
+        iconified_vte = Gtk.EventBox()
+        iconified_vte.add(make_icon("terminal.svg"))
+
         status_box = Gtk.HBox(False)
         status_box.pack_start(link_hover, True, True, 10)
+        status_box.pack_end(iconified_vte, False, True, 0)
 
         frame_status = Gtk.Frame(name="frame_status")
         frame_status.add(status_box)
@@ -387,6 +396,7 @@ class BrowserTab(Gtk.VBox):
         frame_main.show_all()
         scrolled_window.show_all()
         frame_status.show_all()
+        iconified_vte.hide()
 
         cancel.hide()
         refresh.set_sensitive(False)
@@ -422,6 +432,7 @@ class BrowserTab(Gtk.VBox):
         self.frame_find = frame_find
         self.frame_vte = frame_vte
         self.vte_sw = vte_sw
+        self.iconified_vte = iconified_vte
         self.link_hover = link_hover
         self.frame_permission = frame_permission
         self.permission_message = permission_message
@@ -447,7 +458,8 @@ class BrowserTab(Gtk.VBox):
             self.webview.connect("notify::uri", self.on_uri_changed)
             self.controller.connect("counted-matches", self.on_counted_matches)
             self.main_url_entry.connect("icon-press", self.on_icon_pressed)
-            self.main_url_entry.connect("changed", lambda x: self.on_entry_timeout(main_url_entry.get_text(), liststore))
+            if autocomplete_policy != 0: self.main_url_entry.connect("changed",\
+            lambda x: self.on_entry_timeout(main_url_entry.get_text(), liststore))
         except: pass
 
     def stop_ac_timeout(self, query, liststore):
@@ -512,13 +524,13 @@ class BrowserTab(Gtk.VBox):
 
     def on_go_back_pressed(self, widget):
 
-        self.timeout_id = GObject.timeout_add(bf_timeout, self.on_go_back)
+        self.timeout_id = GObject.timeout_add(500, self.on_go_back)
 
         return True
 
     def on_go_forward_pressed(self, widget):
 
-        self.timeout_id = GObject.timeout_add(bf_timeout, self.on_go_forward)
+        self.timeout_id = GObject.timeout_add(500, self.on_go_forward)
 
         return True
 
@@ -533,14 +545,14 @@ class BrowserTab(Gtk.VBox):
     def on_go_back(self):
 
         timelist(0, self.webview, self.bflist, self.go_back,\
-        15, xalign, yalign, self.link_hover, icns)
+        15, 0.0, 0.5, self.link_hover, icns)
 
         return True
 
     def on_go_forward(self):
 
         timelist(1, self.webview, self.bflist, self.go_forward,\
-        15, xalign, yalign, self.link_hover, icns)
+        15, 0.0, 0.5, self.link_hover, icns)
 
         return True
 
@@ -730,7 +742,7 @@ class Browser(Gtk.Window):
 
         try:
 
-            if defcon == True or sys.argv[1] == "-i":
+            if sys.argv[1] == "-i":
                 headerbar.set_subtitle(_("Defcon Mode"))
                 self.is_defcon = True
 
@@ -779,23 +791,18 @@ class Browser(Gtk.Window):
         bkscroll.set_policy(Gtk.PolicyType.NEVER, Gtk.PolicyType.AUTOMATIC)
 
         bkview = Gtk.Box(orientation = Gtk.Orientation.VERTICAL)
-
         bkaddbox = Gtk.Box(orientation = Gtk.Orientation.VERTICAL)
 
         bkadd = Gtk.ModelButton()
         bkadd.set_alignment(0.5, 0.5)
         bkadd.set_label(_("Add this page to bookmarks"))
-        bkadd.get_child().set_padding(5, 5)
         bkadd.connect("clicked", lambda x: self.view_bookmarks(None, None))
 
         bkaddbox.add(bkadd)
         bkscroll.add(bkview)
 
         bkgrid = Gtk.Grid()
-        bkgrid.set_column_spacing(0)
-        bkgrid.attach(bkscroll, 1, 0, 1, 1)
-        bkgrid.attach(bkaddbox, 1, 1, 1, 1)
-        bkgrid.set_column_homogeneous(True)
+        bkgrid.attach(bkaddbox, 0, 1, 1, 1)
 
         bookmarks_menu.add(bkgrid)
         
@@ -837,31 +844,35 @@ class Browser(Gtk.Window):
         tools_menu.get_child().add(utilities_menu)
         tools_menu.child_set_property(utilities_menu, "submenu", "utilities-menu")
 
-        new_window_button = make_modelbutton(_("New Window"), xalign, yalign)
+        new_window_button = make_modelbutton(_("New Window"), 0.0, 0.5)
         new_window_button.connect("clicked", lambda x: init())
         new_window_label = make_modelbutton_label("[ Ctrl+N ]", 0.95, 0.5)
 
-        defcon_button = make_modelbutton(_("Defcon Mode"), xalign, yalign)
+        defcon_button = make_modelbutton(_("Defcon Mode"), 0.0, 0.5)
         defcon_button.connect("clicked", lambda x: self.defcon())
         defcon_label = make_modelbutton_label("[ Ctrl+I ]", 0.95, 0.5)
 
-        finder_button = make_modelbutton(_("Finder"), xalign, yalign)
+        settings_button = make_modelbutton(_("Settings"), 0.0, 0.5)
+        settings_button.connect("clicked", lambda x: self.view_settings())
+        settings_label = make_modelbutton_label("[ Ctrl+S ]", 0.95, 0.5)
+
+        finder_button = make_modelbutton(_("Finder"), 0.0, 0.5)
         finder_button.connect("clicked", lambda x: self.finder())
         finder_label = make_modelbutton_label("[ Ctrl+F ]", 0.95, 0.5)
 
-        zoom_in_button = make_modelbutton(_("Zoom In"), xalign, yalign)
+        zoom_in_button = make_modelbutton(_("Zoom In"), 0.0, 0.5)
         zoom_in_button.connect("clicked", lambda x: self.zoom_in())
         zoom_in_label = make_modelbutton_label("[ Ctrl+ ]", 0.95, 0.5)
 
-        zoom_out_button = make_modelbutton(_("Zoom Out"), xalign, yalign)
+        zoom_out_button = make_modelbutton(_("Zoom Out"), 0.0, 0.5)
         zoom_out_button.connect("clicked", lambda x: self.zoom_out())
         zoom_out_label = make_modelbutton_label("[ Ctrl- ]", 0.95, 0.5)
 
-        zoom_restore_button = make_modelbutton(_("Zoom Restore"), xalign, yalign)
+        zoom_restore_button = make_modelbutton(_("Zoom Restore"), 0.0, 0.5)
         zoom_restore_button.connect("clicked", lambda x: self.zoom_restore())
         zoom_restore_label = make_modelbutton_label("[ Ctrl+M ]", 0.95, 0.5)
 
-        print_button = make_modelbutton(_("Print"), xalign, yalign)
+        print_button = make_modelbutton(_("Print"), 0.0, 0.5)
         print_button.connect("clicked", lambda x: self.page_print())
         print_label = make_modelbutton_label("[ Ctrl+P ]", 0.95, 0.5)
 
@@ -948,44 +959,44 @@ class Browser(Gtk.Window):
             pg_switch.set_sensitive(False)
             pg_switch.set_active(False)
 
-        utilities_button = make_modelbutton(_("Utilities"), xalign, yalign)
+        utilities_button = make_modelbutton(_("Utilities"), 0.0, 0.5)
         utilities_button.set_property("menu-name", "utilities-menu")
 
-        back_main_button = make_modelbutton(_("Back..."), xalign, yalign)
+        back_main_button = make_modelbutton(_("Back..."), 0.0, 0.5)
         back_main_button.set_property("menu-name", "main")
 
-        del_theme_button = make_modelbutton(_("Delete Theme"), xalign, yalign)
+        del_theme_button = make_modelbutton(_("Delete Theme"), 0.0, 0.5)
         del_theme_button.connect("clicked", lambda x: self.delete_theme())
         del_theme_label = make_modelbutton_label("[ Ctrl+K ]", 0.95, 0.5)
 
-        pass_gen_button = make_modelbutton(_("Password Generator"), xalign, yalign)
+        pass_gen_button = make_modelbutton(_("Password Generator"), 0.0, 0.5)
         pass_gen_button.connect("clicked", lambda x: pass_generator(self))
         pass_gen_label = make_modelbutton_label("[ Ctrl+J ]", 0.95, 0.5)
 
-        vte_button = make_modelbutton(_("VTE Terminal"), xalign, yalign)
+        vte_button = make_modelbutton(_("VTE Terminal"), 0.0, 0.5)
         vte_button.connect("clicked", lambda x: self.vte())
         vte_label = make_modelbutton_label("[ Ctrl+F4 ]", 0.95, 0.5)
 
-        plugins_button = make_modelbutton(_("View Plugins"), xalign, yalign)
+        plugins_button = make_modelbutton(_("View Plugins"), 0.0, 0.5)
         plugins_button.connect("clicked", lambda x: self.view_plugins())
         plugins_label = make_modelbutton_label("[ Ctrl+L ]", 0.95, 0.5)
 
-        source_button = make_modelbutton(_("View Source"), xalign, yalign)
+        source_button = make_modelbutton(_("View Source"), 0.0, 0.5)
         source_button.connect("clicked", lambda x: self.view_source())
         source_label = make_modelbutton_label("[ Ctrl+U ]", 0.95, 0.5)
 
-        history_button = make_modelbutton(_("View History"), xalign, yalign)
+        history_button = make_modelbutton(_("View History"), 0.0, 0.5)
         history_button.connect("clicked", lambda x: self.view_history())
         history_label = make_modelbutton_label("[ Ctrl+H ]", 0.95, 0.5)
 
-        bookmarks_button = make_modelbutton(_("View Bookmarks"), xalign, yalign)
+        bookmarks_button = make_modelbutton(_("View Bookmarks"), 0.0, 0.5)
         bookmarks_button.connect("clicked", lambda x: self.view_bookmarks(None, None))
         bookmarks_label = make_modelbutton_label("[ Ctrl+D ]", 0.95, 0.5)
 
-        manager_cookies_button = make_modelbutton(_("Cookies Manager"), xalign, yalign)
+        manager_cookies_button = make_modelbutton(_("Cookies Manager"), 0.0, 0.5)
         manager_cookies_button.connect("clicked", lambda x: self.cookies_manager())
 
-        delete_cache_button = make_modelbutton(_("Empty Cache"), xalign, yalign)
+        delete_cache_button = make_modelbutton(_("Empty Cache"), 0.0, 0.5)
         delete_cache_button.connect("clicked", lambda x: self.tabs[self.current_page][0].context.clear_cache())
 
         grid_buttons = Gtk.Grid()
@@ -994,20 +1005,22 @@ class Browser(Gtk.Window):
         grid_buttons.attach(new_window_label, 0, 0, 1, 1)
         grid_buttons.attach(defcon_button, 0, 1, 1, 1)
         grid_buttons.attach(defcon_label, 0, 1, 1, 1)
-        grid_buttons.attach(Gtk.Separator.new(Gtk.Orientation.HORIZONTAL), 0, 2, 1, 1)
-        grid_buttons.attach(print_button, 0, 3, 1, 1)
-        grid_buttons.attach(print_label, 0, 3, 1, 1)
-        grid_buttons.attach(finder_button, 0, 4, 1, 1)
-        grid_buttons.attach(finder_label, 0, 4, 1, 1)
-        grid_buttons.attach(zoom_in_button, 0, 5, 1, 1)
-        grid_buttons.attach(zoom_in_label, 0, 5, 1, 1)
-        grid_buttons.attach(zoom_out_button, 0, 6, 1, 1)
-        grid_buttons.attach(zoom_out_label, 0, 6, 1, 1)
-        grid_buttons.attach(zoom_restore_button, 0, 7, 1, 1)
-        grid_buttons.attach(zoom_restore_label, 0, 7, 1, 1)
-        grid_buttons.attach(Gtk.Separator.new(Gtk.Orientation.HORIZONTAL), 0, 8, 1, 1)
-        grid_buttons.attach(utilities_button, 0, 9, 1, 1)
-        grid_buttons.attach(Gtk.Separator.new(Gtk.Orientation.HORIZONTAL), 0, 14, 1, 1)
+        grid_buttons.attach(settings_button, 0, 2, 1, 1)
+        grid_buttons.attach(settings_label, 0, 2, 1, 1)
+        grid_buttons.attach(Gtk.Separator.new(Gtk.Orientation.HORIZONTAL), 0, 3, 1, 1)
+        grid_buttons.attach(print_button, 0, 4, 1, 1)
+        grid_buttons.attach(print_label, 0, 4, 1, 1)
+        grid_buttons.attach(finder_button, 0, 5, 1, 1)
+        grid_buttons.attach(finder_label, 0, 5, 1, 1)
+        grid_buttons.attach(zoom_in_button, 0, 6, 1, 1)
+        grid_buttons.attach(zoom_in_label, 0, 6, 1, 1)
+        grid_buttons.attach(zoom_out_button, 0, 7, 1, 1)
+        grid_buttons.attach(zoom_out_label, 0, 7, 1, 1)
+        grid_buttons.attach(zoom_restore_button, 0, 8, 1, 1)
+        grid_buttons.attach(zoom_restore_label, 0, 8, 1, 1)
+        grid_buttons.attach(Gtk.Separator.new(Gtk.Orientation.HORIZONTAL), 0, 9, 1, 1)
+        grid_buttons.attach(utilities_button, 0, 10, 1, 1)
+        grid_buttons.attach(Gtk.Separator.new(Gtk.Orientation.HORIZONTAL), 0, 11, 1, 1)
         grid_buttons.set_column_homogeneous(True)
 
         grid_switches = Gtk.Grid()
@@ -1071,7 +1084,6 @@ class Browser(Gtk.Window):
         '''
 
         bkscroll.set_property('margin', 15)
-        bkview.set_property('margin-right', 15)
         bkaddbox.set_property('margin', 5)
         dlscroll.set_property('margin', 15)
         dlview.set_property('margin-right', 15)
@@ -1089,6 +1101,7 @@ class Browser(Gtk.Window):
         self.notebook = notebook
         self.bkview = bkview
         self.bkscroll = bkscroll
+        self.bkgrid = bkgrid
         self.bookmarks_menu = bookmarks_menu
         self.dlview = dlview
         self.downloads_menu = downloads_menu
@@ -1149,8 +1162,36 @@ class Browser(Gtk.Window):
         tab.allow_cert_button.connect("clicked", lambda x: self.cert())
         tab.go_button.connect("clicked", self.on_load_url)
         tab.main_url_entry.connect("activate", self.on_load_url)
+        tab.iconified_vte.connect("button-press-event", lambda x, y: [self.vte(), tab.iconified_vte.hide()])
 
         return tab
+
+    def on_restore_settings(self):
+
+            decision = dialog().decision(_("Are you sure?"), "<span size='small'>{}.</span>"\
+            .format(_("Clicking on OK, all settings will be restored to default and browser will restart")))
+
+            if decision:
+                os.remove("{}{}".format(settings_path, settings_db))
+                self.restart()
+
+    def on_save_settings(self, opts):
+
+        with settings_con:    
+            cur = settings_con.cursor()
+            for i in opts:
+                if type(i) == Gtk.Entry: text = i.get_text()
+                if type(i) == Gtk.ComboBoxText: text = i.get_active_text()
+                cur.execute("UPDATE settings SET value=? WHERE option=?;",(text, i.get_name(),))
+
+        decision = dialog().decision(_("Are you sure?"), "<span size='small'>{}.</span>"\
+        .format(_("Clicking on OK, all edited settings will be saved and browser will restart")))
+
+        if decision: self.restart()
+
+    def on_vte_button_press(self, widget, event):
+
+        if event.button == 3: vte_menu(widget)
 
     def on_menu_closed(self, int):
         
@@ -1246,13 +1287,14 @@ class Browser(Gtk.Window):
                 if self.is_defcon == False:
 
                     with history_con:
-                        history_cur = history_con.cursor()
+                        cur = history_con.cursor()
 
                         if not title: title = get_domain(url)
 
                         today = datetime.date.today()
-                        history_cur.execute("INSERT INTO history VALUES(?, ?, ?);", (title, url, time.strftime("%Y-%m-%d %H:%M")))
-                        history_cur.execute("DELETE FROM history WHERE date < datetime(?, '-7 days');", (today,))
+                        cur.execute("INSERT INTO history VALUES(?, ?, ?);", (title, url, time.strftime("%Y-%m-%d %H:%M")))
+                        cur.execute("DELETE FROM history WHERE date < datetime(?, '-7 days');", (today,))
+                        history_con.commit()
 
         self.update_status()
 
@@ -1294,6 +1336,10 @@ class Browser(Gtk.Window):
 
         if type(widget) == str: url = widget
         else: url = page.main_url_entry.get_text()
+
+        if url == "about:settings":
+            self.view_settings()
+            return True
 
         if url == "about:plugins":
             self.view_plugins()
@@ -1346,17 +1392,17 @@ class Browser(Gtk.Window):
         if not title or not url: return True
         
         with bookmarks_con:    
-            bookmarks_cur = bookmarks_con.cursor()
-            bookmarks_cur.execute("SELECT * FROM bookmarks;")
-            urls = bookmarks_cur.fetchall()
+            cur = bookmarks_con.cursor()
+            cur.execute("SELECT * FROM bookmarks;")
+            urls = cur.fetchall()
 
             if len(urls) != 0:
                 for i in urls:
                     if url == i[1]:
                         return True
 
-            bookmarks_cur.execute("INSERT INTO bookmarks VALUES(?, ?, ?);",\
-                                  (title.replace("\n","").strip(), url, time.strftime("%Y-%m-%d %H:%M")))
+            cur.execute("INSERT INTO bookmarks VALUES(?, ?, ?);",\
+            (title.replace("\n","").strip(), url, time.strftime("%Y-%m-%d %H:%M")))
 
             self.close_current_tab()
             self.view_bookmarks(None, None)
@@ -1371,14 +1417,14 @@ class Browser(Gtk.Window):
             url = model[iter][3]
 
             with bookmarks_con:
-                bookmarks_cur = bookmarks_con.cursor()
-                bookmarks_cur.execute("SELECT * FROM bookmarks;")
-                urls = bookmarks_cur.fetchall()
+                cur = bookmarks_con.cursor()
+                cur.execute("SELECT * FROM bookmarks;")
+                urls = cur.fetchall()
 
                 if len(urls) != 0:
                     for i in urls:
                         if url == i[1]:
-                            bookmarks_cur.execute("DELETE FROM bookmarks WHERE url=?;", (url,))
+                            cur.execute("DELETE FROM bookmarks WHERE url=?;", (url,))
                             bookmarks_con.commit()
                             self.close_current_tab()
                             self.view_bookmarks(None, None)
@@ -1391,8 +1437,8 @@ class Browser(Gtk.Window):
         if iter is not None:
 
             with cookies_con:
-                cookies_cur = cookies_con.cursor()
-                cookies_cur.execute("DELETE FROM moz_cookies WHERE id=?;", (model[iter][0],))
+                cur = cookies_con.cursor()
+                cur.execute("DELETE FROM moz_cookies WHERE id=?;", (model[iter][0],))
                 cookies_con.commit()
                 self.close_current_tab()
                 self.cookies_manager()
@@ -1452,13 +1498,13 @@ class Browser(Gtk.Window):
 
             if expiry and lastacc and issec and ishttp:
                 with cookies_con:
-                    cookies_cur = cookies_con.cursor()
+                    cur = cookies_con.cursor()
 
                     if action:
-                        cookies_cur.execute("INSERT INTO moz_cookies VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?);",\
+                        cur.execute("INSERT INTO moz_cookies VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?);",\
                                            (id,name,value,host,path,expiry,lastacc,issec,ishttp,))
                     else:
-                        cookies_cur.execute("UPDATE moz_cookies SET name=?,value=?,host=?,path=?,expiry=?,lastAccessed=?,isSecure=?,isHttpOnly=? WHERE id=?;",\
+                        cur.execute("UPDATE moz_cookies SET name=?,value=?,host=?,path=?,expiry=?,lastAccessed=?,isSecure=?,isHttpOnly=? WHERE id=?;",\
                                            (name,value,host,path,expiry,lastacc,issec,ishttp,id,))
 
                     cookies_con.commit()
@@ -1478,9 +1524,9 @@ class Browser(Gtk.Window):
     def on_clear_bookmarks(self):
 
         with bookmarks_con:
-            bookmarks_cur = bookmarks_con.cursor()   
-            bookmarks_cur.execute("DROP TABLE IF EXISTS bookmarks;")
-            bookmarks_cur.execute("CREATE TABLE bookmarks(title TEXT, url TEXT, date TEXT);")
+            cur = bookmarks_con.cursor()   
+            cur.execute("DROP TABLE IF EXISTS bookmarks;")
+            cur.execute("CREATE TABLE bookmarks(title TEXT, url TEXT, date TEXT);")
 
         self.close_current_tab()
         self.view_bookmarks(None, None)
@@ -1511,9 +1557,9 @@ class Browser(Gtk.Window):
     def on_clear_history(self):
 
         with history_con:
-            history_cur = history_con.cursor()   
-            history_cur.execute("DROP TABLE IF EXISTS history;")
-            history_cur.execute("CREATE TABLE history(title TEXT, url TEXT, date TEXT);")
+            cur = history_con.cursor()   
+            cur.execute("DROP TABLE IF EXISTS history;")
+            cur.execute("CREATE TABLE history(title TEXT, url TEXT, date TEXT);")
 
         self.close_current_tab()
         self.view_history()
@@ -1523,9 +1569,9 @@ class Browser(Gtk.Window):
     def on_clear_cookies(self):
 
         with cookies_con:
-            cookies_cur = cookies_con.cursor()   
-            cookies_cur.execute("DROP TABLE IF EXISTS moz_cookies;")
-            cookies_cur.execute("CREATE TABLE moz_cookies (id INTEGER PRIMARY KEY, name TEXT, value TEXT, host TEXT, path TEXT,\
+            cur = cookies_con.cursor()   
+            cur.execute("DROP TABLE IF EXISTS moz_cookies;")
+            cur.execute("CREATE TABLE moz_cookies (id INTEGER PRIMARY KEY, name TEXT, value TEXT, host TEXT, path TEXT,\
                                  expiry INTEGER, lastAccessed INTEGER, isSecure INTEGER, isHttpOnly INTEGER);")
 
         self.close_current_tab()
@@ -1618,7 +1664,7 @@ class Browser(Gtk.Window):
         for i in bookmarks:
 
             item = Gtk.ModelButton(name=i[3])
-            item.set_alignment(xalign, yalign)
+            item.set_alignment(0.0, 0.5)
             item.set_label("{}\r<span size='x-small'>{}</span>".\
             format(minify(cgi.escape(i[1]), 50),cgi.escape(i[2])))
             item.get_child().set_use_markup(True)
@@ -1627,8 +1673,11 @@ class Browser(Gtk.Window):
 
             self.bkview.add(item)
 
-        if len(self.bkview) == 0: self.bkscroll.set_size_request(0,0)
-        else: self.bkscroll.set_size_request(200,300)
+        if len(self.bkview) != 0:
+            if len(self.bkgrid) == 1: self.bkgrid.attach(self.bkscroll, 0, 0, 1, 1)
+            if len(self.bkview) < 7: self.bkscroll.set_size_request(300, len(self.bkview)*40)
+            if len(self.bkview) == 7 or len(self.bkview) > 7: self.bkscroll.set_size_request(300, 250)
+        else: self.bkgrid.remove(self.bkscroll)
 
         self.bookmarks_menu.set_relative_to(self.tabs[self.current_page][0].bookmarks_button)
         self.bookmarks_menu.show_all()
@@ -1687,7 +1736,7 @@ class Browser(Gtk.Window):
                         self.downloads_menu.show()
                         return True
 
-        url = download.get_web_view().get_uri()
+        url = self.tabs[self.current_page][0].webview.get_uri()
         if url: pathchooser().save(name, download, url)
 
     def on_cancel_download(self):
@@ -1697,14 +1746,14 @@ class Browser(Gtk.Window):
     def on_restart_download(self, download):
 
         url = download.get_request().get_uri()
-        download.get_web_view().download_uri(url)
+        self.tabs[self.current_page][0].webview.download_uri(url)
 
     def on_created_destination(self, download, destination):
 
         name = get_filename(destination)
 
         item = Gtk.ModelButton(name=destination)
-        item.set_alignment(xalign, yalign)
+        item.set_alignment(0.0, 0.5)
 
         item.set_label("<span size='small'>{}: {}</span>\r<span size='x-small'>{}: {}</span>"\
         .format(_("Downloading"),minify(name, 50),_("In"),minify(destination.replace("file://", ""), 50)))
@@ -2008,6 +2057,80 @@ class Browser(Gtk.Window):
 
         return scrolled_window
 
+    def view_settings(self):
+
+        self.open_new_tab()
+        page = self.current_page
+        scrolled_window = self.get_clean_page(page, "settings", True)
+
+        save_settings_button = make_button(make_icon("object-select.svg"), False)
+        save_settings_button.set_tooltip_text(_("Save Settings"))
+        restore_settings_button = make_button(make_icon("edit-clear-all.svg"), False)
+        restore_settings_button.set_tooltip_text(_("Restore Settings"))
+        bookmarks_button = make_button(make_icon("bookmarks.svg"), False)
+        bookmarks_button.set_tooltip_text(_("View Bookmarks"))
+        history_button = make_button(make_icon("history.svg"), False)
+        history_button.set_tooltip_text(_("View History"))
+        cookies_button = make_button(make_icon("cookies.svg"), False)
+        cookies_button.set_tooltip_text(_("Cookies Manager"))
+
+        with settings_con:
+            cur = settings_con.cursor()
+            cur.execute("SELECT * FROM settings;")
+            opts = cur.fetchall()
+
+            grid = Gtk.Grid()
+
+            if len(opts) != 0:
+                for c, i in enumerate(opts):
+
+                    desc = None
+                    alist = None
+                    gwidth = 0
+
+                    if i[2]:
+
+                        if i[0] == ctt(sdlist[c]): alist = globals()[i[2]]
+                        if i[0] == "Shell": desc = _("Type of shell to use with VTE Terminal")
+
+                    else:
+
+                        gwidth = 30
+
+                        if i[0] == "Home Page" or i[0] == "Search Engine":
+                            desc = _("Leave it empty to disable it")
+                         
+                    grid.attach(make_option(self, i[0],\
+                    i[1], gwidth, alist, desc), 0, c, 1, 1)
+
+        scrolled_window.add(grid)
+        scrolled_window.show_all()
+
+        self.tabs[page][0].url_box.pack_start(save_settings_button, False, False, 5)
+        self.tabs[page][0].url_box.pack_start(restore_settings_button, False, False, 5)
+        self.tabs[page][0].url_box.pack_start(bookmarks_button, False, False, 5)
+        self.tabs[page][0].url_box.pack_start(history_button, False, False, 5)
+        self.tabs[page][0].url_box.pack_start(cookies_button, False, False, 5)
+        self.tabs[page][0].url_box.show_all()
+
+        opts = []
+
+        for i in grid:
+            for a in i:
+                if type(a) != Gtk.Label: opts.append(a)
+
+        save_settings_button.connect("clicked", lambda x: self.on_save_settings(opts))
+        restore_settings_button.connect("clicked", lambda x: self.on_restore_settings())
+        bookmarks_button.connect("clicked", lambda x: self.view_bookmarks(None, None))
+        history_button.connect("clicked", lambda x: self.view_history())
+        cookies_button.connect("clicked", lambda x: self.cookies_manager())
+
+        self.tabs[page][1].set_text(_("Settings"))
+
+        self.update_status()
+
+        return True
+
     def find_source(self, entry, view):
 
         buf = view.get_buffer()
@@ -2091,8 +2214,10 @@ class Browser(Gtk.Window):
         scrolled_window = self.get_clean_page(page, "cookies", True)
         
         clear_cookies_button = make_button(make_icon("edit-clear-all.svg"), False)
+        clear_cookies_button.set_tooltip_text(_("Clear cookies"))
         clear_cookies_button.connect("clicked", lambda x: self.on_clear_cookies())
         rem_cookies_button = make_button(make_icon("edit-delete.svg"), False)
+        rem_cookies_button.set_tooltip_text(_("Remove the selected cookie"))
 
         name_obj = make_box(_("Name"), None, None)
         value_obj = make_box(_("Value"), None, None)
@@ -2105,7 +2230,9 @@ class Browser(Gtk.Window):
 
         edit_cookies_box = Gtk.Box()
         edit_cookies_button = make_button(make_icon("document-edit.svg"), False)
+        edit_cookies_button.set_tooltip_text(_("Edit the selected cookie"))
         add_cookies_button = make_button(make_icon("list-add.svg"), False)
+        add_cookies_button.set_tooltip_text(_("Add a new cookie with set data"))
         edit_cookies_box.pack_end(edit_cookies_button, False, False, 0)
         edit_cookies_box.pack_end(add_cookies_button, False, False, 0)
 
@@ -2126,7 +2253,7 @@ class Browser(Gtk.Window):
         frame.add(grid)
 
         self.tabs[page][0].url_box.pack_start(clear_cookies_button, False, False, 5)
-        self.tabs[page][0].url_box.pack_start(rem_cookies_button, False, False, 0)
+        self.tabs[page][0].url_box.pack_start(rem_cookies_button, False, False, 5)
         self.tabs[page][0].pack_start(frame, False, False, 0)
         self.tabs[page][0].show_all()
 
@@ -2193,11 +2320,13 @@ class Browser(Gtk.Window):
         scrolled_window = self.get_clean_page(page, "history", False)
 
         clear_history_button = make_button(make_icon("edit-clear-all.svg"), False)
+        clear_history_button.set_tooltip_text(_("Clear history"))
         clear_history_button.connect("clicked", lambda x: self.on_clear_history())
-        bookmarks_history_button = make_button(make_icon("user-bookmarks-gray.svg"), False)
+        bookmarks_history_button = make_button(make_icon("bookmarks.svg"), False)
+        bookmarks_history_button.set_tooltip_text(_("Add to bookmarks"))
 
         self.tabs[page][0].url_box.pack_start(clear_history_button, False, False, 5)
-        self.tabs[page][0].url_box.pack_start(bookmarks_history_button, False, False, 0)
+        self.tabs[page][0].url_box.pack_start(bookmarks_history_button, False, False, 5)
         self.tabs[page][0].url_box.show_all()
 
         bookmarks_history_button.set_sensitive(False)
@@ -2263,9 +2392,12 @@ class Browser(Gtk.Window):
         scrolled_window = self.get_clean_page(page, "bookmarks", False)
 
         clear_bookmarks_button = make_button(make_icon("edit-clear-all.svg"), False)
+        clear_bookmarks_button.set_tooltip_text(_("Clear bookmarks"))
         clear_bookmarks_button.connect("clicked", lambda x: self.on_clear_bookmarks())
         rem_bookmarks_button = make_button(make_icon("edit-delete.svg"), False)
+        rem_bookmarks_button.set_tooltip_text(_("Remove the selected link"))
         add_bookmarks_button = make_button(make_icon("bookmark-new.svg"), False)
+        add_bookmarks_button.set_tooltip_text(_("Add to bookmarks"))
 
         entry_title_bookmarks = Gtk.Entry()
         entry_title_bookmarks.set_width_chars(30)
@@ -2273,7 +2405,7 @@ class Browser(Gtk.Window):
         entry_url_bookmarks.set_width_chars(50)
 
         self.tabs[page][0].url_box.pack_start(clear_bookmarks_button, False, False, 5)
-        self.tabs[page][0].url_box.pack_start(rem_bookmarks_button, False, False, 0)
+        self.tabs[page][0].url_box.pack_start(rem_bookmarks_button, False, False, 5)
         self.tabs[page][0].url_box.pack_end(add_bookmarks_button, False, False, 5)
         self.tabs[page][0].url_box.pack_end(entry_url_bookmarks, False, False, 5)
         self.tabs[page][0].url_box.pack_end(entry_title_bookmarks, False, False, 0)
@@ -2421,7 +2553,7 @@ class Browser(Gtk.Window):
 
         page = self.tabs[self.current_page][0]
         level = page.webview.props.zoom_level
-        level += zoom_level_float
+        level += 0.05
         page.webview.set_zoom_level(level)
         self.update_status()
 
@@ -2431,7 +2563,7 @@ class Browser(Gtk.Window):
 
         page = self.tabs[self.current_page][0]
         level = page.webview.props.zoom_level
-        level -= zoom_level_float
+        level -= 0.05
         page.webview.set_zoom_level(level)
         self.update_status()
 
@@ -2471,7 +2603,7 @@ class Browser(Gtk.Window):
 
         terminal = Vte.Terminal()
         terminal.spawn_sync(Vte.PtyFlags.DEFAULT,\
-        os.environ['HOME'], [shell], [], GLib.SpawnFlags\
+        os.environ['HOME'], [shell_list[shell]], [], GLib.SpawnFlags\
         .DO_NOT_REAP_CHILD, None, None,)
 
         terminal.connect("button-press-event", self.on_vte_button_press)
@@ -2483,10 +2615,6 @@ class Browser(Gtk.Window):
         if page.vte_sw.get_children(): page.vte_sw.get_children()[0].grab_focus()
 
         return True
-
-    def on_vte_button_press(self, widget, event):
-
-        if event.button == 3: vte_menu(widget)
 
     def reload_tab(self):
 
@@ -2536,6 +2664,8 @@ class Browser(Gtk.Window):
 
         return True
 
+    def restart(self): os.execl(sys.executable, sys.executable, *sys.argv)
+
 
     '''
     ############
@@ -2550,6 +2680,7 @@ class Browser(Gtk.Window):
                    Gdk.KEY_w: self.close_current_tab,
                    Gdk.KEY_t: self.open_new_tab,
                    Gdk.KEY_f: self.finder,
+                   Gdk.KEY_s: self.view_settings,
                    Gdk.KEY_u: self.view_source,
                    Gdk.KEY_h: self.view_history,
                    Gdk.KEY_p: self.page_print,
