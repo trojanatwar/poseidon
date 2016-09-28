@@ -16,7 +16,7 @@
 # You should have received a copy of the GNU General Public License
 # along with Poseidon. If not, see <http://www.gnu.org/licenses/>.
 
-import os, gettext, pickle, sqlite3 as lite, subprocess
+import os, sys, gettext, pickle, sqlite3 as lite, subprocess
 
 '''
 #####################
@@ -397,7 +397,7 @@ lang.install()
 ################
 '''
 
-version = "0.2.3"
+version = "0.2.4"
 browser_name = "Poseidon"
 website = "https://github.com/sidus-dev/poseidon"
 authors = "Andrea Pasciuta  <sidus@arbornet.org>"

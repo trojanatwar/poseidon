@@ -174,31 +174,31 @@ class BrowserTab(Gtk.VBox):
 
         main_url_entry = Gtk.Entry(name="entry")
 
-        go_back = make_button(make_icon("go-previous.svg"), False)
+        go_back = make_button(make_icon("go-previous.svg"), None, False)
         go_back.connect("clicked", lambda x: webview.go_back())
         go_back.connect("pressed", self.on_go_back_pressed)
         go_back.connect("released", self.on_released)
 
-        go_forward = make_button(make_icon("go-next.svg"), False)
+        go_forward = make_button(make_icon("go-next.svg"), None, False)
         go_forward.connect("clicked", lambda x: webview.go_forward())
         go_forward.connect("pressed", self.on_go_forward_pressed)
         go_forward.connect("released", self.on_released)
 
-        refresh = make_button(make_icon("refresh.svg"), False)
+        refresh = make_button(make_icon("refresh.svg"), None, False)
         refresh.connect("clicked", lambda x: webview.reload())
 
-        cancel = make_button(make_icon("cancel.svg"), False)
+        cancel = make_button(make_icon("cancel.svg"), None, False)
         cancel.connect("clicked", lambda x: webview.stop_loading())
 
         if home_page:
-            home = make_button(make_icon("go-home.svg"), False)
+            home = make_button(make_icon("go-home.svg"), None, False)
             home.connect("clicked", lambda x: webview.load_uri(home_page))
 
-        go_button = make_button(make_icon("go-up.svg"), False)
+        go_button = make_button(make_icon("go-up.svg"), None, False)
 
-        download_button = make_button(download_icon, True)
-        bookmarks_button = make_button(make_icon("bookmarks.svg"), True)
-        tools = make_button(make_icon("open-menu.svg"), True)
+        download_button = make_button(download_icon, None, True)
+        bookmarks_button = make_button(make_icon("bookmarks.svg"), None, True)
+        tools = make_button(make_icon("open-menu.svg"), None, True)
 
         url_box = Gtk.HBox(False)
         url_box.pack_start(go_back, False, False, 0)
@@ -267,13 +267,13 @@ class BrowserTab(Gtk.VBox):
         pixbuf = GdkPixbuf.Pixbuf.new_from_file("{}system-search.svg".format(icns))
         find_entry.set_icon_from_pixbuf(Gtk.EntryIconPosition.PRIMARY, pixbuf)
 
-        prev_button = make_button(make_icon("go-up.svg"), False)
+        prev_button = make_button(make_icon("go-up.svg"), None, False)
         prev_button.connect("clicked", lambda x: controller.search_previous())
 
-        next_button = make_button(make_icon("go-down.svg"), False)
+        next_button = make_button(make_icon("go-down.svg"), None, False)
         next_button.connect("clicked", lambda x: controller.search_next())
 
-        close_button = make_button(make_icon("edit-delete.svg"), False)
+        close_button = make_button(make_icon("edit-delete.svg"), None, False)
         close_button.connect("clicked", lambda x: self.on_close_finder())
 
         find_box.pack_start(find_entry, False, False, 10)
@@ -295,10 +295,10 @@ class BrowserTab(Gtk.VBox):
         vte_sw = Gtk.ScrolledWindow()
         vte_sw.set_size_request(-1,250)
 
-        close_vte_button = make_button(make_icon("edit-delete.svg"), False)
+        close_vte_button = make_button(make_icon("edit-delete.svg"), None, False)
         close_vte_button.connect("clicked", lambda x: [self.on_close_terminal(vte_sw, frame_vte), iconified_vte.hide()])
 
-        hide_vte_button = make_button(make_icon("minimize.svg"), False)
+        hide_vte_button = make_button(make_icon("minimize.svg"), None, False)
         hide_vte_button.connect("clicked", lambda x: [frame_vte.hide(), iconified_vte.show()])
 
         vte_box = Gtk.HBox()
@@ -339,8 +339,8 @@ class BrowserTab(Gtk.VBox):
 
         permission_box = Gtk.HBox()
         permission_message = make_label(0.0, 0.5)
-        allow_button = make_button(make_icon("object-select.svg"), False)
-        deny_button = make_button(make_icon("window-close.svg"), False)
+        allow_button = make_button(make_icon("object-select.svg"), None, False)
+        deny_button = make_button(make_icon("window-close.svg"), None, False)
 
         permission_box.pack_start(permission_message, True, True, 10)
         permission_box.pack_start(allow_button, False, False, 0)
@@ -360,8 +360,8 @@ class BrowserTab(Gtk.VBox):
 
         cert_box = Gtk.HBox()
         cert_message = make_label(0.0, 0.5)
-        allow_cert_button = make_button(make_icon("object-select.svg"), False)
-        deny_cert_button = make_button(make_icon("window-close.svg"), False)
+        allow_cert_button = make_button(make_icon("object-select.svg"), None, False)
+        deny_cert_button = make_button(make_icon("window-close.svg"), None, False)
 
         cert_box.pack_start(cert_message, True, True, 10)
         cert_box.pack_start(allow_cert_button, False, False, 0)
@@ -684,31 +684,27 @@ class Browser(Gtk.Window):
         ##############
         '''
 
-        addtab = make_button(make_icon("list-add.svg"), False)
+        addtab = make_button(make_icon("list-add.svg"), "{} [Ctrl+T]".format(_("Open a new tab")), False)
         addtab.connect("clicked", lambda x: self.open_new_tab())
-        addtab.set_tooltip_text("{} [Ctrl+T]".format(_("Open a new tab")))
 
-        remtab = make_button(make_icon("list-remove.svg"), False)
+        remtab = make_button(make_icon("list-remove.svg"), "{} [Ctrl+W]".format(_("Close current tab")), False)
         remtab.connect("clicked", lambda x: self.close_current_tab())
-        remtab.set_tooltip_text("{} [Ctrl+W]".format(_("Close current tab")))
         remtab.set_sensitive(False)
 
-        close = make_button(make_icon("close.svg"), False)
+        close = make_button(make_icon("close.svg"), None, False)
         close.connect("clicked", lambda x: quit(self))
 
-        minimize = make_button(make_icon("minimize.svg"), False)
+        minimize = make_button(make_icon("minimize.svg"), None, False)
         minimize.connect("clicked", lambda x: self.iconify())
 
-        maximize = make_button(make_icon("maximize.svg"), False)
+        maximize = make_button(make_icon("maximize.svg"), None, False)
         maximize.connect("clicked", lambda x: self.on_maximize())
 
-        open_button = make_button(make_icon("document-open.svg"), False)
+        open_button = make_button(make_icon("document-open.svg"), _("Open a file"), False)
         open_button.connect("clicked", lambda x: self.open())
-        open_button.set_tooltip_text(_("Open a file"))
 
-        save_button = make_button(make_icon("document-save.svg"), False)
+        save_button = make_button(make_icon("document-save.svg"), _("Save a file"), False)
         save_button.connect("clicked", lambda x: self.save())
-        save_button.set_tooltip_text(_("Save a file"))
 
         headerbar = Gtk.HeaderBar()
         headerbar.set_title(browser_name)
@@ -716,7 +712,7 @@ class Browser(Gtk.Window):
         headerbar.set_decoration_layout("")
         self.set_titlebar(headerbar)
 
-        logo_button = make_button(make_icon("poseidon-logo.png"), False)
+        logo_button = make_button(make_icon("poseidon-logo.png"), None, False)
         logo_button.connect("clicked", lambda x: self.on_logo())
 
         headerbar.pack_start(logo_button)
@@ -1500,12 +1496,10 @@ class Browser(Gtk.Window):
                 with cookies_con:
                     cur = cookies_con.cursor()
 
-                    if action:
-                        cur.execute("INSERT INTO moz_cookies VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?);",\
-                                           (id,name,value,host,path,expiry,lastacc,issec,ishttp,))
-                    else:
-                        cur.execute("UPDATE moz_cookies SET name=?,value=?,host=?,path=?,expiry=?,lastAccessed=?,isSecure=?,isHttpOnly=? WHERE id=?;",\
-                                           (name,value,host,path,expiry,lastacc,issec,ishttp,id,))
+                    if action: cur.execute("INSERT INTO moz_cookies VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?);",\
+                    (id,name,value,host,path,expiry,lastacc,issec,ishttp,))
+                    else: cur.execute("UPDATE moz_cookies SET name=?,value=?,host=?,path=?,expiry=?,lastAccessed=?,isSecure=?,isHttpOnly=? WHERE id=?;",\
+                    (name,value,host,path,expiry,lastacc,issec,ishttp,id,))
 
                     cookies_con.commit()
                     self.close_current_tab()
@@ -1764,11 +1758,11 @@ class Browser(Gtk.Window):
         item.connect("clicked", lambda x: subprocess.call\
         ([app_launcher, os.path.dirname(destination)]))
 
-        canc = make_button(make_icon("edit-delete.svg"), False)
+        canc = make_button(make_icon("edit-delete.svg"), None, False)
         canc.connect("clicked", lambda x: [download.cancel(),\
         self.dlview.remove(grid), self.on_cancel_download()])
 
-        rest = make_button(make_icon("refresh.svg"), False)
+        rest = make_button(make_icon("refresh.svg"), None, False)
         rest.connect("clicked", lambda x: [download.cancel(),\
         self.dlview.remove(grid), self.on_cancel_download(),\
         self.on_restart_download(download)])
@@ -2064,18 +2058,12 @@ class Browser(Gtk.Window):
         page = self.current_page
         scrolled_window = self.get_clean_page(page, "settings", False)
 
-        save_settings_button = make_button(make_icon("object-select.svg"), False)
-        save_settings_button.set_tooltip_text(_("Save Settings"))
-        restore_settings_button = make_button(make_icon("edit-clear-all.svg"), False)
-        restore_settings_button.set_tooltip_text(_("Restore Settings"))
-        plugins_button = make_button(make_icon("plugin.svg"), False)
-        plugins_button.set_tooltip_text(_("View Plugins"))
-        bookmarks_button = make_button(make_icon("bookmarks.svg"), False)
-        bookmarks_button.set_tooltip_text(_("View Bookmarks"))
-        history_button = make_button(make_icon("history.svg"), False)
-        history_button.set_tooltip_text(_("View History"))
-        cookies_button = make_button(make_icon("cookies.svg"), False)
-        cookies_button.set_tooltip_text(_("Cookies Manager"))
+        save_settings_button = make_button(make_icon("object-select.svg"), _("Save Settings"), False)
+        restore_settings_button = make_button(make_icon("edit-clear-all.svg"), _("Restore Settings"), False)
+        plugins_button = make_button(make_icon("plugin.svg"), _("View Plugins"), False)
+        bookmarks_button = make_button(make_icon("bookmarks.svg"), _("View Bookmarks"), False)
+        history_button = make_button(make_icon("history.svg"), _("View History"), False)
+        cookies_button = make_button(make_icon("cookies.svg"), _("Cookies Manager"), False)
 
         with settings_con:
             cur = settings_con.cursor()
@@ -2183,7 +2171,7 @@ class Browser(Gtk.Window):
             entry.set_width_chars(30)
             entry.set_icon_from_pixbuf(Gtk.EntryIconPosition.PRIMARY, pixbuf)
 
-            button = make_button(make_icon("go-down.svg"), False)
+            button = make_button(make_icon("go-down.svg"), None, False)
 
             self.tabs[page][0].url_box.pack_end(button, False, False, 0)
             self.tabs[page][0].url_box.pack_end(entry, False, False, 5)
@@ -2218,11 +2206,9 @@ class Browser(Gtk.Window):
         page = self.current_page
         scrolled_window = self.get_clean_page(page, "cookies", True)
         
-        clear_cookies_button = make_button(make_icon("edit-clear-all.svg"), False)
-        clear_cookies_button.set_tooltip_text(_("Clear cookies"))
+        clear_cookies_button = make_button(make_icon("edit-clear-all.svg"), _("Clear cookies"), False)
         clear_cookies_button.connect("clicked", lambda x: self.on_clear_cookies())
-        rem_cookies_button = make_button(make_icon("edit-delete.svg"), False)
-        rem_cookies_button.set_tooltip_text(_("Remove the selected cookie"))
+        rem_cookies_button = make_button(make_icon("edit-delete.svg"), _("Remove the selected cookie"), False)
 
         name_obj = make_box(_("Name"), None, None)
         value_obj = make_box(_("Value"), None, None)
@@ -2234,10 +2220,8 @@ class Browser(Gtk.Window):
         ishttp_obj = make_box(_("IsHttpOnly"), 1, 2)
 
         edit_cookies_box = Gtk.Box()
-        edit_cookies_button = make_button(make_icon("document-edit.svg"), False)
-        edit_cookies_button.set_tooltip_text(_("Edit the selected cookie"))
-        add_cookies_button = make_button(make_icon("list-add.svg"), False)
-        add_cookies_button.set_tooltip_text(_("Add a new cookie with set data"))
+        edit_cookies_button = make_button(make_icon("document-edit.svg"), _("Edit the selected cookie"), False)
+        add_cookies_button = make_button(make_icon("list-add.svg"), _("Add a new cookie with set data"), False)
         edit_cookies_box.pack_end(edit_cookies_button, False, False, 0)
         edit_cookies_box.pack_end(add_cookies_button, False, False, 0)
 
@@ -2324,11 +2308,9 @@ class Browser(Gtk.Window):
         page = self.current_page
         scrolled_window = self.get_clean_page(page, "history", False)
 
-        clear_history_button = make_button(make_icon("edit-clear-all.svg"), False)
-        clear_history_button.set_tooltip_text(_("Clear history"))
+        clear_history_button = make_button(make_icon("edit-clear-all.svg"), _("Clear history"), False)
         clear_history_button.connect("clicked", lambda x: self.on_clear_history())
-        bookmarks_history_button = make_button(make_icon("bookmarks.svg"), False)
-        bookmarks_history_button.set_tooltip_text(_("Add to bookmarks"))
+        bookmarks_history_button = make_button(make_icon("bookmarks.svg"), _("Add to bookmarks"), False)
 
         self.tabs[page][0].url_box.pack_start(clear_history_button, False, False, 5)
         self.tabs[page][0].url_box.pack_start(bookmarks_history_button, False, False, 5)
@@ -2396,13 +2378,10 @@ class Browser(Gtk.Window):
         page = self.current_page
         scrolled_window = self.get_clean_page(page, "bookmarks", False)
 
-        clear_bookmarks_button = make_button(make_icon("edit-clear-all.svg"), False)
-        clear_bookmarks_button.set_tooltip_text(_("Clear bookmarks"))
+        clear_bookmarks_button = make_button(make_icon("edit-clear-all.svg"), _("Clear bookmarks"), False)
         clear_bookmarks_button.connect("clicked", lambda x: self.on_clear_bookmarks())
-        rem_bookmarks_button = make_button(make_icon("edit-delete.svg"), False)
-        rem_bookmarks_button.set_tooltip_text(_("Remove the selected link"))
-        add_bookmarks_button = make_button(make_icon("bookmark-new.svg"), False)
-        add_bookmarks_button.set_tooltip_text(_("Add to bookmarks"))
+        rem_bookmarks_button = make_button(make_icon("edit-delete.svg"), _("Remove the selected link"), False)
+        add_bookmarks_button = make_button(make_icon("bookmark-new.svg"), _("Add to bookmarks"), False)
 
         entry_title_bookmarks = Gtk.Entry()
         entry_title_bookmarks.set_width_chars(30)
