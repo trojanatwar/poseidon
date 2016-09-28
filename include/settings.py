@@ -173,12 +173,11 @@ uri_schemes = [
 ]
 
 '''
-########################
-# !!! WARNING ZONE !!! #
-###################################################
-# Do not touch the following stuff or Kim Jong Un #
-# will launch an atomic firecracker over your PC  #
-###################################################
+##########################
+# Settings for GUI usage #
+###############################################
+# Following settings doesn't requires editing #
+###############################################
 '''
 
 '''
@@ -270,9 +269,9 @@ def get_available_shells():
      return list
 
 '''
-##################################
-# Default Settings for GUI Usage #
-##################################
+####################
+# Default Settings #
+####################
 '''
 
 search_engine = "https://duckduckgo.com/?q="
@@ -398,7 +397,7 @@ lang.install()
 ################
 '''
 
-version = "0.2.2"
+version = "0.2.3"
 browser_name = "Poseidon"
 website = "https://github.com/sidus-dev/poseidon"
 authors = "Andrea Pasciuta  <sidus@arbornet.org>"

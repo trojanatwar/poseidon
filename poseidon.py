@@ -2042,6 +2042,7 @@ class Browser(Gtk.Window):
 
         if not status:
             list.append("frame_status")
+            page.iconified_vte.destroy()
 
         for i in page:
             if not i.get_name() in list and\
@@ -2061,12 +2062,14 @@ class Browser(Gtk.Window):
 
         self.open_new_tab()
         page = self.current_page
-        scrolled_window = self.get_clean_page(page, "settings", True)
+        scrolled_window = self.get_clean_page(page, "settings", False)
 
         save_settings_button = make_button(make_icon("object-select.svg"), False)
         save_settings_button.set_tooltip_text(_("Save Settings"))
         restore_settings_button = make_button(make_icon("edit-clear-all.svg"), False)
         restore_settings_button.set_tooltip_text(_("Restore Settings"))
+        plugins_button = make_button(make_icon("plugin.svg"), False)
+        plugins_button.set_tooltip_text(_("View Plugins"))
         bookmarks_button = make_button(make_icon("bookmarks.svg"), False)
         bookmarks_button.set_tooltip_text(_("View Bookmarks"))
         history_button = make_button(make_icon("history.svg"), False)
@@ -2108,6 +2111,7 @@ class Browser(Gtk.Window):
 
         self.tabs[page][0].url_box.pack_start(save_settings_button, False, False, 5)
         self.tabs[page][0].url_box.pack_start(restore_settings_button, False, False, 5)
+        self.tabs[page][0].url_box.pack_start(plugins_button, False, False, 5)
         self.tabs[page][0].url_box.pack_start(bookmarks_button, False, False, 5)
         self.tabs[page][0].url_box.pack_start(history_button, False, False, 5)
         self.tabs[page][0].url_box.pack_start(cookies_button, False, False, 5)
@@ -2121,6 +2125,7 @@ class Browser(Gtk.Window):
 
         save_settings_button.connect("clicked", lambda x: self.on_save_settings(opts))
         restore_settings_button.connect("clicked", lambda x: self.on_restore_settings())
+        plugins_button.connect("clicked", lambda x: self.view_plugins())
         bookmarks_button.connect("clicked", lambda x: self.view_bookmarks(None, None))
         history_button.connect("clicked", lambda x: self.view_history())
         cookies_button.connect("clicked", lambda x: self.cookies_manager())
