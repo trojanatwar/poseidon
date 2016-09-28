@@ -16,7 +16,7 @@
 # You should have received a copy of the GNU General Public License
 # along with Poseidon. If not, see <http://www.gnu.org/licenses/>.
 
-import os, sys, gettext, pickle, sqlite3 as lite, subprocess
+import os, gettext, pickle, sqlite3 as lite, subprocess
 
 '''
 #####################
