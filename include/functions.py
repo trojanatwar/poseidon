@@ -256,6 +256,7 @@ def pass_generator(self):
     window = Gtk.Window()
     window.set_title(_("Password Generator"))
     window.set_position(Gtk.WindowPosition.CENTER)
+    window.set_skip_taskbar_hint(True)
     window.set_transient_for(self)
 
     entry = make_box("{} (Def: 32) (Max: 99999)".format(_("Password Length")), 5, 1)

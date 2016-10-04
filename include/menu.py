@@ -28,10 +28,10 @@ def vte_menu(widget):
 
     menu = Gtk.Menu()
 
-    copy = Gtk.ImageMenuItem.new_from_stock(Gtk.STOCK_COPY, None)
+    copy = Gtk.ImageMenuItem.new_from_stock("gtk-copy", None)
     copy.connect("activate", lambda x: widget.copy_clipboard())
 
-    paste = Gtk.ImageMenuItem.new_from_stock(Gtk.STOCK_PASTE, None)
+    paste = Gtk.ImageMenuItem.new_from_stock("gtk-paste", None)
     paste.connect("activate", lambda x: widget.paste_clipboard())
 
     menu.append(copy)
@@ -53,6 +53,29 @@ def on_context_menu(self, view, menu, event, htr):
     context = htr.get_context()
     action = WebKit2.ContextMenuAction.OUTLINE
 
+    if context == 18:
+
+        if htr.context_is_media():
+
+            for c, i in enumerate(menu.get_items()):
+                if not i.is_separator():
+                    if i.get_stock_action() ==\
+                    WebKit2.ContextMenuAction.ENTER_VIDEO_FULLSCREEN:
+
+                        url = htr.get_media_uri()
+
+                        if "://" in url:
+
+                            item = WebKit2.ContextMenuItem().\
+                            new_from_stock_action_with_label(action, _("Video pop out"))
+
+                            a = item.get_action()
+                            a.connect("activate", lambda x: self.video_popout(url))
+                            a.set_stock_id("gtk-fullscreen")
+                            item = item.new(a)
+
+                            menu.insert(item, c)
+
     if context == 14 or context == 10:
 
         if htr.context_is_image():
@@ -66,7 +89,7 @@ def on_context_menu(self, view, menu, event, htr):
 
                 a = item.get_action()
                 a.connect("activate", lambda x: self.apply_theme(url))
-                a.set_stock_id(Gtk.STOCK_SELECT_COLOR)
+                a.set_stock_id("gtk-select-color")
                 item = item.new(a)
 
                 menu.insert(item, 0)
@@ -89,19 +112,22 @@ def on_context_menu(self, view, menu, event, htr):
 
             if isurl:
                 item = WebKit2.ContextMenuItem().\
-                new_from_stock_action_with_label(action, "{} \"{}\".".format(_("Go to"), minify(text, 30)))
+                new_from_stock_action_with_label(action, "{} \"{}\"."\
+                .format(_("Go to"), minify(text, 30)))
             else:
                 item = WebKit2.ContextMenuItem().\
-                new_from_stock_action_with_label(action, "{} \"{}\" {}.".format(_("Search"), minify(text, 30), _("in the web")))
+                new_from_stock_action_with_label(action, "{} \"{}\" {}."\
+                .format(_("Search"), minify(text, 30), _("in the web")))
 
             a = item.get_action()
 
             if isurl:
                 a.connect("activate", lambda x: view.load_uri(text))
-                a.set_stock_id(Gtk.STOCK_OPEN)
+                a.set_stock_id("gtk-open")
             else:
-                a.connect("activate", lambda x: view.load_uri("{}{}".format(search_engine, text)))
-                a.set_stock_id(Gtk.STOCK_FIND)
+                a.connect("activate", lambda x: view.load_uri("{}{}"\
+                .format(search_engine, text)))
+                a.set_stock_id("gtk-find")
 
             item = item.new(a)
 

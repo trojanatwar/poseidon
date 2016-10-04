@@ -611,11 +611,8 @@ class BrowserTab(Gtk.VBox):
 
     def on_mouse_target_changed(self, view, htr, mod):
 
-        link = htr.context_is_link()
-
-        if view and link:
-            url = htr.get_link_uri()
-            self.link_hover.set_text(minify(url, 100))
+        if view and htr.context_is_link(): self.link_hover\
+        .set_text(minify(htr.get_link_uri(), 100))
         else: self.link_hover.set_text("")
 
         return True
@@ -1067,6 +1064,7 @@ class Browser(Gtk.Window):
 
         fs_win = Gtk.Window()
         fs_win.set_title(browser_name)
+        fs_win.set_skip_taskbar_hint(True)
         fs_win.set_decorated(False)
         fs_win.set_keep_above(True)
         fs_win.set_modal(True)
@@ -1082,7 +1080,7 @@ class Browser(Gtk.Window):
         bkscroll.set_property('margin', 15)
         bkaddbox.set_property('margin', 5)
         dlscroll.set_property('margin', 15)
-        dlview.set_property('margin-right', 15)
+        dlview.set_property('margin-right', 5)
         menu.set_property('margin', 15)
         utilities_menu.set_property('margin', 15)
 
@@ -1805,8 +1803,7 @@ class Browser(Gtk.Window):
                             self.tabs[self.current_page][0].\
                             download_button.set_image(make_icon("notification.svg"))
 
-                    if type(a) == Gtk.ProgressBar:
-                        a.set_fraction(1.0)
+                    if type(a) == Gtk.ProgressBar: a.set_fraction(1.0)
 
                     a.set_name("")
 
@@ -1989,6 +1986,22 @@ class Browser(Gtk.Window):
                 f.close()
                 apply_css()
                 d.destroy()
+
+        return True
+
+    def video_popout(self, url):
+
+        win = Gtk.Window()
+        view = WebKit2.WebView()
+        win.set_title("")
+        win.set_skip_taskbar_hint(True)
+        win.set_keep_above(True)
+        win.set_transient_for(self)
+        win.add(view)
+        view.load_uri(url)
+        win.set_default_size(500, 250)
+        win.set_position(Gtk.WindowPosition.CENTER)
+        win.show_all()
 
         return True
 
