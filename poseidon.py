@@ -1989,18 +1989,16 @@ class Browser(Gtk.Window):
 
         return True
 
-    def video_popout(self, url):
+    def video_popout(self, title, url):
 
         win = Gtk.Window()
         view = WebKit2.WebView()
-        win.set_title("")
-        win.set_skip_taskbar_hint(True)
         win.set_keep_above(True)
-        win.set_transient_for(self)
         win.add(view)
         view.load_uri(url)
         win.set_default_size(500, 250)
         win.set_position(Gtk.WindowPosition.CENTER)
+        if title: win.set_title(title)
         win.show_all()
 
         return True
