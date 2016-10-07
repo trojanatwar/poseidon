@@ -958,6 +958,14 @@ class Browser(Gtk.Window):
         back_main_button = make_modelbutton(_("Back..."), 0.0, 0.5)
         back_main_button.set_property("menu-name", "main")
 
+        quit_button = make_modelbutton("{} {}".format(_("Quit"), browser_name), 0.0, 0.5)
+        quit_button.connect("clicked", lambda x: quit(self))
+        quit_label = make_modelbutton_label("[ Ctrl+Q ]", 0.95, 0.5)
+
+        fullscreen_button = make_modelbutton(_("Go Fullscreen"), 0.0, 0.5)
+        fullscreen_button.connect("clicked", lambda x: self.go_fullscreen())
+        fullscreen_label = make_modelbutton_label("[ F11 ]", 0.95, 0.5)
+
         del_theme_button = make_modelbutton(_("Delete Theme"), 0.0, 0.5)
         del_theme_button.connect("clicked", lambda x: self.delete_theme())
         del_theme_label = make_modelbutton_label("[ Ctrl+K ]", 0.95, 0.5)
@@ -968,7 +976,7 @@ class Browser(Gtk.Window):
 
         vte_button = make_modelbutton(_("VTE Terminal"), 0.0, 0.5)
         vte_button.connect("clicked", lambda x: self.vte())
-        vte_label = make_modelbutton_label("[ Ctrl+F4 ]", 0.95, 0.5)
+        vte_label = make_modelbutton_label("[ F4 ]", 0.95, 0.5)
 
         plugins_button = make_modelbutton(_("View Plugins"), 0.0, 0.5)
         plugins_button.connect("clicked", lambda x: self.view_plugins())
@@ -1032,24 +1040,29 @@ class Browser(Gtk.Window):
         grid_utilities.set_column_spacing(10)
         grid_utilities.attach(back_main_button, 0, 0, 1, 1)
         grid_utilities.attach(Gtk.Separator.new(Gtk.Orientation.HORIZONTAL), 0, 1, 1, 1)
-        grid_utilities.attach(del_theme_button, 0, 2, 1, 1)
-        grid_utilities.attach(del_theme_label, 0, 2, 1, 1)
-        grid_utilities.attach(pass_gen_button, 0, 3, 1, 1)
-        grid_utilities.attach(pass_gen_label, 0, 3, 1, 1)
-        grid_utilities.attach(vte_button, 0, 4, 1, 1)
-        grid_utilities.attach(vte_label, 0, 4, 1, 1)
-        grid_utilities.attach(Gtk.Separator.new(Gtk.Orientation.HORIZONTAL), 0, 5, 1, 1)
-        grid_utilities.attach(plugins_button, 0, 6, 1, 1)
-        grid_utilities.attach(plugins_label, 0, 6, 1, 1)
-        grid_utilities.attach(source_button, 0, 7, 1, 1)
-        grid_utilities.attach(source_label, 0, 7, 1, 1)
-        grid_utilities.attach(history_button, 0, 8, 1, 1)
-        grid_utilities.attach(history_label, 0, 8, 1, 1)
-        grid_utilities.attach(bookmarks_button, 0, 9, 1, 1)
-        grid_utilities.attach(bookmarks_label, 0, 9, 1, 1)
-        grid_utilities.attach(Gtk.Separator.new(Gtk.Orientation.HORIZONTAL), 0, 10, 1, 1)
-        grid_utilities.attach(manager_cookies_button, 0, 11, 1, 1)
-        grid_utilities.attach(delete_cache_button, 0, 12, 1, 1)
+        grid_utilities.attach(fullscreen_button, 0, 2, 1, 1)
+        grid_utilities.attach(fullscreen_label, 0, 2, 1, 1)
+        grid_utilities.attach(quit_button, 0, 3, 1, 1)
+        grid_utilities.attach(quit_label, 0, 3, 1, 1)
+        grid_utilities.attach(Gtk.Separator.new(Gtk.Orientation.HORIZONTAL), 0, 4, 1, 1)
+        grid_utilities.attach(del_theme_button, 0, 5, 1, 1)
+        grid_utilities.attach(del_theme_label, 0, 5, 1, 1)
+        grid_utilities.attach(pass_gen_button, 0, 6, 1, 1)
+        grid_utilities.attach(pass_gen_label, 0, 6, 1, 1)
+        grid_utilities.attach(vte_button, 0, 7, 1, 1)
+        grid_utilities.attach(vte_label, 0, 7, 1, 1)
+        grid_utilities.attach(Gtk.Separator.new(Gtk.Orientation.HORIZONTAL), 0, 8, 1, 1)
+        grid_utilities.attach(plugins_button, 0, 9, 1, 1)
+        grid_utilities.attach(plugins_label, 0, 9, 1, 1)
+        grid_utilities.attach(source_button, 0, 10, 1, 1)
+        grid_utilities.attach(source_label, 0, 10, 1, 1)
+        grid_utilities.attach(history_button, 0, 11, 1, 1)
+        grid_utilities.attach(history_label, 0, 11, 1, 1)
+        grid_utilities.attach(bookmarks_button, 0, 12, 1, 1)
+        grid_utilities.attach(bookmarks_label, 0, 12, 1, 1)
+        grid_utilities.attach(Gtk.Separator.new(Gtk.Orientation.HORIZONTAL), 0, 13, 1, 1)
+        grid_utilities.attach(manager_cookies_button, 0, 14, 1, 1)
+        grid_utilities.attach(delete_cache_button, 0, 15, 1, 1)
         grid_utilities.set_column_homogeneous(True)
 
         menu.pack_start(grid_buttons, False, False, 0)
@@ -1089,6 +1102,8 @@ class Browser(Gtk.Window):
         # Selfize #
         ###########
         '''
+
+        self.is_fullscreen = False
 
         self.remtab = remtab
         self.headerbar = headerbar
@@ -2604,6 +2619,7 @@ class Browser(Gtk.Window):
         terminal.connect("button-press-event", self.on_vte_button_press)
 
         page = self.tabs[self.current_page][0]
+        page.iconified_vte.hide()
 
         if not page.vte_sw.get_children(): page.vte_sw.add(terminal)
         page.frame_vte.show_all()
@@ -2661,6 +2677,14 @@ class Browser(Gtk.Window):
 
     def restart(self): os.execl(sys.executable, sys.executable, *sys.argv)
 
+    def go_fullscreen(self):
+
+        if not self.is_fullscreen:
+            self.is_fullscreen = True
+            self.fullscreen()
+        else:
+            self.is_fullscreen = False
+            self.unfullscreen()
 
     '''
     ############
@@ -2685,7 +2709,6 @@ class Browser(Gtk.Window):
                    Gdk.KEY_k: self.delete_theme,
                    Gdk.KEY_i: self.defcon,
                    Gdk.KEY_l: self.view_plugins,
-                   Gdk.KEY_F4: self.vte,
                    Gdk.KEY_j: lambda: pass_generator(self),
                    Gdk.KEY_d: lambda: self.view_bookmarks(None, None),
                    Gdk.KEY_n: lambda: init(),
@@ -2695,6 +2718,11 @@ class Browser(Gtk.Window):
         and event.keyval in mapping:
             mapping[event.keyval]()
             return True
+
+        try:
+            if event.keyval == Gdk.KEY_F4: self.vte()
+            if event.keyval == Gdk.KEY_F11: self.go_fullscreen()
+        except: pass
 
     '''
     ########
