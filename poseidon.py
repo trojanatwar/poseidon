@@ -2627,6 +2627,17 @@ class Browser(Gtk.Window):
 
         return True
 
+    def go_fullscreen(self):
+
+        if not self.is_fullscreen:
+            self.is_fullscreen = True
+            self.fullscreen()
+        else:
+            self.is_fullscreen = False
+            self.unfullscreen()
+
+        return True
+
     def reload_tab(self):
 
         page = self.tabs[self.current_page][0]
@@ -2677,15 +2688,6 @@ class Browser(Gtk.Window):
 
     def restart(self): os.execl(sys.executable, sys.executable, *sys.argv)
 
-    def go_fullscreen(self):
-
-        if not self.is_fullscreen:
-            self.is_fullscreen = True
-            self.fullscreen()
-        else:
-            self.is_fullscreen = False
-            self.unfullscreen()
-
     '''
     ############
     # Gdk.KEYS #
@@ -2695,6 +2697,7 @@ class Browser(Gtk.Window):
     def on_key_pressed(self, widget, event):
 
         modifiers = Gtk.accelerator_get_default_mod_mask()
+
         mapping = {Gdk.KEY_r: self.reload_tab,
                    Gdk.KEY_w: self.close_current_tab,
                    Gdk.KEY_t: self.open_new_tab,
@@ -2719,10 +2722,13 @@ class Browser(Gtk.Window):
             mapping[event.keyval]()
             return True
 
-        try:
-            if event.keyval == Gdk.KEY_F4: self.vte()
-            if event.keyval == Gdk.KEY_F11: self.go_fullscreen()
-        except: pass
+        nomod = {Gdk.KEY_F4: self.vte,
+                 Gdk.KEY_F11: self.go_fullscreen}
+
+        if type(event.state) == gi.repository.Gdk.ModifierType\
+        and event.keyval in nomod:
+            nomod[event.keyval]()
+            return True
 
     '''
     ########
