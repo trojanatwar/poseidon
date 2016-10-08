@@ -759,6 +759,7 @@ class Browser(Gtk.Window):
         self.tabs.append((self.create_tab(), Gtk.Label(tab_name)))
 
         notebook.append_page(*self.tabs[0])
+
         self.add(notebook)
 
         self.connect("destroy", lambda x: quit(self))
@@ -2725,10 +2726,12 @@ class Browser(Gtk.Window):
         nomod = {Gdk.KEY_F4: self.vte,
                  Gdk.KEY_F11: self.go_fullscreen}
 
-        if type(event.state) == gi.repository.Gdk.ModifierType\
-        and event.keyval in nomod:
-            nomod[event.keyval]()
-            return True
+        try:
+            if type(event.state) == gi.repository.Gdk.ModifierType\
+            and event.keyval in nomod:
+                nomod[event.keyval]()
+                return True
+        except: pass
 
     '''
     ########
