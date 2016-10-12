@@ -957,6 +957,7 @@ class Browser(Gtk.Window):
         utilities_button.set_property("menu-name", "utilities-menu")
 
         back_main_button = make_modelbutton(_("Back..."), 0.0, 0.5)
+        back_main_button.set_property("inverted", True)
         back_main_button.set_property("menu-name", "main")
 
         quit_button = make_modelbutton("{} {}".format(_("Quit"), browser_name), 0.0, 0.5)
