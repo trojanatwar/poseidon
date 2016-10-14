@@ -273,7 +273,7 @@ class BrowserTab(Gtk.VBox):
         next_button = make_button(make_icon("go-down.svg"), None, False)
         next_button.connect("clicked", lambda x: controller.search_next())
 
-        close_button = make_button(make_icon("edit-delete.svg"), None, False)
+        close_button = make_button(make_icon("close-panel.svg"), None, False)
         close_button.connect("clicked", lambda x: self.on_close_finder())
 
         find_box.pack_start(find_entry, False, False, 10)
@@ -295,7 +295,7 @@ class BrowserTab(Gtk.VBox):
         vte_sw = Gtk.ScrolledWindow()
         vte_sw.set_size_request(-1,250)
 
-        close_vte_button = make_button(make_icon("edit-delete.svg"), None, False)
+        close_vte_button = make_button(make_icon("close.svg"), None, False)
         close_vte_button.connect("clicked", lambda x: [self.on_close_terminal(vte_sw, frame_vte), iconified_vte.hide()])
 
         hide_vte_button = make_button(make_icon("minimize.svg"), None, False)
@@ -1933,9 +1933,9 @@ class Browser(Gtk.Window):
         if self.notebook.get_n_pages() != 1:
             page = self.current_page
             self.tabs[page][0].destroy()
+            self.tabs[page][0].webview.destroy()
             current_tab = self.tabs.pop(page)
             self.notebook.remove(current_tab[0])
-
             if self.notebook.get_n_pages() == 1: self.remtab.set_sensitive(False)
 
         return True

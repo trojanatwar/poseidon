@@ -112,7 +112,6 @@ set_enable_mediasource = True                              # (Default: False)
 set_enable_offline_web_application_cache = True            # (Default: True)
 set_enable_page_cache = True                               # (Default: True)
 set_enable_plugins = True                                  # (Default: True)
-#set_enable_private_browsing                               # (Managed by Defcon Mode)
 set_enable_resizable_text_areas = True                     # (Default: True)
 set_enable_site_specific_quirks = True                     # (Default: True)
 set_enable_smooth_scrolling = False                        # (Default: False)
@@ -397,7 +396,7 @@ lang.install()
 ################
 '''
 
-version = "0.2.6"
+version = "0.2.7"
 browser_name = "Poseidon"
 website = "https://github.com/sidus-dev/poseidon"
 authors = "Andrea Pasciuta  <sidus@arbornet.org>"
