@@ -3,4 +3,8 @@
 cd "$(dirname "$0")"
 export PYTHONPATH=$(pwd)
 export MOZ_PLUGIN_PATH=/usr/lib/epiphany/plugins
+
+# Not ready for Wayland yet, but still working on it ;-)
+export GDK_BACKEND=x11
+
 python3 ./poseidon.py "$@"
