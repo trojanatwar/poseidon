@@ -173,6 +173,7 @@ class BrowserTab(Gtk.VBox):
         '''
 
         main_url_entry = Gtk.Entry(name="entry")
+        main_url_entry.connect("button-press-event", self.on_url_entry_button_press)
 
         go_back = make_button(make_icon("go-previous.svg"), None, False)
         go_back.connect("clicked", lambda x: webview.go_back())
@@ -461,6 +462,12 @@ class BrowserTab(Gtk.VBox):
             if autocomplete_policy != 0: self.main_url_entry.connect("changed",\
             lambda x: self.on_entry_timeout(main_url_entry.get_text(), liststore))
         except: pass
+
+    def on_url_entry_button_press(self, widget, event):
+
+        if event.button == 3:
+            url_entry_menu(widget)
+            return True
 
     def stop_ac_timeout(self, query, liststore):
 
@@ -1167,6 +1174,7 @@ class Browser(Gtk.Window):
         tab.webview.connect("load-failed", self.on_load_failed)
         tab.webview.connect("load-failed-with-tls-errors", self.on_load_failed_with_tls_errors)
         tab.webview.connect("notify::estimated-load-progress", self.on_estimated_load_progress)
+        tab.webview.connect("create", self.on_create)
         tab.download_button.connect("clicked", lambda x: self.on_download_menu())
         tab.bookmarks_button.connect("clicked", lambda x: self.on_bookmarks_menu())
         tab.tools.connect("clicked", lambda x: self.on_tools_menu())
@@ -1177,14 +1185,18 @@ class Browser(Gtk.Window):
 
         return tab
 
+    def on_create(self, view, action):
+
+        if action.get_navigation_type() == 5: self.open_blank(action.get_request().get_uri())
+
     def on_restore_settings(self):
 
-            decision = dialog().decision(_("Are you sure?"), "<span size='small'>{}.</span>"\
-            .format(_("Clicking on OK, all settings will be restored to default and browser will restart")))
+        decision = dialog().decision(_("Are you sure?"), "<span size='small'>{}.</span>"\
+        .format(_("Clicking on OK, all settings will be restored to default and browser will restart")))
 
-            if decision:
-                os.remove("{}{}".format(settings_path, settings_db))
-                self.restart()
+        if decision:
+            os.remove("{}{}".format(settings_path, settings_db))
+            self.restart()
 
     def on_save_settings(self, opts):
 

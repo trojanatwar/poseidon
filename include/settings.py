@@ -88,7 +88,7 @@ verify_req = True                                          # Requests module SSL
 '''
 
 set_allow_file_access_from_file_urls = False               # (Default: False)
-set_allow_modal_dialogs = False                            # (Default: False)
+set_allow_modal_dialogs = True                             # (Default: False)
 set_auto_load_images = True                                # (Default: True)
 set_cursive_font_family = "serif"                          # (Default: "serif")
 set_default_charset = "iso-8859-1"                         # (Default: "iso-8859-1")
@@ -107,7 +107,7 @@ set_enable_html5_local_storage = True                      # (Default: True)
 set_enable_hyperlink_auditing = False                      # (Default: False)
 set_enable_java = True                                     # (Default: True)
 set_enable_javascript = True                               # (Default: True)
-set_enable_media_stream = False                            # (Default: False)
+set_enable_media_stream = True                             # (Default: False)
 set_enable_mediasource = True                              # (Default: False)
 set_enable_offline_web_application_cache = True            # (Default: True)
 set_enable_page_cache = True                               # (Default: True)
@@ -123,7 +123,7 @@ set_enable_write_console_messages_to_stdout = False        # (Default: False)
 set_enable_xss_auditor = True                              # (Default: True)
 set_fantasy_font_family = "serif"                          # (Default: "serif")
 set_javascript_can_access_clipboard = False                # (Default: False)
-set_javascript_can_open_windows_automatically = False      # (Default: False)
+set_javascript_can_open_windows_automatically = True       # (Default: False)
 set_load_icons_ignoring_image_load_setting = False         # (Default: False)
 set_media_playback_allows_inline = True                    # (Default: True)
 set_media_playback_requires_user_gesture = False           # (Default: False)
@@ -396,7 +396,7 @@ lang.install()
 ################
 '''
 
-version = "0.2.7"
+version = "0.2.8"
 browser_name = "Poseidon"
 website = "https://github.com/sidus-dev/poseidon"
 authors = "Andrea Pasciuta  <sidus@arbornet.org>"

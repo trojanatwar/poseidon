@@ -24,6 +24,53 @@ sys.path.append(".")
 from settings import search_engine
 from functions import minify
 
+def url_entry_menu(widget):
+
+    menu = Gtk.Menu()
+
+    cut = Gtk.ImageMenuItem.new_from_stock("gtk-cut", None)
+    cut.connect("activate", lambda x: widget.cut_clipboard())
+
+    copy = Gtk.ImageMenuItem.new_from_stock("gtk-copy", None)
+    copy.connect("activate", lambda x: widget.copy_clipboard())
+
+    paste = Gtk.ImageMenuItem.new_from_stock("gtk-paste", None)
+    paste.connect("activate", lambda x: widget.paste_clipboard())
+
+    pastego = Gtk.ImageMenuItem.new_with_mnemonic(_("_Paste & Go"))
+    pastego.set_image(Gtk.Image.new_from_stock("gtk-paste", Gtk.IconSize.MENU))
+    pastego.connect("activate", lambda x: on_pastego(widget))
+
+    delete = Gtk.ImageMenuItem.new_from_stock("gtk-delete", None)
+    delete.connect("activate", lambda x: widget.delete_selection())
+
+    select = Gtk.ImageMenuItem.new_from_stock("gtk-select-all", None)
+    select.connect("activate", lambda x: widget.select_region(0, -1))
+
+    menu.append(cut)
+    menu.append(copy)
+    menu.append(paste)
+    menu.append(pastego)
+    menu.append(delete)
+    menu.append(Gtk.SeparatorMenuItem.new())
+    menu.append(select)
+
+    menu.show_all()
+    menu.popup(None, None, None, None, 0, Gtk.get_current_event_time())
+
+    return True
+
+def on_pastego(widget):
+
+    clipboard = Gtk.Clipboard.get(Gdk.SELECTION_CLIPBOARD)
+
+    text = clipboard.wait_for_text()
+    if text != None:
+        widget.set_text(text)
+        widget.activate()
+
+    return True
+
 def vte_menu(widget):
 
     menu = Gtk.Menu()
