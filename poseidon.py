@@ -1185,10 +1185,6 @@ class Browser(Gtk.Window):
 
         return tab
 
-    def on_create(self, view, action):
-
-        if action.get_navigation_type() == 5: self.open_blank(action.get_request().get_uri())
-
     def on_restore_settings(self):
 
         decision = dialog().decision(_("Are you sure?"), "<span size='small'>{}.</span>"\
@@ -1863,6 +1859,8 @@ class Browser(Gtk.Window):
 
             self.open_blank(url)
 
+            return True
+
         if decision_type == WebKit2.PolicyDecisionType.RESPONSE:
 
             mime_request = decision.get_response().props.mime_type
@@ -1875,6 +1873,11 @@ class Browser(Gtk.Window):
 
             if mime_request in mime_view: return True
             if "application/" in mime_request: decision.download()
+
+    def on_create(self, view, action):
+
+        if action.get_navigation_type() == 0: view.load_uri(action.get_request().get_uri())
+        if action.get_navigation_type() == 5: self.open_blank(action.get_request().get_uri())
 
     def on_tab_changed(self, notebook, page, index):
 

@@ -181,32 +181,3 @@ def on_context_menu(self, view, menu, event, htr):
             menu.insert(item, 0)
             menu.insert(WebKit2.ContextMenuItem().new_separator(), 1)
 
-    '''
-    #########################
-    # Modify Existing Items #
-    #########################
-    '''
-
-    items = menu.get_items()
-
-    for i in items:
-        if not i.is_separator():
-
-            action = i.get_stock_action()
-
-            #print ("ACTION: ", action, "CONTEXT: ", context) # Debug
-
-            if action == WebKit2.ContextMenuAction.OPEN_FRAME_IN_NEW_WINDOW: menu.remove(i)
-
-            if action == WebKit2.ContextMenuAction.OPEN_LINK_IN_NEW_WINDOW or\
-               action == WebKit2.ContextMenuAction.OPEN_VIDEO_IN_NEW_WINDOW or\
-               action == WebKit2.ContextMenuAction.OPEN_IMAGE_IN_NEW_WINDOW:
-
-                if htr.context_is_link(): url = htr.get_link_uri()
-                if htr.context_is_media(): url = htr.get_media_uri()
-                if htr.context_is_image(): url = htr.get_image_uri()
-
-                a = i.get_action()
-                a.connect("activate", lambda x: self.open_blank(url))
-                i = i.new(a)
-
