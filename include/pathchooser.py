@@ -73,14 +73,13 @@ class pathchooser(Gtk.Window):
         if response == Gtk.ResponseType.OK:
             
             if os.path.exists(d.get_filename()):
-                if self.do_decision(name):
+                if self.do_decision(d.get_filename()):
                     download.set_allow_overwrite(True)
 
             download.set_destination("file://{}".format(d.get_filename()))
 
-        elif response == Gtk.ResponseType.CANCEL:
-
-            download.cancel()
+        elif response == Gtk.ResponseType.CANCEL\
+        or response == Gtk.ResponseType.DELETE_EVENT: download.cancel()
 
         d.destroy()
 
