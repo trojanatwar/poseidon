@@ -88,8 +88,7 @@ def get_domain(url):
 
 def minify(arg, num):
 
-    try:
-        arg = arg[:num] + (arg[num:] and '...')
+    try: arg = arg[:num] + (arg[num:] and '...')
     except: pass
     return arg
 

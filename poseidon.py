@@ -16,7 +16,7 @@
 
 
 import sys, gi, getopt, os, subprocess, pickle,\
-sqlite3 as lite, time, cgi, datetime, re
+sqlite3 as lite, time, cgi, datetime, re, html
 gi.require_version('Gtk', '3.0')
 gi.require_version('WebKit2', '4.0')
 gi.require_version('GtkSource', '3.0')
@@ -1773,7 +1773,8 @@ class Browser(Gtk.Window):
         item.set_alignment(0.0, 0.5)
 
         item.set_label("<span size='small'>{}: {}</span>\r<span size='x-small'>{}: {}</span>"\
-        .format(_("Downloading"),minify(name, 50),_("In"),minify(destination.replace("file://", ""), 50)))
+        .format(_("Downloading"),minify(html.escape(name), 50),\
+        _("In"),minify(html.escape(destination.replace("file://", "")), 50)))
 
         item.get_child().set_use_markup(True)
         item.get_child().set_padding(5, 5)
@@ -1822,7 +1823,7 @@ class Browser(Gtk.Window):
 
                         name = get_filename(download.get_destination())
                         a.get_child().set_markup("<span size='small'>{}: {}</span>".\
-                        format(_("Download complete for"), minify(name, 25)))
+                        format(_("Download complete for"), minify(html.escape(name), 25)))
 
                         if not self.downloads_menu.get_visible():
                             self.tabs[self.current_page][0].\
