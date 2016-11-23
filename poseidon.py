@@ -16,7 +16,7 @@
 
 
 import sys, gi, getopt, os, subprocess, pickle,\
-sqlite3 as lite, time, cgi, datetime, re, html
+sqlite3 as lite, time, datetime, re, html, urllib.parse
 gi.require_version('Gtk', '3.0')
 gi.require_version('WebKit2', '4.0')
 gi.require_version('GtkSource', '3.0')
@@ -1682,8 +1682,9 @@ class Browser(Gtk.Window):
 
             item = Gtk.ModelButton(name=i[3])
             item.set_alignment(0.0, 0.5)
-            item.set_label("{}\r<span size='x-small'>{}</span>".\
-            format(minify(cgi.escape(i[1]), 50),cgi.escape(i[2])))
+            min_title = minify(i[1], 50)
+            item.set_label("<span size='small'>{}</span>\r<span size='x-small'>{}</span>".\
+            format(html.escape(min_title), html.escape(i[2])))
             item.get_child().set_use_markup(True)
             item.get_child().set_padding(5, 5)
             item.connect("clicked", self.on_click_bookmark)
@@ -1773,8 +1774,8 @@ class Browser(Gtk.Window):
         item.set_alignment(0.0, 0.5)
 
         item.set_label("<span size='small'>{}: {}</span>\r<span size='x-small'>{}: {}</span>"\
-        .format(_("Downloading"),minify(html.escape(name), 50),\
-        _("In"),minify(html.escape(destination.replace("file://", "")), 50)))
+        .format(_("Downloading"), minify(html.escape(name), 50),\
+        _("In"), minify(html.escape(destination.replace("file://", "")), 50)))
 
         item.get_child().set_use_markup(True)
         item.get_child().set_padding(5, 5)
@@ -1994,12 +1995,12 @@ class Browser(Gtk.Window):
 
         return True
 
-    def try_search(self, url):
+    def try_search(self, query):
 
         if not search_engine: return True
 
-        url = "{}{}".format(search_engine, url)
-        self.tabs[self.current_page][0].webview.load_uri(url)
+        query = "{}{}".format(search_engine, urllib.parse.quote(query, safe=''))
+        self.tabs[self.current_page][0].webview.load_uri(query)
 
         return True
 

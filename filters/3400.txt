@@ -35317,6 +35317,7 @@
 127.0.0.1	pongoresume.com
 127.0.0.1	pons.ivwbox.de
 127.0.0.1	pontiflex.com
+127.0.0.1	pool.admedo.com
 127.0.0.1	pool.ads.netlog.com
 127.0.0.1	pool.skyhookwireless.com
 127.0.0.1	pool01.2cnt.net
@@ -36521,7 +36522,6 @@
 127.0.0.1	rwbd0.voluumtrk.com
 127.0.0.1	rwnkj.voluumtrk.com
 127.0.0.1	rxdja.voluumtrk.com
-127.0.0.1	rxf.answcdn.com
 127.0.0.1	ry7c5.directadsopt.com
 127.0.0.1	ryan-lietz.us
 127.0.0.1	rydium.us.intellitxt.com
@@ -45018,6 +45018,7 @@
 127.0.0.1	www.ad-lite.com
 127.0.0.1	www.ad-maker.net
 127.0.0.1	www.ad-media.org
+127.0.0.1	www.ad-rev.in
 127.0.0.1	www.ad-search.com
 127.0.0.1	www.ad-solutions.com
 127.0.0.1	www.ad-space.net
@@ -47971,4 +47972,4 @@
 127.0.0.1	zz.zeroredirect1.com
 127.0.0.1	zzz.clickbank.net
 127.0.0.1	_thums.ero-advertising.com
-# Hosts: 47963
+# Hosts: 47964
