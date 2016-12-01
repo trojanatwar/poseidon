@@ -830,9 +830,6 @@ class Browser(Gtk.Window):
         downloads_menu.connect("closed", lambda x: self.on_menu_closed(2))
 
         dlscroll = Gtk.ScrolledWindow()
-        dlscroll.set_size_request(200,300)
-        dlscroll.set_policy(Gtk.PolicyType.NEVER, Gtk.PolicyType.AUTOMATIC)
-
         dlview = Gtk.Box(orientation = Gtk.Orientation.VERTICAL)
 
         dlscroll.add(dlview)
@@ -1134,6 +1131,7 @@ class Browser(Gtk.Window):
         self.bkgrid = bkgrid
         self.bookmarks_menu = bookmarks_menu
         self.dlview = dlview
+        self.dlscroll = dlscroll
         self.downloads_menu = downloads_menu
         self.adke_label_text = adke_label_text
         self.adkd_label_text = adkd_label_text
@@ -1692,8 +1690,12 @@ class Browser(Gtk.Window):
 
         if len(self.bkview) != 0:
             if len(self.bkgrid) == 1: self.bkgrid.attach(self.bkscroll, 0, 0, 1, 1)
-            if len(self.bkview) < 7: self.bkscroll.set_size_request(300, len(self.bkview)*40)
-            if len(self.bkview) == 7 or len(self.bkview) > 7: self.bkscroll.set_size_request(300, 250)
+            if len(self.bkview) < 7:
+                self.bkscroll.set_size_request(300, 0)
+                self.bkscroll.set_policy(Gtk.PolicyType.NEVER, Gtk.PolicyType.NEVER)
+            if len(self.bkview) >= 7:
+                self.bkscroll.set_size_request(300, 250)
+                self.bkscroll.set_policy(Gtk.PolicyType.NEVER, Gtk.PolicyType.AUTOMATIC)
         else: self.bkgrid.remove(self.bkscroll)
 
         self.bookmarks_menu.set_relative_to(self.tabs[self.current_page][0].bookmarks_button)
@@ -1706,10 +1708,18 @@ class Browser(Gtk.Window):
         button.set_image(page.download_icon)
 
         if self.dlview.get_children():
+
+            if len(self.dlview) < 7:
+                self.dlscroll.set_size_request(200, 0)
+                self.dlscroll.set_policy(Gtk.PolicyType.NEVER, Gtk.PolicyType.NEVER)
+            if len(self.dlview) >= 7:
+                self.dlscroll.set_size_request(200, 300)
+                self.dlscroll.set_policy(Gtk.PolicyType.NEVER, Gtk.PolicyType.AUTOMATIC)
+
             self.downloads_menu.set_relative_to(button)
             self.downloads_menu.show_all()
-        else:
-            button.set_active(False)
+
+        else: button.set_active(False)
 
     def on_download_started(self, context, download):
 
@@ -1722,8 +1732,7 @@ class Browser(Gtk.Window):
     def on_failed(self, download, error):
 
         if type(error) == GLib.GError:
-            if not error.code == 499:
-                return True
+            if not error.code == 499: return True
         else: return True
 
         url = download.get_request().get_uri()
