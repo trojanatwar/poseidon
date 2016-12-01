@@ -29319,6 +29319,7 @@
 127.0.0.1	ftp01.dus.vmsn.de
 127.0.0.1	ftpcontent.worldnow.com
 127.0.0.1	ftr2.external.xerox.com
+127.0.0.1	ftrackb.net
 127.0.0.1	fu7fb.voluumtrk.com
 127.0.0.1	fuauq.voluumtrk.com
 127.0.0.1	fucktubenetwork.com
@@ -39356,6 +39357,7 @@
 127.0.0.1	track.scorpiointeractive.com
 127.0.0.1	track.searchignite.com
 127.0.0.1	track.sexchangegirl.com
+127.0.0.1	track.sharktrkr.xyz
 127.0.0.1	track.shop2market.com
 127.0.0.1	track.sigfig.com
 127.0.0.1	track.slideshare.net
@@ -44583,7 +44585,6 @@
 127.0.0.1	webtrack-brickstreetconnect-mkt-prd.hsbc.com.hk
 127.0.0.1	webtrack.jwgrant.co.uk
 127.0.0.1	webtracker.educationconnection.com
-127.0.0.1	webtracker.tnt.com
 127.0.0.1	webtrackerplus.com
 127.0.0.1	webtracking.touchclarity.com
 127.0.0.1	webtraffic.ttinet.com
@@ -45947,6 +45948,7 @@
 127.0.0.1	www.freeviral.com
 127.0.0.1	www.freewha.com
 127.0.0.1	www.friendlyduck.com
+127.0.0.1	www.ftrackb.net
 127.0.0.1	www.fucktubenetwork.com
 127.0.0.1	www.fuel451.com
 127.0.0.1	www.fullqurandownload.com
@@ -47972,4 +47974,4 @@
 127.0.0.1	zz.zeroredirect1.com
 127.0.0.1	zzz.clickbank.net
 127.0.0.1	_thums.ero-advertising.com
-# Hosts: 47964
+# Hosts: 47966

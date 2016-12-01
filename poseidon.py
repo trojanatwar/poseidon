@@ -457,11 +457,23 @@ class BrowserTab(Gtk.VBox):
             self.webview.connect("insecure-content-detected", lambda x, y: self.is_insecure())
             self.webview.connect("notify::favicon", self.on_favicon)
             self.webview.connect("notify::uri", self.on_uri_changed)
+            self.webview.connect("notify::estimated-load-progress", self.on_estimated_load_progress)
             self.controller.connect("counted-matches", self.on_counted_matches)
             self.main_url_entry.connect("icon-press", self.on_icon_pressed)
             if autocomplete_policy != 0: self.main_url_entry.connect("changed",\
             lambda x: self.on_entry_timeout(main_url_entry.get_text(), liststore))
         except: pass
+
+    def on_estimated_load_progress(self, view, load):
+
+        prog = view.get_estimated_load_progress()
+
+        if prog == 1.0: self.progress_box.hide()
+        else: self.progress_box.show_all()
+
+        self.pbar.set_fraction(prog)
+
+        return True
 
     def on_url_entry_button_press(self, widget, event):
 
@@ -1173,7 +1185,6 @@ class Browser(Gtk.Window):
         tab.webview.connect("leave-fullscreen", self.on_leave_fullscreen)
         tab.webview.connect("load-failed", self.on_load_failed)
         tab.webview.connect("load-failed-with-tls-errors", self.on_load_failed_with_tls_errors)
-        tab.webview.connect("notify::estimated-load-progress", self.on_estimated_load_progress)
         tab.webview.connect("create", self.on_create)
         tab.download_button.connect("clicked", lambda x: self.on_download_menu())
         tab.bookmarks_button.connect("clicked", lambda x: self.on_bookmarks_menu())
@@ -1241,18 +1252,6 @@ class Browser(Gtk.Window):
 
         scrolled_window = self.tabs[self.current_page][0].scrolled_window
         scrolled_window.remove(scrolled_window.get_children()[0])
-
-    def on_estimated_load_progress(self, view, load):
-
-        page = self.tabs[self.current_page][0]
-        prog = view.get_estimated_load_progress()
-
-        if prog == 1.0: page.progress_box.hide()
-        else: page.progress_box.show_all()
-
-        page.pbar.set_fraction(prog)
-
-        return True
 
     def on_timeout(self, view, event, url):
         

@@ -2,15 +2,15 @@
 #
 # For more information about this list, see: https://pgl.yoyo.org/adservers/
 # ----
-# last updated:   Wed, 23 Nov 2016 08:35:34 GMT
-# entries:        2364
+# last updated:   Thu, 01 Dec 2016 10:18:19 GMT
+# entries:        2366
 # format:         hosts (hosts -- in hosts file format)
 # credits:        Peter Lowe - pgl@yoyo.org - https://pgl.yoyo.org/ - https://twitter.com/pgl
 # this URL:       https://pgl.yoyo.org/adservers/serverlist.php?hostformat=hosts&showintro=0&mimetype=plaintext
 # other formats:  https://pgl.yoyo.org/adservers/formats.php
 # policy:         https://pgl.yoyo.org/adservers/policy.php
 #
-# start date:    Wed, 23 Nov 2016 00:00:00
+# start date:    Thu, 01 Dec 2016 00:00:00
 127.0.0.1 101com.com
 127.0.0.1 101order.com
 127.0.0.1 123found.com
@@ -25,7 +25,6 @@
 127.0.0.1 2mdn.net
 127.0.0.1 2o7.net
 127.0.0.1 360yield.com
-127.0.0.1 4affiliate.net
 127.0.0.1 4d5.net
 127.0.0.1 50websads.com
 127.0.0.1 518ad.com
@@ -1351,7 +1350,6 @@
 127.0.0.1 eu1.madsone.com
 127.0.0.1 eur.a1.yimg.com
 127.0.0.1 eurekster.com
-127.0.0.1 euro-linkindex.de
 127.0.0.1 euroclick.com
 127.0.0.1 euros4click.de
 127.0.0.1 eusta.de
@@ -1435,7 +1433,7 @@
 127.0.0.1 getclicky.com
 127.0.0.1 globalismedia.com
 127.0.0.1 globaltakeoff.net
-127.0.0.1 globaltrack.com
+127.0.0.1 globaltrack.com.invalid
 127.0.0.1 globe7.com
 127.0.0.1 globus-inter.com
 127.0.0.1 gmads.net
@@ -1455,6 +1453,7 @@
 127.0.0.1 greystripe.com
 127.0.0.1 gtop.ro
 127.0.0.1 gtop100.com
+127.0.0.1 gunggo.com
 127.0.0.1 harrenmedia.com
 127.0.0.1 harrenmedianetwork.com
 127.0.0.1 havamedia.net
@@ -1862,6 +1861,7 @@
 127.0.0.1 popup.msn.com
 127.0.0.1 popupmoney.com
 127.0.0.1 popupnation.com
+127.0.0.1 popuppicker.com
 127.0.0.1 popups.infostart.com
 127.0.0.1 popuptraffic.com
 127.0.0.1 porngraph.com
@@ -1923,6 +1923,7 @@
 127.0.0.1 radiate.com
 127.0.0.1 rampidads.com
 127.0.0.1 rank-master.com
+127.0.0.1 rank-master.de
 127.0.0.1 rankchamp.de
 127.0.0.1 ranking-charts.de
 127.0.0.1 ranking-hits.de
@@ -2187,6 +2188,7 @@
 127.0.0.1 track.adform.net
 127.0.0.1 track.anchorfree.com
 127.0.0.1 track.gawker.com
+127.0.0.1 track.happysitewriter.com
 127.0.0.1 trackalyzer.com
 127.0.0.1 tracker.icerocket.com
 127.0.0.1 tracker.marinsm.com
