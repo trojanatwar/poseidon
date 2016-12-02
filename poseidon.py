@@ -1707,6 +1707,10 @@ class Browser(Gtk.Window):
         button = page.download_button
         button.set_image(page.download_icon)
 
+        for i, item in enumerate(self.tabs):
+            self.tabs[i][0].download_button.\
+            set_image(self.tabs[i][0].download_icon)
+
         if self.dlview.get_children():
 
             if len(self.dlview) < 7:
@@ -1835,8 +1839,10 @@ class Browser(Gtk.Window):
                         format(_("Download complete for"), minify(html.escape(name), 25)))
 
                         if not self.downloads_menu.get_visible():
-                            self.tabs[self.current_page][0].\
-                            download_button.set_image(make_icon("notification.svg"))
+
+                            for i, item in enumerate(self.tabs):
+                                self.tabs[i][0].download_button.\
+                                set_image(make_icon("notification.svg"))
 
                     if type(a) == Gtk.ProgressBar: a.set_fraction(1.0)
 
