@@ -33,7 +33,8 @@ import os, gettext, pickle, sqlite3 as lite, subprocess
 #########
 '''
 
-base_path = ".poseidon/"                                   # Base path
+base_path = "{}/.poseidon/"\
+.format(os.path.expanduser('~'))                           # Base path
 icns = "icons/"                                            # Icons path
 adk_filters_path = "filters"                               # AdKiller filters path
 cache_path = "{}cache".format(base_path)                   # Cache path
@@ -396,7 +397,7 @@ lang.install()
 ################
 '''
 
-version = "0.3.3"
+version = "0.3.4"
 browser_name = "Poseidon"
 website = "https://github.com/sidus-dev/poseidon"
 authors = "Andrea Pasciuta  <sidus@arbornet.org>"
