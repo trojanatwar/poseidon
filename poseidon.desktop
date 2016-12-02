@@ -1,0 +1,13 @@
+[Desktop Entry]
+Exec=/opt/poseidon-browser-git/poseidon %U
+Path=/opt/poseidon-browser-git
+Terminal=false
+Type=Application
+Icon=/opt/poseidon-browser-git/icons/poseidon-logo.svg
+StartupNotify=true
+Categories=Network;GTK;
+
+Name=Poseidon
+Comment=A fast, minimal and lightweight browser
+Name[it]=Poseidon
+Comment[it]=Un browser veloce, minimale e leggero
