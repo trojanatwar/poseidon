@@ -2708,7 +2708,7 @@ class Browser(Gtk.Window):
 
     def open(self):
 
-        pathchooser().open(self.tabs[self.current_page][0].webview)
+        pathchooser().open(self.tabs[self.current_page][0].webview, self.tabs[self.current_page][0])
 
         return True
 
