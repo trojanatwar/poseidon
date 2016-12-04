@@ -83,7 +83,7 @@ class pathchooser(Gtk.Window):
 
         d.destroy()
 
-    def open(self, view, page):
+    def open(self, view):
 
         d = Gtk.FileChooserDialog("Open file", self,
             Gtk.FileChooserAction.OPEN,
@@ -97,8 +97,6 @@ class pathchooser(Gtk.Window):
 
             filename = d.get_filename()
             view.load_uri("file://{}".format(filename))
-            page.main_url_entry.set_icon_from_pixbuf(Gtk.EntryIconPosition.PRIMARY, None)
-            page.main_url_entry.set_icon_from_pixbuf(Gtk.EntryIconPosition.SECONDARY, None)
 
         d.destroy()
 

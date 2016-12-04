@@ -1937,7 +1937,9 @@ class Browser(Gtk.Window):
         else: self.open_button.set_sensitive(False)
 
         if url and validators.url(url): self.source_button.set_sensitive(True)
-        else: self.source_button.set_sensitive(False)
+        else:
+            page.main_url_entry.set_icon_from_pixbuf(Gtk.EntryIconPosition.SECONDARY, None)
+            self.source_button.set_sensitive(False)
 
         if view.get_zoom_level() != 1.0: self.zoom_restore_button.set_sensitive(True)
         else: self.zoom_restore_button.set_sensitive(False)
@@ -2708,7 +2710,7 @@ class Browser(Gtk.Window):
 
     def open(self):
 
-        pathchooser().open(self.tabs[self.current_page][0].webview, self.tabs[self.current_page][0])
+        pathchooser().open(self.tabs[self.current_page][0].webview)
 
         return True
 
