@@ -14754,6 +14754,7 @@
 127.0.0.1	ad1.hpg.com.br
 127.0.0.1	ad1.icorp.net
 127.0.0.1	ad1.kde.cz
+127.0.0.1	ad1.nend.net
 127.0.0.1	ad1.pamedia.com.au
 127.0.0.1	ad1.paycount.com
 127.0.0.1	ad1.primorye.ru
@@ -15137,6 +15138,7 @@
 127.0.0.1	ad2.doublepimp.com
 127.0.0.1	ad2.ero-advertising.com
 127.0.0.1	ad2.firehousezone.com
+127.0.0.1	ad2.fivecdm.com
 127.0.0.1	ad2.hpg.com.br
 127.0.0.1	ad2.ip.ro
 127.0.0.1	ad2.linxcz.cz
@@ -17720,6 +17722,7 @@
 127.0.0.1	ads.webmastersdirect.com
 127.0.0.1	ads.webmd.com
 127.0.0.1	ads.webme.com
+127.0.0.1	ads.webseoanalytics.com
 127.0.0.1	ads.webshots.com
 127.0.0.1	ads.website-guru.com
 127.0.0.1	ads.whaleads.com
@@ -19731,7 +19734,6 @@
 127.0.0.1	antoinette-grabowski.us
 127.0.0.1	antoinette-hanlon.us
 127.0.0.1	antoinette-meisner.us
-127.0.0.1	anx.mindspark.com
 127.0.0.1	any.gs
 127.0.0.1	anycast.fw.adsafeprotected.com
 127.0.0.1	anycast.pixel.adsafeprotected.com
@@ -19886,7 +19888,6 @@
 127.0.0.1	api.vungle.com
 127.0.0.1	api.w3i.com
 127.0.0.1	api.widgetbucks.com
-127.0.0.1	api.wipmania.com
 127.0.0.1	api.xdirectx.com
 127.0.0.1	api.yeahmobi.com
 127.0.0.1	api.yieldkit.com
@@ -21500,6 +21501,7 @@
 127.0.0.1	bbpntg3.homestead.com
 127.0.0.1	bbs.duba.net
 127.0.0.1	bbvj6.voluumtrk.com
+127.0.0.1	bc2.fivecdm.com
 127.0.0.1	bc84-88b8-96b7-6515.reporo.net
 127.0.0.1	bcanalytics.bigcommerce.com
 127.0.0.1	bcast.pw
@@ -26626,6 +26628,7 @@
 127.0.0.1	d.refinedads.com
 127.0.0.1	d.rmgserving.com
 127.0.0.1	d.skimresources.com
+127.0.0.1	d.socdm.com
 127.0.0.1	d.tds.adlabs.ru
 127.0.0.1	d.thanksearch.com
 127.0.0.1	d.thelocal.com
@@ -27477,7 +27480,6 @@
 127.0.0.1	doubleclicks.me
 127.0.0.1	doug1izaerwt3.cloudfront.net
 127.0.0.1	dowlatow.justclick.ru
-127.0.0.1	download-performance.com
 127.0.0.1	download.akamaitools.com.edgesuite.net
 127.0.0.1	download.hitbox.com
 127.0.0.1	download.installnow.mobi
@@ -27586,7 +27588,6 @@
 127.0.0.1	dvdbeats.com
 127.0.0.1	dvnzx.voluumtrk.com
 127.0.0.1	dw-eu.com.com
-127.0.0.1	dw.cbsi.com
 127.0.0.1	dw.cbsi.com.cn
 127.0.0.1	dw.cnet.com
 127.0.0.1	dw.com.com
@@ -28103,6 +28104,7 @@
 127.0.0.1	epxkb8zz4ssdv7b.global.ssl.fastly.net
 127.0.0.1	eqads.com
 127.0.0.1	eqgdx.voluumtrk.com
+127.0.0.1	eqs-redserver.appspot.com
 127.0.0.1	equantum.com
 127.0.0.1	equitymarketingsolutions.com
 127.0.0.1	eqx.smartadserver.com
@@ -30493,6 +30495,7 @@
 127.0.0.1	i.sahcdn.com
 127.0.0.1	i.sbitinbsjs.info
 127.0.0.1	i.simpli.fi
+127.0.0.1	i.socdm.com
 127.0.0.1	i.tapit.com
 127.0.0.1	i.tfag.de
 127.0.0.1	i.theuseful.com
@@ -30659,7 +30662,6 @@
 127.0.0.1	iframe.mediaplazza.com
 127.0.0.1	iframe.sponsorpay.com
 127.0.0.1	iframe.travel.yahoo.com
-127.0.0.1	iframehost.com
 127.0.0.1	iframes.hustler.com
 127.0.0.1	iframesrccdn1.adexprt.com
 127.0.0.1	iframesrccdn2.adexprt.com
@@ -30945,6 +30947,7 @@
 127.0.0.1	img04.webtrekk.net
 127.0.0.1	img05.webtrekk.net
 127.0.0.1	img06.webtrekk.net
+127.0.0.1	img1.nend.net
 127.0.0.1	img1.webring.com
 127.0.0.1	img2.freeze.com
 127.0.0.1	img2.paipaiimg.com
@@ -34625,6 +34628,7 @@
 127.0.0.1	outils.acf-webmaster.net
 127.0.0.1	outils.f5biz.com
 127.0.0.1	outpost.real.com
+127.0.0.1	output.nend.net
 127.0.0.1	outsidethebeltway.us.intellitxt.com
 127.0.0.1	ov.yahoo.co.jp
 127.0.0.1	overpro.com
@@ -35907,6 +35911,7 @@
 127.0.0.1	r.369dl.com
 127.0.0.1	r.ads.zynga.com
 127.0.0.1	r.adserver01.de
+127.0.0.1	r.af-share.jp
 127.0.0.1	r.aol.com
 127.0.0.1	r.apina.biz
 127.0.0.1	r.bbci.co.uk
@@ -36534,6 +36539,7 @@
 127.0.0.1	s-adserver.cxad.cxense.com
 127.0.0.1	s-adserver.sandbox.cxad.cxense.com
 127.0.0.1	s-assets.tp-cdn.com
+127.0.0.1	s-cs.send.microad.jp
 127.0.0.1	s-jsonp.moatads.com
 127.0.0.1	s-yoolk-banner-assets.yoolk.com
 127.0.0.1	s-yoolk-billboard-assets.yoolk.com
@@ -36845,7 +36851,6 @@
 127.0.0.1	script.ioam.de
 127.0.0.1	script.leadboxer.com
 127.0.0.1	script.opentracker.net
-127.0.0.1	script.starpass.fr
 127.0.0.1	script.tailsweep.com
 127.0.0.1	scripts.adrcdn.com
 127.0.0.1	scripts.affiliatefuture.com
@@ -38944,6 +38949,7 @@
 127.0.0.1	tfn.das.tamedia.ch
 127.0.0.1	tfncdn.thaflynation.com
 127.0.0.1	tfp.2ref.co
+127.0.0.1	tg.socdm.com
 127.0.0.1	tga.acs86.com
 127.0.0.1	tga.csbew.com
 127.0.0.1	tgbvfr.website
@@ -40343,6 +40349,7 @@
 127.0.0.1	urlcash.net
 127.0.0.1	urlcheck.hulu.com
 127.0.0.1	urlstats.com
+127.0.0.1	urlzzz.com
 127.0.0.1	urx.io
 127.0.0.1	us-ads.openx.net
 127.0.0.1	us-east-1.profile-api.ads.linkedin.com
@@ -45756,7 +45763,6 @@
 127.0.0.1	www.doubleclick.ne.jp
 127.0.0.1	www.doubleclick.net
 127.0.0.1	www.doubleclick.net.my
-127.0.0.1	www.download-performance.com
 127.0.0.1	www.downloadcounter.de
 127.0.0.1	www.dprtb.com
 127.0.0.1	www.dragonballzhomeland.com
@@ -46130,7 +46136,6 @@
 127.0.0.1	www.ientry.com
 127.0.0.1	www.ientrymail.com
 127.0.0.1	www.ientrynetwork.net
-127.0.0.1	www.iframehost.com
 127.0.0.1	www.ifsmarketing.com
 127.0.0.1	www.igain-mail.co.uk
 127.0.0.1	www.ignitad.com
@@ -47260,6 +47265,7 @@
 127.0.0.1	www.upsellit.com
 127.0.0.1	www.upv4.moatads.com
 127.0.0.1	www.urlstats.com
+127.0.0.1	www.urlzzz.com
 127.0.0.1	www.urmediazone.com
 127.0.0.1	www.urx.io
 127.0.0.1	www.usabilla.com
@@ -47275,6 +47281,7 @@
 127.0.0.1	www.vayavicio.com
 127.0.0.1	www.vdownloadall.com
 127.0.0.1	www.vectormarketing.com
+127.0.0.1	www.venturead.com
 127.0.0.1	www.veruta.com
 127.0.0.1	www.vibrantmedia.com
 127.0.0.1	www.video-loader.com
@@ -47974,4 +47981,4 @@
 127.0.0.1	zz.zeroredirect1.com
 127.0.0.1	zzz.clickbank.net
 127.0.0.1	_thums.ero-advertising.com
-# Hosts: 47966
+# Hosts: 47973
