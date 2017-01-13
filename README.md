@@ -106,6 +106,11 @@ Once Tor is started, through [arm](https://www.torproject.org/projects/arm.html.
 * `$ torsocks(or proxychains) ./poseidon` (default mode)
 * `$ torsocks(or proxychains) ./poseidon -i` (defcon mode)
 
+### AdKiller
+
+The switch `AdKiller` can be enabled/disabled via browser menu or permanently disabled in the settings panel.
+Since version 0.3.7, AdKiller also blocks pop-ups in a very aggressive way so remember to disable it when needed.
+
 ### Code snippets, examples, icons, inspirations, peace to:
 
 * https://gist.github.com/kklimonda/890640 (pybrowser.py)

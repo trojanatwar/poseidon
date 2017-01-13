@@ -887,7 +887,7 @@ class Browser(Gtk.Window):
         print_label = make_modelbutton_label("[ Ctrl+P ]", 0.95, 0.5)
 
         adke_label_text = "<span size='small'>{}</span>\r<span size='x-small'>{}: 0</span>\r"\
-        .format(_("AdKiller (experimental)"), _("Enabled, Ads blocked"))
+        .format(_("AdKiller (experimental)"), _("Enabled, Ads/Pop-ups blocked"))
 
         adkd_label_text = "<span size='small'>{}</span>\r<span size='x-small'>{}</span>\r"\
         .format(_("AdKiller (experimental)"), _("Disabled"))
@@ -1892,6 +1892,7 @@ class Browser(Gtk.Window):
 
     def on_create(self, view, action):
 
+        if self.adk_switch.get_active(): return True
         if action.get_navigation_type() == 5: self.open_blank(action.get_request().get_uri())
 
     def on_tab_changed(self, notebook, page, index):
@@ -1957,7 +1958,7 @@ class Browser(Gtk.Window):
                 if adk_blocks > 9999:
                     adk_blocks = _("LOTS!")
                 self.adk_label.set_markup("<span size='small'>{}</span>\r<span size='x-small'>{}: {}</span>\r"\
-                .format(_("AdKiller (experimental)"),_("Enabled, Ads blocked"), str(adk_blocks)))
+                .format(_("AdKiller (experimental)"),_("Enabled, Ads/Pop-ups blocked"), str(adk_blocks)))
             except: pass
 
     def close_current_tab(self):
