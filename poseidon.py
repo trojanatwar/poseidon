@@ -1892,8 +1892,10 @@ class Browser(Gtk.Window):
 
     def on_create(self, view, action):
 
-        if not action.is_user_gesture(): self.open_blank(action.get_request().get_uri())
-        if action.get_navigation_type() == 5 and not self.adk_switch.get_active(): self.open_blank(action.get_request().get_uri())
+        if self.adk_switch.get_active():
+            if not action.is_user_gesture(): self.open_blank(action.get_request().get_uri())
+        else:
+            if action.get_navigation_type() == 5: self.open_blank(action.get_request().get_uri())
 
     def on_tab_changed(self, notebook, page, index):
 
