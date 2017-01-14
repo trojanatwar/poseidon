@@ -16199,6 +16199,7 @@
 127.0.0.1	adg.bzgint.com
 127.0.0.1	adgaem.go2cloud.org
 127.0.0.1	adgalax.com
+127.0.0.1	adgale.com
 127.0.0.1	adgardener.com
 127.0.0.1	adgatemedia.com
 127.0.0.1	adgatemedia.go2cloud.org
@@ -17076,6 +17077,7 @@
 127.0.0.1	ads.keywordblocks.com
 127.0.0.1	ads.kinobox.cz
 127.0.0.1	ads.kinxxx.com
+127.0.0.1	ads.kiosked.com
 127.0.0.1	ads.kizu.org
 127.0.0.1	ads.klixxx.com
 127.0.0.1	ads.komli.com
@@ -18297,6 +18299,7 @@
 127.0.0.1	adserver.adreactor.com
 127.0.0.1	adserver.ads.com.ph
 127.0.0.1	adserver.ads360.com
+127.0.0.1	adserver.adtech.advertising.com
 127.0.0.1	adserver.adtech.de
 127.0.0.1	adserver.adtech.de.1754.9018.302br.net
 127.0.0.1	adserver.adtech.de.1756.9018.302br.net
@@ -23367,6 +23370,7 @@
 127.0.0.1	c.thanksearch.com
 127.0.0.1	c.tracking.gamigoads.com
 127.0.0.1	c.trffrcmrd.com
+127.0.0.1	c.us1.dyntrk.com
 127.0.0.1	c.viewsecure.net
 127.0.0.1	c.vindicosuite.com
 127.0.0.1	c.vrvm.com
@@ -23696,6 +23700,7 @@
 127.0.0.1	cbvtest.2cnt.net
 127.0.0.1	cbx.net
 127.0.0.1	cc.amazingcounters.com
+127.0.0.1	cc.chango.com
 127.0.0.1	cc.connextra.com
 127.0.0.1	cc.zeit.de
 127.0.0.1	cc03-41cf-c2ea-3a84.reporo.net
@@ -37519,7 +37524,6 @@
 127.0.0.1	sndkorea.nowcdn.co.kr
 127.0.0.1	snimi-sam.justclick.ru
 127.0.0.1	snippets-stats.mozilla.org
-127.0.0.1	snippets.mozilla.com
 127.0.0.1	snonline.ivwbox.de
 127.0.0.1	snowplow-collector.sugarops.com
 127.0.0.1	soa.adition.com
@@ -45101,6 +45105,7 @@
 127.0.0.1	www.admarketplace.net
 127.0.0.1	www.admarvel.com
 127.0.0.1	www.admaya.in
+127.0.0.1	www.admaym.com
 127.0.0.1	www.admedo.com
 127.0.0.1	www.admeld.com
 127.0.0.1	www.admestate.ru
@@ -47981,4 +47986,4 @@
 127.0.0.1	zz.zeroredirect1.com
 127.0.0.1	zzz.clickbank.net
 127.0.0.1	_thums.ero-advertising.com
-# Hosts: 47973
+# Hosts: 47978
