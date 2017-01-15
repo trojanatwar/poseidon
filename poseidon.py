@@ -896,6 +896,7 @@ class Browser(Gtk.Window):
         adk_label.set_markup(adke_label_text)
 
         adk_switch = Gtk.Switch()
+        adk_switch.props.halign = Gtk.Align.CENTER
         adk_switch.set_active(True)
         adk_switch.connect("notify::active", self.on_adk_switch)
 
@@ -916,6 +917,7 @@ class Browser(Gtk.Window):
         sec_label.set_markup(sec_label_text)
 
         sec_switch = Gtk.Switch()
+        sec_switch.props.halign = Gtk.Align.CENTER
         sec_switch.set_active(True)
         sec_switch.connect("notify::active", self.on_sec_switch)
 
@@ -939,6 +941,7 @@ class Browser(Gtk.Window):
         js_label.set_markup(jse_label_text)
 
         js_switch = Gtk.Switch()
+        js_switch.props.halign = Gtk.Align.CENTER
         js_switch.set_active(True)
         js_switch.connect("notify::active", self.on_js_switch)
 
@@ -959,6 +962,7 @@ class Browser(Gtk.Window):
         pg_label.set_markup(pge_label_text)
 
         pg_switch = Gtk.Switch()
+        pg_switch.props.halign = Gtk.Align.CENTER
         pg_switch.set_active(True)
         pg_switch.connect("notify::active", self.on_pg_switch)
 
