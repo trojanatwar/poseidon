@@ -992,6 +992,10 @@ class Browser(Gtk.Window):
         pass_gen_button.connect("clicked", lambda x: pass_generator(self))
         pass_gen_label = make_modelbutton_label("[ Ctrl+J ]", 0.95, 0.5)
 
+        usagent_button = make_modelbutton("User Agent", 0.0, 0.5)
+        usagent_button.connect("clicked", lambda x: user_agent(self))
+        usagent_label = make_modelbutton_label("[ Ctrl+G ]", 0.95, 0.5)
+
         vte_button = make_modelbutton(_("VTE Terminal"), 0.0, 0.5)
         vte_button.connect("clicked", lambda x: self.vte())
         vte_label = make_modelbutton_label("[ F4 ]", 0.95, 0.5)
@@ -1065,22 +1069,24 @@ class Browser(Gtk.Window):
         grid_utilities.attach(del_theme_label, 0, 3, 1, 1)
         grid_utilities.attach(pass_gen_button, 0, 4, 1, 1)
         grid_utilities.attach(pass_gen_label, 0, 4, 1, 1)
-        grid_utilities.attach(vte_button, 0, 5, 1, 1)
-        grid_utilities.attach(vte_label, 0, 5, 1, 1)
-        grid_utilities.attach(Gtk.Separator.new(Gtk.Orientation.HORIZONTAL), 0, 6, 1, 1)
-        grid_utilities.attach(plugins_button, 0, 7, 1, 1)
-        grid_utilities.attach(plugins_label, 0, 7, 1, 1)
-        grid_utilities.attach(source_button, 0, 8, 1, 1)
-        grid_utilities.attach(source_label, 0, 8, 1, 1)
-        grid_utilities.attach(history_button, 0, 9, 1, 1)
-        grid_utilities.attach(history_label, 0, 9, 1, 1)
-        grid_utilities.attach(bookmarks_button, 0, 10, 1, 1)
-        grid_utilities.attach(bookmarks_label, 0, 10, 1, 1)
-        grid_utilities.attach(Gtk.Separator.new(Gtk.Orientation.HORIZONTAL), 0, 11, 1, 1)
-        grid_utilities.attach(manager_cookies_button, 0, 12, 1, 1)
-        grid_utilities.attach(delete_cache_button, 0, 13, 1, 1)
-        grid_utilities.attach(Gtk.Separator.new(Gtk.Orientation.HORIZONTAL), 0, 14, 1, 1)
-        grid_utilities.attach(back_main_button, 0, 15, 1, 1)
+        grid_utilities.attach(usagent_button, 0, 5, 1, 1)
+        grid_utilities.attach(usagent_label, 0, 5, 1, 1)
+        grid_utilities.attach(vte_button, 0, 6, 1, 1)
+        grid_utilities.attach(vte_label, 0, 6, 1, 1)
+        grid_utilities.attach(Gtk.Separator.new(Gtk.Orientation.HORIZONTAL), 0, 7, 1, 1)
+        grid_utilities.attach(plugins_button, 0, 8, 1, 1)
+        grid_utilities.attach(plugins_label, 0, 8, 1, 1)
+        grid_utilities.attach(source_button, 0, 9, 1, 1)
+        grid_utilities.attach(source_label, 0, 9, 1, 1)
+        grid_utilities.attach(history_button, 0, 10, 1, 1)
+        grid_utilities.attach(history_label, 0, 10, 1, 1)
+        grid_utilities.attach(bookmarks_button, 0, 11, 1, 1)
+        grid_utilities.attach(bookmarks_label, 0, 11, 1, 1)
+        grid_utilities.attach(Gtk.Separator.new(Gtk.Orientation.HORIZONTAL), 0, 12, 1, 1)
+        grid_utilities.attach(manager_cookies_button, 0, 13, 1, 1)
+        grid_utilities.attach(delete_cache_button, 0, 14, 1, 1)
+        grid_utilities.attach(Gtk.Separator.new(Gtk.Orientation.HORIZONTAL), 0, 15, 1, 1)
+        grid_utilities.attach(back_main_button, 0, 16, 1, 1)
         grid_utilities.set_column_homogeneous(True)
 
         menu.pack_start(grid_buttons, False, False, 0)
@@ -2043,6 +2049,16 @@ class Browser(Gtk.Window):
 
         return True
 
+    def new_user_agent(self, view, iter, column):
+
+        page = self.tabs[self.current_page][0]
+        settings = page.webview.get_settings()
+        settings.set_property("user-agent", view.get_model()[iter][1])
+        page.webview.set_settings(settings)
+        page.webview.reload()
+
+        return True
+
     def video_popout(self, title, url):
 
         win = Gtk.Window()
@@ -2752,6 +2768,7 @@ class Browser(Gtk.Window):
                    Gdk.KEY_i: self.defcon,
                    Gdk.KEY_l: self.view_plugins,
                    Gdk.KEY_j: lambda: pass_generator(self),
+                   Gdk.KEY_g: lambda: user_agent(self),
                    Gdk.KEY_d: lambda: self.view_bookmarks(None, None),
                    Gdk.KEY_n: lambda: init(),
                    Gdk.KEY_q: lambda: quit(self)}

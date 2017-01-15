@@ -21,7 +21,9 @@ requests.exceptions as ecs, urllib.parse as urlparse
 from PIL import Image
 from gi.repository import Gtk, Gdk
 sys.path.append(".")
-from settings import verify_req, icns
+from settings import verify_req, icns,\
+set_user_agent, ua_browsers_dsc, ua_browsers_val,\
+ua_mobile_dsc, ua_mobile_val, ua_crawlers_dsc, ua_crawlers_val
 from dialog import *
 
 def do_export_bookmarks(list):
@@ -317,4 +319,54 @@ def pass_generate(length, default_length, result):
         password = password[0:r] + password[r].upper() + password[r+1:]
 
     result.get_buffer().set_text(password)
+
+def user_agent(self):
+
+    window = Gtk.Window()
+    window.set_title("User Agent")
+    window.set_position(Gtk.WindowPosition.CENTER)
+    window.set_skip_taskbar_hint(True)
+    window.set_transient_for(self)
+
+    scrolled_window = Gtk.ScrolledWindow()
+    scrolled_window.set_size_request(300, 300)
+
+    tree = Gtk.TreeView()
+    tree.connect('row-activated', self.new_user_agent)
+    column = Gtk.TreeViewColumn()
+    column.set_title(_("Double click item to switch"))
+
+    cell = Gtk.CellRendererText()
+    column.pack_start(cell, True)
+    column.add_attribute(cell, "text", 0)
+
+    treestore = Gtk.TreeStore(str, str)
+
+    ua_browsers_list = []
+    ua_mobile_list = []
+    ua_crawlers_list = []
+
+    treestore.append(None, ["Default", ""])
+
+    browsers = treestore.append(None, ["Browsers", None])
+    for c, i in enumerate(ua_browsers_dsc): ua_browsers_list.append([i, ua_browsers_val[c]])
+    ua_browsers_list.sort()
+    for c, i in enumerate(ua_browsers_list): treestore.append(browsers, [ua_browsers_list[c][0], ua_browsers_list[c][1]])
+
+    mobile = treestore.append(None, ["Mobile Browsers", None])
+    for c, i in enumerate(ua_mobile_dsc): ua_mobile_list.append([i, ua_mobile_val[c]])
+    ua_mobile_list.sort()
+    for c, i in enumerate(ua_mobile_list): treestore.append(mobile, [ua_mobile_list[c][0], ua_mobile_list[c][1]])
+
+    crawlers = treestore.append(None, ["Crawlers", None])
+    for c, i in enumerate(ua_crawlers_dsc): ua_crawlers_list.append([i, ua_crawlers_val[c]])
+    ua_crawlers_list.sort()
+    for c, i in enumerate(ua_crawlers_list): treestore.append(crawlers, [ua_crawlers_list[c][0], ua_crawlers_list[c][1]])
+
+    tree.append_column(column)
+    tree.set_model(treestore)
+    scrolled_window.add(tree)
+
+    window.add(scrolled_window)
+    window.show_all()
 

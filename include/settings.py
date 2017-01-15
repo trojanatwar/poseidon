@@ -16,7 +16,7 @@
 # You should have received a copy of the GNU General Public License
 # along with Poseidon. If not, see <http://www.gnu.org/licenses/>.
 
-import os, gettext, pickle, sqlite3 as lite, subprocess
+import os, platform, gettext, pickle, sqlite3 as lite, subprocess
 
 '''
 #####################
@@ -134,7 +134,7 @@ set_pictograph_font_family = "serif"                       # (Default: "serif")
 set_print_backgrounds = True                               # (Default: True)
 set_sans_serif_font_family = "sans-serif"                  # (Default: "sans-serif")
 set_serif_font_family = "serif"                            # (Default: "serif")
-set_user_agent = None                                      # (Default: None)
+set_user_agent = ""                                        # (Default: "")
 set_zoom_text_only = False                                 # (Default: False)
 
 '''
@@ -169,6 +169,81 @@ evince_mime = [
 uri_schemes = [
 
 "magnet:?xt=urn:", "mailto:", "apt:", "ed2k:"
+
+]
+
+'''
+###################
+# User Agent List #
+###################
+'''
+
+ua_moz = "Mozilla/5.0"
+ua_sys = "({} {})".format(platform.system(), platform.machine())
+ua_mos = "{} {}".format(ua_moz, ua_sys)
+
+ua_browsers_dsc = [
+
+"Google Chrome", "Google Chrome (Windows)", "Google Chrome (Mac)", "Mozilla Firefox", "Mozilla Firefox (Windows)", "Mozilla Firefox (Mac)",\
+"Opera 9.80", "Opera 9.80 (Windows)", "Opera 9.80 (Mac)", "Internet Explorer 11.0", "Internet Explorer 10.6", "Internet Explorer 10.0", "Internet Explorer 9.0",\
+"Internet Explorer 8.0", "Microsoft Edge"
+
+]
+
+ua_browsers_val = [
+
+"{} AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36".format(ua_mos),\
+"{} (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36".format(ua_moz),\
+"{} (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2227.1 Safari/537.36".format(ua_moz),\
+"{} Gecko/20100101 Firefox/40.1".format(ua_mos),\
+"{} (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.1".format(ua_moz),\
+"{} (Macintosh; Intel Mac OS X 10_10; rv:40.0) Gecko/20100101 Firefox/40.1".format(ua_moz),\
+"Opera/9.80 {} Presto/2.12.388 Version/12.16".format(ua_sys),\
+"Opera/9.80 (Windows NT 6.1) Presto/2.12.388 Version/12.16",\
+"Opera/9.80 (Macintosh; Intel Mac OS X 10_10_1) Presto/2.12.388 Version/12.16",\
+"{} (Windows NT 6.1; WOW64; Trident/7.0; AS; rv:11.0) like Gecko".format(ua_moz),\
+"{} (Windows NT 6.1; WOW64; Trident/7.0; AS; rv:10.6) like Gecko".format(ua_moz),\
+"{} (Windows NT 6.1; WOW64; Trident/7.0; AS; rv:10.0) like Gecko".format(ua_moz),\
+"{} (Windows NT 6.1; WOW64; Trident/7.0; AS; rv:9.0) like Gecko".format(ua_moz),\
+"{} (Windows NT 6.1; WOW64; Trident/7.0; AS; rv:8.0) like Gecko".format(ua_moz),\
+"{} (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/42.0.2311.135 Safari/537.36 Edge/12.246".format(ua_moz)
+
+]
+
+ua_mobile_dsc = [
+
+"Android Webkit Browser", "IE Mobile 9.0", "Opera Mini 9.80", "Opera Mobile 12.02", "BlackBerry", "S60 OSS 3.0",\
+"Apple iPhone", "Apple iPad"
+
+]
+
+ua_mobile_val = [
+
+"{} (Linux; U; Android 4.0.3; ko-kr; LG-L160L Build/IML74K) AppleWebkit/534.30 (KHTML, like Gecko) Version/4.0 Mobile Safari/534.30".format(ua_moz),\
+"{} (compatible; MSIE 9.0; Windows Phone OS 7.5; Trident/5.0; IEMobile/9.0)".format(ua_moz),\
+"Opera/9.80 (J2ME/MIDP; Opera Mini/9.80 (S60; SymbOS; Opera Mobi/23.348; U; en) Presto/2.5.25 Version/10.54",\
+"Opera/12.02 (Android 4.1; Linux; Opera Mobi/ADR-1111101157; U; en-US) Presto/2.9.201 Version/12.02",\
+"{} (BlackBerry; U; BlackBerry 9900; en) AppleWebKit/534.11+ (KHTML, like Gecko) Version/7.1.0.346 Mobile Safari/534.11+".format(ua_moz),\
+"SamsungI8910/SymbianOS/9.1 Series60/3.0",\
+"{} (iPhone; CPU iPhone OS 7_0 like Mac OS X) AppleWebKit/537.51.1 (KHTML, like Gecko) Version/7.0 Mobile/11A465 Safari/9537.53".format(ua_moz),\
+"{} (iPad; CPU OS 7_0 like Mac OS X) AppleWebKit/537.51.1 (KHTML, like Gecko) Version/7.0 Mobile/11A465 Safari/9537.53".format(ua_moz)
+
+]
+
+ua_crawlers_dsc = [
+
+"Baiduspider 2.0", "Bingbot 2.0", "Googlebot 2.1", "Msnbot 2.1", "YahooSeeker 1.2", "YandexBot 3.0"
+
+]
+
+ua_crawlers_val = [
+
+"{} (compatible; Baiduspider/2.0; +http://www.baidu.com/search/spider.html)".format(ua_moz),\
+"{} (compatible; bingbot/2.0; +http://www.bing.com/bingbot.htm)".format(ua_moz),\
+"{} (compatible; Googlebot/2.1; +http://www.google.com/bot.html)".format(ua_moz),\
+"msnbot/2.1",\
+"YahooSeeker/1.2 (compatible; Mozilla 4.0; MSIE 5.5; yahooseeker at yahoo-inc dot com; http://help.yahoo.com/help/us/shop/merchant/)",\
+"{} (compatible; YandexBot/3.0; +http://yandex.com/bots)".format(ua_moz)
 
 ]
 
@@ -300,7 +375,7 @@ autocomplete_policy_list = ["Disable Autocomplete",\
 "Spyware: Youtube", "Spyware: Amazon"]                     # Autocomplete list
 find_list = ["Case Insensitive",\
 "Wrap Around" ,"At Words Starts",\
-"Treat Medial Capial As Word Start", "Backwards"]          # Find list
+"Treat Medial Capital As Word Start", "Backwards"]          # Find list
 cache_model_list = ["Disable Cache",\
 "Improved for Speed",\
 "Optimized for Local Files"]                               # Cache list
@@ -397,7 +472,7 @@ lang.install()
 ################
 '''
 
-version = "0.3.7"
+version = "0.3.8"
 browser_name = "Poseidon"
 website = "https://github.com/sidus-dev/poseidon"
 authors = "Andrea Pasciuta  <sidus@arbornet.org>"
