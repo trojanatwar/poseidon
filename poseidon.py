@@ -427,14 +427,7 @@ class BrowserTab(Gtk.VBox):
         self.deny_cert_button = deny_cert_button
         self.bflist = bflist
 
-        '''
-        ######################
-        # Initialize WebView #
-        ######################
-        '''
-
         scrolled_window.add(webview)
-        #scrolled_window.show_all()
 
         '''
         ###########
