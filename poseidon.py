@@ -144,27 +144,10 @@ class BrowserTab(Gtk.VBox):
             manager.set_persistent_storage("{}/{}".format(cookies_path,cookies_db), WebKit2.CookiePersistentStorage.SQLITE)
 
         controller = webview.get_find_controller()
-
         bflist = webview.get_back_forward_list()
-
-        apply_css()
-
-        '''
-        #########
-        # Icons #
-        #########
-        '''
-
         download_icon = make_icon("go-down.svg")
-
-        '''
-        ###################
-        # Scrolled Window #
-        ###################
-        '''
-
         scrolled_window = Gtk.ScrolledWindow(name="webview")
-        scrolled_window.add(webview)
+        apply_css()
 
         '''
         ##################
@@ -374,9 +357,9 @@ class BrowserTab(Gtk.VBox):
         deny_cert_button.connect("clicked", lambda x: frame_cert.hide())
 
         '''
-        ###########
-        # Packing #
-        ###########
+        #################
+        # Start Packing #
+        #################
         '''
 
         self.pack_start(frame_main, False, False, 0)
@@ -389,13 +372,12 @@ class BrowserTab(Gtk.VBox):
         self.pack_start(frame_status, False, False, 0)
 
         '''
-        #######
-        # END #
-        #######
+        ###############
+        # End Packing #
+        ###############
         '''
 
         frame_main.show_all()
-        scrolled_window.show_all()
         frame_status.show_all()
         iconified_vte.hide()
 
@@ -444,6 +426,15 @@ class BrowserTab(Gtk.VBox):
         self.allow_cert_button = allow_cert_button
         self.deny_cert_button = deny_cert_button
         self.bflist = bflist
+
+        '''
+        ######################
+        # Initialize WebView #
+        ######################
+        '''
+
+        scrolled_window.add(webview)
+        #scrolled_window.show_all()
 
         '''
         ###########
@@ -741,7 +732,6 @@ class Browser(Gtk.Window):
         headerbar.pack_end(Gtk.Separator.new(Gtk.Orientation.VERTICAL))
         headerbar.pack_end(addtab)
         headerbar.pack_end(remtab)
-
         headerbar.show_all()
 
         '''
@@ -776,9 +766,7 @@ class Browser(Gtk.Window):
 
         self.tabs = []
         self.tabs.append((self.create_tab(), Gtk.Label(tab_name)))
-
         notebook.append_page(*self.tabs[0])
-
         self.add(notebook)
 
         self.connect("destroy", lambda x: quit(self))
@@ -996,7 +984,7 @@ class Browser(Gtk.Window):
         pass_gen_button.connect("clicked", lambda x: pass_generator(self))
         pass_gen_label = make_modelbutton_label("[ Ctrl+J ]", 0.95, 0.5)
 
-        usagent_button = make_modelbutton("User Agent", 0.0, 0.5)
+        usagent_button = make_modelbutton("User Agent Switcher", 0.0, 0.5)
         usagent_button.connect("clicked", lambda x: user_agent(self))
         usagent_label = make_modelbutton_label("[ Ctrl+G ]", 0.95, 0.5)
 
@@ -1322,6 +1310,7 @@ class Browser(Gtk.Window):
                         cur.execute("DELETE FROM history WHERE date < datetime(?, '-7 days');", (today,))
                         history_con.commit()
 
+        page.scrolled_window.show_all()
         self.update_status()
 
         return True
@@ -1680,8 +1669,7 @@ class Browser(Gtk.Window):
     def on_bookmarks_menu(self):
 
         for i in self.bkview:
-            if i:
-                self.bkview.remove(i)
+            if i: self.bkview.remove(i)
 
         bookmarks = bookmarksview()
 
@@ -1905,7 +1893,7 @@ class Browser(Gtk.Window):
         if self.adk_switch.get_active():
             if action.is_user_gesture(): return
         else:
-            if not action.get_navigation_type() == 5: return
+            if not action.get_navigation_type() == WebKit2.NavigationType.OTHER: return
 
         self.open_blank(action.get_request().get_uri())
 
@@ -1985,8 +1973,6 @@ class Browser(Gtk.Window):
             self.notebook.remove(current_tab[0])
             if self.notebook.get_n_pages() == 1: self.remtab.set_sensitive(False)
 
-        return True
-
     def tab_data(self):
 
         page = self.current_page
@@ -1999,16 +1985,12 @@ class Browser(Gtk.Window):
 
         self.tab_data()
         self.tabs[self.current_page][0].main_url_entry.grab_focus()
-       
-        return True
 
     def open_blank(self, url):
 
         if url:
             self.open_new_tab()
             self.tabs[self.current_page][0].webview.load_uri(url)
-
-        return True
 
     '''
     ###########
