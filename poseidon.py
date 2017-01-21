@@ -398,7 +398,6 @@ class BrowserTab(Gtk.VBox):
 
         self.security = None
         self.context = context
-        self.cache_path = cache_path
         self.webview = webview
         self.controller = controller
         self.scrolled_window = scrolled_window
@@ -430,6 +429,8 @@ class BrowserTab(Gtk.VBox):
         self.allow_cert_button = allow_cert_button
         self.deny_cert_button = deny_cert_button
         self.bflist = bflist
+
+        if not self.is_defcon: self.cache_path = cache_path
 
         scrolled_window.add(webview)
 
@@ -781,7 +782,7 @@ class Browser(Gtk.Window):
         #######################
         '''
 
-        self.cache_path = self.tabs[self.current_page][0].cache_path
+        if not self.is_defcon: self.cache_path = self.tabs[self.current_page][0].cache_path
 
         '''
         ##################
@@ -1019,8 +1020,11 @@ class Browser(Gtk.Window):
         delete_cache_button = make_modelbutton(_("Empty Cache"), 0.0, 0.5)
         delete_cache_button.connect("clicked", lambda x: self.tabs[self.current_page][0].context.clear_cache())
         delete_cache_label = make_label(0.95, 0.5)
-        delete_cache_label.set_markup("<span size='x-small'>{}: {}</span>".\
-        format(_("Cache used"), get_cache_size(self.cache_path)))
+
+        if not self.is_defcon:
+
+            delete_cache_label.set_markup("<span size='x-small'>{}: {}</span>".\
+            format(_("Cache used"), get_cache_size(self.cache_path)))
 
         grid_buttons = Gtk.Grid()
         grid_buttons.set_column_spacing(10)
@@ -1674,8 +1678,9 @@ class Browser(Gtk.Window):
         self.tools_menu.set_relative_to(\
         self.tabs[self.current_page][0].tools)
 
-        self.delete_cache_label.set_markup("<span size='x-small'>{}: {}</span>".\
-        format(_("Cache used"), get_cache_size(self.cache_path)))
+        if not self.is_defcon:
+            self.delete_cache_label.set_markup("<span size='x-small'>{}: {}</span>".\
+            format(_("Cache used"), get_cache_size(self.cache_path)))
 
         self.tools_menu.show_all()
         self.update_status()
