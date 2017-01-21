@@ -19390,6 +19390,7 @@
 127.0.0.1	akamai.bizrate.com
 127.0.0.1	akamai.smartadserver.com
 127.0.0.1	akillimeyveler.reklamagaci.com
+127.0.0.1	akm.playnow.guru
 127.0.0.1	akmnetwork.com
 127.0.0.1	aknoj.voluumtrk.com
 127.0.0.1	aksb-a.akamaihd.net
@@ -23306,6 +23307,7 @@
 127.0.0.1	c.aol.com
 127.0.0.1	c.apple.com
 127.0.0.1	c.atdmt.com
+127.0.0.1	c.ato.mx
 127.0.0.1	c.baidu.com
 127.0.0.1	c.betrad.com
 127.0.0.1	c.bigmir.net
@@ -30493,12 +30495,14 @@
 127.0.0.1	i.n.jwpltx.com
 127.0.0.1	i.nuseek.com
 127.0.0.1	i.offerx.co.uk
+127.0.0.1	i.playnow.guru
 127.0.0.1	i.plug.it
 127.0.0.1	i.po.st
 127.0.0.1	i.psa-ads.openx.com
 127.0.0.1	i.r1-cdn.net
 127.0.0.1	i.sahcdn.com
 127.0.0.1	i.sbitinbsjs.info
+127.0.0.1	i.serves.live
 127.0.0.1	i.simpli.fi
 127.0.0.1	i.socdm.com
 127.0.0.1	i.tapit.com
@@ -34451,6 +34455,7 @@
 127.0.0.1	onclickads.net
 127.0.0.1	onclickads2.net
 127.0.0.1	onclickrev.com
+127.0.0.1	onclkds.com
 127.0.0.1	one-time-offer.com
 127.0.0.1	one.123counters.com
 127.0.0.1	oneandonlynetwork.com
@@ -35256,6 +35261,7 @@
 127.0.0.1	player-services.goviral-content.com
 127.0.0.1	player.piksel.com
 127.0.0.1	playminigolf.com
+127.0.0.1	playnow.guru
 127.0.0.1	playtomic.com
 127.0.0.1	plb27.voluumtrk.com
 127.0.0.1	pleasedontslaymy.download
@@ -36163,6 +36169,7 @@
 127.0.0.1	redirects.timesink.com
 127.0.0.1	reditions.net
 127.0.0.1	redmas.com
+127.0.0.1	redrct.site
 127.0.0.1	redshiftleads.steele.net
 127.0.0.1	redtube.yoshatia.com
 127.0.0.1	reduxmedia.com
@@ -46685,6 +46692,7 @@
 127.0.0.1	www.omtrdc.net
 127.0.0.1	www.onclickads.net
 127.0.0.1	www.onclickpredictiv.com
+127.0.0.1	www.onclkds.com
 127.0.0.1	www.oneandonlynetwork.com
 127.0.0.1	www.onelouder.com
 127.0.0.1	www.onestat.com
@@ -47986,4 +47994,4 @@
 127.0.0.1	zz.zeroredirect1.com
 127.0.0.1	zzz.clickbank.net
 127.0.0.1	_thums.ero-advertising.com
-# Hosts: 47978
+# Hosts: 47986

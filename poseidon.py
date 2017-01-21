@@ -1005,7 +1005,10 @@ class Browser(Gtk.Window):
         manager_cookies_button.connect("clicked", lambda x: self.cookies_manager())
 
         delete_cache_button = make_modelbutton(_("Empty Cache"), 0.0, 0.5)
-        delete_cache_button.connect("clicked", lambda x: self.tabs[self.current_page][0].context.clear_cache())
+        delete_cache_button.connect("clicked", lambda x: clear_cache(self, cache_path))
+        delete_cache_label = make_label(0.95, 0.5)
+        delete_cache_label.set_markup("<span size='x-small'>{}: {}</span>".\
+        format(_("Cache used"), get_cache_size(cache_path)))
 
         grid_buttons = Gtk.Grid()
         grid_buttons.set_column_spacing(10)
@@ -1070,6 +1073,7 @@ class Browser(Gtk.Window):
         grid_utilities.attach(Gtk.Separator.new(Gtk.Orientation.HORIZONTAL), 0, 12, 1, 1)
         grid_utilities.attach(manager_cookies_button, 0, 13, 1, 1)
         grid_utilities.attach(delete_cache_button, 0, 14, 1, 1)
+        grid_utilities.attach(delete_cache_label, 0, 14, 1, 1)
         grid_utilities.attach(Gtk.Separator.new(Gtk.Orientation.HORIZONTAL), 0, 15, 1, 1)
         grid_utilities.attach(back_main_button, 0, 16, 1, 1)
         grid_utilities.set_column_homogeneous(True)
@@ -1147,6 +1151,7 @@ class Browser(Gtk.Window):
         self.save_button = save_button
         self.del_theme_button = del_theme_button
         self.fs_win = fs_win
+        self.delete_cache_label = delete_cache_label
 
         self.update_status()
         self.show()
@@ -1656,6 +1661,10 @@ class Browser(Gtk.Window):
 
         self.tools_menu.set_relative_to(\
         self.tabs[self.current_page][0].tools)
+
+        self.delete_cache_label.set_markup("<span size='x-small'>{}: {}</span>".\
+        format(_("Cache used"), get_cache_size(cache_path)))
+
         self.tools_menu.show_all()
         self.update_status()
 
@@ -2758,6 +2767,7 @@ class Browser(Gtk.Window):
             return True
 
         nomod = {Gdk.KEY_F4: self.vte,
+                 Gdk.KEY_F5: self.reload_tab,
                  Gdk.KEY_F11: self.go_fullscreen}
 
         try:

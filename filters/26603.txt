@@ -3,14 +3,14 @@
 # For more information about this list, see: https://pgl.yoyo.org/adservers/
 # ----
 # last updated:   Thu, 22 Dec 2016 13:13:46 GMT
-# entries:        2366
+# entries:        2365
 # format:         hosts (hosts -- in hosts file format)
 # credits:        Peter Lowe - pgl@yoyo.org - https://pgl.yoyo.org/ - https://twitter.com/pgl
 # this URL:       https://pgl.yoyo.org/adservers/serverlist.php?hostformat=hosts&showintro=0&mimetype=plaintext
 # other formats:  https://pgl.yoyo.org/adservers/formats.php
 # policy:         https://pgl.yoyo.org/adservers/policy.php
 #
-# start date:    Sun, 15 Jan 2017 00:00:00
+# start date:    Sat, 21 Jan 2017 00:00:00
 127.0.0.1 101com.com
 127.0.0.1 101order.com
 127.0.0.1 123found.com
@@ -699,6 +699,7 @@
 127.0.0.1 Adsatt.go.starwave.com
 127.0.0.1 adsby.bidtheatre.com
 127.0.0.1 adscale.de
+127.0.0.1 adscholar.com
 127.0.0.1 adscience.nl
 127.0.0.1 adscpm.com
 127.0.0.1 adsdaq.com
@@ -976,7 +977,6 @@
 127.0.0.1 banner.goldenpalace.com
 127.0.0.1 banner.img.co.za
 127.0.0.1 banner.inyourpocket.com
-127.0.0.1 banner.joylandcasino.com
 127.0.0.1 banner.kiev.ua
 127.0.0.1 banner.linux.se
 127.0.0.1 banner.media-system.de
@@ -986,7 +986,6 @@
 127.0.0.1 banner.northsky.com
 127.0.0.1 banner.orb.net
 127.0.0.1 banner.penguin.cz
-127.0.0.1 banner.prestigecasino.com
 127.0.0.1 banner.rbc.ru
 127.0.0.1 banner.relcom.ru
 127.0.0.1 banner.tanto.de
@@ -2167,6 +2166,7 @@
 127.0.0.1 topblogarea.se
 127.0.0.1 topbucks.com
 127.0.0.1 topforall.com
+127.0.0.1 topgamesites.net
 127.0.0.1 toplist.cz
 127.0.0.1 toplist.pornhost.com
 127.0.0.1 toplista.mw.hu
@@ -2203,7 +2203,6 @@
 127.0.0.1 tradedoubler.com
 127.0.0.1 traffic-exchange.com
 127.0.0.1 traffic.liveuniversenetwork.com
-127.0.0.1 trafficadept.com
 127.0.0.1 trafficcdn.liveuniversenetwork.com
 127.0.0.1 trafficfactory.biz
 127.0.0.1 trafficholder.com
