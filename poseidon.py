@@ -133,7 +133,10 @@ class BrowserTab(Gtk.VBox):
 
         if not self.is_defcon:
 
-            context.set_disk_cache_directory(cache_path)
+            data_manager = WebKit2.WebsiteDataManager()
+            cache_path = data_manager.get_disk_cache_directory()
+
+            context.new_with_website_data_manager(data_manager)
             context.set_cache_model(cache_model)
             context.set_favicon_database_directory(cache_path)
 
@@ -141,7 +144,7 @@ class BrowserTab(Gtk.VBox):
 
             manager = context.get_cookie_manager()
             manager.set_accept_policy(cookies_policy)
-            manager.set_persistent_storage("{}/{}".format(cookies_path,cookies_db), WebKit2.CookiePersistentStorage.SQLITE)
+            manager.set_persistent_storage("{}/{}".format(cookies_path, cookies_db), WebKit2.CookiePersistentStorage.SQLITE)
 
         controller = webview.get_find_controller()
         bflist = webview.get_back_forward_list()
@@ -395,6 +398,7 @@ class BrowserTab(Gtk.VBox):
 
         self.security = None
         self.context = context
+        self.cache_path = cache_path
         self.webview = webview
         self.controller = controller
         self.scrolled_window = scrolled_window
@@ -772,6 +776,14 @@ class Browser(Gtk.Window):
         notebook.show()
 
         '''
+        #######################
+        # Retrieve Page Stuff #
+        #######################
+        '''
+
+        self.cache_path = self.tabs[self.current_page][0].cache_path
+
+        '''
         ##################
         # Bookmarks Menu #
         ##################
@@ -1005,10 +1017,10 @@ class Browser(Gtk.Window):
         manager_cookies_button.connect("clicked", lambda x: self.cookies_manager())
 
         delete_cache_button = make_modelbutton(_("Empty Cache"), 0.0, 0.5)
-        delete_cache_button.connect("clicked", lambda x: clear_cache(self, cache_path))
+        delete_cache_button.connect("clicked", lambda x: self.tabs[self.current_page][0].context.clear_cache())
         delete_cache_label = make_label(0.95, 0.5)
         delete_cache_label.set_markup("<span size='x-small'>{}: {}</span>".\
-        format(_("Cache used"), get_cache_size(cache_path)))
+        format(_("Cache used"), get_cache_size(self.cache_path)))
 
         grid_buttons = Gtk.Grid()
         grid_buttons.set_column_spacing(10)
@@ -1663,7 +1675,7 @@ class Browser(Gtk.Window):
         self.tabs[self.current_page][0].tools)
 
         self.delete_cache_label.set_markup("<span size='x-small'>{}: {}</span>".\
-        format(_("Cache used"), get_cache_size(cache_path)))
+        format(_("Cache used"), get_cache_size(self.cache_path)))
 
         self.tools_menu.show_all()
         self.update_status()

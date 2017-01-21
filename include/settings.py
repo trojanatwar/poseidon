@@ -16,7 +16,7 @@
 # You should have received a copy of the GNU General Public License
 # along with Poseidon. If not, see <http://www.gnu.org/licenses/>.
 
-import os, platform, gettext, pickle, sqlite3 as lite, subprocess
+import os, platform, gettext, pickle, sqlite3 as lite, subprocess, shutil
 
 '''
 #####################
@@ -37,7 +37,6 @@ base_path = "{}/.poseidon/"\
 .format(os.path.expanduser('~'))                           # Base path
 icns = "icons/"                                            # Icons path
 adk_filters_path = "filters"                               # AdKiller filters path
-cache_path = "{}cache".format(base_path)                   # Cache path
 cookies_path = "{}cookies".format(base_path)               # Cookies path
 history_path = "{}history/".format(base_path)              # History path
 bookmarks_path = "{}bookmarks/".format(base_path)          # Bookmarks path
@@ -53,6 +52,15 @@ cookies_db = "cookies.sqlite"                              # Cookies database (D
 history_db = "history.sqlite"                              # History database (Default: "history.sqlite")
 bookmarks_db = "bookmarks.sqlite"                          # Bookmarks database (Default: "bookmarks.sqlite")
 settings_db = "settings.sqlite"                            # Settings database (Default: "settings.sqlite")
+
+'''
+####################
+# Deprecated Stuff #
+####################
+'''
+
+cache_path = "{}cache".format(base_path)                   # Cache path (Deprecated since 0.4.1 since WebKit2.WebsiteDataManager() is now used)
+if os.path.exists(cache_path): shutil.rmtree(cache_path)
 
 '''
 #####################

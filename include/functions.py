@@ -284,14 +284,6 @@ def get_cache_size(path):
 
     return convert_size(total_size)
 
-def clear_cache(self, path):
-
-    self.tabs[self.current_page][0].context.clear_cache()
-
-    if os.path.exists(path):
-        for dirpath, dirnames, filenames in os.walk(path):
-            for f in filenames: os.remove("{}/{}".format(dirpath, f))
-
 def pass_generator(self):
 
     window = Gtk.Window()
