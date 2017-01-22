@@ -19,7 +19,8 @@
 import sys, gi, datetime
 from gi.repository import Gtk
 sys.path.append(".")
-from settings import browser_name, version, authors, comments, website
+from settings import browser_name, version, authors,\
+translators, comments, website
 
 license = """
 Poseidon is free software: you can redistribute it and/or modify
@@ -45,6 +46,7 @@ class dialog(Gtk.Window):
         dialog.set_version("{} (WebKit {})".format(version, ver))
         dialog.set_logo(logo)
         dialog.set_authors([authors])
+        dialog.set_translator_credits(translators)
         dialog.set_website(website)
         dialog.set_website_label(website)
         dialog.set_comments(comments)

@@ -147,7 +147,7 @@ set_zoom_text_only = False                                 # (Default: False)
 
 '''
 ########
-# MIME # 
+# MIME #
 ########
 '''
 
@@ -288,7 +288,7 @@ if not os.path.exists("{}{}".format(history_path, history_db)):
     con = lite.connect("{}/{}".format(history_path, history_db))
 
     with con:
-        cur = con.cursor()    
+        cur = con.cursor()
         cur.execute("CREATE TABLE history(title TEXT, url TEXT, date TEXT);")
 
 if not os.path.exists("{}{}".format(bookmarks_path, bookmarks_db)):
@@ -296,7 +296,7 @@ if not os.path.exists("{}{}".format(bookmarks_path, bookmarks_db)):
     con = lite.connect("{}/{}".format(bookmarks_path, bookmarks_db))
 
     with con:
-        cur = con.cursor()    
+        cur = con.cursor()
         cur.execute("CREATE TABLE bookmarks(title TEXT, url TEXT, date TEXT);")
 
 history_con = lite.connect("{}/{}".format(history_path, history_db))
@@ -315,7 +315,7 @@ if os.path.exists("{}{}".format(settings_path, settings_db)):
 
     con = lite.connect("{}/{}".format(settings_path, settings_db))
 
-    with con:    
+    with con:
         cur = con.cursor()
         cur.execute("SELECT * FROM settings;")
         opts = cur.fetchall()
@@ -375,7 +375,7 @@ adkiller = 1
 #########
 '''
 
-language_list = ["en_US", "it_IT"]                         # Languages list
+language_list = ["en_US", "it_IT", "de_DE"]                # Languages list
 adkiller_list = ["Disabled", "Enabled"]                    # Adkiller list
 autocomplete_policy_list = ["Disable Autocomplete",\
 "Secure: History", "Secure: DuckDuckGo",\
@@ -383,7 +383,7 @@ autocomplete_policy_list = ["Disable Autocomplete",\
 "Spyware: Youtube", "Spyware: Amazon"]                     # Autocomplete list
 find_list = ["Case Insensitive",\
 "Wrap Around" ,"At Words Starts",\
-"Treat Medial Capital As Word Start", "Backwards"]          # Find list
+"Treat Medial Capital As Word Start", "Backwards"]         # Find list
 cache_model_list = ["Disable Cache",\
 "Improved for Speed",\
 "Optimized for Local Files"]                               # Cache list
@@ -484,6 +484,8 @@ version = "0.4.1"
 browser_name = "Poseidon"
 website = "https://github.com/sidus-dev/poseidon"
 authors = "Andrea Pasciuta  <sidus@arbornet.org>"
+translators = "de - Marius Messerschmidt <marius.messerschmidt@googlemail.com>\n\
+               it - Andrea Pasciuta  <sidus@arbornet.org>"
 comments = _("A fast, minimal and lightweight browser")
 tab_name = _("Empty")
 
