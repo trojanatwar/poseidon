@@ -33,7 +33,7 @@ Full command:
 
 * Ubuntu/Mint
 
-`# apt-get install gir1.2-evince-3.0 gir1.2-webkit2-4.0 python3-decorator python3-openssl`
+`# apt-get install gir1.2-evince-3.0 gir1.2-webkit2-4.0 python3-decorator python3-openssl libgtksourceview-3.0-dev`
 
 Optional: [evince-browser-plugin](http://packages.ubuntu.com/en/yakkety/browser-plugin-evince)
 
