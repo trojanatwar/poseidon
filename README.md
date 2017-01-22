@@ -81,6 +81,7 @@ Edit settings directly from `include/settings.py`. `AdKiller`, `Javascript` and 
 Available languages:
 
 * English (`en_US`)
+* German (`de_DE`)
 * Italian (`it_IT`)
 
 ### Themes
