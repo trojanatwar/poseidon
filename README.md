@@ -1,4 +1,4 @@
-# Poseidon
+# [Poseidon](https://sidus-dev.github.io/projects/poseidon/index.html)
 A fast, minimal and lightweight browser
 
 ### Screenshot
