@@ -1,3 +1,8 @@
+#
+# Makefile
+# Adrian Perez, 2015-08-25 11:58
+#
+
 CFLAGS ?= -Os -Wall
 
 PYTHON        ?= python3
@@ -8,14 +13,14 @@ WEB_EXT_LIBS  := $(shell pkg-config ${PKG_MODULES} --libs)
 CPPFLAGS += ${WEB_EXT_FLAGS}
 LDLIBS   += ${WEB_EXT_LIBS}
 
-all: extension.so
+all: pythonloader.so
 
-extension.so: extension.o
+pythonloader.so: pythonloader.o
 	${LD} ${LDFLAGS} -fPIC -shared -o $@ $^ ${LDLIBS}
-extension.so: CFLAGS += -fPIC
+pythonloader.so: CFLAGS += -fPIC
 
 clean:
-	${RM} extension.o extension.so
+	${RM} pythonloader.o pythonloader.so
 
 # vim:ft=make
 #

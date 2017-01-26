@@ -26,7 +26,7 @@ adk_rules = []
 adk_data = []
 adk_blocks = []
 
-def initialize(extension):
+def initialize(extension, args):
     
     adk_data.append(pickle_path)
     adk_data.append(adk_name)
@@ -80,7 +80,6 @@ def replacement(combo):
 def adk_init(filters_path):
 
     filters = []
-
     filters_path = "{}/".format(filters_path)
     list = os.listdir(filters_path)
 
@@ -100,6 +99,5 @@ def adk(url, rules):
 def combined(filenames):
     for filename in filenames:
         with open(filename) as file:
-            for line in file:
-                yield line
+            for line in file: yield line
 
