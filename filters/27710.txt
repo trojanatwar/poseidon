@@ -21712,7 +21712,6 @@
 127.0.0.1	blog.adspaces.ero-advertising.com
 127.0.0.1	blog.chartboost.com
 127.0.0.1	blog.data.ero-advertising.com
-127.0.0.1	blog.disqus.com
 127.0.0.1	blog.duba.net
 127.0.0.1	blog.ero-advertising.com
 127.0.0.1	blog.intext.ero-advertising.com
@@ -38507,6 +38506,7 @@
 127.0.0.1	sync.livejasmin.com
 127.0.0.1	sync.mathtag.com
 127.0.0.1	sync.smarttds.ru
+127.0.0.1	sync.teads.tv
 127.0.0.1	sync.zenoviaexchange.com
 127.0.0.1	syndicate.payloadz.com
 127.0.0.1	syndicate.powerofads.com
@@ -40287,6 +40287,7 @@
 127.0.0.1	uk.nedstatpro.net
 127.0.0.1	uk.sitestat.com
 127.0.0.1	uk.static.planet49.com
+127.0.0.1	uk.websearchnow.net
 127.0.0.1	uk1.siteimprove.com
 127.0.0.1	ukaffiliates2.com
 127.0.0.1	ukbanners.com
@@ -47893,6 +47894,7 @@
 127.0.0.1	zbxproxy01.con.local.vmsn.de
 127.0.0.1	zc.zeroredirect1.com
 127.0.0.1	zc.zeroredirect2.com
+127.0.0.1	zc2.quebec-bin.com
 127.0.0.1	zd.zeroredirect1.com
 127.0.0.1	zdau-builder.122.2o7.net
 127.0.0.1	zdau-zdnetau.122.2o7.net
@@ -47994,4 +47996,4 @@
 127.0.0.1	zz.zeroredirect1.com
 127.0.0.1	zzz.clickbank.net
 127.0.0.1	_thums.ero-advertising.com
-# Hosts: 47986
+# Hosts: 47988

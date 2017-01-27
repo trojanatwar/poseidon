@@ -50,7 +50,7 @@ class BrowserTab(Gtk.VBox):
     def __init__(self, *args, **kwargs):
         super(BrowserTab, self).__init__(*args, **kwargs)
 
-        context = WebKit2.WebContext.get_default()
+        context = WebKit2.WebContext()
         context.set_web_extensions_directory(path.abspath("{}/{}/".format(path.dirname(__file__), lib_path)))
         webview = WebKit2.WebView.new_with_context(context)
 
@@ -1168,6 +1168,11 @@ class Browser(Gtk.Window):
         self.del_theme_button = del_theme_button
         self.fs_win = fs_win
         self.delete_cache_label = delete_cache_label
+        self.finder_button = finder_button
+        self.print_button = print_button
+        self.zoom_in_button = zoom_in_button
+        self.zoom_out_button = zoom_out_button
+        self.vte_button = vte_button
 
         self.update_status()
         self.show()
@@ -1675,8 +1680,21 @@ class Browser(Gtk.Window):
 
     def on_tools_menu(self):
 
-        self.tools_menu.set_relative_to(\
-        self.tabs[self.current_page][0].tools)
+        page = self.tabs[self.current_page][0]
+        self.tools_menu.set_relative_to(page.tools)
+        
+        if page.webview.get_property("visible"):
+            self.finder_button.set_sensitive(True)
+            self.print_button.set_sensitive(True)
+            self.zoom_in_button.set_sensitive(True)
+            self.zoom_out_button.set_sensitive(True)
+            self.vte_button.set_sensitive(True)
+        else:
+            self.finder_button.set_sensitive(False)
+            self.print_button.set_sensitive(False)
+            self.zoom_in_button.set_sensitive(False)
+            self.zoom_out_button.set_sensitive(False)
+            self.vte_button.set_sensitive(False)
 
         if not self.is_defcon:
             self.delete_cache_label.set_markup("<span size='x-small'>{}: {}</span>".\
