@@ -50,8 +50,9 @@ class BrowserTab(Gtk.VBox):
     def __init__(self, *args, **kwargs):
         super(BrowserTab, self).__init__(*args, **kwargs)
 
-        context = WebKit2.WebContext()
+        context = WebKit2.WebContext.get_default()
         context.set_web_extensions_directory(path.abspath("{}/{}/".format(path.dirname(__file__), lib_path)))
+        context.set_process_model(WebKit2.ProcessModel.MULTIPLE_SECONDARY_PROCESSES)
         webview = WebKit2.WebView.new_with_context(context)
 
         self.show()
@@ -2004,8 +2005,8 @@ class Browser(Gtk.Window):
 
         if self.notebook.get_n_pages() != 1:
             page = self.current_page
-            self.tabs[page][0].destroy()
             self.tabs[page][0].webview.destroy()
+            self.tabs[page][0].destroy()
             current_tab = self.tabs.pop(page)
             self.notebook.remove(current_tab[0])
             if self.notebook.get_n_pages() == 1: self.remtab.set_sensitive(False)
