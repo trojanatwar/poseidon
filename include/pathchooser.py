@@ -33,7 +33,7 @@ class pathchooser(Gtk.Window):
              Gtk.STOCK_SAVE, Gtk.ResponseType.OK))
 
         d.set_current_name(name)
-        d.set_default_size(width, height)
+        d.set_default_size(int(width), int(height))
         response = d.run()
 
         if response == Gtk.ResponseType.OK:
@@ -67,7 +67,7 @@ class pathchooser(Gtk.Window):
              Gtk.STOCK_SAVE, Gtk.ResponseType.OK))
 
         d.set_current_name(name)
-        d.set_default_size(width, height)
+        d.set_default_size(int(width), int(height))
         response = d.run()
 
         if response == Gtk.ResponseType.OK:
@@ -90,7 +90,7 @@ class pathchooser(Gtk.Window):
             (Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL,
             Gtk.STOCK_OPEN, Gtk.ResponseType.OK))
 
-        d.set_default_size(width, height)
+        d.set_default_size(int(width), int(height))
         response = d.run()
 
         if response == Gtk.ResponseType.OK:
