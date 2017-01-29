@@ -112,6 +112,13 @@ def make_label(x, y):
    
     return label
 
+def make_label_text(text):
+
+    label = Gtk.Label()
+    label.set_text(text)
+   
+    return label
+
 def make_label_selectable(x, y):
 
     label = make_label(x, y)
@@ -170,33 +177,32 @@ def make_box(text, length, digit):
   
     return grid
 
-def make_option(self, title, value, width, combo, desc):
+def setting_element(option, title, value, tp, desc, list):
 
+    grid = Gtk.Grid()
     label = Gtk.Label()
-
-    if desc: label.set_markup(\
-    "{}\n<span size='small'>{}</span>".format(title, desc))
-    else: label.set_markup(title)
-
     label.set_alignment(0.0, 0.5)
     label.set_property("margin-bottom", 10)
 
-    if combo:
-        combobox = Gtk.ComboBoxText(name=title)
-        combobox.set_entry_text_column(0)
-        for i in combo: combobox.append_text(i)
-        combobox.set_active(combo.index(value))
-    else:
-        entry = Gtk.Entry(name=title)
-        entry.set_width_chars(width)
-        entry.set_text(value)
+    if desc: label.set_markup(\
+    "{}\n<span size='small'>{}</span>".format(_(title), _(desc)))
+    else: label.set_markup(_(title))
 
-    grid = Gtk.Grid()
+    if tp == "1":
+        elem = Gtk.Entry(name=option)
+        elem.set_width_chars(30)
+        elem.set_text(value)
+
+    if tp == "2":
+        elem = Gtk.ComboBoxText(name=option)
+        elem.set_entry_text_column(0)
+        for i in list: elem.append_text(i)
+        elem.set_active(int(value))
+
     grid.attach(label, 0, 0, 1, 1)
-    if combo: grid.attach(combobox, 0, 1, 1, 1)
-    else: grid.attach(entry, 0, 1, 1, 1)
+    grid.attach(elem, 0, 1, 1, 1)
     grid.set_property("margin", 10)
-  
+
     return grid
 
 def digits_only(entry):

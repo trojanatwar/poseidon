@@ -77,11 +77,11 @@ class BrowserTab(Gtk.VBox):
         settings.set_property("allow-file-access-from-file-urls", set_allow_file_access_from_file_urls)
         settings.set_property("allow-modal-dialogs", set_allow_modal_dialogs)
         settings.set_property("auto-load-images", set_auto_load_images)
-        settings.set_property("cursive-font-family", set_cursive_font_family)
-        settings.set_property("default-charset", set_default_charset)
-        settings.set_property("default-font-family", set_default_font_family)
-        settings.set_property("default-font-size", set_default_font_size)
-        settings.set_property("default-monospace-font-size", set_default_monospace_font_size)
+        settings.set_property("cursive-font-family", font_list[set_cursive_font_family])
+        settings.set_property("default-charset", charset_list[set_default_charset])
+        settings.set_property("default-font-family", font_list[set_default_font_family])
+        settings.set_property("default-font-size", int(set_default_font_size))
+        settings.set_property("default-monospace-font-size", int(set_default_monospace_font_size))
         settings.set_property("draw-compositing-indicators", set_draw_compositing_indicators)
         settings.set_property("enable-accelerated-2d-canvas", set_enable_accelerated_2d_canvas)
         settings.set_property("enable-caret-browsing", set_enable_caret_browsing)
@@ -109,18 +109,18 @@ class BrowserTab(Gtk.VBox):
         settings.set_property("enable-webgl", set_enable_webgl)
         settings.set_property("enable-write-console-messages-to-stdout", set_enable_write_console_messages_to_stdout)
         settings.set_property("enable-xss-auditor", set_enable_xss_auditor)
-        settings.set_property("fantasy-font-family", set_fantasy_font_family)
+        settings.set_property("fantasy-font-family", font_list[set_fantasy_font_family])
         settings.set_property("javascript-can-access-clipboard", set_javascript_can_access_clipboard)
         settings.set_property("javascript-can-open-windows-automatically", set_javascript_can_open_windows_automatically)
         settings.set_property("load-icons-ignoring-image-load-setting", set_load_icons_ignoring_image_load_setting)
         settings.set_property("media-playback-allows-inline", set_media_playback_allows_inline)
         settings.set_property("media-playback-requires-user-gesture", set_media_playback_requires_user_gesture)
         settings.set_property("minimum-font-size", set_minimum_font_size)
-        settings.set_property("monospace-font-family", set_monospace_font_family)
-        settings.set_property("pictograph-font-family", set_pictograph_font_family)
+        settings.set_property("monospace-font-family", font_list[set_monospace_font_family])
+        settings.set_property("pictograph-font-family", font_list[set_pictograph_font_family])
         settings.set_property("print-backgrounds", set_print_backgrounds)
-        settings.set_property("sans-serif-font-family", set_sans_serif_font_family)
-        settings.set_property("serif-font-family", set_serif_font_family)
+        settings.set_property("sans-serif-font-family", font_list[set_sans_serif_font_family])
+        settings.set_property("serif-font-family", font_list[set_serif_font_family])
         settings.set_property("user-agent", set_user_agent)
         settings.set_property("zoom-text-only", set_zoom_text_only)
 
@@ -681,7 +681,7 @@ class Browser(Gtk.Window):
         self.pixbuf = GdkPixbuf.Pixbuf.new_from_file("{}poseidon-logo.svg".format(icns))
         self.set_icon(self.pixbuf)
         self.set_position(Gtk.WindowPosition.CENTER)
-        self.set_default_size(width, height)
+        self.set_default_size(int(width), int(height))
         self.maximize()
 
         '''
@@ -1218,7 +1218,7 @@ class Browser(Gtk.Window):
         .format(_("Clicking on OK, all settings will be restored to default and browser will restart")))
 
         if decision:
-            os.remove("{}{}".format(settings_path, settings_db))
+            restore_db()
             self.restart()
 
     def on_save_settings(self, opts):
@@ -1226,9 +1226,10 @@ class Browser(Gtk.Window):
         with settings_con:    
             cur = settings_con.cursor()
             for i in opts:
-                if type(i) == Gtk.Entry: text = i.get_text()
-                if type(i) == Gtk.ComboBoxText: text = i.get_active_text()
-                cur.execute("UPDATE settings SET value=? WHERE option=?;",(text, i.get_name(),))
+                if type(i) == Gtk.Entry: value = i.get_text()
+                if type(i) == Gtk.ComboBoxText: value = i.get_active()
+
+                cur.execute("UPDATE settings SET value=? WHERE option=?;",(value, i.get_name(),))
 
         decision = dialog().decision(_("Are you sure?"), "<span size='small'>{}.</span>"\
         .format(_("Clicking on OK, all edited settings will be saved and browser will restart")))
@@ -1291,9 +1292,9 @@ class Browser(Gtk.Window):
 
         if event == WebKit2.LoadEvent.STARTED:
 
-            if load_timeout != 0:
+            if int(load_timeout) != 0:
                 self.stop_timeout()
-                self.timeout_id = GObject.timeout_add(load_timeout, lambda x: self.on_timeout(view, event, url), None)
+                self.timeout_id = GObject.timeout_add(int(load_timeout), lambda x: self.on_timeout(view, event, url), None)
 
             if not verify_req: page.context.set_tls_errors_policy(WebKit2.TLSErrorsPolicy.IGNORE)
 
@@ -1309,7 +1310,7 @@ class Browser(Gtk.Window):
 
         if event == WebKit2.LoadEvent.FINISHED:
 
-            if load_timeout != 0: self.stop_timeout()
+            if int(load_timeout) != 0: self.stop_timeout()
 
             page.refresh.show()
             page.cancel.hide()
@@ -2162,6 +2163,7 @@ class Browser(Gtk.Window):
         self.open_new_tab()
         page = self.current_page
         scrolled_window = self.get_clean_page(page, "settings", False)
+        scrolled_window.set_policy(Gtk.PolicyType.NEVER, Gtk.PolicyType.NEVER)
 
         save_settings_button = make_button(make_icon("object-select.svg"), _("Save Settings"), False)
         restore_settings_button = make_button(make_icon("edit-clear-all.svg"), _("Restore Settings"), False)
@@ -2175,32 +2177,28 @@ class Browser(Gtk.Window):
             cur.execute("SELECT * FROM settings;")
             opts = cur.fetchall()
 
-            grid = Gtk.Grid()
+            general_grid = Gtk.Grid()
+            general_sw = Gtk.ScrolledWindow()
+            advanced_grid = Gtk.Grid()
+            advanced_sw = Gtk.ScrolledWindow()
+            obrien_grid = Gtk.Grid()
+            obrien_sw = Gtk.ScrolledWindow()
 
-            if len(opts) != 0:
-                for c, i in enumerate(opts):
+            for c, i in enumerate(opts):
 
-                    desc = None
-                    alist = None
-                    gwidth = 0
+                if i[4] == "1": grid = general_grid
+                if i[4] == "2": grid = advanced_grid
+                if i[4] == "3": grid = obrien_grid
+                if i[2] == "1": grid.attach(setting_element(i[6], i[0], i[1], i[2], i[3], None), 0, c, 1, 1)
+                if i[2] == "2": grid.attach(setting_element(i[6], i[0], i[1], i[2], i[3], globals()[i[5]]), 0, c, 1, 1)
 
-                    if i[2]:
+        opts = []
+        grids = [general_grid, advanced_grid, obrien_grid]
 
-                        if i[0] == ctt(sdlist[c]): alist = globals()[i[2]]
-                        if i[0] == "Shell": desc = _("Type of shell to use with VTE Terminal")
-
-                    else:
-
-                        gwidth = 30
-
-                        if i[0] == "Home Page" or i[0] == "Search Engine":
-                            desc = _("Leave it empty to disable it")
-                         
-                    grid.attach(make_option(self, i[0],\
-                    i[1], gwidth, alist, desc), 0, c, 1, 1)
-
-        scrolled_window.add(grid)
-        scrolled_window.show_all()
+        for i in grids:
+            for a in i:
+                for e in a:
+                    if type(e) != Gtk.Label: opts.append(e)
 
         self.tabs[page][0].url_box.pack_start(save_settings_button, False, False, 5)
         self.tabs[page][0].url_box.pack_start(restore_settings_button, False, False, 5)
@@ -2210,12 +2208,6 @@ class Browser(Gtk.Window):
         self.tabs[page][0].url_box.pack_start(cookies_button, False, False, 5)
         self.tabs[page][0].url_box.show_all()
 
-        opts = []
-
-        for i in grid:
-            for a in i:
-                if type(a) != Gtk.Label: opts.append(a)
-
         save_settings_button.connect("clicked", lambda x: self.on_save_settings(opts))
         restore_settings_button.connect("clicked", lambda x: self.on_restore_settings())
         plugins_button.connect("clicked", lambda x: self.view_plugins())
@@ -2224,6 +2216,19 @@ class Browser(Gtk.Window):
         cookies_button.connect("clicked", lambda x: self.cookies_manager())
 
         self.tabs[page][1].set_text(_("Settings"))
+
+        general_sw.add(general_grid)
+        advanced_sw.add(advanced_grid)
+        obrien_sw.add(obrien_grid)
+
+        notebook = Gtk.Notebook()
+        notebook.set_tab_pos(Gtk.PositionType.LEFT)
+        notebook.append_page(general_sw, make_label_text(_("General")))
+        notebook.append_page(advanced_sw, make_label_text(_("Advanced")))
+        notebook.append_page(obrien_sw, make_label_text("Miles O'Brien"))
+
+        scrolled_window.add(notebook)
+        scrolled_window.show_all()
 
         self.update_status()
 
@@ -2254,6 +2259,9 @@ class Browser(Gtk.Window):
             return True
 
     def view_source(self):
+
+        if not self.tabs[self.current_page][0]\
+        .webview.get_property("visible"): return True
 
         url = self.tabs[self.current_page][0].webview.get_uri()
 
@@ -2641,6 +2649,7 @@ class Browser(Gtk.Window):
     def zoom_in(self):
 
         page = self.tabs[self.current_page][0]
+        if not page.webview.get_property("visible"): return True
         level = page.webview.props.zoom_level
         level += 0.05
         page.webview.set_zoom_level(level)
@@ -2651,6 +2660,7 @@ class Browser(Gtk.Window):
     def zoom_out(self):
 
         page = self.tabs[self.current_page][0]
+        if not page.webview.get_property("visible"): return True
         level = page.webview.props.zoom_level
         level -= 0.05
         page.webview.set_zoom_level(level)
@@ -2660,14 +2670,19 @@ class Browser(Gtk.Window):
 
     def zoom_restore(self):
 
-        self.tabs[self.current_page][0].webview.set_zoom_level(1.0)
+        page = self.tabs[self.current_page][0]
+        if not page.webview.get_property("visible"): return True
+        page.webview.set_zoom_level(1.0)
         self.update_status()
 
         return True
 
     def page_print(self):
 
-        p = WebKit2.PrintOperation.new(self.tabs[self.current_page][0].webview)
+        page = self.tabs[self.current_page][0]
+        if not page.webview.get_property("visible"): return True
+
+        p = WebKit2.PrintOperation.new(page.webview)
         p.run_dialog()
 
         return True
@@ -2675,6 +2690,7 @@ class Browser(Gtk.Window):
     def finder(self):
 
         page = self.tabs[self.current_page][0]
+        if not page.webview.get_property("visible"): return True
         page.frame_find.show_all()
         page.find_entry.grab_focus()
         page.on_finder()
@@ -2682,6 +2698,9 @@ class Browser(Gtk.Window):
         return True
 
     def vte(self):
+
+        page = self.tabs[self.current_page][0]
+        if not page.webview.get_property("visible"): return True
 
         try: gi.require_version('Vte', '2.91')
         except:
@@ -2697,7 +2716,6 @@ class Browser(Gtk.Window):
 
         terminal.connect("button-press-event", self.on_vte_button_press)
 
-        page = self.tabs[self.current_page][0]
         page.iconified_vte.hide()
 
         if not page.vte_sw.get_children(): page.vte_sw.add(terminal)

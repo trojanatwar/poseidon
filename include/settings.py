@@ -63,89 +63,6 @@ cache_path = "{}cache".format(base_path)                   # Cache path (Depreca
 if os.path.exists(cache_path): shutil.rmtree(cache_path)
 
 '''
-#####################
-# Autistic Settings #                                      One String to rule them all, One String to find them, One String to bring them all and in the Memory store them.
-#####################
-'''
-                                                           # Integers
-
-width = 800                                                # Window width size (Default: 800)
-height = 600                                               # Window height size (Default: 600)
-autocomplete_limit = -1                                    # Autocomplete limit (Default: -1) (Disabled = -1)
-                                                           # For example, setting 500 will show 500 results if autocomplete policy is 0
-favicon_size = 16                                          # Favicon size (Default: 16)
-                                                           # Visited links will show in a popover when you hold back/forward buttons for these seconds.
-load_timeout = 0                                           # Load timeout (Default: 0) (30000 = 30 seconds) (set 0 to disable it)
-                                                           # If loading a website takes longer than set seconds browser will return a popup dialog with the issue.
-                                                           # Increase the value in case your connection is very slow, 25000 is a good deal.
-adk_policy = 1                                             # AdKiller policy (Default: 1) (Global = 0, Precise = 1)
-                                                           # If "Global", AdKiller will check if the requested url is in list.
-                                                           # This method is ultra simple and fast but can misunderstand a request like "downloads.domain.com" for "ads.domain.com".
-                                                           # If "Precise", AdKiller will check if the requested url is identical to one of the listed urls.
-                                                           # This method is a bit slower (anyway, not so considerably) but 100% precise.
-
-                                                           # Booleans
-
-verify_req = True                                          # Requests module SSL verification (Default: True)
-                                                           # If 'False', 'requests' module will ignore verifying the SSL certificate
-                                                           # False = insecure (but faster), True = secure (but slower)
-
-'''
-####################
-# WebKit2 Settings #                                       [https://lazka.github.io/pgi-docs/WebKit2-4.0/classes/Settings.html#property-details]
-####################
-'''
-
-set_allow_file_access_from_file_urls = False               # (Default: False)
-set_allow_modal_dialogs = True                             # (Default: False)
-set_auto_load_images = True                                # (Default: True)
-set_cursive_font_family = "serif"                          # (Default: "serif")
-set_default_charset = "iso-8859-1"                         # (Default: "iso-8859-1")
-set_default_font_family = "sans-serif"                     # (Default: "sans-serif")
-set_default_font_size = 16                                 # (Default: 16)
-set_default_monospace_font_size = 13                       # (Default: 13)
-set_draw_compositing_indicators = False                    # (Default: False)
-set_enable_accelerated_2d_canvas = False                   # (Default: False)
-set_enable_caret_browsing = False                          # (Default: False)
-set_enable_developer_extras = True                         # (Default: False)
-set_enable_dns_prefetching = False                         # (Default: False)
-set_enable_frame_flattening = False                        # (Default: False)
-set_enable_fullscreen = True                               # (Default: True)
-set_enable_html5_database = True                           # (Default: True)
-set_enable_html5_local_storage = True                      # (Default: True)
-set_enable_hyperlink_auditing = False                      # (Default: False)
-set_enable_java = True                                     # (Default: True)
-set_enable_javascript = True                               # (Default: True)
-set_enable_media_stream = True                             # (Default: False)
-set_enable_mediasource = True                              # (Default: False)
-set_enable_offline_web_application_cache = True            # (Default: True)
-set_enable_page_cache = True                               # (Default: True)
-set_enable_plugins = True                                  # (Default: True)
-set_enable_resizable_text_areas = True                     # (Default: True)
-set_enable_site_specific_quirks = True                     # (Default: True)
-set_enable_smooth_scrolling = False                        # (Default: False)
-set_enable_spatial_navigation = False                      # (Default: False)
-set_enable_tabs_to_links = True                            # (Default: True)
-set_enable_webaudio = True                                 # (Default: False)
-set_enable_webgl = True                                    # (Default: False)
-set_enable_write_console_messages_to_stdout = False        # (Default: False)
-set_enable_xss_auditor = True                              # (Default: True)
-set_fantasy_font_family = "serif"                          # (Default: "serif")
-set_javascript_can_access_clipboard = False                # (Default: False)
-set_javascript_can_open_windows_automatically = True       # (Default: False)
-set_load_icons_ignoring_image_load_setting = False         # (Default: False)
-set_media_playback_allows_inline = True                    # (Default: True)
-set_media_playback_requires_user_gesture = False           # (Default: False)
-set_minimum_font_size = 0                                  # (Default: 0)
-set_monospace_font_family = "monospace"                    # (Default: "monospace")
-set_pictograph_font_family = "serif"                       # (Default: "serif")
-set_print_backgrounds = True                               # (Default: True)
-set_sans_serif_font_family = "sans-serif"                  # (Default: "sans-serif")
-set_serif_font_family = "serif"                            # (Default: "serif")
-set_user_agent = ""                                        # (Default: "")
-set_zoom_text_only = False                                 # (Default: False)
-
-'''
 ########
 # MIME #
 ########
@@ -177,6 +94,44 @@ evince_mime = [
 uri_schemes = [
 
 "magnet:?xt=urn:", "mailto:", "apt:", "ed2k:"
+
+]
+
+'''
+################
+# Charset List #
+################
+'''
+
+charset_list = [
+
+"ANSI_X3.110-1983", "ANSI_X3.4-1968", "ARMSCII-8", "ASMO_449", "BIG5", "BIG5-HKSCS", "BRF", "BS_4730",\
+"BS_VIEWDATA", "CP10007", "CP1125", "CP1250", "CP1251", "CP1252", "CP1253", "CP1254", "CP1255", "CP1256", "CP1257",\
+"CP1258", "CP737", "CP770", "CP771", "CP772", "CP773", "CP774", "CP775", "CP949", "CSA_Z243.4-1985-1", "CSA_Z243.4-1985-2",\
+"CSA_Z243.4-1985-GR", "CSN_369103", "CWI", "DEC-MCS", "DIN_66003", "DS_2089", "EBCDIC-AT-DE", "EBCDIC-AT-DE-A", "EBCDIC-CA-FR",\
+"EBCDIC-DK-NO", "EBCDIC-DK-NO-A", "EBCDIC-ES", "EBCDIC-ES-A", "EBCDIC-ES-S", "EBCDIC-FI-SE", "EBCDIC-FI-SE-A", "EBCDIC-FR",\
+"EBCDIC-IS-FRISS", "EBCDIC-IT", "EBCDIC-PT", "EBCDIC-UK", "EBCDIC-US", "ECMA-CYRILLIC", "ES", "ES2", "EUC-JISX0213",\
+"EUC-JP", "EUC-JP-MS", "EUC-KR", "EUC-TW", "GB18030", "GB2312", "GBK", "GB_1988-80", "GEORGIAN-ACADEMY", "GEORGIAN-PS",\
+"GOST_19768-74", "GREEK-CCITT", "GREEK7", "GREEK7-OLD", "HP-GREEK8", "HP-ROMAN8", "HP-ROMAN9", "HP-THAI8", "HP-TURKISH8",\
+"IBM037", "IBM038", "IBM1004", "IBM1026", "IBM1047", "IBM1124", "IBM1129", "IBM1132", "IBM1133", "IBM1160", "IBM1161",\
+"IBM1162", "IBM1163", "IBM1164", "IBM256", "IBM273", "IBM274", "IBM275", "IBM277", "IBM278", "IBM280", "IBM281",\
+"IBM284", "IBM285", "IBM290", "IBM297", "IBM420", "IBM423", "IBM424", "IBM437", "IBM500", "IBM850", "IBM851",\
+"IBM852", "IBM855", "IBM856", "IBM857", "IBM860", "IBM861", "IBM862", "IBM863", "IBM864", "IBM865", "IBM866",\
+"IBM866NAV", "IBM868", "IBM869", "IBM870", "IBM871", "IBM874", "IBM875", "IBM880", "IBM891", "IBM903", "IBM904",\
+"IBM905", "IBM918", "IBM922", "IEC_P27-1", "INIS", "INIS-8", "INIS-CYRILLIC", "INVARIANT", "ISIRI-3342", "ISO-8859-1",\
+"ISO-8859-10", "ISO-8859-11", "ISO-8859-13", "ISO-8859-14", "ISO-8859-15", "ISO-8859-16", "ISO-8859-2", "ISO-8859-3",\
+"ISO-8859-4", "ISO-8859-5", "ISO-8859-6", "ISO-8859-7", "ISO-8859-8", "ISO-8859-9", "ISO-8859-9E", "ISO-IR-197",\
+"ISO-IR-209", "ISO-IR-90", "ISO_10367-BOX", "ISO_10646", "ISO_11548-1", "ISO_2033-1983", "ISO_5427", "ISO_5427-EXT",\
+"ISO_5428", "ISO_646.BASIC", "ISO_646.IRV", "ISO_6937", "ISO_6937-2-25", "ISO_6937-2-ADD", "ISO_8859-1,GL",\
+"ISO_8859-SUPP", "IT", "JIS_C6220-1969-JP", "JIS_C6220-1969-RO", "JIS_C6229-1984-A", "JIS_C6229-1984-B",\
+"JIS_C6229-1984-B-ADD", "JIS_C6229-1984-HAND", "JIS_C6229-1984-HAND-ADD", "JIS_C6229-1984-KANA", "JIS_X0201",\
+"JOHAB", "JUS_I.B1.002", "JUS_I.B1.003-MAC", "JUS_I.B1.003-SERB", "KOI-8", "KOI8-R", "KOI8-RU", "KOI8-T",\
+"KOI8-U", "KSC5636", "LATIN-GREEK", "LATIN-GREEK-1", "MAC-CENTRALEUROPE", "MAC-CYRILLIC", "MAC-IS", "MAC-SAMI",\
+"MAC-UK", "MACINTOSH", "MAC_CENTRALEUROPE", "MIK", "MSZ_7795.3", "NATS-DANO", "NATS-DANO-ADD", "NATS-SEFI",\
+"NATS-SEFI-ADD", "NC_NC00-10", "NEXTSTEP", "NF_Z_62-010", "NF_Z_62-010_(1973)", "NF_Z_62-010_1973",\
+"NS_4551-1", "NS_4551-2", "PT", "PT154", "PT2", "RK1048", "SAMI", "SAMI-WS2", "SEN_850200_B",\
+"SEN_850200_C", "SHIFT_JIS", "SHIFT_JISX0213", "T.101-G2", "T.61-7BIT", "T.61-8BIT", "TCVN5712-1", "TIS-620",\
+"TSCII", "UTF-8", "VIDEOTEX-SUPPL", "VISCII", "WIN-SAMI-2", "WINDOWS-31J"
 
 ]
 
@@ -304,42 +259,10 @@ bookmarks_con = lite.connect("{}/{}".format(bookmarks_path, bookmarks_db))
 cookies_con = lite.connect("{}/{}".format(cookies_path, cookies_db))
 
 '''
-################################
-# Initialize Settings Database #
-################################
-'''
-
-slist = []
-
-if os.path.exists("{}{}".format(settings_path, settings_db)):
-
-    con = lite.connect("{}/{}".format(settings_path, settings_db))
-
-    with con:
-        cur = con.cursor()
-        cur.execute("SELECT * FROM settings;")
-        opts = cur.fetchall()
-        slist = opts
-
-'''
 ###########
 # Methods #
 ###########
 '''
-
-def std():
-    if len(slist) == 0: return True
-
-def rop(value, list, bool):
-    for a in range(len(list)):
-        if bool:
-            if value == list[a]:
-                return a
-        else:
-            if value == a:
-                return list[a]
-
-def ctt(s): return s.title().replace("_", " ")
 
 def get_available_shells():
 
@@ -350,6 +273,19 @@ def get_available_shells():
          if not i.startswith("#") and i != "": list.append(i)
 
      return list
+
+def get_font_families():
+
+    list = []
+
+    from tkinter import Tk, font
+    root = Tk()
+    default = ("serif", "sans-serif", "monospace")
+    for i in default: list.append(i)
+    for i in font.families():
+        if i not in list: list.append(i)
+
+    return list
 
 '''
 ####################
@@ -362,12 +298,76 @@ home_page = "https://www.duckduckgo.com/"
 app_launcher = "xdg-open"
 language = 0
 autocomplete_policy = 1
+autocomplete_limit = -1
 shell = 0
 find = 1
 cache_model = 1
 cookies_policy = 2
 geolocation_policy = 2
 adkiller = 1
+adk_policy = 1
+load_timeout = 0
+width = 800
+height = 600
+verify_req = 1
+
+'''
+############################
+# WebKit2 Default Settings #
+############################
+
+More info at: https://lazka.github.io/pgi-docs/WebKit2-4.0/classes/Settings.html#property-details
+
+'''
+
+set_allow_file_access_from_file_urls = 0
+set_allow_modal_dialogs = 0
+set_auto_load_images = 1
+set_cursive_font_family = 0
+set_default_charset = 139
+set_default_font_family = 1
+set_default_font_size = 16
+set_default_monospace_font_size = 13
+set_draw_compositing_indicators = 0
+set_enable_accelerated_2d_canvas = 0
+set_enable_caret_browsing = 0
+set_enable_developer_extras = 1
+set_enable_dns_prefetching = 0
+set_enable_frame_flattening = 0
+set_enable_fullscreen = 1
+set_enable_html5_database = 1
+set_enable_html5_local_storage = 1
+set_enable_hyperlink_auditing = 0
+set_enable_java = 1
+set_enable_javascript = 1
+set_enable_media_stream = 1
+set_enable_mediasource = 1
+set_enable_offline_web_application_cache = 1
+set_enable_page_cache = 1
+set_enable_plugins = 1
+set_enable_resizable_text_areas = 1
+set_enable_site_specific_quirks = 1
+set_enable_smooth_scrolling = 0
+set_enable_spatial_navigation = 0
+set_enable_tabs_to_links = 1
+set_enable_webaudio = 1
+set_enable_webgl = 1
+set_enable_write_console_messages_to_stdout = 0
+set_enable_xss_auditor = 1
+set_fantasy_font_family = 0
+set_javascript_can_access_clipboard = 0
+set_javascript_can_open_windows_automatically = 1
+set_load_icons_ignoring_image_load_setting = 0
+set_media_playback_allows_inline = 1
+set_media_playback_requires_user_gesture = 0
+set_minimum_font_size = 0
+set_monospace_font_family = 2
+set_pictograph_font_family = 0
+set_print_backgrounds = 1
+set_sans_serif_font_family = 1
+set_serif_font_family = 0
+set_user_agent = ""
+set_zoom_text_only = 0
 
 '''
 #########
@@ -375,82 +375,208 @@ adkiller = 1
 #########
 '''
 
-language_list = ["en_US", "it_IT", "de_DE"]                # Languages list
-adkiller_list = ["Disabled", "Enabled"]                    # Adkiller list
+boolean_list = ["False", "True"]
+language_list = ["en_US", "it_IT", "de_DE"]
+adkiller_list = ["Disabled", "Enabled"]
+adk_policy_list = ["Fastest", "Precise"]
+verify_req_list = ["Insecure", "Secure"]
 autocomplete_policy_list = ["Disable Autocomplete",\
 "Secure: History", "Secure: DuckDuckGo",\
 "Secure: Wikipedia", "Spyware: Google",\
-"Spyware: Youtube", "Spyware: Amazon"]                     # Autocomplete list
+"Spyware: Youtube", "Spyware: Amazon"]
 find_list = ["Case Insensitive",\
 "Wrap Around" ,"At Words Starts",\
-"Treat Medial Capital As Word Start", "Backwards"]         # Find list
+"Treat Medial Capital As Word Start", "Backwards"]
 cache_model_list = ["Disable Cache",\
 "Improved for Speed",\
-"Optimized for Local Files"]                               # Cache list
+"Optimized for Local Files"]
 cookies_policy_list = ["Always Enabled",\
-"Never Enabled", "No Third Party"]                         # Cookies list
+"Never Enabled", "No Third Party"]
 geolocation_policy_list = ["Always Enabled",\
-"Never Enabled", "Ask Everytime"]                          # Geolocation list
-shell_list = get_available_shells()                        # Shells list
+"Never Enabled", "Ask Everytime"]
+shell_list = get_available_shells()
+font_list = get_font_families()
+
 
 '''
-#######################################
-# Save/Load Settings to/from Database #
-#######################################
+########################
+# Translatable Strings #
+########################
 '''
 
-sdlist = ["search_engine", "home_page", "app_launcher", "language",\
-"adkiller", "shell", "cache_model", "find", "autocomplete_policy",\
-"cookies_policy", "geolocation_policy"]
+lang = gettext.translation(language_list[0], localedir=lc_path, languages=language_list)
+lang.install()
 
-if not std():
+text_blank_desc = _("Leave it empty to disable it")
+text_home_page = _("Home Page")
+text_search_engine = _("Search Engine")
+text_app_launcher = _("Application Launcher")
+text_app_launcher_desc = _("Set a application launcher")
+text_language = _("Language")
+text_language_desc = _("Set a language")
+text_adkiller_desc = _("Enable or disable AdKiller")
+text_adk_policy = _("AdKiller Policy")
+text_adk_policy_desc = _("Set AdKiller behaviour")
+text_verify_req = _("Requests Module SSL Verification")
+text_verify_req_desc = _("Set Requests Module SSL Verification behaviour")
+text_autocomplete = _("Autocomplete")
+text_autocomplete_desc = _("Set word completion for the main input field")
+text_autocomplete_limit = _("Autocomplete Limit")
+text_autocomplete_limit_desc = _("Set a limit for autocomplete results (eg. 500 = 500 results, -1 = disabled)")
+text_find = _("Find Behaviour")
+text_find_desc = _("Set finder behaviour")
+text_cache_model = _("Cache Model")
+text_cache_model_desc = _("Set the cache model")
+text_geolocation = _("Geolocation")
+text_geolocation_desc = _("Set geolocation behaviour")
+text_shell_desc = _("Type of shell to use with VTE Terminal")
+text_load_timeout = _("Load Timeout")
+text_load_timeout_desc = _("Set load timeout in milliseconds (eg. 10000 = 10 seconds, 0 = disabled)")
+text_width = _("Restored Window Width Size")
+text_width_desc = _("Default width size for normal window")
+text_height = _("Restored Window Height Size")
+text_height_desc = _("Default height size for normal window")
 
-    for c, i in enumerate(sdlist):
+'''
+##################################
+# Initializing Settings Database #
+##################################
+'''
 
-        value = slist[c][1]
-        vlist = slist[c][2]
+settings_db_path = "{}{}".format(settings_path, settings_db)
+settings_db_code = "0"
 
-        if vlist:
-            if i == sdlist[c]: value = rop(value, globals()[vlist], 1)
-
-        if i == "find":
-            if value == find_list[0]: value = 1
-            if value == find_list[1]: value = 16
-            if value == find_list[2]: value = 2
-            if value == find_list[3]: value = 4
-            if value == find_list[4]: value = 8
-
-        globals()[i] = value
-
-if not os.path.exists("{}{}".format(settings_path, settings_db)):
+def create_settings_db():
 
     con = lite.connect("{}/{}".format(settings_path, settings_db))
 
     with con:
         cur = con.cursor()
-        cur.execute("CREATE TABLE settings(option TEXT, value TEXT, list TEXT);")
+        cur.execute("CREATE TABLE settings(title TEXT, value TEXT, type TEXT, desc TEXT, cat TEXT, other TEXT, option TEXT);")
+        insert_string = "INSERT INTO settings VALUES(?, ?, ?, ?, ?, ?, ?);"
+        cur.execute(insert_string, ("code", settings_db_code, "0", "", "", "", ""))
 
-        for c, i in enumerate(sdlist):
+        '''
+        #####################################
+        # Listing Settings Database Options #
+        #####################################
+        # . | Types           | Category    #
+        #===|=================|=============#
+        # 0 | None            | None        #
+        # 1 | Text            | General     #
+        # 2 | List            | Advanced    #
+        # 3 |                 | O'Brien     #
+        #####################################
 
-            value = globals()[i]
-            vlist = ""
+        '''
 
-            if type(value) == int:
+        cur.execute(insert_string, (text_home_page, home_page, "1", text_blank_desc, "1", "", "home_page"))
+        cur.execute(insert_string, (text_search_engine, search_engine, "1", text_blank_desc, "1", "", "search_engine"))
+        cur.execute(insert_string, (text_app_launcher, app_launcher, "1", text_app_launcher_desc, "1", "", "app_launcher"))
+        cur.execute(insert_string, (text_language, language, "2", text_language_desc, "1", "language_list", "language"))
+        cur.execute(insert_string, ("AdKiller", adkiller, "2", text_adkiller_desc, "1", "adkiller_list", "adkiller"))
+        cur.execute(insert_string, (text_autocomplete, autocomplete_policy, "2", text_autocomplete_desc, "2", "autocomplete_policy_list", "autocomplete_policy"))
+        cur.execute(insert_string, (text_autocomplete_limit, autocomplete_limit, "1", text_autocomplete_limit_desc, "2", "", "autocomplete_limit"))
+        cur.execute(insert_string, (text_find, find, "2", text_find_desc, "2", "find_list", "find"))
+        cur.execute(insert_string, (text_adk_policy, adk_policy, "2", text_adk_policy_desc, "2", "adk_policy_list", "adk_policy"))
+        cur.execute(insert_string, (text_verify_req, verify_req, "2", text_verify_req_desc, "2", "verify_req_list", "verify_req"))
+        cur.execute(insert_string, (text_cache_model, cache_model, "2", text_cache_model_desc, "2", "cache_model_list", "cache_model"))
+        cur.execute(insert_string, (text_geolocation, geolocation_policy, "2", text_geolocation_desc, "2", "geolocation_policy_list", "geolocation_policy"))
+        cur.execute(insert_string, ("Shells", shell, "2", text_shell_desc, "2", "shell_list", "shell"))
+        cur.execute(insert_string, (text_load_timeout, load_timeout, "1", text_load_timeout_desc, "2", "", "load_timeout"))
+        cur.execute(insert_string, (text_width, width, "1", text_width_desc, "2", "", "width"))
+        cur.execute(insert_string, (text_height, height, "1", text_height_desc, "2", "", "height"))
 
-                if i == sdlist[c]:
-                    vlist = "{}_list".format(i)
-                    value = rop(value, globals()[vlist], 0)
+        '''
+        ####################
+        # WebKit2 Settings #
+        ####################
+        '''
 
-                if i == "find":
-                    if value == 1: value = find_list[0]
-                    if value == 16: value = find_list[1]
-                    if value == 2: value = find_list[2]
-                    if value == 4: value = find_list[3]
-                    if value == 8: value = find_list[4]
+        cur.execute(insert_string, ("set-allow-file-access-from-file-urls", set_allow_file_access_from_file_urls, "2", "Default: False", "3", "boolean_list", "set_allow_file_access_from_file_urls"))
+        cur.execute(insert_string, ("set-allow-modal-dialogs", set_allow_modal_dialogs, "2", "Default: False", "3", "boolean_list", "set_allow_modal_dialogs"))
+        cur.execute(insert_string, ("set-auto-load-images", set_auto_load_images, "2", "Default: True", "3", "boolean_list", "set_auto_load_images"))
+        cur.execute(insert_string, ("set-cursive-font-family", set_cursive_font_family, "2", "Default: serif", "3", "font_list", "set_cursive_font_family"))
+        cur.execute(insert_string, ("set-default-charset", set_default_charset, "2", "Default: ISO-8859-1", "3", "charset_list", "set_default_charset"))
+        cur.execute(insert_string, ("set-default-font-family", set_default_font_family, "2", "Default: sans-serif", "3", "font_list", "set_default_font_family"))
+        cur.execute(insert_string, ("set-default-font-size", set_default_font_size, "1", "Default: 16", "3", "", "set_default_font_size"))
+        cur.execute(insert_string, ("set-default-monospace-font-size", set_default_monospace_font_size, "1", "Default: 13", "3", "", "set_default_monospace_font_size"))
+        cur.execute(insert_string, ("set-draw-compositing-indicators", set_draw_compositing_indicators, "2", "Default: False", "3", "boolean_list", "set_draw_compositing_indicators"))
+        cur.execute(insert_string, ("set-enable-accelerated-2d_canvas", set_enable_accelerated_2d_canvas, "2", "Default: False", "3", "boolean_list", "set_enable_accelerated_2d_canvas"))
+        cur.execute(insert_string, ("set-enable-caret-browsing", set_enable_caret_browsing, "2", "Default: False", "3", "boolean_list", "set_enable_caret_browsing"))
+        cur.execute(insert_string, ("set-enable-developer-extras", set_enable_developer_extras, "2", "Default: True", "3", "boolean_list", "set_enable_developer_extras"))
+        cur.execute(insert_string, ("set-enable-dns-prefetching", set_enable_dns_prefetching, "2", "Default: False", "3", "boolean_list", "set_enable_dns_prefetching"))
+        cur.execute(insert_string, ("set-enable-frame-flattening", set_enable_frame_flattening, "2", "Default: False", "3", "boolean_list", "set_enable_frame_flattening"))
+        cur.execute(insert_string, ("set-enable-fullscreen", set_enable_fullscreen, "2", "Default: True", "3", "boolean_list", "set_enable_fullscreen"))
+        cur.execute(insert_string, ("set-enable-html5-database", set_enable_html5_database, "2", "Default: True", "3", "boolean_list", "set_enable_html5_database"))
+        cur.execute(insert_string, ("set-enable-html5-local-storage", set_enable_html5_local_storage, "2", "Default: True", "3", "boolean_list", "set_enable_html5_local_storage"))
+        cur.execute(insert_string, ("set-enable-hyperlink-auditing", set_enable_hyperlink_auditing, "2", "Default: False", "3", "boolean_list", "set_enable_hyperlink_auditing"))
+        cur.execute(insert_string, ("set-enable-java", set_enable_java, "2", "Default: True", "3", "boolean_list", "set_enable_java"))
+        cur.execute(insert_string, ("set-enable-javascript", set_enable_javascript, "2", "Default: True", "3", "boolean_list", "set_enable_javascript"))
+        cur.execute(insert_string, ("set-enable-media-stream", set_enable_media_stream, "2", "Default: False", "3", "boolean_list", "set_enable_media_stream"))
+        cur.execute(insert_string, ("set-enable-mediasource", set_enable_mediasource, "2", "Default: False", "3", "boolean_list", "set_enable_mediasource"))
+        cur.execute(insert_string, ("set-enable-offline-web-application-cache", set_enable_offline_web_application_cache, "2", "Default: True", "3", "boolean_list", "set_enable_offline_web_application_cache"))
+        cur.execute(insert_string, ("set-enable-page-cache", set_enable_page_cache, "2", "Default: True", "3", "boolean_list", "set_enable_page_cache"))
+        cur.execute(insert_string, ("set-enable-plugins", set_enable_plugins, "2", "Default: True", "3", "boolean_list", "set_enable_plugins"))
+        cur.execute(insert_string, ("set-enable-resizable-text-areas", set_enable_resizable_text_areas, "2", "Default: True", "3", "boolean_list", "set_enable_resizable_text_areas"))
+        cur.execute(insert_string, ("set-enable-site-specific-quirks", set_enable_site_specific_quirks, "2", "Default: True", "3", "boolean_list", "set_enable_site_specific_quirks"))
+        cur.execute(insert_string, ("set-enable-smooth-scrolling", set_enable_smooth_scrolling, "2", "Default: False", "3", "boolean_list", "set_enable_smooth_scrolling"))
+        cur.execute(insert_string, ("set-enable-spatial-navigation", set_enable_spatial_navigation, "2", "Default: False", "3", "boolean_list", "set_enable_spatial_navigation"))
+        cur.execute(insert_string, ("set-enable-tabs-to-links", set_enable_tabs_to_links, "2", "Default: True", "3", "boolean_list", "set_enable_tabs_to_links"))
+        cur.execute(insert_string, ("set-enable-webaudio", set_enable_webaudio, "2", "Default: False", "3", "boolean_list", "set_enable_webaudio"))
+        cur.execute(insert_string, ("set-enable-webgl", set_enable_webgl, "2", "Default: False", "3", "boolean_list", "set_enable_webgl"))
+        cur.execute(insert_string, ("set-enable-write-console-messages-to-stdout", set_enable_write_console_messages_to_stdout, "2", "Default: False", "3", "boolean_list", "set_enable_write_console_messages_to_stdout"))
+        cur.execute(insert_string, ("set-enable-xss-auditor", set_enable_xss_auditor, "2", "Default: True", "3", "boolean_list", "set_enable_xss_auditor"))
+        cur.execute(insert_string, ("set-fantasy-font-family", set_fantasy_font_family, "2", "Default: serif", "3", "font_list", "set_fantasy_font_family"))
+        cur.execute(insert_string, ("set-javascript-can-access-clipboard", set_javascript_can_access_clipboard, "2", "Default: False", "3", "boolean_list", "set_javascript_can_access_clipboard"))
+        cur.execute(insert_string, ("set-javascript-can-open-windows-automatically", set_javascript_can_open_windows_automatically, "2", "Default: False", "3", "boolean_list", "set_javascript_can_open_windows_automatically"))
+        cur.execute(insert_string, ("set-load-icons-ignoring-image-load-setting", set_load_icons_ignoring_image_load_setting, "2", "Default: False", "3", "boolean_list", "set_load_icons_ignoring_image_load_setting"))
+        cur.execute(insert_string, ("set-media-playback-allows-inline", set_media_playback_allows_inline, "2", "Default: True", "3", "boolean_list", "set_media_playback_allows_inline"))
+        cur.execute(insert_string, ("set-media-playback-requires-user-gesture", set_media_playback_requires_user_gesture, "2", "Default: False", "3", "boolean_list", "set_media_playback_requires_user_gesture"))
+        cur.execute(insert_string, ("set-monospace-font-family", set_monospace_font_family, "2", "Default: monospace", "3", "font_list", "set_monospace_font_family"))
+        cur.execute(insert_string, ("set-pictograph-font-family", set_pictograph_font_family, "2", "Default: serif", "3", "font_list", "set_pictograph_font_family"))
+        cur.execute(insert_string, ("set-print-backgrounds", set_print_backgrounds, "2", "Default: True", "3", "boolean_list", "set_print_backgrounds"))
+        cur.execute(insert_string, ("set-sans-serif-font-family", set_sans_serif_font_family, "2", "Default: sans-serif", "3", "font_list", "set_sans_serif_font_family"))
+        cur.execute(insert_string, ("set-serif-font-family", set_serif_font_family, "2", "Default: serif", "3", "font_list", "set_serif_font_family"))
+        cur.execute(insert_string, ("set-user-agent", set_user_agent, "1", "Default: (N/A)", "3", "", "set_user_agent"))
+        cur.execute(insert_string, ("set-zoom-text-only", set_zoom_text_only, "2", "Default: False", "3", "boolean_list", "set_zoom_text_only"))
 
-            cur.execute("INSERT INTO settings VALUES(?, ?, ?);", (ctt(i), value, vlist))
+def reinitialize_db():
+
+    os.remove(settings_db_path)
+    create_settings_db()
+
+def restore_db(): os.remove(settings_db_path)
+
+if os.path.exists(settings_db_path):
+
+    con = lite.connect("{}/{}".format(settings_path, settings_db))
+
+    with con:
+        cur = con.cursor()
+        cur.execute("SELECT * FROM settings;")
+        opts = cur.fetchall()
+        
+        if not "code" in opts[0][0]: reinitialize_db()
+        else:
+            if opts[0][1] != settings_db_code: reinitialize_db()
+            else:
+                for i in opts:
+                    if i[2] != "0":
+                        if i[2] == "1": value = i[1]
+                        if i[2] == "2": value = int(i[1])
+                        globals()[i[6]] = value
+
+else: create_settings_db()
+
+'''
+#################################
+# Settings Database Declaration #
+#################################
+'''
 
 settings_con = lite.connect("{}/{}".format(settings_path, settings_db))
+
 
 '''
 ##########
@@ -480,7 +606,7 @@ lang.install()
 ################
 '''
 
-version = "0.4.2"
+version = "0.4.3"
 browser_name = "Poseidon"
 website = "https://github.com/sidus-dev/poseidon"
 authors = "Andrea Pasciuta  <sidus@arbornet.org>"

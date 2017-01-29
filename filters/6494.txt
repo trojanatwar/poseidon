@@ -16057,6 +16057,7 @@
 127.0.0.1	adespresso.com
 127.0.0.1	adex.adchakra.net
 127.0.0.1	adex.admailtiser.com
+127.0.0.1	adexce.net
 127.0.0.1	adexcite.com
 127.0.0.1	adexit.com
 127.0.0.1	adexit.de
@@ -16540,6 +16541,7 @@
 127.0.0.1	adrspain.go2cloud.org
 127.0.0.1	adrtrklnk.com
 127.0.0.1	adrunner.superstats.com
+127.0.0.1	adrunnr.com
 127.0.0.1	ads-03.tor.focusin.ads.targetnet.com
 127.0.0.1	ads-aa.wunderground.com
 127.0.0.1	ads-au.onelouder.com
@@ -33620,7 +33622,6 @@
 127.0.0.1	my.applifier.com
 127.0.0.1	my.blueadvertise.com
 127.0.0.1	my.hellobar.com
-127.0.0.1	my.leadpages.net
 127.0.0.1	my.media-servers.net
 127.0.0.1	my.mobfox.com
 127.0.0.1	my.omniture.com
@@ -33793,6 +33794,7 @@
 127.0.0.1	nancy-mosca.us
 127.0.0.1	nandp.go2cloud.org
 127.0.0.1	nanigans.com
+127.0.0.1	nanoadexchange.com
 127.0.0.1	nanostats.nanopress.it
 127.0.0.1	naomi-thorn.us
 127.0.0.1	napster.searchwho.com
@@ -34207,6 +34209,7 @@
 127.0.0.1	o.addthis.com
 127.0.0.1	o.leadbolt.com
 127.0.0.1	o.sa.aol.com
+127.0.0.1	o.ss2.us
 127.0.0.1	o.swisscom.ch
 127.0.0.1	o.xbox.com
 127.0.0.1	o.yieldsquare.com
@@ -35957,7 +35960,6 @@
 127.0.0.1	r.zeroredirect1.com
 127.0.0.1	r.zeroredirect2.com
 127.0.0.1	r0d2x.voluumtrk.com
-127.0.0.1	r1---sn-vgqsen7z.googlevideo.com
 127.0.0.1	r1.ace.advertising.com
 127.0.0.1	r1.beta.ace.advertising.com
 127.0.0.1	r1.computerbild.de
@@ -35965,27 +35967,20 @@
 127.0.0.1	r1.fmpub.net
 127.0.0.1	r1.pcwelt.de
 127.0.0.1	r1.plugrush.com
-127.0.0.1	r1.sn-vgqsen7z.googlevideo.com
 127.0.0.1	r1.zedo.com
 127.0.0.1	r10.cooleremail.com
 127.0.0.1	r11.cooleremail.com
-127.0.0.1	r17---sn-vgqsenes.googlevideo.com
-127.0.0.1	r2---sn-vgqs7n7k.googlevideo.com
 127.0.0.1	r2.cooleremail.com
 127.0.0.1	r2.linksynergy.com
 127.0.0.1	r2.plugrush.com
-127.0.0.1	r20---sn-vgqs7ne7.googlevideo.com
 127.0.0.1	r20.rs6.net
-127.0.0.1	r20.sn-vgqs7ne7.googlevideo.com
 127.0.0.1	r2fjs.voluumtrk.com
 127.0.0.1	r2jmarketing.go2cloud.org
 127.0.0.1	r2v3n.voluumtrk.com
 127.0.0.1	r3.cooleremail.com
 127.0.0.1	r3.plugrush.com
-127.0.0.1	r4---sn-vgqs7nez.googlevideo.com
 127.0.0.1	r4.cooleremail.com
 127.0.0.1	r4.plugrush.com
-127.0.0.1	r4.sn-vgqs7nez.googlevideo.com
 127.0.0.1	r4zih.voluumtrk.com
 127.0.0.1	r5.cooleremail.com
 127.0.0.1	r5.plugrush.com
@@ -39599,6 +39594,7 @@
 127.0.0.1	tracking.netzathleten-media.de
 127.0.0.1	tracking.nuasti.com
 127.0.0.1	tracking.olx-st.com
+127.0.0.1	tracking.perfecttoolmedia.com
 127.0.0.1	tracking.performancerevenues.com
 127.0.0.1	tracking.plattformad.com
 127.0.0.1	tracking.practicefusion.com
@@ -39825,6 +39821,7 @@
 127.0.0.1	trk.kissmetrics.com
 127.0.0.1	trk.m.libero.it
 127.0.0.1	trk.mailtoward.com
+127.0.0.1	trk.meacashtrk.com
 127.0.0.1	trk.mobile-setting.com
 127.0.0.1	trk.pswec.com
 127.0.0.1	trk.rrcpm.com
@@ -44201,6 +44198,7 @@
 127.0.0.1	vt.adition.com
 127.0.0.1	vtncmn.com
 127.0.0.1	vtot.proxy.aol.com
+127.0.0.1	vtrack.larvtrk.com
 127.0.0.1	vtracking.in.com
 127.0.0.1	vtrtl.de
 127.0.0.1	vu.moatads.com
@@ -45080,6 +45078,7 @@
 127.0.0.1	www.addme.com
 127.0.0.1	www.addthis.com
 127.0.0.1	www.adelina-ashman.us
+127.0.0.1	www.adexce.net
 127.0.0.1	www.adexcite.com
 127.0.0.1	www.adexm.com
 127.0.0.1	www.adfest.com
@@ -46641,6 +46640,7 @@
 127.0.0.1	www.n78adserv.com
 127.0.0.1	www.n79adserv.com
 127.0.0.1	www.nadia-carlyle.us
+127.0.0.1	www.nanoadexchange.com
 127.0.0.1	www.naomi-thorn.us
 127.0.0.1	www.naturalsearchtoolresults.com
 127.0.0.1	www.navteq.com
@@ -47693,6 +47693,7 @@
 127.0.0.1	xiazai.duba.net
 127.0.0.1	xiti.com
 127.0.0.1	xl.topstat.com
+127.0.0.1	xl415.com
 127.0.0.1	xlite.counterpath.com
 127.0.0.1	xml.adtech.fr
 127.0.0.1	xml.fusionxml.com
@@ -47996,4 +47997,4 @@
 127.0.0.1	zz.zeroredirect1.com
 127.0.0.1	zzz.clickbank.net
 127.0.0.1	_thums.ero-advertising.com
-# Hosts: 47988
+# Hosts: 47989
