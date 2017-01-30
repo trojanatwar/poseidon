@@ -62,55 +62,9 @@ rehash
 
 `# pkg install webkit2-gtk3`
 
-### Shortcuts
+### Other
 
-In the main entry, type:
-
-* `about:plugins` to get a list of loaded plugins
-* `about:bookmarks` to open bookmarks tab
-* `about:history` to open history tab
-* `about:cookies` to open cookies manager tab
-* `about:settings` to open settings tab
-
-### Settings
-
-Edit settings directly from `include/settings.py`. `AdKiller`, `Javascript` and other plugins like `Flash` are activable/deactivable with a switch in the browser menu.
-
-### Languages
-
-Available languages:
-
-* English (`en_US`)
-* German (`de_DE`)
-* Italian (`it_IT`)
-
-### Themes
-
-Any image can become a theme, right click on a image and click `Apply as theme`.
-
-### Evince
-
-If [evince](https://wiki.gnome.org/Apps/Evince) and `evince-browser-plugin` are installed, Poseidon will read PDF's directly in the WebKit2.WebView.
-
-Note: In [Arch Linux](https://www.archlinux.org/) you just need to install `evince` as it's plugin comes together with the package.
-
-### Defcon Mode (aka. Incognito)
-
-If set `True` in `include/settings.py`, Poseidon will disable cache, ignore history and cookies independently from their policies.
-
-### Tor
-
-To use Poseidon with Tor, you need [torsocks](https://github.com/dgoulet/torsocks) or alternatively [proxychains](https://github.com/haad/proxychains).
-
-Once Tor is started, through [arm](https://www.torproject.org/projects/arm.html.en) or the discontinued [vidalia](https://en.wikipedia.org/wiki/Vidalia_(software)), you can launch Poseidon in these ways:
-
-* `$ torsocks(or proxychains) ./poseidon` (default mode)
-* `$ torsocks(or proxychains) ./poseidon -i` (defcon mode)
-
-### AdKiller
-
-The switch `AdKiller` can be enabled/disabled via browser menu or permanently disabled in the settings panel.
-Since version 0.3.7, AdKiller also blocks pop-ups in a very aggressive way so remember to disable it when needed.
+For more info, click [here](https://sidus-dev.github.io/projects/poseidon/index.html)
 
 ### Code snippets, examples, icons, inspirations, peace to:
 
