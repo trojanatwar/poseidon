@@ -7,64 +7,29 @@ A fast, minimal and lightweight browser
 
 ### Requirements
 
-* Requires [WebKit](https://webkitgtk.org/) 2.12.3 or higher
+* Requires [WebKit](https://webkitgtk.org/) 2.12.3 or higher.
 
-### Dependencies
+### Installation
 
 * Arch Linux
 
-`# pacman -S python3 python-gobject python-decorator python-six python-requests python-pillow python-cairo pyopenssl gtk3 gtksourceview3 webkit2gtk`
+`$ yaourt -S poseidon-browser-git`
 
-Optionally:
+* Ubuntu (tested on Yakkety Yak 16.10)
 
-```
-gst-libav: HTML5 H264 videos support
-gst-plugins-base: HTML5 OGG videos support
-gst-plugins-good: HTML5 H264 and WebM videos support
-evince: Embed PDFs support
-vte3: Embed terminal support
-flashplugin: Adobe Flash Player
-icedtea-web: Free web browser plugin to run applets written in Java and an implementation of Java Web Start
-```
+`# apt install python3-decorator python3-tk libwebkit2gtk-4.0-dev python3-dev python-gi-dev gir1.2-evince-3.0 browser-plugin-evince`
+`$ cd < POSEIDON ROOT DIR >/lib/src && make && mv pythonloader.so ../ && cd ../../`
+`$ ./poseidon`
 
-Full command:
+* Fedora (tested on 25 Workstation)
 
-`# pacman -S gst-libav gst-plugins-base gst-plugins-good evince vte3 flashplugin icedtea-web`
-
-* Ubuntu/Mint
-
-`# apt-get install gir1.2-evince-3.0 gir1.2-webkit2-4.0 python3-decorator python3-openssl python3-tk libgtksourceview-3.0-dev`
-
-Optional: [evince-browser-plugin](http://packages.ubuntu.com/en/yakkety/browser-plugin-evince)
-
-If your WebKit version is too old, upgrade it from [here](https://launchpad.net/~webkit-team/+archive/ubuntu/ppa):
-
-`# add-apt-repository ppa:webkit-team/ppa && apt-get update && apt-get upgrade`
-
-* Fedora
-
-`# dnf install python3-pyOpenSSL.noarch`
-
-* FreeBSD (10.3*)
-
-`# pkg install python3 py34-gobject3 py34-sqlite3 py34-pillow gtksourceview3`
-
-then (ignore the first two lines if you already have pip3 installed):
-
-```
-python3.4 -m ensurepip
-pip3.4 install --upgrade pip
-pip3 install six decorator pyopenssl
-rehash
-```
-
-[Compile](https://trac.webkit.org/wiki/BuildingGtk) [WebKitGTK](https://webkit.org/getting-the-code/) manually if the one provided by the ports is obsolete, viceversa:
-
-`# pkg install webkit2-gtk3`
+`# dnf install python3 python3-devel webkitgtk4 webkitgtk4-devel webkitgtk4-jsc gtksourceview3 python3-tkinter python3-pillow python3-pyOpenSSL pygobject3 pygobject3-devel evince-browser-plugin`
+`$ cd < POSEIDON ROOT DIR >/lib/src && make && mv pythonloader.so ../ && cd ../../`
+`$ ./poseidon`
 
 ### Other
 
-For more info, click [here](https://sidus-dev.github.io/projects/poseidon/index.html)
+For more informations, click [here](https://sidus-dev.github.io/projects/poseidon/index.html).
 
 ### Code snippets, examples, icons, inspirations, peace to:
 
