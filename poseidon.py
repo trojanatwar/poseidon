@@ -706,10 +706,10 @@ class Browser(Gtk.Window):
         maximize = make_button(make_icon("maximize.svg"), None, False)
         maximize.connect("clicked", lambda x: self.on_maximize())
 
-        open_button = make_button(make_icon("document-open.svg"), _("Open a file"), False)
+        open_button = make_button(make_icon("document-open.svg"), _("Open / Import"), False)
         open_button.connect("clicked", lambda x: self.open())
 
-        save_button = make_button(make_icon("document-save.svg"), _("Save a file"), False)
+        save_button = make_button(make_icon("document-save.svg"), _("Save / Export"), False)
         save_button.connect("clicked", lambda x: self.save())
 
         headerbar = Gtk.HeaderBar()
@@ -1424,9 +1424,11 @@ class Browser(Gtk.Window):
 
         url = url_entry.get_text()
         title = title_entry.get_text()
-
         if not title or not url: return True
-        
+        self.on_insert_bookmarks(title, url)
+
+    def on_insert_bookmarks(self, title, url):
+
         with bookmarks_con:    
             cur = bookmarks_con.cursor()
             cur.execute("SELECT * FROM bookmarks;")
@@ -1975,7 +1977,7 @@ class Browser(Gtk.Window):
 
         if name == "source" or name == "bookmarks": self.save_button.set_sensitive(True)
 
-        if name == "webview": self.open_button.set_sensitive(True)
+        if name == "webview" or name == "bookmarks": self.open_button.set_sensitive(True)
         else: self.open_button.set_sensitive(False)
 
         if url and validators.url(url): self.source_button.set_sensitive(True)
@@ -2773,7 +2775,26 @@ class Browser(Gtk.Window):
 
     def open(self):
 
-        pathchooser().open(self.tabs[self.current_page][0].webview)
+        page = self.tabs[self.current_page][0]
+        scrolled_window = page.scrolled_window
+        name = scrolled_window.get_name()
+
+        if name == "bookmarks":
+
+            filename = pathchooser().import_bookmarks()
+            if filename: content = do_import_bookmarks(filename)
+            if filename and content:
+
+                decision = dialog().decision(_("Are you sure?"), "<span size='small'>{}, {} {}.\n{}.</span>"\
+                .format(_("Clicking on OK"), len(content), _("new bookmarks will be imported"),\
+                _("Bookmarks with identical urls will be automatically ignored")))
+
+                if decision:
+                    for i in content: self.on_insert_bookmarks(i[0], i[1])
+
+            return True
+
+        pathchooser().open(page.webview)
 
         return True
 

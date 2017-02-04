@@ -16,7 +16,7 @@
 # You should have received a copy of the GNU General Public License
 # along with Poseidon. If not, see <http://www.gnu.org/licenses/>.
 
-import os, sys, gi, requests, datetime, random,\
+import os, sys, gi, requests, re, datetime, random,\
 requests.exceptions as ecs, urllib.parse as urlparse
 from PIL import Image
 from gi.repository import Gtk, Gdk
@@ -25,6 +25,26 @@ from settings import verify_req, icns, set_user_agent,\
 ua_browsers_dsc, ua_browsers_val, ua_mobile_dsc,\
 ua_mobile_val, ua_crawlers_dsc, ua_crawlers_val
 from dialog import *
+
+def do_import_bookmarks(filename):
+
+    content = []
+    first = _("Oops, import failed")
+    second = _("could be corrupted or a invalid HTML bookmark file")
+
+    with open(filename) as f: l = f.readlines()
+
+    if not re.findall("<!DOCTYPE NETSCAPE-Bookmark-file-1>", l[0], re.IGNORECASE):
+        dialog().error(first, "<span size='small'>\"<b>{}</b>\" {}.</span>".format(filename, second))
+        return True
+
+    title = re.findall(r'<a[^>]*>(.*?)</a>', str(l), re.IGNORECASE)
+    url = re.findall(r'<a[^>]* href="([^"]*)"', str(l), re.IGNORECASE)
+
+    for c, i in enumerate(title):
+        if title[c] and url[c]: content.append([title[c]] + [url[c]])
+
+    return content
 
 def do_export_bookmarks(list):
 
@@ -43,7 +63,7 @@ def do_export_bookmarks(list):
         title = i[1]
         url = i[2]
 
-        content.append("<DT><A HREF=\"{}\" ADD_DATE=\"{}\">{}</a>".format(url, timestamp, title))
+        content.append("<DT><A HREF=\"{}\" ADD_DATE=\"{}\">{}</A>".format(url, timestamp, title))
  
     content.append(footer)
     content = "".join([s for s in content])
@@ -339,10 +359,8 @@ def pass_generate(length, default_length, result):
     charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789^!\$%&/()=?{[]}+~#-_.:,;<>|\\"
     password = str()
 
-    if not length:
-        length = int(default_length)
-    else:
-        length = int(length)
+    if not length: length = int(default_length)
+    else: length = int(length)
 
     for i in range(length):
         n = random.randrange(len(charset))

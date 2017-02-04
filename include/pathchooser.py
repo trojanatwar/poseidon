@@ -85,7 +85,7 @@ class pathchooser(Gtk.Window):
 
     def open(self, view):
 
-        d = Gtk.FileChooserDialog("Open file", self,
+        d = Gtk.FileChooserDialog(_("Open file"), self,
             Gtk.FileChooserAction.OPEN,
             (Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL,
             Gtk.STOCK_OPEN, Gtk.ResponseType.OK))
@@ -95,8 +95,31 @@ class pathchooser(Gtk.Window):
 
         if response == Gtk.ResponseType.OK:
 
+            view.load_uri("file://{}".format(d.get_filename()))
+
+        d.destroy()
+
+    def import_bookmarks(self):
+
+        d = Gtk.FileChooserDialog(_("Import a HTML bookmark file"), self,
+            Gtk.FileChooserAction.OPEN,
+            (Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL,
+            Gtk.STOCK_OPEN, Gtk.ResponseType.OK))
+
+        d.set_default_size(int(width), int(height))
+
+        filter_html = Gtk.FileFilter()
+        filter_html.set_name("HTML files")
+        filter_html.add_mime_type("text/html")
+        d.add_filter(filter_html)
+
+        response = d.run()
+
+        if response == Gtk.ResponseType.OK:
+
             filename = d.get_filename()
-            view.load_uri("file://{}".format(filename))
+            d.destroy()
+            return filename
 
         d.destroy()
 
