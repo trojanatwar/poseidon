@@ -1449,24 +1449,23 @@ class Browser(Gtk.Window):
     def on_rem_bookmarks(self, selection):
 
         (model, iter) = selection.get_selected()
+        if iter is not None: self.on_erase_bookmarks(model[iter][3])
 
-        if iter is not None:
+    def on_erase_bookmarks(self, url):
 
-            url = model[iter][3]
+        with bookmarks_con:
+            cur = bookmarks_con.cursor()
+            cur.execute("SELECT * FROM bookmarks;")
+            urls = cur.fetchall()
 
-            with bookmarks_con:
-                cur = bookmarks_con.cursor()
-                cur.execute("SELECT * FROM bookmarks;")
-                urls = cur.fetchall()
-
-                if len(urls) != 0:
-                    for i in urls:
-                        if url == i[1]:
-                            cur.execute("DELETE FROM bookmarks WHERE url=?;", (url,))
-                            bookmarks_con.commit()
-                            self.close_current_tab()
-                            self.view_bookmarks(None, None)
-                            return True
+            if len(urls) != 0:
+                for i in urls:
+                    if url == i[1]:
+                        cur.execute("DELETE FROM bookmarks WHERE url=?;", (url,))
+                        bookmarks_con.commit()
+                        self.close_current_tab()
+                        self.view_bookmarks(None, None)
+                        return True
 
     def on_rem_cookies(self, selection):
 
@@ -2493,9 +2492,10 @@ class Browser(Gtk.Window):
         page = self.current_page
         scrolled_window = self.get_clean_page(page, "bookmarks", False)
 
-        clear_bookmarks_button = make_button(make_icon("edit-clear-all.svg"), _("Clear bookmarks"), False)
+        clear_bookmarks_button = make_button(make_icon("edit-clear-all.svg"), _("Erase all bookmarks"), False)
         clear_bookmarks_button.connect("clicked", lambda x: self.on_clear_bookmarks())
-        rem_bookmarks_button = make_button(make_icon("edit-delete.svg"), _("Remove the selected link"), False)
+        rem_bookmarks_button = make_button(make_icon("edit-delete.svg"), _("Remove the selected bookmark"), False)
+        scan_bookmarks_button = make_button(make_icon("eye.svg"), _("Bookmarks Scanner"), False)
         add_bookmarks_button = make_button(make_icon("bookmark-new.svg"), _("Add to bookmarks"), False)
 
         entry_title_bookmarks = Gtk.Entry()
@@ -2505,6 +2505,7 @@ class Browser(Gtk.Window):
 
         self.tabs[page][0].url_box.pack_start(clear_bookmarks_button, False, False, 5)
         self.tabs[page][0].url_box.pack_start(rem_bookmarks_button, False, False, 5)
+        self.tabs[page][0].url_box.pack_start(scan_bookmarks_button, False, False, 5)
         self.tabs[page][0].url_box.pack_end(add_bookmarks_button, False, False, 5)
         self.tabs[page][0].url_box.pack_end(entry_url_bookmarks, False, False, 5)
         self.tabs[page][0].url_box.pack_end(entry_title_bookmarks, False, False, 0)
@@ -2538,6 +2539,7 @@ class Browser(Gtk.Window):
         selection.connect("changed", self.on_bookmarks_selected)
 
         rem_bookmarks_button.connect("clicked", lambda x: self.on_rem_bookmarks(selection))
+        scan_bookmarks_button.connect("clicked", lambda x: bookmarks_scanner(self, bookmarks))
 
         scrolled_window.add(view)
         scrolled_window.show_all()
@@ -2779,14 +2781,21 @@ class Browser(Gtk.Window):
         scrolled_window = page.scrolled_window
         name = scrolled_window.get_name()
 
+        s = _("new bookmark will be imported")
+        p = _("new bookmarks will be imported")
+
         if name == "bookmarks":
 
             filename = pathchooser().import_bookmarks()
             if filename: content = do_import_bookmarks(filename)
             if filename and content:
 
-                decision = dialog().decision(_("Are you sure?"), "<span size='small'>{}, {} {}.\n{}.</span>"\
-                .format(_("Clicking on OK"), len(content), _("new bookmarks will be imported"),\
+                if len(content) == 1: m = s
+                else: m = p
+
+                decision = dialog().decision(_("Are you sure?"),\
+                "<span size='small'>{}, {} {}.\n{}.</span>"\
+                .format(_("Clicking on OK"), len(content), m,\
                 _("Bookmarks with identical urls will be automatically ignored")))
 
                 if decision:
