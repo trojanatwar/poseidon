@@ -882,7 +882,7 @@ class Browser(Gtk.Window):
         print_label = make_modelbutton_label("[ Ctrl+P ]", 0.95, 0.5)
 
         adke_label_text = "<span size='small'>{}</span>\r<span size='x-small'>{}: 0</span>\r"\
-        .format(_("AdKiller (experimental)"), _("Enabled, Ads/Pop-ups blocked"))
+        .format(_("AdKiller (experimental)"), _("Enabled, Ads blocked"))
 
         adkd_label_text = "<span size='small'>{}</span>\r<span size='x-small'>{}</span>\r"\
         .format(_("AdKiller (experimental)"), _("Disabled"))
@@ -1930,7 +1930,7 @@ class Browser(Gtk.Window):
 
     def on_create(self, view, action):
 
-        if self.adk_switch.get_active():
+        if self.adk_switch.get_active() and adk_popups:
             if action.is_user_gesture(): return
         else:
             if not action.get_navigation_type() == WebKit2.NavigationType.OTHER: return
@@ -2000,7 +2000,7 @@ class Browser(Gtk.Window):
                 if adk_blocks > 9999:
                     adk_blocks = _("LOTS!")
                 self.adk_label.set_markup("<span size='small'>{}</span>\r<span size='x-small'>{}: {}</span>\r"\
-                .format(_("AdKiller (experimental)"),_("Enabled, Ads/Pop-ups blocked"), str(adk_blocks)))
+                .format(_("AdKiller (experimental)"),_("Enabled, Ads blocked"), str(adk_blocks)))
             except: pass
 
     def close_current_tab(self):
@@ -2333,11 +2333,15 @@ class Browser(Gtk.Window):
         issec_obj = make_box(_("IsSecure"), 1, 2)
         ishttp_obj = make_box(_("IsHttpOnly"), 1, 2)
 
-        edit_cookies_box = Gtk.Box()
+        edit_cookies_grid = Gtk.Grid()
+        edit_cookies_grid.set_column_spacing(10)
         edit_cookies_button = make_button(make_icon("document-edit.svg"), _("Edit the selected cookie"), False)
         add_cookies_button = make_button(make_icon("list-add.svg"), _("Add a new cookie with set data"), False)
-        edit_cookies_box.pack_end(edit_cookies_button, False, False, 0)
-        edit_cookies_box.pack_end(add_cookies_button, False, False, 0)
+
+        edit_cookies_grid.attach(Gtk.Label(), 0, 0, 1, 1)
+        edit_cookies_grid.attach(Gtk.Label(), 0, 1, 1, 1)
+        edit_cookies_grid.attach(edit_cookies_button, 0, 2, 1, 1)
+        edit_cookies_grid.attach(add_cookies_button, 1, 2, 1, 1)
 
         grid = Gtk.Grid()
         grid.set_column_spacing(10)
@@ -2350,7 +2354,7 @@ class Browser(Gtk.Window):
         grid.attach(lastacc_obj, 1, 1, 1, 1)
         grid.attach(issec_obj, 2, 1, 1, 1)
         grid.attach(ishttp_obj, 3, 1, 1, 1)
-        grid.attach(edit_cookies_box, 3, 3, 1, 1)
+        grid.attach(edit_cookies_grid, 4, 1, 1, 1)
 
         frame = Gtk.Frame(name="frame_cookies")
         frame.add(grid)
@@ -2397,8 +2401,7 @@ class Browser(Gtk.Window):
         self.tabs[page][1].set_text(_("Cookies"))
 
         grid.set_property("margin-left", 10)
-        edit_cookies_box.set_property("margin-bottom", 10)
-        edit_cookies_box.set_property("margin-top", 10)
+        grid.set_property("margin-bottom", 10)
 
         self.name_obj = name_obj
         self.value_obj = value_obj

@@ -306,6 +306,7 @@ cookies_policy = 2
 geolocation_policy = 2
 adkiller = 1
 adk_policy = 1
+adk_popups = 1
 load_timeout = 0
 width = 800
 height = 600
@@ -379,6 +380,7 @@ boolean_list = ["False", "True"]
 language_list = ["en_US", "it_IT", "de_DE"]
 adkiller_list = ["Disabled", "Enabled"]
 adk_policy_list = ["Fastest", "Precise"]
+adk_popups_list = ["Don't Block Pop-Ups", "Block Pop-Ups"]
 verify_req_list = ["Insecure", "Secure"]
 autocomplete_policy_list = ["Disable Autocomplete",\
 "Secure: History", "Secure: DuckDuckGo",\
@@ -417,6 +419,8 @@ text_language_desc = _("Set a language")
 text_adkiller_desc = _("Enable or disable AdKiller")
 text_adk_policy = _("AdKiller Policy")
 text_adk_policy_desc = _("Set AdKiller behaviour")
+text_adk_popups = _("AdKiller Pop-Ups Policy")
+text_adk_popups_desc = _("Should AdKiller block pop-ups?")
 text_verify_req = _("Requests Module SSL Verification")
 text_verify_req_desc = _("Set Requests Module SSL Verification behaviour")
 text_autocomplete = _("Autocomplete")
@@ -444,7 +448,7 @@ text_height_desc = _("Default height size for normal window")
 '''
 
 settings_db_path = "{}{}".format(settings_path, settings_db)
-settings_db_code = "0"
+settings_db_code = "1"
 
 def create_settings_db():
 
@@ -479,6 +483,7 @@ def create_settings_db():
         cur.execute(insert_string, (text_autocomplete_limit, autocomplete_limit, "1", text_autocomplete_limit_desc, "2", "", "autocomplete_limit"))
         cur.execute(insert_string, (text_find, find, "2", text_find_desc, "2", "find_list", "find"))
         cur.execute(insert_string, (text_adk_policy, adk_policy, "2", text_adk_policy_desc, "2", "adk_policy_list", "adk_policy"))
+        cur.execute(insert_string, (text_adk_popups, adk_popups, "2", text_adk_popups_desc, "2", "adk_popups_list", "adk_popups"))
         cur.execute(insert_string, (text_verify_req, verify_req, "2", text_verify_req_desc, "2", "verify_req_list", "verify_req"))
         cur.execute(insert_string, (text_cache_model, cache_model, "2", text_cache_model_desc, "2", "cache_model_list", "cache_model"))
         cur.execute(insert_string, (text_geolocation, geolocation_policy, "2", text_geolocation_desc, "2", "geolocation_policy_list", "geolocation_policy"))
@@ -606,7 +611,7 @@ lang.install()
 ################
 '''
 
-version = "0.4.4"
+version = "0.4.5"
 browser_name = "Poseidon"
 website = "https://github.com/sidus-dev/poseidon"
 authors = "Andrea Pasciuta  <sidus@arbornet.org>"

@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2017-02-05 06:23+0100\n"
-"PO-Revision-Date: 2017-02-05 06:23+0100\n"
+"POT-Creation-Date: 2017-02-06 15:21+0100\n"
+"PO-Revision-Date: 2017-02-06 15:21+0100\n"
 "Last-Translator: Marius Messerschmidt <marius.messerschmidt@googlemail.com>\n"
 "Language-Team: \n"
 "Language: de_DE\n"
@@ -50,7 +50,7 @@ msgstr ""
 msgid "Delete invalid bookmarks"
 msgstr ""
 
-#: include/functions.py:47 poseidon.py:2458 poseidon.py:2530
+#: include/functions.py:47 poseidon.py:2461 poseidon.py:2533
 msgid "URL"
 msgstr "URL"
 
@@ -94,11 +94,11 @@ msgstr ""
 msgid "bookmarks will be deleted"
 msgstr ""
 
-#: include/functions.py:128 poseidon.py:1217 poseidon.py:1234 poseidon.py:2796
+#: include/functions.py:128 poseidon.py:1217 poseidon.py:1234 poseidon.py:2799
 msgid "Are you sure?"
 msgstr "Sind sie sicher?"
 
-#: include/functions.py:130 poseidon.py:2798
+#: include/functions.py:130 poseidon.py:2801
 msgid "Clicking on OK"
 msgstr ""
 
@@ -110,7 +110,7 @@ msgstr ""
 msgid "could be corrupted or a invalid HTML bookmark file"
 msgstr ""
 
-#: include/functions.py:162 poseidon.py:2547 poseidon.py:2774
+#: include/functions.py:162 poseidon.py:2550 poseidon.py:2777
 msgid "Bookmarks"
 msgstr "Lesezeichen"
 
@@ -490,8 +490,8 @@ msgid "AdKiller (experimental)"
 msgstr "AdKiller (experimentell)"
 
 #: poseidon.py:885 poseidon.py:2003
-msgid "Enabled, Ads/Pop-ups blocked"
-msgstr "Aktiviert, Werbung/Pop-ups blockiert"
+msgid "Enabled, Ads blocked"
+msgstr "Aktiviert, Werbung blockiert"
 
 #: poseidon.py:888
 msgid "Disabled"
@@ -725,164 +725,164 @@ msgstr "Cookies löschen"
 msgid "Remove the selected cookie"
 msgstr "Ausgewählten Cookie löschen"
 
-#: poseidon.py:2327 poseidon.py:2377
+#: poseidon.py:2327 poseidon.py:2381
 msgid "Name"
 msgstr "Name"
 
-#: poseidon.py:2328 poseidon.py:2377
+#: poseidon.py:2328 poseidon.py:2381
 msgid "Value"
 msgstr "Wert"
 
-#: poseidon.py:2329 poseidon.py:2377
+#: poseidon.py:2329 poseidon.py:2381
 msgid "Host"
 msgstr "Host"
 
-#: poseidon.py:2330 poseidon.py:2377
+#: poseidon.py:2330 poseidon.py:2381
 msgid "Path"
 msgstr "Pfad"
 
-#: poseidon.py:2331 poseidon.py:2378
+#: poseidon.py:2331 poseidon.py:2382
 msgid "Expiry"
 msgstr "Ablauf"
 
-#: poseidon.py:2332 poseidon.py:2378
+#: poseidon.py:2332 poseidon.py:2382
 msgid "LastAccessed"
 msgstr "LastAccessed"
 
-#: poseidon.py:2333 poseidon.py:2378
+#: poseidon.py:2333 poseidon.py:2382
 msgid "IsSecure"
 msgstr "IsSecure"
 
-#: poseidon.py:2334 poseidon.py:2378
+#: poseidon.py:2334 poseidon.py:2382
 msgid "IsHttpOnly"
 msgstr "IsHttpOnly"
 
-#: poseidon.py:2337
+#: poseidon.py:2338
 msgid "Edit the selected cookie"
 msgstr "Ausgewählten Cookie bearbeiten"
 
-#: poseidon.py:2338
+#: poseidon.py:2339
 msgid "Add a new cookie with set data"
 msgstr "Einen neuen Cookie mit Daten hinzufügen"
 
-#: poseidon.py:2377
+#: poseidon.py:2381
 msgid "Id"
 msgstr "Id"
 
-#: poseidon.py:2397
+#: poseidon.py:2401
 msgid "Cookies"
 msgstr "Cookies"
 
-#: poseidon.py:2425
+#: poseidon.py:2428
 msgid "Clear history"
 msgstr "Verlauf löschen"
 
-#: poseidon.py:2427 poseidon.py:2499
+#: poseidon.py:2430 poseidon.py:2502
 msgid "Add to bookmarks"
 msgstr "Zu Lesezeichen hinzufügen"
 
-#: poseidon.py:2443
+#: poseidon.py:2446
 msgid "Today"
 msgstr "Heute"
 
-#: poseidon.py:2444
+#: poseidon.py:2447
 msgid "Yesterday"
 msgstr "Gestern"
 
-#: poseidon.py:2445
+#: poseidon.py:2448
 msgid "Two days ago"
 msgstr "Vor zwei Tagen"
 
-#: poseidon.py:2446
+#: poseidon.py:2449
 msgid "This week"
 msgstr "Diese Woche"
 
-#: poseidon.py:2458 poseidon.py:2530
+#: poseidon.py:2461 poseidon.py:2533
 msgid "Date"
 msgstr "Datum"
 
-#: poseidon.py:2458 poseidon.py:2530
+#: poseidon.py:2461 poseidon.py:2533
 msgid "Title"
 msgstr "Titel"
 
-#: poseidon.py:2475
+#: poseidon.py:2478
 msgid "History"
 msgstr "Verlauf"
 
-#: poseidon.py:2495
+#: poseidon.py:2498
 msgid "Erase all bookmarks"
 msgstr ""
 
-#: poseidon.py:2497
+#: poseidon.py:2500
 msgid "Remove the selected bookmark"
 msgstr ""
 
-#: poseidon.py:2498
+#: poseidon.py:2501
 msgid "Bookmarks Scanner"
 msgstr ""
 
-#: poseidon.py:2514
+#: poseidon.py:2517
 msgid "Type here your description"
 msgstr "Hier Beschreibung eingeben"
 
-#: poseidon.py:2515
+#: poseidon.py:2518
 msgid "Type here your URL address"
 msgstr "Hier URL angeben"
 
-#: poseidon.py:2602
+#: poseidon.py:2605
 msgid "Plugins"
 msgstr "Erweiterungen"
 
-#: poseidon.py:2711
+#: poseidon.py:2714
 msgid "VTE missing"
 msgstr "VTE fehlt"
 
-#: poseidon.py:2712
+#: poseidon.py:2715
 msgid "requires at least Vte 2.91 or higher"
 msgstr "benötigt mindestens VTE 2.91 oder höher"
 
-#: poseidon.py:2784
+#: poseidon.py:2787
 msgid "new bookmark will be imported"
 msgstr ""
 
-#: poseidon.py:2785
+#: poseidon.py:2788
 msgid "new bookmarks will be imported"
 msgstr ""
 
-#: poseidon.py:2799
+#: poseidon.py:2802
 msgid "Bookmarks with identical urls will be automatically ignored"
 msgstr ""
 
-#: poseidon.py:2881
+#: poseidon.py:2884
 msgid "WebKit Error"
 msgstr "WebKit Fehler"
 
-#: poseidon.py:2882
+#: poseidon.py:2885
 msgid "requires at least WebKit 2.12.3 or higher"
 msgstr "benötigt mindestens WebKit 2.12.3 oder höher"
 
-#: poseidon.py:2883
+#: poseidon.py:2886
 msgid "In some distros you probably need to add a third-party repository"
 msgstr ""
 "In einigen Distributionen müssen sie vielleicht eine externe Paketquelle "
 "verwenden"
 
-#: poseidon.py:2893
+#: poseidon.py:2896
 msgid "Welcome to"
 msgstr "Wilkommen zu"
 
-#: poseidon.py:2893
+#: poseidon.py:2896
 msgid "shows this menu"
 msgstr "Dieses Menü anzeigen"
 
-#: poseidon.py:2893
+#: poseidon.py:2896
 msgid "opens the browser in defcon mode"
 msgstr "tartet den Browser im defcon  Modus"
 
-#: poseidon.py:2894
+#: poseidon.py:2897
 msgid "shows the version"
 msgstr "zeigt die Version"
 
-#: poseidon.py:2894
+#: poseidon.py:2897
 msgid "Usage"
 msgstr "Verwendung"
