@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2017-02-06 15:21+0100\n"
-"PO-Revision-Date: 2017-02-06 15:21+0100\n"
+"POT-Creation-Date: 2017-02-07 14:39+0100\n"
+"PO-Revision-Date: 2017-02-07 14:47+0100\n"
 "Last-Translator: Marius Messerschmidt <marius.messerschmidt@googlemail.com>\n"
 "Language-Team: \n"
 "Language: de_DE\n"
@@ -40,7 +40,7 @@ msgstr "Erhalten sie ihre AdAway Filterliste hier"
 
 #: include/functions.py:35
 msgid "Bookmarks Scanner (Experimental)"
-msgstr ""
+msgstr "Lesezeichen Scanner (Experimentell)"
 
 #: include/functions.py:40
 msgid "Perform a scan"
@@ -165,7 +165,7 @@ msgstr "Speichern unter"
 
 #: include/pathchooser.py:88
 msgid "Open file"
-msgstr ""
+msgstr "Öffne datei"
 
 #: include/pathchooser.py:104
 msgid "Import a HTML bookmark file"
@@ -304,128 +304,136 @@ msgstr "Authority Info Access"
 msgid "Signature Algorithm"
 msgstr "Signatur Algorithmus"
 
-#: include/settings.py:410
+#: include/settings.py:412
 msgid "Leave it empty to disable it"
 msgstr "Frei lassen zum deaktivieren"
 
-#: include/settings.py:411
-msgid "Home Page"
-msgstr ""
-
-#: include/settings.py:412
-msgid "Search Engine"
-msgstr ""
-
 #: include/settings.py:413
-msgid "Application Launcher"
-msgstr ""
+msgid "Home Page"
+msgstr "Startseite"
 
 #: include/settings.py:414
-msgid "Set a application launcher"
-msgstr ""
+msgid "Search Engine"
+msgstr "Suchmaschine"
 
 #: include/settings.py:415
-msgid "Language"
-msgstr ""
+msgid "Application Launcher"
+msgstr "Anwendungsstarter"
 
 #: include/settings.py:416
-msgid "Set a language"
-msgstr ""
+msgid "Set a application launcher"
+msgstr "Einen Anwendungsstarter einrichten"
 
 #: include/settings.py:417
+msgid "Language"
+msgstr "Sprache"
+
+#: include/settings.py:418
+msgid "Set a language"
+msgstr "Eine Sprache einstellen"
+
+#: include/settings.py:419
 msgid "Enable or disable AdKiller"
 msgstr ""
 
-#: include/settings.py:418
+#: include/settings.py:420
 msgid "AdKiller Policy"
 msgstr ""
 
-#: include/settings.py:419
+#: include/settings.py:421
 msgid "Set AdKiller behaviour"
 msgstr ""
 
-#: include/settings.py:420
-msgid "Requests Module SSL Verification"
-msgstr ""
-
-#: include/settings.py:421
-msgid "Set Requests Module SSL Verification behaviour"
-msgstr ""
-
 #: include/settings.py:422
-msgid "Autocomplete"
+msgid "AdKiller Pop-Ups Policy"
 msgstr ""
 
 #: include/settings.py:423
-msgid "Set word completion for the main input field"
+msgid "Should AdKiller block pop-ups?"
 msgstr ""
 
 #: include/settings.py:424
-msgid "Autocomplete Limit"
+msgid "Requests Module SSL Verification"
 msgstr ""
 
 #: include/settings.py:425
+msgid "Set Requests Module SSL Verification behaviour"
+msgstr ""
+
+#: include/settings.py:426
+msgid "Autocomplete"
+msgstr "Auto-Vervollständigen"
+
+#: include/settings.py:427
+msgid "Set word completion for the main input field"
+msgstr ""
+
+#: include/settings.py:428
+msgid "Autocomplete Limit"
+msgstr "Auto-Vervollständigen Grenze"
+
+#: include/settings.py:429
 msgid ""
 "Set a limit for autocomplete results (eg. 500 = 500 results, -1 = disabled)"
 msgstr ""
 
-#: include/settings.py:426
+#: include/settings.py:430
 msgid "Find Behaviour"
 msgstr ""
 
-#: include/settings.py:427
+#: include/settings.py:431
 msgid "Set finder behaviour"
 msgstr ""
 
-#: include/settings.py:428
+#: include/settings.py:432
 msgid "Cache Model"
 msgstr ""
 
-#: include/settings.py:429
+#: include/settings.py:433
 msgid "Set the cache model"
 msgstr ""
 
-#: include/settings.py:430
+#: include/settings.py:434
 msgid "Geolocation"
-msgstr ""
+msgstr "Geolokalisierung"
 
-#: include/settings.py:431
+#: include/settings.py:435
 msgid "Set geolocation behaviour"
 msgstr ""
 
-#: include/settings.py:432
+#: include/settings.py:436
 msgid "Type of shell to use with VTE Terminal"
 msgstr "Art der Kommandozeile für das VTE Terminal"
 
-#: include/settings.py:433
+#: include/settings.py:437
 msgid "Load Timeout"
 msgstr ""
 
-#: include/settings.py:434
+#: include/settings.py:438
 msgid "Set load timeout in milliseconds (eg. 10000 = 10 seconds, 0 = disabled)"
 msgstr ""
 
-#: include/settings.py:435
+#: include/settings.py:439
 msgid "Restored Window Width Size"
 msgstr ""
 
-#: include/settings.py:436
+#: include/settings.py:440
 msgid "Default width size for normal window"
 msgstr ""
 
-#: include/settings.py:437
+#: include/settings.py:441
 msgid "Restored Window Height Size"
 msgstr ""
 
-#: include/settings.py:438
+#: include/settings.py:442
 msgid "Default height size for normal window"
 msgstr ""
 
-#: include/settings.py:615
+#: include/settings.py:620
 msgid "A fast, minimal and lightweight browser"
 msgstr "ein schneller, minimaler und leichter Browser"
 
-#: include/settings.py:616
+#: include/settings.py:621
 msgid "Empty"
 msgstr "Leer"
 
@@ -443,11 +451,11 @@ msgstr "Aktuellen Tab schließen"
 
 #: poseidon.py:709
 msgid "Open / Import"
-msgstr ""
+msgstr "Öffne / Importieren"
 
 #: poseidon.py:712
 msgid "Save / Export"
-msgstr ""
+msgstr "Speichern / Exportieren"
 
 #: poseidon.py:747 poseidon.py:856
 msgid "Defcon Mode"
@@ -819,7 +827,7 @@ msgstr ""
 
 #: poseidon.py:2501
 msgid "Bookmarks Scanner"
-msgstr ""
+msgstr "Lesezeichen Scanner"
 
 #: poseidon.py:2517
 msgid "Type here your description"

@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2017-02-06 15:21+0100\n"
-"PO-Revision-Date: 2017-02-06 15:21+0100\n"
+"POT-Creation-Date: 2017-02-07 14:31+0100\n"
+"PO-Revision-Date: 2017-02-07 14:31+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: it_IT\n"
@@ -293,132 +293,140 @@ msgstr "Accesso Informazioni Autorità"
 msgid "Signature Algorithm"
 msgstr "Algoritmo della Firma"
 
-#: include/settings.py:410
+#: include/settings.py:412
 msgid "Leave it empty to disable it"
 msgstr "Lascia in bianco per disabilitare"
 
-#: include/settings.py:411
+#: include/settings.py:413
 msgid "Home Page"
 msgstr "Pagina Iniziale"
 
-#: include/settings.py:412
+#: include/settings.py:414
 msgid "Search Engine"
 msgstr "Motore di Ricerca"
 
-#: include/settings.py:413
+#: include/settings.py:415
 msgid "Application Launcher"
 msgstr "Lanciatore di Applicazioni"
 
-#: include/settings.py:414
+#: include/settings.py:416
 msgid "Set a application launcher"
 msgstr "Imposta un lanciatore di applicazioni"
 
-#: include/settings.py:415
+#: include/settings.py:417
 msgid "Language"
 msgstr "Lingua"
 
-#: include/settings.py:416
+#: include/settings.py:418
 msgid "Set a language"
 msgstr "Imposta una lingua"
 
-#: include/settings.py:417
+#: include/settings.py:419
 msgid "Enable or disable AdKiller"
 msgstr "Abilita o disabilita AdKiller"
 
-#: include/settings.py:418
+#: include/settings.py:420
 msgid "AdKiller Policy"
 msgstr "Comportamento di AdKiller"
 
-#: include/settings.py:419
+#: include/settings.py:421
 msgid "Set AdKiller behaviour"
 msgstr "Imposta il comportamento di AdKiller"
 
-#: include/settings.py:420
+#: include/settings.py:422
+msgid "AdKiller Pop-Ups Policy"
+msgstr "AdKiller Pop-Ups"
+
+#: include/settings.py:423
+msgid "Should AdKiller block pop-ups?"
+msgstr "AdKiller deve bloccare anche i pop-up?"
+
+#: include/settings.py:424
 msgid "Requests Module SSL Verification"
 msgstr "Modulo Request Verifica SSL"
 
-#: include/settings.py:421
+#: include/settings.py:425
 msgid "Set Requests Module SSL Verification behaviour"
 msgstr "Imposta il comportamento del Modulo Request Verifica SSL"
 
-#: include/settings.py:422
+#: include/settings.py:426
 msgid "Autocomplete"
 msgstr "Autocompletamento"
 
-#: include/settings.py:423
+#: include/settings.py:427
 msgid "Set word completion for the main input field"
 msgstr "Imposta il tipo di autocompletamento per il campo di testo iniziale"
 
-#: include/settings.py:424
+#: include/settings.py:428
 msgid "Autocomplete Limit"
 msgstr "Limite Autocompletamento"
 
-#: include/settings.py:425
+#: include/settings.py:429
 msgid ""
 "Set a limit for autocomplete results (eg. 500 = 500 results, -1 = disabled)"
 msgstr ""
 "Imposta un limite per l'autocompletamento (es. 500 = 500 risultati, -1 = "
 "disabilitato)"
 
-#: include/settings.py:426
+#: include/settings.py:430
 msgid "Find Behaviour"
 msgstr "Comportamento Ricerca"
 
-#: include/settings.py:427
+#: include/settings.py:431
 msgid "Set finder behaviour"
 msgstr "Imposta il comportamento della ricerca"
 
-#: include/settings.py:428
+#: include/settings.py:432
 msgid "Cache Model"
 msgstr "Modello di Cache"
 
-#: include/settings.py:429
+#: include/settings.py:433
 msgid "Set the cache model"
 msgstr "Imposta il modello di cache"
 
-#: include/settings.py:430
+#: include/settings.py:434
 msgid "Geolocation"
 msgstr "Geolocazione"
 
-#: include/settings.py:431
+#: include/settings.py:435
 msgid "Set geolocation behaviour"
 msgstr "Imposta il comportamento della geolocazione"
 
-#: include/settings.py:432
+#: include/settings.py:436
 msgid "Type of shell to use with VTE Terminal"
 msgstr "Tipo di shell da usare col terminale VTE"
 
-#: include/settings.py:433
+#: include/settings.py:437
 msgid "Load Timeout"
 msgstr "Timeout di Caricamento"
 
-#: include/settings.py:434
+#: include/settings.py:438
 msgid "Set load timeout in milliseconds (eg. 10000 = 10 seconds, 0 = disabled)"
 msgstr ""
 "Imposta il timeout di caricamento in millisecondi (es. 10000 = 10 secondi, 0 "
 "= disabilitato)"
 
-#: include/settings.py:435
+#: include/settings.py:439
 msgid "Restored Window Width Size"
 msgstr "Dimensioni in Larghezza della Finestra Normale"
 
-#: include/settings.py:436
+#: include/settings.py:440
 msgid "Default width size for normal window"
 msgstr "Dimensioni originali in larghezza della finestra normale"
 
-#: include/settings.py:437
+#: include/settings.py:441
 msgid "Restored Window Height Size"
 msgstr "Dimensioni in Altezza della Finestra Normale"
 
-#: include/settings.py:438
+#: include/settings.py:442
 msgid "Default height size for normal window"
 msgstr "Dimensioni originali in altezza della finestra normale"
 
-#: include/settings.py:615
+#: include/settings.py:620
 msgid "A fast, minimal and lightweight browser"
 msgstr "Un browser leggero, veloce e minimale"
 
-#: include/settings.py:616
+#: include/settings.py:621
 msgid "Empty"
 msgstr "Scheda Vuota"
 

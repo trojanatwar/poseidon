@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2017-02-06 15:21+0100\n"
-"PO-Revision-Date: 2017-02-06 15:21+0100\n"
+"POT-Creation-Date: 2017-02-07 14:48+0100\n"
+"PO-Revision-Date: 2017-02-07 14:48+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en_US\n"
@@ -282,128 +282,136 @@ msgstr ""
 msgid "Signature Algorithm"
 msgstr ""
 
-#: include/settings.py:410
+#: include/settings.py:412
 msgid "Leave it empty to disable it"
 msgstr ""
 
-#: include/settings.py:411
+#: include/settings.py:413
 msgid "Home Page"
 msgstr ""
 
-#: include/settings.py:412
+#: include/settings.py:414
 msgid "Search Engine"
 msgstr ""
 
-#: include/settings.py:413
+#: include/settings.py:415
 msgid "Application Launcher"
 msgstr ""
 
-#: include/settings.py:414
+#: include/settings.py:416
 msgid "Set a application launcher"
 msgstr ""
 
-#: include/settings.py:415
+#: include/settings.py:417
 msgid "Language"
 msgstr ""
 
-#: include/settings.py:416
+#: include/settings.py:418
 msgid "Set a language"
 msgstr ""
 
-#: include/settings.py:417
+#: include/settings.py:419
 msgid "Enable or disable AdKiller"
 msgstr ""
 
-#: include/settings.py:418
+#: include/settings.py:420
 msgid "AdKiller Policy"
 msgstr ""
 
-#: include/settings.py:419
+#: include/settings.py:421
 msgid "Set AdKiller behaviour"
 msgstr ""
 
-#: include/settings.py:420
-msgid "Requests Module SSL Verification"
-msgstr ""
-
-#: include/settings.py:421
-msgid "Set Requests Module SSL Verification behaviour"
-msgstr ""
-
 #: include/settings.py:422
-msgid "Autocomplete"
+msgid "AdKiller Pop-Ups Policy"
 msgstr ""
 
 #: include/settings.py:423
-msgid "Set word completion for the main input field"
+msgid "Should AdKiller block pop-ups?"
 msgstr ""
 
 #: include/settings.py:424
-msgid "Autocomplete Limit"
+msgid "Requests Module SSL Verification"
 msgstr ""
 
 #: include/settings.py:425
+msgid "Set Requests Module SSL Verification behaviour"
+msgstr ""
+
+#: include/settings.py:426
+msgid "Autocomplete"
+msgstr ""
+
+#: include/settings.py:427
+msgid "Set word completion for the main input field"
+msgstr ""
+
+#: include/settings.py:428
+msgid "Autocomplete Limit"
+msgstr ""
+
+#: include/settings.py:429
 msgid ""
 "Set a limit for autocomplete results (eg. 500 = 500 results, -1 = disabled)"
 msgstr ""
 
-#: include/settings.py:426
+#: include/settings.py:430
 msgid "Find Behaviour"
 msgstr ""
 
-#: include/settings.py:427
+#: include/settings.py:431
 msgid "Set finder behaviour"
 msgstr ""
 
-#: include/settings.py:428
+#: include/settings.py:432
 msgid "Cache Model"
 msgstr ""
 
-#: include/settings.py:429
+#: include/settings.py:433
 msgid "Set the cache model"
 msgstr ""
 
-#: include/settings.py:430
+#: include/settings.py:434
 msgid "Geolocation"
 msgstr ""
 
-#: include/settings.py:431
+#: include/settings.py:435
 msgid "Set geolocation behaviour"
 msgstr ""
 
-#: include/settings.py:432
+#: include/settings.py:436
 msgid "Type of shell to use with VTE Terminal"
 msgstr ""
 
-#: include/settings.py:433
+#: include/settings.py:437
 msgid "Load Timeout"
 msgstr ""
 
-#: include/settings.py:434
+#: include/settings.py:438
 msgid "Set load timeout in milliseconds (eg. 10000 = 10 seconds, 0 = disabled)"
 msgstr ""
 
-#: include/settings.py:435
+#: include/settings.py:439
 msgid "Restored Window Width Size"
 msgstr ""
 
-#: include/settings.py:436
+#: include/settings.py:440
 msgid "Default width size for normal window"
 msgstr ""
 
-#: include/settings.py:437
+#: include/settings.py:441
 msgid "Restored Window Height Size"
 msgstr ""
 
-#: include/settings.py:438
+#: include/settings.py:442
 msgid "Default height size for normal window"
 msgstr ""
 
-#: include/settings.py:615
+#: include/settings.py:620
 msgid "A fast, minimal and lightweight browser"
 msgstr ""
 
-#: include/settings.py:616
+#: include/settings.py:621
 msgid "Empty"
 msgstr ""
 

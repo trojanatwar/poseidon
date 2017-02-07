@@ -376,8 +376,8 @@ set_zoom_text_only = 0
 #########
 '''
 
-boolean_list = ["False", "True"]
 language_list = ["en_US", "it_IT", "de_DE"]
+boolean_list = ["False", "True"]
 adkiller_list = ["Disabled", "Enabled"]
 adk_policy_list = ["Fastest", "Precise"]
 adk_popups_list = ["Don't Block Pop-Ups", "Block Pop-Ups"]
@@ -401,13 +401,13 @@ font_list = get_font_families()
 
 
 '''
-########################
-# Translatable Strings #
-########################
+#########
+# Texts #
+#########
 '''
 
-lang = gettext.translation(language_list[0], localedir=lc_path, languages=language_list)
-lang.install()
+lang = gettext.translation(language_list[0],\
+localedir=lc_path, languages=language_list).install()
 
 text_blank_desc = _("Leave it empty to disable it")
 text_home_page = _("Home Page")
@@ -602,8 +602,8 @@ pickle.dump(0, open("{}{}".format(pickle_path, adb_name), "wb"))
 ####################
 '''
 
-lang = gettext.translation(language_list[language], localedir=lc_path, languages=language_list)
-lang.install()
+lang = gettext.translation(language_list[language],\
+localedir=lc_path, languages=language_list).install()
 
 '''
 ################
