@@ -311,6 +311,7 @@ load_timeout = 0
 width = 800
 height = 600
 verify_req = 1
+tab_cb = 0
 
 '''
 ############################
@@ -421,6 +422,8 @@ text_adk_policy = _("AdKiller Policy")
 text_adk_policy_desc = _("Set AdKiller behaviour")
 text_adk_popups = _("AdKiller Pop-Ups Policy")
 text_adk_popups_desc = _("Should AdKiller block pop-ups?")
+text_tab_cb = _("Tab Close Button")
+text_tab_cb_desc = _("Show a close button in the tabs?")
 text_verify_req = _("Requests Module SSL Verification")
 text_verify_req_desc = _("Set Requests Module SSL Verification behaviour")
 text_autocomplete = _("Autocomplete")
@@ -448,7 +451,7 @@ text_height_desc = _("Default height size for normal window")
 '''
 
 settings_db_path = "{}{}".format(settings_path, settings_db)
-settings_db_code = "1"
+settings_db_code = "2"
 
 def create_settings_db():
 
@@ -479,6 +482,7 @@ def create_settings_db():
         cur.execute(insert_string, (text_app_launcher, app_launcher, "1", text_app_launcher_desc, "1", "", "app_launcher"))
         cur.execute(insert_string, (text_language, language, "2", text_language_desc, "1", "language_list", "language"))
         cur.execute(insert_string, ("AdKiller", adkiller, "2", text_adkiller_desc, "1", "adkiller_list", "adkiller"))
+        cur.execute(insert_string, (text_tab_cb, tab_cb, "2", text_tab_cb_desc, "1", "boolean_list", "tab_cb"))
         cur.execute(insert_string, (text_autocomplete, autocomplete_policy, "2", text_autocomplete_desc, "2", "autocomplete_policy_list", "autocomplete_policy"))
         cur.execute(insert_string, (text_autocomplete_limit, autocomplete_limit, "1", text_autocomplete_limit_desc, "2", "", "autocomplete_limit"))
         cur.execute(insert_string, (text_find, find, "2", text_find_desc, "2", "find_list", "find"))
@@ -611,7 +615,7 @@ localedir=lc_path, languages=language_list).install()
 ################
 '''
 
-version = "0.4.5"
+version = "0.4.6"
 browser_name = "Poseidon"
 website = "https://github.com/sidus-dev/poseidon"
 authors = "Andrea Pasciuta  <sidus@arbornet.org>"

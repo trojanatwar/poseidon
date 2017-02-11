@@ -32,7 +32,7 @@ import validators
 def bookmarks_scanner(self, list):
 
     window = Gtk.Window()
-    window.set_title(_("Bookmarks Scanner (Experimental)"))
+    window.set_title(_("Bookmarks Scanner"))
     window.set_position(Gtk.WindowPosition.CENTER)
     window.set_skip_taskbar_hint(True)
     window.set_transient_for(self)
@@ -282,6 +282,17 @@ def make_modelbutton_label(text, xalign, yalign):
     label.set_markup("<span color='gray' size='x-small'>{}</span>".format(text))
 
     return label
+
+def make_tab_box(text):
+
+    box = Gtk.HBox(False)
+    button = make_button(make_icon("edit-delete.svg"), None, False)
+    label = Gtk.Label(text)
+    box.pack_start(label, False, False, 5)
+    box.pack_start(button, False, False, 5)
+    box.show_all()
+
+    return box
      
 def make_box(text, length, digit):
 

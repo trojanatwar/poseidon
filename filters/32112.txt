@@ -10,7 +10,7 @@
 # other formats:  https://pgl.yoyo.org/adservers/formats.php
 # policy:         https://pgl.yoyo.org/adservers/policy.php
 #
-# start date:    Mon, 06 Feb 2017 00:00:00
+# start date:    Sat, 11 Feb 2017 00:00:00
 127.0.0.1 101com.com
 127.0.0.1 101order.com
 127.0.0.1 123found.com
@@ -213,7 +213,6 @@
 127.0.0.1 adcycle.com
 127.0.0.1 add.newmedia.cz
 127.0.0.1 addealing.com
-127.0.0.1 addesktop.com
 127.0.0.1 addfreestats.com
 127.0.0.1 addme.com
 127.0.0.1 adecn.com
@@ -931,7 +930,6 @@
 127.0.0.1 are-ter.com
 127.0.0.1 as.webmd.com
 127.0.0.1 as1.advfn.com
-127.0.0.1 as2.advfn.com
 127.0.0.1 assets1.exgfnetwork.com
 127.0.0.1 assoc-amazon.com
 127.0.0.1 at-adserver.alltop.com
@@ -1354,6 +1352,7 @@
 127.0.0.1 euros4click.de
 127.0.0.1 eusta.de
 127.0.0.1 evergage.com
+127.0.0.1 evidencecleanergold.com
 127.0.0.1 ewebcounter.com
 127.0.0.1 exchange-it.com
 127.0.0.1 exchange.bg
@@ -1368,6 +1367,7 @@
 127.0.0.1 experteerads.com
 127.0.0.1 exponential.com
 127.0.0.1 express-submit.de
+127.0.0.1 extractorandburner.com
 127.0.0.1 extreme-dm.com
 127.0.0.1 extremetracking.com
 127.0.0.1 eyeblaster.com

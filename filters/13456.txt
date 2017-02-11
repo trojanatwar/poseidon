@@ -33735,6 +33735,7 @@
 127.0.0.1	n-tv.de.intellitxt.com
 127.0.0.1	n-tv.met.vgwort.de
 127.0.0.1	n.bodybuilding.com
+127.0.0.1	n.fclick-adnow.com
 127.0.0.1	n.gemini.yahoo.com
 127.0.0.1	n.ladycash.ru
 127.0.0.1	n.lcads.ru
@@ -48009,4 +48010,4 @@
 127.0.0.1	zz.zeroredirect1.com
 127.0.0.1	zzz.clickbank.net
 127.0.0.1	_thums.ero-advertising.com
-# Hosts: 48001
+# Hosts: 48002
