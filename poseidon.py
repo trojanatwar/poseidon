@@ -779,6 +779,8 @@ class Browser(Gtk.Window):
                 if type(i) == gi.overrides.Gtk.Button:
                     i.connect("clicked", self.close_clicked_tab, page_tuple[0])
 
+            self.sensitive_tab(False)
+
         self.add(notebook)
 
         self.connect("destroy", lambda x: quit(self))
@@ -1954,6 +1956,7 @@ class Browser(Gtk.Window):
 
         self.current_page = index
         self.remtab.set_sensitive(True)
+        if tab_cb == 1: self.sensitive_tab(True)
         self.update_status()
 
     def on_maximize(self):
@@ -2024,12 +2027,22 @@ class Browser(Gtk.Window):
             self.tabs[page][0].destroy()
             current_tab = self.tabs.pop(page)
             self.notebook.remove(current_tab[0])
-            if self.notebook.get_n_pages() == 1: self.remtab.set_sensitive(False)
+
+            if self.notebook.get_n_pages() == 1:
+                self.remtab.set_sensitive(False)
+                if tab_cb == 1: self.sensitive_tab(False)
 
     def close_clicked_tab(self, sender, widget):
 
         self.notebook.set_current_page(self.notebook.page_num(widget))
         self.close_current_tab()
+
+    def sensitive_tab(self, boolean):
+
+        for tab, widget in self.tabs:
+            if type(widget) == gi.repository.Gtk.HBox:
+                for i in widget:
+                    if type(i) == gi.overrides.Gtk.Button: i.set_sensitive(boolean)
 
     def tab_data(self):
 
