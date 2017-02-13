@@ -93,7 +93,8 @@ evince_mime = [
 
 uri_schemes = [
 
-"magnet:?xt=urn:", "mailto:", "apt:", "ed2k:"
+"aim:", "apt:", "bitcoin:", "callto:", "ed2k:", "fax:", "gtalk:", "irc:", "irc6:", "ircs:", "lastfm:", "magnet:?xt=urn:",\
+"mailto:", "secondlife:", "skype:", "smb:", "sms:", "steam:", "tel:", "unreal:", "ut2004:"
 
 ]
 
