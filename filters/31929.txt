@@ -31334,7 +31334,6 @@
 127.0.0.1	j.adlooxtracking.com
 127.0.0.1	j.clickdensity.com
 127.0.0.1	j.kissinsights.com
-127.0.0.1	j.mp
 127.0.0.1	j.ophan.co.uk
 127.0.0.1	j.rvttrack.com
 127.0.0.1	j.sahcdn.com
@@ -35453,6 +35452,7 @@
 127.0.0.1	preciselylocate.com
 127.0.0.1	precisionleads.go2cloud.org
 127.0.0.1	predictad.com
+127.0.0.1	predictivadvertising.com
 127.0.0.1	predictivenetworks.com
 127.0.0.1	preferences.truste.com
 127.0.0.1	preferredpublishers.go2cloud.org
@@ -39500,6 +39500,7 @@
 127.0.0.1	trackicollect.ibase.fr
 127.0.0.1	tracking.1moretoy.com
 127.0.0.1	tracking.247search.com
+127.0.0.1	tracking.4v4jfe79erfxfu8z8.com
 127.0.0.1	tracking.actionads.ru
 127.0.0.1	tracking.adjug.com
 127.0.0.1	tracking.admarketplace.net
@@ -46814,6 +46815,7 @@
 127.0.0.1	www.pptrk.com
 127.0.0.1	www.prchecker.info
 127.0.0.1	www.preciselylocate.com
+127.0.0.1	www.predictivadvertising.com
 127.0.0.1	www.premiumhdv.com
 127.0.0.1	www.primosearch.com
 127.0.0.1	www.pringotrack.com
@@ -48010,4 +48012,4 @@
 127.0.0.1	zz.zeroredirect1.com
 127.0.0.1	zzz.clickbank.net
 127.0.0.1	_thums.ero-advertising.com
-# Hosts: 48002
+# Hosts: 48004

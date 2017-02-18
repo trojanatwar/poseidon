@@ -2,7 +2,8 @@
 
 cd "$(dirname "$0")"
 export PYTHONPATH=$(pwd)
-export MOZ_PLUGIN_PATH=/usr/lib/epiphany/plugins
+export MOZ_PLUGIN_PATH=/usr/lib/epiphany/plugins:/usr/local/lib/epiphany/plugins:\
+/opt/mozilla/lib/plugins:$HOME/.mozilla/plugins:/usr/lib/mozilla/plugins:/usr/lib64/mozilla/plugins
 
 # Should be ready for Wayland!
 # export GDK_BACKEND=x11

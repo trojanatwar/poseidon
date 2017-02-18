@@ -221,6 +221,12 @@ def minify(arg, num):
     except: pass
     return arg
 
+def clean_html(raw):
+
+    r = re.compile("<.*?>")
+    text = re.sub(r, " ", raw)
+    return " ".join(text.split())
+
 def get_filename(dest):
 
     return dest.split("/")[-1]

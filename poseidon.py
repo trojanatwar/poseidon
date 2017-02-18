@@ -224,11 +224,9 @@ class BrowserTab(Gtk.VBox):
             entrycompletion.set_model(liststore)
             main_url_entry.set_completion(entrycompletion)
 
-            if autocomplete_policy == 1:
-                entrycompletion.connect('match-selected', self.on_autocomplete_match)
+            if autocomplete_policy == 1: entrycompletion.connect('match-selected', self.on_autocomplete_match)
             else:
-                if search_engine:
-                    entrycompletion.connect('match-selected', self.on_autocomplete_search)
+                if search_engine: entrycompletion.connect('match-selected', self.on_autocomplete_search)
 
         '''
         ################
@@ -2634,13 +2632,28 @@ class Browser(Gtk.Window):
             grid.set_column_homogeneous(False)
             grid.set_property("margin", 20)
 
+            l = ["flash", "evince", "icedtea", "java", "openjdk", "vlc"]
+
             for c, i in enumerate(plugins):
 
                 label = make_label_selectable(0.0, 0.5)
                 label.set_markup("<b>{}</b>\n<span size='small'>{}</span>\n<span size='small'>{}</span>\n"\
-                .format(i.get_name(), i.get_description(), i.get_path()))
+                .format(clean_html(i.get_name()), clean_html(i.get_description()), clean_html(i.get_path())))
 
-                grid.attach(make_icon("plugin.svg"), 0, c, 1, 1)
+                p = ["plugin", "{}{}.svg"]
+                name = p[0]
+
+                for o in l:
+                    if o in i.get_name().lower(): name = o
+
+                icon_path = p[1].format(icns, name)
+                if not os.path.exists(icon_path): icon_path = p[1].format(icns, p[0]) 
+
+                pixbuf = GdkPixbuf.Pixbuf.new_from_file_at_size(icon_path, 32, 32)
+                icon = Gtk.Image().new_from_pixbuf(pixbuf)
+                icon.set_alignment(0, 0.2)
+
+                grid.attach(icon, 0, c, 1, 1)
                 grid.attach(label, 1, c, 1, 1)
 
             scrolled_window.add(grid)
