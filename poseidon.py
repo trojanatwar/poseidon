@@ -2034,6 +2034,7 @@ class Browser(Gtk.Window):
 
         self.notebook.set_current_page(self.notebook.page_num(widget))
         self.close_current_tab()
+        self.update_status()
 
     def sensitive_tab(self, boolean):
 
