@@ -28037,6 +28037,7 @@
 127.0.0.1	enews.bfast.com
 127.0.0.1	enewsletters.ziffdavisinternet.com
 127.0.0.1	enfintrouver.com
+127.0.0.1	engage.morespeck.com
 127.0.0.1	engagebdr.com
 127.0.0.1	engine.4dsply.com
 127.0.0.1	engine.a.redditmedia.com
@@ -38695,7 +38696,6 @@
 127.0.0.1	tag.gamecentral.hiro.tv
 127.0.0.1	tag.gstat.orangeportails.net
 127.0.0.1	tag.myplay.com
-127.0.0.1	tag.navdmp.com
 127.0.0.1	tag.reachadv.it
 127.0.0.1	tag.researchnow.com
 127.0.0.1	tag.shopping-feed.com

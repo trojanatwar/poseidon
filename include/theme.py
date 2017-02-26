@@ -19,10 +19,12 @@
 import os, sys, gi
 from gi.repository import Gtk, Gdk
 sys.path.append(".")
-from settings import theme_file
+from settings import theme_file, transpop
 from functions import is_image_valid
 
 def apply_css():
+
+    alpha = """popover { opacity: 0.95; }"""
 
     theme = """#notebook.header.top, #notebook header tabs { background: url('"""\
     + theme_file + """') no-repeat center; background-size: cover; }"""
@@ -46,9 +48,10 @@ def apply_css():
 
     """
 
+    if transpop: css += alpha
+
     if os.path.exists(theme_file):
-        if is_image_valid(theme_file):
-            css += theme
+        if is_image_valid(theme_file): css += theme
 
     cssprovider = Gtk.CssProvider()
     cssprovider.load_from_data(bytes(css.encode()))

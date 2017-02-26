@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2017-02-11 21:45+0100\n"
-"PO-Revision-Date: 2017-02-11 21:45+0100\n"
+"POT-Creation-Date: 2017-02-26 14:51+0100\n"
+"PO-Revision-Date: 2017-02-26 14:51+0100\n"
 "Last-Translator: Marius Messerschmidt <marius.messerschmidt@googlemail.com>\n"
 "Language-Team: \n"
 "Language: de_DE\n"
@@ -38,7 +38,7 @@ msgstr ""
 msgid "Get your AdAway filter list here"
 msgstr "Erhalten sie ihre AdAway Filterliste hier"
 
-#: include/functions.py:35 poseidon.py:2543
+#: include/functions.py:35 poseidon.py:2555
 msgid "Bookmarks Scanner"
 msgstr "Lesezeichen Scanner"
 
@@ -50,7 +50,7 @@ msgstr ""
 msgid "Delete invalid bookmarks"
 msgstr ""
 
-#: include/functions.py:47 poseidon.py:2502 poseidon.py:2575
+#: include/functions.py:47 poseidon.py:2514 poseidon.py:2587
 msgid "URL"
 msgstr "URL"
 
@@ -74,7 +74,7 @@ msgstr ""
 msgid "Scanning Bookmarks"
 msgstr ""
 
-#: include/functions.py:93 poseidon.py:2099
+#: include/functions.py:93 poseidon.py:2111
 msgid "This operation may take a while"
 msgstr "Diese Operation dauert möglicherweise etwas"
 
@@ -94,11 +94,11 @@ msgstr ""
 msgid "bookmarks will be deleted"
 msgstr ""
 
-#: include/functions.py:128 poseidon.py:1230 poseidon.py:1247 poseidon.py:2844
+#: include/functions.py:128 poseidon.py:1230 poseidon.py:1247 poseidon.py:2871
 msgid "Are you sure?"
 msgstr "Sind sie sicher?"
 
-#: include/functions.py:130 poseidon.py:2846
+#: include/functions.py:130 poseidon.py:2873
 msgid "Clicking on OK"
 msgstr ""
 
@@ -110,27 +110,27 @@ msgstr ""
 msgid "could be corrupted or a invalid HTML bookmark file"
 msgstr ""
 
-#: include/functions.py:162 poseidon.py:2593 poseidon.py:2822
+#: include/functions.py:162 poseidon.py:2605 poseidon.py:2849
 msgid "Bookmarks"
 msgstr "Lesezeichen"
 
-#: include/functions.py:434 poseidon.py:1003
+#: include/functions.py:440 poseidon.py:1003
 msgid "Password Generator"
 msgstr "Passwort Generator"
 
-#: include/functions.py:439
+#: include/functions.py:445
 msgid "Password Length"
 msgstr "Password Länge"
 
-#: include/functions.py:440
+#: include/functions.py:446
 msgid "Generate"
 msgstr "Generieren"
 
-#: include/functions.py:441
+#: include/functions.py:447
 msgid "Copy"
 msgstr "Kopieren"
 
-#: include/functions.py:511
+#: include/functions.py:517
 msgid "Double click item to switch"
 msgstr "Doppelt klicken um zu wechseln"
 
@@ -304,168 +304,176 @@ msgstr "Authority Info Access"
 msgid "Signature Algorithm"
 msgstr "Signatur Algorithmus"
 
-#: include/settings.py:413
+#: include/settings.py:415
 msgid "Leave it empty to disable it"
 msgstr "Frei lassen zum deaktivieren"
 
-#: include/settings.py:414
+#: include/settings.py:416
 msgid "Home Page"
 msgstr "Startseite"
 
-#: include/settings.py:415
+#: include/settings.py:417
 msgid "Search Engine"
 msgstr "Suchmaschine"
 
-#: include/settings.py:416
+#: include/settings.py:418
 msgid "Application Launcher"
 msgstr "Anwendungsstarter"
 
-#: include/settings.py:417
+#: include/settings.py:419
 msgid "Set a application launcher"
 msgstr "Einen Anwendungsstarter einrichten"
 
-#: include/settings.py:418
+#: include/settings.py:420
 msgid "Language"
 msgstr "Sprache"
 
-#: include/settings.py:419
+#: include/settings.py:421
 msgid "Set a language"
 msgstr "Eine Sprache einstellen"
 
-#: include/settings.py:420
+#: include/settings.py:422
 msgid "Enable or disable AdKiller"
 msgstr ""
 
-#: include/settings.py:421
+#: include/settings.py:423
 msgid "AdKiller Policy"
 msgstr ""
 
-#: include/settings.py:422
+#: include/settings.py:424
 msgid "Set AdKiller behaviour"
 msgstr ""
 
-#: include/settings.py:423
+#: include/settings.py:425
 msgid "AdKiller Pop-Ups Policy"
 msgstr ""
 
-#: include/settings.py:424
+#: include/settings.py:426
 msgid "Should AdKiller block pop-ups?"
 msgstr ""
 
-#: include/settings.py:425
+#: include/settings.py:427
 msgid "Tab Close Button"
 msgstr ""
 
-#: include/settings.py:426
+#: include/settings.py:428
 msgid "Show a close button in the tabs?"
 msgstr ""
 
-#: include/settings.py:427
-msgid "Requests Module SSL Verification"
-msgstr ""
-
-#: include/settings.py:428
-msgid "Set Requests Module SSL Verification behaviour"
-msgstr ""
-
 #: include/settings.py:429
-msgid "Autocomplete"
-msgstr "Auto-Vervollständigen"
+msgid "Popover Menus Transparency"
+msgstr ""
 
 #: include/settings.py:430
-msgid "Set word completion for the main input field"
+msgid "Gtk Popover menus must be transparent?"
 msgstr ""
 
 #: include/settings.py:431
+msgid "Requests Module SSL Verification"
+msgstr ""
+
+#: include/settings.py:432
+msgid "Set Requests Module SSL Verification behaviour"
+msgstr ""
+
+#: include/settings.py:433
+msgid "Autocomplete"
+msgstr "Auto-Vervollständigen"
+
+#: include/settings.py:434
+msgid "Set word completion for the main input field"
+msgstr ""
+
+#: include/settings.py:435
 msgid "Autocomplete Limit"
 msgstr "Auto-Vervollständigen Grenze"
 
-#: include/settings.py:432
+#: include/settings.py:436
 msgid ""
 "Set a limit for autocomplete results (eg. 500 = 500 results, -1 = disabled)"
 msgstr ""
 
-#: include/settings.py:433
+#: include/settings.py:437
 msgid "Find Behaviour"
 msgstr ""
 
-#: include/settings.py:434
+#: include/settings.py:438
 msgid "Set finder behaviour"
 msgstr ""
 
-#: include/settings.py:435
+#: include/settings.py:439
 msgid "Cache Model"
 msgstr ""
 
-#: include/settings.py:436
+#: include/settings.py:440
 msgid "Set the cache model"
 msgstr ""
 
-#: include/settings.py:437
+#: include/settings.py:441
 msgid "Geolocation"
 msgstr "Geolokalisierung"
 
-#: include/settings.py:438
+#: include/settings.py:442
 msgid "Set geolocation behaviour"
 msgstr ""
 
-#: include/settings.py:439
+#: include/settings.py:443
 msgid "Type of shell to use with VTE Terminal"
 msgstr "Art der Kommandozeile für das VTE Terminal"
 
-#: include/settings.py:440
+#: include/settings.py:444
 msgid "Load Timeout"
 msgstr ""
 
-#: include/settings.py:441
+#: include/settings.py:445
 msgid "Set load timeout in milliseconds (eg. 10000 = 10 seconds, 0 = disabled)"
 msgstr ""
 
-#: include/settings.py:442
+#: include/settings.py:446
 msgid "Restored Window Width Size"
 msgstr ""
 
-#: include/settings.py:443
+#: include/settings.py:447
 msgid "Default width size for normal window"
 msgstr ""
 
-#: include/settings.py:444
+#: include/settings.py:448
 msgid "Restored Window Height Size"
 msgstr ""
 
-#: include/settings.py:445
+#: include/settings.py:449
 msgid "Default height size for normal window"
 msgstr ""
 
-#: include/settings.py:624
+#: include/settings.py:629
 msgid "A fast, minimal and lightweight browser"
 msgstr "ein schneller, minimaler und leichter Browser"
 
-#: include/settings.py:625
+#: include/settings.py:630
 msgid "Empty"
 msgstr "Leer"
 
-#: poseidon.py:592
+#: poseidon.py:590
 msgid "Give the approval for geolocation?"
 msgstr "Zugriff auf Standort erlauben?"
 
-#: poseidon.py:693
+#: poseidon.py:691
 msgid "Open a new tab"
 msgstr "Neuen Tab öffnen"
 
-#: poseidon.py:696
+#: poseidon.py:694
 msgid "Close current tab"
 msgstr "Aktuellen Tab schließen"
 
-#: poseidon.py:709
+#: poseidon.py:707
 msgid "Open / Import"
 msgstr "Öffne / Importieren"
 
-#: poseidon.py:712
+#: poseidon.py:710
 msgid "Save / Export"
 msgstr "Speichern / Exportieren"
 
-#: poseidon.py:747 poseidon.py:869
+#: poseidon.py:745 poseidon.py:869
 msgid "Defcon Mode"
 msgstr "Defcon Modus"
 
@@ -477,7 +485,7 @@ msgstr "Diese Seite zu Lesezeichen hinzufügen"
 msgid "New Window"
 msgstr "Neues Fenster"
 
-#: poseidon.py:873 poseidon.py:2258
+#: poseidon.py:873 poseidon.py:2270
 msgid "Settings"
 msgstr "Einstellungen"
 
@@ -501,11 +509,11 @@ msgstr "Vergrößerung zurücksetzen"
 msgid "Print"
 msgstr "Drucken"
 
-#: poseidon.py:898 poseidon.py:901 poseidon.py:2016
+#: poseidon.py:898 poseidon.py:901 poseidon.py:2017
 msgid "AdKiller (experimental)"
 msgstr "AdKiller (experimentell)"
 
-#: poseidon.py:898 poseidon.py:2016
+#: poseidon.py:898 poseidon.py:2017
 msgid "Enabled, Ads blocked"
 msgstr "Aktiviert, Werbung blockiert"
 
@@ -568,7 +576,7 @@ msgstr "Beenden"
 msgid "Go Fullscreen"
 msgstr "Vollbild"
 
-#: poseidon.py:999 poseidon.py:2142
+#: poseidon.py:999 poseidon.py:2154
 msgid "Delete Theme"
 msgstr "Thema löschen"
 
@@ -576,7 +584,7 @@ msgstr "Thema löschen"
 msgid "VTE Terminal"
 msgstr "VTE Terminal"
 
-#: poseidon.py:1015 poseidon.py:2209
+#: poseidon.py:1015 poseidon.py:2221
 msgid "View Plugins"
 msgstr "Erweiterungen anzeigen"
 
@@ -584,15 +592,15 @@ msgstr "Erweiterungen anzeigen"
 msgid "View Source"
 msgstr "Quelltext anzeigen"
 
-#: poseidon.py:1023 poseidon.py:2211
+#: poseidon.py:1023 poseidon.py:2223
 msgid "View History"
 msgstr "Verlauf anzeigen"
 
-#: poseidon.py:1027 poseidon.py:2210
+#: poseidon.py:1027 poseidon.py:2222
 msgid "View Bookmarks"
 msgstr "Lesezeichen anzeigen"
 
-#: poseidon.py:1031 poseidon.py:2212
+#: poseidon.py:1031 poseidon.py:2224
 msgid "Cookies Manager"
 msgstr "Cookie Verwaltung"
 
@@ -694,207 +702,207 @@ msgstr "in"
 msgid "Download complete for"
 msgstr "Download abgeschlossen für"
 
-#: poseidon.py:2014
+#: poseidon.py:2015
 #, fuzzy
 msgid "LOTS!"
 msgstr "LOTS!"
 
-#: poseidon.py:2098
+#: poseidon.py:2110
 msgid "Setting a new theme"
 msgstr "Ein neues Thema festlegen"
 
-#: poseidon.py:2100
+#: poseidon.py:2112
 msgid "It all depends on your internet speed and requested image size"
 msgstr ""
 "Es hängt von ihrer Internetgeschwindigkeit und der angeforderten Dateigröße "
 "ab"
 
-#: poseidon.py:2143
+#: poseidon.py:2155
 msgid "Do you really want to delete this theme"
 msgstr "Möchten sie dieses Thema wirkliche löschen"
 
-#: poseidon.py:2207
+#: poseidon.py:2219
 msgid "Save Settings"
 msgstr "Einstellungen speichern"
 
-#: poseidon.py:2208
+#: poseidon.py:2220
 msgid "Restore Settings"
 msgstr "Einstellungen wiederherstellen"
 
-#: poseidon.py:2266
+#: poseidon.py:2278
 msgid "General"
 msgstr ""
 
-#: poseidon.py:2267
+#: poseidon.py:2279
 msgid "Advanced"
 msgstr ""
 
-#: poseidon.py:2351
+#: poseidon.py:2363
 msgid "Source"
 msgstr "Quelle"
 
-#: poseidon.py:2363
+#: poseidon.py:2375
 msgid "Clear cookies"
 msgstr "Cookies löschen"
 
-#: poseidon.py:2365
+#: poseidon.py:2377
 msgid "Remove the selected cookie"
 msgstr "Ausgewählten Cookie löschen"
 
-#: poseidon.py:2367 poseidon.py:2421
+#: poseidon.py:2379 poseidon.py:2433
 msgid "Name"
 msgstr "Name"
 
-#: poseidon.py:2368 poseidon.py:2421
+#: poseidon.py:2380 poseidon.py:2433
 msgid "Value"
 msgstr "Wert"
 
-#: poseidon.py:2369 poseidon.py:2421
+#: poseidon.py:2381 poseidon.py:2433
 msgid "Host"
 msgstr "Host"
 
-#: poseidon.py:2370 poseidon.py:2421
+#: poseidon.py:2382 poseidon.py:2433
 msgid "Path"
 msgstr "Pfad"
 
-#: poseidon.py:2371 poseidon.py:2422
+#: poseidon.py:2383 poseidon.py:2434
 msgid "Expiry"
 msgstr "Ablauf"
 
-#: poseidon.py:2372 poseidon.py:2422
+#: poseidon.py:2384 poseidon.py:2434
 msgid "LastAccessed"
 msgstr "LastAccessed"
 
-#: poseidon.py:2373 poseidon.py:2422
+#: poseidon.py:2385 poseidon.py:2434
 msgid "IsSecure"
 msgstr "IsSecure"
 
-#: poseidon.py:2374 poseidon.py:2422
+#: poseidon.py:2386 poseidon.py:2434
 msgid "IsHttpOnly"
 msgstr "IsHttpOnly"
 
-#: poseidon.py:2378
+#: poseidon.py:2390
 msgid "Edit the selected cookie"
 msgstr "Ausgewählten Cookie bearbeiten"
 
-#: poseidon.py:2379
+#: poseidon.py:2391
 msgid "Add a new cookie with set data"
 msgstr "Einen neuen Cookie mit Daten hinzufügen"
 
-#: poseidon.py:2421
+#: poseidon.py:2433
 msgid "Id"
 msgstr "Id"
 
-#: poseidon.py:2442
+#: poseidon.py:2454
 msgid "Cookies"
 msgstr "Cookies"
 
-#: poseidon.py:2469
+#: poseidon.py:2481
 msgid "Clear history"
 msgstr "Verlauf löschen"
 
-#: poseidon.py:2471 poseidon.py:2544
+#: poseidon.py:2483 poseidon.py:2556
 msgid "Add to bookmarks"
 msgstr "Zu Lesezeichen hinzufügen"
 
-#: poseidon.py:2487
+#: poseidon.py:2499
 msgid "Today"
 msgstr "Heute"
 
-#: poseidon.py:2488
+#: poseidon.py:2500
 msgid "Yesterday"
 msgstr "Gestern"
 
-#: poseidon.py:2489
+#: poseidon.py:2501
 msgid "Two days ago"
 msgstr "Vor zwei Tagen"
 
-#: poseidon.py:2490
+#: poseidon.py:2502
 msgid "This week"
 msgstr "Diese Woche"
 
-#: poseidon.py:2502 poseidon.py:2575
+#: poseidon.py:2514 poseidon.py:2587
 msgid "Date"
 msgstr "Datum"
 
-#: poseidon.py:2502 poseidon.py:2575
+#: poseidon.py:2514 poseidon.py:2587
 msgid "Title"
 msgstr "Titel"
 
-#: poseidon.py:2520
+#: poseidon.py:2532
 msgid "History"
 msgstr "Verlauf"
 
-#: poseidon.py:2540
+#: poseidon.py:2552
 msgid "Erase all bookmarks"
 msgstr ""
 
-#: poseidon.py:2542
+#: poseidon.py:2554
 msgid "Remove the selected bookmark"
 msgstr ""
 
-#: poseidon.py:2559
+#: poseidon.py:2571
 msgid "Type here your description"
 msgstr "Hier Beschreibung eingeben"
 
-#: poseidon.py:2560
+#: poseidon.py:2572
 msgid "Type here your URL address"
 msgstr "Hier URL angeben"
 
-#: poseidon.py:2649
+#: poseidon.py:2676
 msgid "Plugins"
 msgstr "Erweiterungen"
 
-#: poseidon.py:2759
+#: poseidon.py:2786
 msgid "VTE missing"
 msgstr "VTE fehlt"
 
-#: poseidon.py:2760
+#: poseidon.py:2787
 msgid "requires at least Vte 2.91 or higher"
 msgstr "benötigt mindestens VTE 2.91 oder höher"
 
-#: poseidon.py:2832
+#: poseidon.py:2859
 msgid "new bookmark will be imported"
 msgstr ""
 
-#: poseidon.py:2833
+#: poseidon.py:2860
 msgid "new bookmarks will be imported"
 msgstr ""
 
-#: poseidon.py:2847
+#: poseidon.py:2874
 msgid "Bookmarks with identical urls will be automatically ignored"
 msgstr ""
 
-#: poseidon.py:2929
+#: poseidon.py:2956
 msgid "WebKit Error"
 msgstr "WebKit Fehler"
 
-#: poseidon.py:2930
+#: poseidon.py:2957
 msgid "requires at least WebKit 2.12.3 or higher"
 msgstr "benötigt mindestens WebKit 2.12.3 oder höher"
 
-#: poseidon.py:2931
+#: poseidon.py:2958
 msgid "In some distros you probably need to add a third-party repository"
 msgstr ""
 "In einigen Distributionen müssen sie vielleicht eine externe Paketquelle "
 "verwenden"
 
-#: poseidon.py:2941
+#: poseidon.py:2968
 msgid "Welcome to"
 msgstr "Wilkommen zu"
 
-#: poseidon.py:2941
+#: poseidon.py:2968
 msgid "shows this menu"
 msgstr "Dieses Menü anzeigen"
 
-#: poseidon.py:2941
+#: poseidon.py:2968
 msgid "opens the browser in defcon mode"
 msgstr "tartet den Browser im defcon  Modus"
 
-#: poseidon.py:2942
+#: poseidon.py:2969
 msgid "shows the version"
 msgstr "zeigt die Version"
 
-#: poseidon.py:2942
+#: poseidon.py:2969
 msgid "Usage"
 msgstr "Verwendung"
