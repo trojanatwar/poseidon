@@ -1,10 +1,11 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2017-02-26 14:51+0100\n"
-"PO-Revision-Date: 2017-02-26 14:51+0100\n"
-"Last-Translator: Marius Messerschmidt <marius.messerschmidt@googlemail.com>\n"
-"Language-Team: \n"
+"POT-Creation-Date: 2017-02-26 17:15+0100\n"
+"PO-Revision-Date: 2017-02-26 17:38+0100\n"
+"Last-Translator: \n"
+"Language-Team: Marius Messerschmidt, Andrea Pasciuta <marius."
+"messerschmidt@googlemail.com, sidus@arbornet.org>\n"
 "Language: de_DE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -44,11 +45,11 @@ msgstr "Lesezeichen Scanner"
 
 #: include/functions.py:40
 msgid "Perform a scan"
-msgstr ""
+msgstr "Mach einen scan"
 
 #: include/functions.py:41
 msgid "Delete invalid bookmarks"
-msgstr ""
+msgstr "Löschen ungültige Lesezeichen"
 
 #: include/functions.py:47 poseidon.py:2514 poseidon.py:2587
 msgid "URL"
@@ -56,23 +57,23 @@ msgstr "URL"
 
 #: include/functions.py:47
 msgid "Status"
-msgstr ""
+msgstr "Status"
 
 #: include/functions.py:65
 msgid "Warning: In some cases, scan can show false positives"
-msgstr ""
+msgstr "Warnung: In einigen fällen kann der scan falsche positives zeigen"
 
 #: include/functions.py:88
 msgid "online"
-msgstr ""
+msgstr "online"
 
 #: include/functions.py:89
 msgid "offline or unknown"
-msgstr ""
+msgstr "offline oder unbekannt"
 
 #: include/functions.py:91
 msgid "Scanning Bookmarks"
-msgstr ""
+msgstr "Scannen Lesezeichen"
 
 #: include/functions.py:93 poseidon.py:2111
 msgid "This operation may take a while"
@@ -81,18 +82,20 @@ msgstr "Diese Operation dauert möglicherweise etwas"
 #: include/functions.py:94
 msgid "It all depends on your internet speed and amount of bookmarks to scan"
 msgstr ""
+"Es hängt alles von ihrer internet-geschwindigkeit und menge der lesezeichen "
+"zu scannen"
 
 #: include/functions.py:113
 msgid "scanned"
-msgstr ""
+msgstr "gescannt"
 
 #: include/functions.py:122
 msgid "bookmark will be deleted"
-msgstr ""
+msgstr "lesezeichen werden gelöscht"
 
 #: include/functions.py:123
 msgid "bookmarks will be deleted"
-msgstr ""
+msgstr "lesezeichen werden gelöscht"
 
 #: include/functions.py:128 poseidon.py:1230 poseidon.py:1247 poseidon.py:2871
 msgid "Are you sure?"
@@ -100,15 +103,15 @@ msgstr "Sind sie sicher?"
 
 #: include/functions.py:130 poseidon.py:2873
 msgid "Clicking on OK"
-msgstr ""
+msgstr "Durch Klicken auf OK"
 
 #: include/functions.py:139
 msgid "Oops, import failed"
-msgstr ""
+msgstr "Hoppla, import fehlgeschlagen"
 
 #: include/functions.py:140
 msgid "could be corrupted or a invalid HTML bookmark file"
-msgstr ""
+msgstr "könnte beschädigt werden oder eine ungültige HTML-Lesezeichen-Datei"
 
 #: include/functions.py:162 poseidon.py:2605 poseidon.py:2849
 msgid "Bookmarks"
@@ -147,7 +150,6 @@ msgid "Apply as theme"
 msgstr "Als Thema verwenden"
 
 #: include/menu.py:163
-#, fuzzy
 msgid "Go to"
 msgstr "Gehe zu"
 
@@ -169,7 +171,7 @@ msgstr "Öffne datei"
 
 #: include/pathchooser.py:104
 msgid "Import a HTML bookmark file"
-msgstr ""
+msgstr "Importieren Sie eine HTML-Lesezeichen-Datei"
 
 #: include/pathchooser.py:127
 msgid "Overwrite"
@@ -196,23 +198,20 @@ msgid "Organization"
 msgstr "Organisation"
 
 #: include/secure.py:36
-#, fuzzy
 msgid "Common Name"
-msgstr "Common Name"
+msgstr "Gemeinsamen Namen"
 
 #: include/secure.py:37
-#, fuzzy
 msgid "Organizational Unit"
-msgstr "Organizational Unit"
+msgstr "Organisationseinheit"
 
 #: include/secure.py:38
 msgid "Surname"
 msgstr "Nachname"
 
 #: include/secure.py:39
-#, fuzzy
 msgid "Given Name"
-msgstr "Given Name"
+msgstr "Vorname"
 
 #: include/secure.py:48
 msgid "has no security"
@@ -261,44 +260,36 @@ msgid "Subject Alternative Names"
 msgstr "Alternaive Namen des Subjekts"
 
 #: include/secure.py:122
-#, fuzzy
 msgid "Subject Key Identifier"
-msgstr "Subject Key Identifier"
+msgstr "Betreff Schlüsselkennung"
 
 #: include/secure.py:134
-#, fuzzy
 msgid "Key Usage"
-msgstr "Key Usage"
+msgstr "Schlüsselverwendung"
 
 #: include/secure.py:141
-#, fuzzy
 msgid "Extended Key Usage"
-msgstr "Extended Key Usage"
+msgstr "Erweiterte Key-Nutzung"
 
 #: include/secure.py:148
-#, fuzzy
 msgid "Distribution Points"
-msgstr "Distribution Points"
+msgstr "Verteilungspunkte"
 
 #: include/secure.py:155
-#, fuzzy
 msgid "Certificate Policies"
-msgstr "Certificate Policies"
+msgstr "Zertifikatsrichtlinien"
 
 #: include/secure.py:162
-#, fuzzy
 msgid "Basic Constraints"
-msgstr "Basic Constraints"
+msgstr "Grundlegende Einschränkungen"
 
 #: include/secure.py:169
-#, fuzzy
 msgid "Authority Key Identifier"
-msgstr "Authority Key Identifier"
+msgstr "Behörde Schlüsselkennung"
 
 #: include/secure.py:176
-#, fuzzy
 msgid "Authority Info Access"
-msgstr "Authority Info Access"
+msgstr "Behörde Info-Zugang"
 
 #: include/secure.py:183
 msgid "Signature Algorithm"
@@ -334,47 +325,47 @@ msgstr "Eine Sprache einstellen"
 
 #: include/settings.py:422
 msgid "Enable or disable AdKiller"
-msgstr ""
+msgstr "Aktivieren oder deaktivieren Sie AdKiller"
 
 #: include/settings.py:423
 msgid "AdKiller Policy"
-msgstr ""
+msgstr "AdKiller-Richtlinie"
 
 #: include/settings.py:424
 msgid "Set AdKiller behaviour"
-msgstr ""
+msgstr "Stellen sie AdKiller verhalten"
 
 #: include/settings.py:425
 msgid "AdKiller Pop-Ups Policy"
-msgstr ""
+msgstr "AdKiller Pop-Ups-Richtlinien"
 
 #: include/settings.py:426
 msgid "Should AdKiller block pop-ups?"
-msgstr ""
+msgstr "Sollte AdKiller Pop-ups blockieren?"
 
 #: include/settings.py:427
 msgid "Tab Close Button"
-msgstr ""
+msgstr "Tab Schaltfläche Schließen"
 
 #: include/settings.py:428
 msgid "Show a close button in the tabs?"
-msgstr ""
+msgstr "Willst du in den tabs einen knappen knopf zeigen?"
 
 #: include/settings.py:429
 msgid "Popover Menus Transparency"
-msgstr ""
+msgstr "Popover Menüs Transparenz"
 
 #: include/settings.py:430
 msgid "Gtk Popover menus must be transparent?"
-msgstr ""
+msgstr "Gtk Popover menüs müssen transparent sein?"
 
 #: include/settings.py:431
 msgid "Requests Module SSL Verification"
-msgstr ""
+msgstr "Anfragen Modul SSL Verifizierung"
 
 #: include/settings.py:432
 msgid "Set Requests Module SSL Verification behaviour"
-msgstr ""
+msgstr "Set Requests Modul SSL Verifizierungsverhalten"
 
 #: include/settings.py:433
 msgid "Autocomplete"
@@ -382,7 +373,7 @@ msgstr "Auto-Vervollständigen"
 
 #: include/settings.py:434
 msgid "Set word completion for the main input field"
-msgstr ""
+msgstr "Setzen Wortvervollständigung für das Haupteingabefeld"
 
 #: include/settings.py:435
 msgid "Autocomplete Limit"
@@ -392,22 +383,24 @@ msgstr "Auto-Vervollständigen Grenze"
 msgid ""
 "Set a limit for autocomplete results (eg. 500 = 500 results, -1 = disabled)"
 msgstr ""
+"Setzen sie einen grenzwert für autovervollständigungsergebnisse (z.B. 500 = "
+"500 ergebnisse, -1 = deaktiviert)"
 
 #: include/settings.py:437
 msgid "Find Behaviour"
-msgstr ""
+msgstr "Suche Verhalten"
 
 #: include/settings.py:438
 msgid "Set finder behaviour"
-msgstr ""
+msgstr "Setzen suche verhalten"
 
 #: include/settings.py:439
 msgid "Cache Model"
-msgstr ""
+msgstr "Cache-Modell"
 
 #: include/settings.py:440
 msgid "Set the cache model"
-msgstr ""
+msgstr "Setzen sie Cache-Modell"
 
 #: include/settings.py:441
 msgid "Geolocation"
@@ -415,7 +408,7 @@ msgstr "Geolokalisierung"
 
 #: include/settings.py:442
 msgid "Set geolocation behaviour"
-msgstr ""
+msgstr "Setzen sie Geolokalisierung"
 
 #: include/settings.py:443
 msgid "Type of shell to use with VTE Terminal"
@@ -423,27 +416,29 @@ msgstr "Art der Kommandozeile für das VTE Terminal"
 
 #: include/settings.py:444
 msgid "Load Timeout"
-msgstr ""
+msgstr "Laden Timeout"
 
 #: include/settings.py:445
 msgid "Set load timeout in milliseconds (eg. 10000 = 10 seconds, 0 = disabled)"
 msgstr ""
+"Setzen laden timeout in millisekunden (z.B. 10000 = 10 sekunden, 0 = "
+"deaktiviert)"
 
 #: include/settings.py:446
 msgid "Restored Window Width Size"
-msgstr ""
+msgstr "Wiederhergestellte Fensterbreite"
 
 #: include/settings.py:447
 msgid "Default width size for normal window"
-msgstr ""
+msgstr "Standardbreite für normales fenster"
 
 #: include/settings.py:448
 msgid "Restored Window Height Size"
-msgstr ""
+msgstr "Wiederhergestellte Fensterhöhe Größe"
 
 #: include/settings.py:449
 msgid "Default height size for normal window"
-msgstr ""
+msgstr "Standardgröße für normales fenster"
 
 #: include/settings.py:629
 msgid "A fast, minimal and lightweight browser"
@@ -522,12 +517,10 @@ msgid "Disabled"
 msgstr "Deaktiviert"
 
 #: poseidon.py:919
-#, fuzzy
 msgid "SSL Navigation Secure"
-msgstr "SSL Navigation Secure"
+msgstr "SSL Navigation Sicher"
 
 #: poseidon.py:919 poseidon.py:922
-#, fuzzy
 msgid "Access to insecure SSL"
 msgstr "Zugang zu unsicherem SSL"
 
@@ -536,9 +529,8 @@ msgid "websites will be denied"
 msgstr "Webseiten werden blockiert"
 
 #: poseidon.py:922
-#, fuzzy
 msgid "SSL Navigation Insecure"
-msgstr "SSL Navigation Insecure"
+msgstr "SSL Navigation Unsicher"
 
 #: poseidon.py:922
 msgid "websites will be allowed"
@@ -703,9 +695,8 @@ msgid "Download complete for"
 msgstr "Download abgeschlossen für"
 
 #: poseidon.py:2015
-#, fuzzy
 msgid "LOTS!"
-msgstr "LOTS!"
+msgstr "VIELE!"
 
 #: poseidon.py:2110
 msgid "Setting a new theme"
@@ -731,11 +722,11 @@ msgstr "Einstellungen wiederherstellen"
 
 #: poseidon.py:2278
 msgid "General"
-msgstr ""
+msgstr "Allgemeine"
 
 #: poseidon.py:2279
 msgid "Advanced"
-msgstr ""
+msgstr "Erfahrener"
 
 #: poseidon.py:2363
 msgid "Source"
@@ -835,11 +826,11 @@ msgstr "Verlauf"
 
 #: poseidon.py:2552
 msgid "Erase all bookmarks"
-msgstr ""
+msgstr "Löschen sie alle lesezeichen"
 
 #: poseidon.py:2554
 msgid "Remove the selected bookmark"
-msgstr ""
+msgstr "Entfernen sie das ausgewählte lesezeichen"
 
 #: poseidon.py:2571
 msgid "Type here your description"
@@ -863,15 +854,15 @@ msgstr "benötigt mindestens VTE 2.91 oder höher"
 
 #: poseidon.py:2859
 msgid "new bookmark will be imported"
-msgstr ""
+msgstr "Neues lesezeichen werden importiert"
 
 #: poseidon.py:2860
 msgid "new bookmarks will be imported"
-msgstr ""
+msgstr "Neues lesezeichen werden importiert"
 
 #: poseidon.py:2874
 msgid "Bookmarks with identical urls will be automatically ignored"
-msgstr ""
+msgstr "Lesezeichen mit identischen URLs werden automatisch ignoriert"
 
 #: poseidon.py:2956
 msgid "WebKit Error"

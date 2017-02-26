@@ -297,7 +297,7 @@ def get_font_families():
 search_engine = "https://duckduckgo.com/?q="
 home_page = "https://www.duckduckgo.com/"
 app_launcher = "xdg-open"
-language = 0
+language = 1
 autocomplete_policy = 1
 autocomplete_limit = -1
 shell = 0
@@ -379,7 +379,7 @@ set_zoom_text_only = 0
 #########
 '''
 
-language_list = ["en_US", "it_IT", "de_DE"]
+language_list = ["de_DE", "en_US", "es_ES", "it_IT"]
 boolean_list = ["False", "True"]
 adkiller_list = ["Disabled", "Enabled"]
 adk_policy_list = ["Fastest", "Precise"]
@@ -409,7 +409,7 @@ font_list = get_font_families()
 #########
 '''
 
-lang = gettext.translation(language_list[0],\
+lang = gettext.translation(language_list[1],\
 localedir=lc_path, languages=language_list).install()
 
 text_blank_desc = _("Leave it empty to disable it")
@@ -455,7 +455,7 @@ text_height_desc = _("Default height size for normal window")
 '''
 
 settings_db_path = "{}{}".format(settings_path, settings_db)
-settings_db_code = "3"
+settings_db_code = "4"
 
 def create_settings_db():
 
@@ -624,7 +624,9 @@ version = "0.4.7"
 browser_name = "Poseidon"
 website = "https://github.com/sidus-dev/poseidon"
 authors = "Andrea Pasciuta  <sidus@arbornet.org>"
-translators = "de - Marius Messerschmidt <marius.messerschmidt@googlemail.com>\n\
+translators = "de - Marius Messerschmidt <marius.messerschmidt@googlemail.com>, Andrea Pasciuta  <sidus@arbornet.org>\n\
+               en - Andrea Pasciuta  <sidus@arbornet.org>\n\
+               es - Andrea Pasciuta  <sidus@arbornet.org>\n\
                it - Andrea Pasciuta  <sidus@arbornet.org>"
 comments = _("A fast, minimal and lightweight browser")
 tab_name = _("Empty")
