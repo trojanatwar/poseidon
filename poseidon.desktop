@@ -9,5 +9,6 @@ Categories=Network;GTK;
 
 Name=Poseidon
 Comment=A fast, minimal and lightweight browser
-Name[it]=Poseidon
+Comment[de]=Ein schneller, minimaler und leichter Browser
+Comment[es]=Un navegador rápido, minimalista y ligero
 Comment[it]=Un browser veloce, minimale e leggero

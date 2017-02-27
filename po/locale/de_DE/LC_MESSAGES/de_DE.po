@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "POT-Creation-Date: 2017-02-26 17:15+0100\n"
-"PO-Revision-Date: 2017-02-26 17:38+0100\n"
+"PO-Revision-Date: 2017-02-27 03:54+0100\n"
 "Last-Translator: \n"
 "Language-Team: Marius Messerschmidt, Andrea Pasciuta <marius."
 "messerschmidt@googlemail.com, sidus@arbornet.org>\n"
@@ -215,7 +215,7 @@ msgstr "Vorname"
 
 #: include/secure.py:48
 msgid "has no security"
-msgstr "hat keine Sicherheit"
+msgstr "hat keine sicherheit"
 
 #: include/secure.py:49
 msgid ""
@@ -365,7 +365,7 @@ msgstr "Anfragen Modul SSL Verifizierung"
 
 #: include/settings.py:432
 msgid "Set Requests Module SSL Verification behaviour"
-msgstr "Set Requests Modul SSL Verifizierungsverhalten"
+msgstr "Setzen Requests Modul SSL Verifizierungsverhalten"
 
 #: include/settings.py:433
 msgid "Autocomplete"
@@ -442,7 +442,7 @@ msgstr "Standardgröße für normales fenster"
 
 #: include/settings.py:629
 msgid "A fast, minimal and lightweight browser"
-msgstr "ein schneller, minimaler und leichter Browser"
+msgstr "Ein schneller, minimaler und leichter Browser"
 
 #: include/settings.py:630
 msgid "Empty"
@@ -884,7 +884,7 @@ msgstr "Wilkommen zu"
 
 #: poseidon.py:2968
 msgid "shows this menu"
-msgstr "Dieses Menü anzeigen"
+msgstr "dieses menü anzeigen"
 
 #: poseidon.py:2968
 msgid "opens the browser in defcon mode"
