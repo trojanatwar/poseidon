@@ -21,7 +21,7 @@ from OpenSSL import crypto
 from gi.repository import Gtk
 from gi.repository.GtkSource import Buffer, View
 sys.path.append(".")
-from functions import get_domain
+from functions import get_domain, reveal
 
 def time_parse(raw):
     raw = raw.decode("utf8", "replace").replace('Z', '')
@@ -48,6 +48,7 @@ def secure(sec, url, message, box, button):
         message.set_markup("<span size='small'>{} {}.\r{}.</span>".format(url, _("has no security"),\
         _("An attacker could see any information you send, or control the content that you see")))
         box.show_all()
+        reveal(box, True)
         button.hide()
         return
 
@@ -58,6 +59,7 @@ def secure(sec, url, message, box, button):
     url, _("This web site did not properly secure your connection. Want to know more about?")))
 
     box.show_all()
+    reveal(box, True)
 
 def certificate(data, arg):
 

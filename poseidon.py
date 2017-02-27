@@ -269,6 +269,7 @@ class BrowserTab(Gtk.VBox):
 
         frame_find = Gtk.Frame(name="frame_find")
         frame_find.add(find_box)
+        find_revealer = revealize(frame_find)
 
         '''
         ###########
@@ -282,10 +283,10 @@ class BrowserTab(Gtk.VBox):
         vte_sw.set_size_request(-1,250)
 
         close_vte_button = make_button(make_icon("close.svg"), None, False)
-        close_vte_button.connect("clicked", lambda x: [self.on_close_terminal(vte_sw, frame_vte), iconified_vte.hide()])
+        close_vte_button.connect("clicked", lambda x: [self.on_close_terminal(vte_sw, vte_revealer), iconified_vte.hide()])
 
         hide_vte_button = make_button(make_icon("minimize.svg"), None, False)
-        hide_vte_button.connect("clicked", lambda x: [frame_vte.hide(), iconified_vte.show()])
+        hide_vte_button.connect("clicked", lambda x: [reveal(vte_revealer, False), iconified_vte.show()])
 
         vte_box = Gtk.HBox()
         vte_box.pack_end(close_vte_button, False, True, 0)
@@ -298,6 +299,7 @@ class BrowserTab(Gtk.VBox):
         grid.set_column_homogeneous(True)
 
         frame_vte.add(grid)
+        vte_revealer = revealize(frame_vte)
 
         '''
         ##############
@@ -337,6 +339,7 @@ class BrowserTab(Gtk.VBox):
 
         frame_permission = Gtk.Frame(name="frame_permission")
         frame_permission.add(permission_box)
+        permission_revealer = revealize(frame_permission)
 
         '''
         ###################
@@ -355,8 +358,9 @@ class BrowserTab(Gtk.VBox):
 
         frame_cert = Gtk.Frame(name="frame_cert")
         frame_cert.add(cert_box)
+        cert_revealer = revealize(frame_cert)
 
-        deny_cert_button.connect("clicked", lambda x: frame_cert.hide())
+        deny_cert_button.connect("clicked", lambda x: reveal(cert_revealer, False))
 
         '''
         #################
@@ -365,12 +369,12 @@ class BrowserTab(Gtk.VBox):
         '''
 
         self.pack_start(frame_main, False, False, 0)
-        self.pack_start(frame_permission, False, False, 0)
-        self.pack_start(frame_cert, False, False, 0)
+        self.pack_start(permission_revealer, False, False, 0)
+        self.pack_start(cert_revealer, False, False, 0)
         self.pack_start(progress_box, False, False, 0)
         self.pack_start(scrolled_window, True, True, 0)
-        self.pack_start(frame_vte, False, False, 0)
-        self.pack_start(frame_find, False, False, 0)
+        self.pack_start(vte_revealer, False, False, 0)
+        self.pack_start(find_revealer, False, False, 0)
         self.pack_start(frame_status, False, False, 0)
 
         '''
@@ -414,16 +418,16 @@ class BrowserTab(Gtk.VBox):
         self.pbar = pbar
         self.progress_box = progress_box
         self.find_entry = find_entry
-        self.frame_find = frame_find
-        self.frame_vte = frame_vte
+        self.find_revealer = find_revealer
+        self.vte_revealer = vte_revealer
         self.vte_sw = vte_sw
         self.iconified_vte = iconified_vte
         self.link_hover = link_hover
-        self.frame_permission = frame_permission
+        self.permission_revealer = permission_revealer
         self.permission_message = permission_message
         self.allow_button = allow_button
         self.deny_button = deny_button
-        self.frame_cert = frame_cert
+        self.cert_revealer = cert_revealer
         self.cert_message = cert_message
         self.allow_cert_button = allow_cert_button
         self.deny_cert_button = deny_cert_button
@@ -502,10 +506,10 @@ class BrowserTab(Gtk.VBox):
 
         return True
 
-    def on_close_terminal(self, sw, frame):
+    def on_close_terminal(self, scrolled_window, widget):
 
-        sw.get_children()[0].destroy()
-        frame.hide()
+        scrolled_window.get_children()[0].destroy()
+        reveal(widget, False)
 
         return True
 
@@ -516,8 +520,8 @@ class BrowserTab(Gtk.VBox):
        if url: self.main_url_entry.set_text(url)
 
        try:
-           self.frame_permission.hide()
-           self.frame_cert.hide()
+           reveal(self.permission_revealer, False)
+           reveal(self.cert_revealer, False)
        except: pass
 
        return True
@@ -525,7 +529,7 @@ class BrowserTab(Gtk.VBox):
     def on_icon_pressed(self, entry, pos, event):
 
         if pos == pos.SECONDARY: secure(self.security, self.webview.get_uri(),\
-        self.cert_message, self.frame_cert, self.allow_cert_button)
+        self.cert_message, self.cert_revealer, self.allow_cert_button)
 
         return True
 
@@ -566,14 +570,14 @@ class BrowserTab(Gtk.VBox):
     def on_allow(self, request):
 
         WebKit2.PermissionRequest.allow(request)
-        self.frame_permission.hide()
+        reveal(self.permission_revealer, False)
 
         return True
 
     def on_deny(self, request):
 
         WebKit2.PermissionRequest.deny(request)
-        self.frame_permission.hide()
+        reveal(self.permission_revealer, False)
 
         return True
 
@@ -588,7 +592,9 @@ class BrowserTab(Gtk.VBox):
                 self.perm_request = request
                 self.permission_message.set_markup("<span size='small'>{}</span>"\
                 .format(_("Give the approval for geolocation?")))
-                self.frame_permission.show_all()
+
+                self.permission_revealer.show_all()
+                reveal(self.permission_revealer, True)
 
         return True
 
@@ -600,7 +606,7 @@ class BrowserTab(Gtk.VBox):
 
     def on_close_finder(self):
 
-        self.frame_find.hide()
+        reveal(self.find_revealer, False)
         self.controller.search_finish()
 
         return True
@@ -2683,7 +2689,7 @@ class Browser(Gtk.Window):
 
         page = self.tabs[self.current_page][0]
         url = page.webview.get_uri()
-        page.frame_cert.hide()
+        reveal(page.cert_revealer, False)
         data = page.webview.get_tls_info()
 
         self.open_new_tab()
@@ -2770,7 +2776,8 @@ class Browser(Gtk.Window):
 
         page = self.tabs[self.current_page][0]
         if not page.webview.get_property("visible"): return True
-        page.frame_find.show_all()
+        page.find_revealer.show_all()
+        reveal(page.find_revealer, True)
         page.find_entry.grab_focus()
         page.on_finder()
 
@@ -2798,7 +2805,8 @@ class Browser(Gtk.Window):
         page.iconified_vte.hide()
 
         if not page.vte_sw.get_children(): page.vte_sw.add(terminal)
-        page.frame_vte.show_all()
+        page.vte_revealer.show_all()
+        reveal(page.vte_revealer, True)
         if page.vte_sw.get_children(): page.vte_sw.get_children()[0].grab_focus()
 
         return True

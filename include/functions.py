@@ -29,6 +29,15 @@ from dialog import *
 sys.path.append("modules")
 import validators
 
+def revealize(widget):
+
+    revealer = Gtk.Revealer()
+    revealer.add(widget)
+
+    return revealer
+
+def reveal(widget, bool): widget.set_reveal_child(bool)
+
 def bookmarks_scanner(self, list):
 
     window = Gtk.Window()
