@@ -320,7 +320,7 @@ transpop = 0
 # WebKit2 Default Settings #
 ############################
 
-More info at: https://lazka.github.io/pgi-docs/WebKit2-4.0/classes/Settings.html#property-details
+More info at: https://webkitgtk.org/reference/webkit2gtk/stable/WebKitSettings.html#WebKitSettings.property-details
 
 '''
 

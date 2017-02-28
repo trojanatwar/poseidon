@@ -19,7 +19,11 @@ Requires [WebKit](https://webkitgtk.org/) 2.12.3 or higher.
 
 * Required dependencies
 
-`# apt install gir1.2-webkit2-4.0 gir1.2-gtksource-3.0 python3-decorator python3-tk python3-requests python3-pil python3-openssl python3-gi-cairo libwebkit2gtk-4.0-dev python-gi-dev`
+`# apt install gir1.2-webkit2-4.0 gir1.2-gtksource-3.0 python3-decorator python3-tk python3-requests python3-pil python3-openssl python3-gi-cairo`
+
+* Development dependencies
+
+`# apt install libwebkit2gtk-4.0-dev python-gi-dev`
 
 * Optional dependencies
 
@@ -35,7 +39,11 @@ Proprietary alternative to Gnash: [Adobe Flash Player](https://wiki.debian.org/F
 
 * Required dependencies
 
-`# apt install python3-decorator python3-tk libwebkit2gtk-4.0-dev python3-dev python-gi-dev`
+`# apt install python3-decorator python3-tk`
+
+* Development dependencies
+
+`# apt install libwebkit2gtk-4.0-dev python3-dev python-gi-dev`
 
 * Optional dependencies
 
@@ -51,7 +59,11 @@ Proprietary alternative to Gnash: [Adobe Flash Player](https://help.ubuntu.com/s
 
 * Required dependencies
 
-`# dnf install python3 python3-devel webkitgtk4 webkitgtk4-devel webkitgtk4-jsc gtksourceview3 python3-tkinter python3-pillow python3-pyOpenSSL pygobject3 pygobject3-devel`
+`# dnf install python3 webkitgtk4 webkitgtk4-jsc gtksourceview3 python3-tkinter python3-pillow python3-pyOpenSSL pygobject3`
+
+* Development dependencies
+
+`# dnf install python3-devel webkitgtk4-devel pygobject3-devel`
 
 * Optional dependencies
 
@@ -69,6 +81,8 @@ Proprietary alternative to Gnash: [Adobe Flash Player](https://ask.fedoraproject
 
 `$ ./poseidon`
 
+* Note: Poseidon comes with `Python WebExtension loader` (pythonloader.so) already compiled in the `lib` folder, but in case you don't have `libpython 3.6` installed and a 64bit architecture it could not work on your system, that's why you need to install development dependencies and compile `Python WebExtension loader` before running Poseidon. Remember, this step is crucial for AdKiller, but if you don't need an ad blocker then install required dependencies only and run Poseidon.
+
 ### Other
 
 For more informations, click [here](https://sidus-dev.github.io/projects/poseidon/index.html).
@@ -81,10 +95,12 @@ For more informations, click [here](https://sidus-dev.github.io/projects/poseido
 * https://www.gnome-look.org/p/1012545/ (Faenza)
 * http://www.gnome.org (Adwaita)
 
-### Donations
+### Contribution
 
-If you enjoy [Poseidon](https://github.com/sidus-dev/poseidon)
-consider to buy me a beer!
+You can help:
 
-`BTC: 1Ki95pCN6drymSUY7sS45MLVDkfiKTC8t9`
+* Improving the source code
+* Committing new translation files
+* Reporting bugs
+* Buying me a beer! `BTC: 1Ki95pCN6drymSUY7sS45MLVDkfiKTC8t9`
 

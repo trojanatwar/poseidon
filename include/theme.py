@@ -24,10 +24,10 @@ from functions import is_image_valid
 
 def apply_css():
 
-    alpha = """popover { opacity: 0.95; }"""
+    alpha = "popover, .popover { opacity: 0.95; }"
 
-    theme = """#notebook.header.top, #notebook header tabs { background: url('"""\
-    + theme_file + """') no-repeat center; background-size: cover; }"""
+    theme = "#notebook.header.top, #notebook header tabs { background: url('"\
+    + theme_file + "') no-repeat center; background-size: cover; }"
 
     css = """
 
