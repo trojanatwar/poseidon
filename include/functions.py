@@ -330,6 +330,47 @@ def make_box(text, length, digit):
   
     return grid
 
+def make_plugin_grid(icon, plg, mdesc, mexts, mtype):
+
+    grid = Gtk.Grid()
+    grid.set_column_homogeneous(False)
+    grid.set_property("margin", 20)
+
+    plg_grid = Gtk.Grid()
+    plg_grid.set_column_spacing(10)
+    plg_grid.attach(icon, 0, 0, 1, 1)
+    plg_grid.attach(plg, 1, 0, 1, 1)
+
+    mime_grid = Gtk.Grid()
+    mime_grid.set_column_spacing(100)
+    mime_grid.attach(make_mime_label("<b>{}</b>".format(_("MIME Type")), 1,), 0, 0, 1, 1)
+    mime_grid.attach(make_mime_label("<b>{}</b>".format(_("Description")), 1), 1, 0, 1, 1)
+    mime_grid.attach(make_mime_label("<b>{}</b>".format(_("Extension")), 1), 2, 0, 1, 1)
+    for c, i in enumerate(mtype): mime_grid.attach(make_mime_label(i, 0), 0, c+1, 1, 1)
+    for c, i in enumerate(mdesc): mime_grid.attach(make_mime_label(i, 0), 1, c+1, 1, 1)
+    for c, i in enumerate(mexts):
+        if not i: i = ""
+        else: i = ", ".join(i)
+        mime_grid.attach(make_mime_label(i, 0), 2, c+1, 1, 1)
+
+    frame_mime = Gtk.Frame(name="frame_mime")
+    frame_mime.add(mime_grid)
+
+    grid.attach(plg_grid, 0, 0, 1, 1)
+    grid.attach(frame_mime, 0, 1, 1, 1)
+
+    return grid
+
+def make_mime_label(text, size):
+
+    if size == 0: size = "small"
+    if size == 1: size = "medium"
+    label = make_label_selectable(0.0, 0.5)
+    label.set_property("margin", 2)
+    label.set_markup("<span size='{}'>{}</span>".format(size, text))
+    
+    return label    
+
 def setting_element(option, title, value, tp, desc, list):
 
     grid = Gtk.Grid()

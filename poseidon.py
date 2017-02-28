@@ -2634,18 +2634,23 @@ class Browser(Gtk.Window):
 
         if scrolled_window:
 
-            grid = Gtk.Grid()
-            grid.set_column_spacing(10)
-            grid.set_column_homogeneous(False)
-            grid.set_property("margin", 20)
-
             l = ["flash", "evince", "icedtea", "java", "openjdk", "vlc"]
+            plgs = []
 
-            for c, i in enumerate(plugins):
+            for i in plugins:
+
+                mime_desc_list = []
+                mime_exts_list = []
+                mime_type_list = []
 
                 label = make_label_selectable(0.0, 0.5)
                 label.set_markup("<b>{}</b>\n<span size='small'>{}</span>\n<span size='small'>{}</span>\n"\
                 .format(clean_html(i.get_name()), clean_html(i.get_description()), clean_html(i.get_path())))
+
+                for m in i.get_mime_info_list():
+                    mime_desc_list.append(m.get_description())
+                    mime_exts_list.append(m.get_extensions())
+                    mime_type_list.append(m.get_mime_type())
 
                 p = ["plugin", "{}{}.svg"]
                 name = p[0]
@@ -2660,8 +2665,11 @@ class Browser(Gtk.Window):
                 icon = Gtk.Image().new_from_pixbuf(pixbuf)
                 icon.set_alignment(0, 0.2)
 
-                grid.attach(icon, 0, c, 1, 1)
-                grid.attach(label, 1, c, 1, 1)
+                plgs.append(make_plugin_grid(icon, label, mime_desc_list, mime_exts_list, mime_type_list))
+
+            grid = Gtk.Grid()
+            grid.set_column_homogeneous(False)
+            for c, i in enumerate(plgs): grid.attach(i, 0, c, 1, 1)
 
             scrolled_window.add(grid)
             scrolled_window.show_all()
