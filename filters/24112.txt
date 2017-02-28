@@ -33094,6 +33094,7 @@
 127.0.0.1	mediauk.247realmedia.com
 127.0.0.1	mediavisor.doubleclick.com
 127.0.0.1	mediavisor.doubleclick.net
+127.0.0.1	mediawhirl.net
 127.0.0.1	mediciinternet.go2cloud.org
 127.0.0.1	medicinenet.us.intellitxt.com
 127.0.0.1	medio.com
@@ -46522,6 +46523,7 @@
 127.0.0.1	www.mediamind.com
 127.0.0.1	www.mediaplex.com
 127.0.0.1	www.mediasheva.com
+127.0.0.1	www.mediawhirl.net
 127.0.0.1	www.medio.com
 127.0.0.1	www.meethotties.mobi
 127.0.0.1	www.megacounter.de
@@ -48012,4 +48014,4 @@
 127.0.0.1	zz.zeroredirect1.com
 127.0.0.1	zzz.clickbank.net
 127.0.0.1	_thums.ero-advertising.com
-# Hosts: 48004
+# Hosts: 48006
