@@ -9,6 +9,9 @@ url(){
 	else
 		echo "No args, exiting" & exit
 	fi
+       for file in *.txt; do
+           iconv -t UTF-8 $file -o $file
+        done
         echo "Done."
 }
 
