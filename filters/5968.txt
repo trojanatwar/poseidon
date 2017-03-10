@@ -2,15 +2,15 @@
 #
 # For more information about this list, see: https://pgl.yoyo.org/adservers/
 # ----
-# last updated:   Thu, 22 Dec 2016 13:13:46 GMT
-# entries:        2353
+# last updated:   Tue, 07 Mar 2017 16:14:31 GMT
+# entries:        2352
 # format:         hosts (hosts -- in hosts file format)
 # credits:        Peter Lowe - pgl@yoyo.org - https://pgl.yoyo.org/ - https://twitter.com/pgl
 # this URL:       https://pgl.yoyo.org/adservers/serverlist.php?hostformat=hosts&showintro=0&mimetype=plaintext
 # other formats:  https://pgl.yoyo.org/adservers/formats.php
 # policy:         https://pgl.yoyo.org/adservers/policy.php
 #
-# start date:    Tue, 28 Feb 2017 00:00:00
+# start date:    Fri, 10 Mar 2017 00:00:00
 127.0.0.1 101com.com
 127.0.0.1 101order.com
 127.0.0.1 123found.com
@@ -73,7 +73,6 @@
 127.0.0.1 ad-up.com
 127.0.0.1 ad.100.tbn.ru
 127.0.0.1 ad.71i.de
-127.0.0.1 ad.980x.com
 127.0.0.1 ad.a8.net
 127.0.0.1 ad.abcnews.com
 127.0.0.1 ad.abctv.com
@@ -387,7 +386,6 @@
 127.0.0.1 ads.centraliprom.com
 127.0.0.1 ads.cgnetworks.com
 127.0.0.1 ads.channel4.com
-127.0.0.1 ads.cimedia.com
 127.0.0.1 ads.clearchannel.com
 127.0.0.1 ads.co.com
 127.0.0.1 ads.com.com
@@ -603,7 +601,6 @@
 127.0.0.1 ads.t-online.de
 127.0.0.1 ads.tahono.com
 127.0.0.1 ads.techtv.com
-127.0.0.1 ads.techweb.com
 127.0.0.1 ads.telegraph.co.uk
 127.0.0.1 ads.theglobeandmail.com
 127.0.0.1 ads.themovienation.com
@@ -650,6 +647,7 @@
 127.0.0.1 ads.xhamster.com
 127.0.0.1 ads.xtra.co.nz
 127.0.0.1 ads.y-0.net
+127.0.0.1 ads.yahoo.com
 127.0.0.1 ads.yimg.com
 127.0.0.1 ads.yldmgrimg.net
 127.0.0.1 ads.yourfreedvds.com
@@ -1013,7 +1011,6 @@
 127.0.0.1 banners.direction-x.com
 127.0.0.1 banners.directnic.com
 127.0.0.1 banners.easydns.com
-127.0.0.1 banners.ebay.com
 127.0.0.1 banners.freett.com
 127.0.0.1 banners.friendfinder.com
 127.0.0.1 banners.getiton.com
@@ -1433,7 +1430,6 @@
 127.0.0.1 go-clicks.de
 127.0.0.1 go-rank.de
 127.0.0.1 goingplatinum.com
-127.0.0.1 gold.weborama.fr
 127.0.0.1 goldstats.com
 127.0.0.1 google-analytics.com
 127.0.0.1 googleadservices.com
@@ -1486,6 +1482,7 @@
 127.0.0.1 hotkeys.com
 127.0.0.1 hotlog.ru
 127.0.0.1 hotrank.com.tw
+127.0.0.1 hs-analytics.net
 127.0.0.1 htmlhubing.xyz
 127.0.0.1 httpool.com
 127.0.0.1 hurricanedigitalmedia.com
@@ -1576,6 +1573,7 @@
 127.0.0.1 kt-g.de
 127.0.0.1 ktu.sv2.biz
 127.0.0.1 lakequincy.com
+127.0.0.1 launchbit.com
 127.0.0.1 layer-ad.de
 127.0.0.1 layer-ads.de
 127.0.0.1 lbn.ru
@@ -1773,6 +1771,7 @@
 127.0.0.1 onlinecash.com
 127.0.0.1 onlinecashmethod.com
 127.0.0.1 onlinerewardcenter.com
+127.0.0.1 ooyala.com
 127.0.0.1 openad.tf1.fr
 127.0.0.1 openad.travelnow.com
 127.0.0.1 openads.friendfinder.com
@@ -1821,7 +1820,6 @@
 127.0.0.1 pennyweb.com
 127.0.0.1 pepperjamnetwork.com
 127.0.0.1 percentmobile.com
-127.0.0.1 perf.weborama.fr
 127.0.0.1 perfectaudience.com
 127.0.0.1 perfiliate.com
 127.0.0.1 performancerevenue.com
@@ -1997,6 +1995,7 @@
 127.0.0.1 sensismediasmart.com.au
 127.0.0.1 seo4india.com
 127.0.0.1 serv0.com
+127.0.0.1 servedby-buysellads.com
 127.0.0.1 servedbyadbutler.com
 127.0.0.1 servedbyopenx.com
 127.0.0.1 servethis.com
@@ -2211,6 +2210,7 @@
 127.0.0.1 trekblue.com
 127.0.0.1 trekdata.com
 127.0.0.1 trendcounter.com
+127.0.0.1 trendmd.com
 127.0.0.1 trhunt.com
 127.0.0.1 tribalfusion.com
 127.0.0.1 trix.net
@@ -2363,4 +2363,3 @@
 127.0.0.1 zeusclicks.com
 127.0.0.1 zintext.com
 127.0.0.1 zmedia.com
-127.0.0.1 zv1.november-lax.com

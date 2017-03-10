@@ -620,7 +620,7 @@ localedir=lc_path, languages=language_list).install()
 ################
 '''
 
-version = "0.4.7"
+version = "0.4.8"
 browser_name = "Poseidon"
 website = "https://github.com/sidus-dev/poseidon"
 authors = "Andrea Pasciuta  <sidus@arbornet.org>"

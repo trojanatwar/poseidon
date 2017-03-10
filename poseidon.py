@@ -143,10 +143,6 @@ class BrowserTab(Gtk.VBox):
 
             favicondb = context.get_favicon_database()
 
-            manager = context.get_cookie_manager()
-            manager.set_accept_policy(cookies_policy)
-            manager.set_persistent_storage("{}/{}".format(cookies_path, cookies_db), WebKit2.CookiePersistentStorage.SQLITE)
-
         controller = webview.get_find_controller()
         bflist = webview.get_back_forward_list()
         download_icon = make_icon("go-down.svg")
@@ -797,12 +793,24 @@ class Browser(Gtk.Window):
         notebook.show()
 
         '''
-        #######################
-        # Retrieve Page Stuff #
-        #######################
+        ######################
+        # Set Cookies Policy #
+        ######################
         '''
 
-        if not self.is_defcon: self.cache_path = self.tabs[self.current_page][0].cache_path
+        if not self.is_defcon:
+
+            manager = self.tabs[self.current_page][0].context.get_cookie_manager()
+            manager.set_accept_policy(cookies_policy)
+            manager.set_persistent_storage("{}/{}".format(cookies_path, cookies_db), WebKit2.CookiePersistentStorage.SQLITE)
+
+            '''
+            #######################
+            # Retrieve Page Stuff #
+            #######################
+            '''
+
+            self.cache_path = self.tabs[self.current_page][0].cache_path
 
         '''
         ##################
@@ -2558,7 +2566,6 @@ class Browser(Gtk.Window):
         clear_bookmarks_button = make_button(make_icon("edit-clear-all.svg"), _("Erase all bookmarks"), False)
         clear_bookmarks_button.connect("clicked", lambda x: self.on_clear_bookmarks())
         rem_bookmarks_button = make_button(make_icon("edit-delete.svg"), _("Remove the selected bookmark"), False)
-        scan_bookmarks_button = make_button(make_icon("eye.svg"), _("Bookmarks Scanner"), False)
         add_bookmarks_button = make_button(make_icon("bookmark-new.svg"), _("Add to bookmarks"), False)
 
         entry_title_bookmarks = Gtk.Entry()
@@ -2568,7 +2575,6 @@ class Browser(Gtk.Window):
 
         self.tabs[page][0].url_box.pack_start(clear_bookmarks_button, False, False, 5)
         self.tabs[page][0].url_box.pack_start(rem_bookmarks_button, False, False, 5)
-        self.tabs[page][0].url_box.pack_start(scan_bookmarks_button, False, False, 5)
         self.tabs[page][0].url_box.pack_end(add_bookmarks_button, False, False, 5)
         self.tabs[page][0].url_box.pack_end(entry_url_bookmarks, False, False, 5)
         self.tabs[page][0].url_box.pack_end(entry_title_bookmarks, False, False, 0)
@@ -2602,7 +2608,6 @@ class Browser(Gtk.Window):
         selection.connect("changed", self.on_bookmarks_selected)
 
         rem_bookmarks_button.connect("clicked", lambda x: self.on_rem_bookmarks(selection))
-        scan_bookmarks_button.connect("clicked", lambda x: bookmarks_scanner(self, bookmarks))
 
         scrolled_window.add(view)
         scrolled_window.show_all()
@@ -2620,7 +2625,6 @@ class Browser(Gtk.Window):
         self.rem_bookmarks_button = rem_bookmarks_button
         self.entry_title_bookmarks = entry_title_bookmarks
         self.entry_url_bookmarks = entry_url_bookmarks
-        self.scrolled_window = scrolled_window
 
         self.update_status()
 
