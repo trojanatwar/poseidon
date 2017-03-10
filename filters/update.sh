@@ -12,8 +12,7 @@ url(){
 	else
 		echo "No args, exiting" & exit
 	fi
-        iconv -t UTF-8 "$file" -o "$file"
-        echo "Encoding '$file' to UTF-8..."
+        ./recode.sh utf-8 "$file"
         echo "Done."
 
 }
