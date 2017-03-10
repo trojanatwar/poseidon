@@ -3,21 +3,24 @@
 rm *.txt
 
 url(){
+
+    file="$RANDOM.txt"
+
 	if [ ! -z "$1" ]; then
-		wget -q --no-check-certificate "$1" -O "$RANDOM.txt"
+		wget -q --no-check-certificate "$1" -O "$file"
 		[ "$?" -eq 0 ] && echo "$1 downloading..." || echo "$1 doesn't exists."
 	else
 		echo "No args, exiting" & exit
 	fi
-       for file in *.txt; do
-           iconv -t UTF-8 $file -o $file
-        done
+        iconv -t UTF-8 "$file" -o "$file"
+        echo "Encoding '$file' to UTF-8..."
         echo "Done."
+
 }
 
-################################
-# Add your AdAway filters here #
-################################
+#####################################
+# Add your AdAway filters URLS here #
+#####################################
 
 url "https://adaway.org/hosts.txt"
 url "http://winhelp2002.mvps.org/hosts.txt"
