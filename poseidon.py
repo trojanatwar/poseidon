@@ -2638,7 +2638,7 @@ class Browser(Gtk.Window):
 
         if scrolled_window:
 
-            l = ["flash", "evince", "icedtea", "java", "openjdk", "vlc"]
+            l = ["flash", "evince", "icedtea", "java", "openjdk", "vlc", "windows", "quicktime"]
             plgs = []
 
             for i in plugins:
