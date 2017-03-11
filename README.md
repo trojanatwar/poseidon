@@ -29,11 +29,21 @@ Requires [WebKit](https://webkitgtk.org/) 2.12.3 or higher.
 
 `# apt install gir1.2-evince-3.0 browser-plugin-evince gir1.2-vte-2.91`
 
-* Plugins
+**Mint (tested on Serena)**
 
-`# apt install icedtea-plugin mozilla-plugin-gnash`
+* Required dependencies
 
-Proprietary alternative to Gnash: [Adobe Flash Player](https://wiki.debian.org/FlashPlayer)
+`# apt install gir1.2-webkit2-4.0 python3-decorator python3-tk python3-openssl`
+
+* Development dependencies
+
+`# apt install libwebkit2gtk-4.0-dev python3-dev python-gi-dev`
+
+* Optional dependencies
+
+`# apt install gir1.2-evince-3.0`
+
+Then download and install `evince-browser-plugin` package from [Ubuntu Packages](http://packages.ubuntu.com/zesty/browser-plugin-evince)
 
 **Ubuntu (tested on Yakkety Yak 16.10)**
 
@@ -49,12 +59,6 @@ Proprietary alternative to Gnash: [Adobe Flash Player](https://wiki.debian.org/F
 
 `# apt install gir1.2-evince-3.0 browser-plugin-evince gir1.2-vte-2.91`
 
-* Plugins
-
-`# apt install icedtea-plugin mozilla-plugin-gnash`
-
-Proprietary alternative to Gnash: [Adobe Flash Player](https://help.ubuntu.com/stable/ubuntu-help/net-install-flash.html)
-
 **Fedora (tested on 25 Workstation)**
 
 * Required dependencies
@@ -68,12 +72,6 @@ Proprietary alternative to Gnash: [Adobe Flash Player](https://help.ubuntu.com/s
 * Optional dependencies
 
 `# dnf install evince-browser-plugin vte3`
-
-* Plugins
-
-`# dnf install java-openjdk icedtea-web gnash-plugin`
-
-Proprietary alternative to Gnash: [Adobe Flash Player](https://ask.fedoraproject.org/en/question/10217/sticky-how-do-i-install-adobe-flash-on-fedora/)
 
 ### Compile [WebKit2GTK+ Python WebExtension loader](https://github.com/aperezdc/webkit2gtk-python-webextension-example) and run Poseidon
 
