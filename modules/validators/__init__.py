@@ -1,4 +1,3 @@
-from .url import url  # noqa
-from .utils import ValidationFailure, validator  # noqa
-
+from .url import url
+from .utils import ValidationFailure, validator
 __version__ = '0.10.3'

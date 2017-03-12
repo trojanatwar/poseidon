@@ -19,7 +19,7 @@ Requires [WebKit](https://webkitgtk.org/) 2.12.3 or higher.
 
 * Required dependencies
 
-`# apt install gir1.2-webkit2-4.0 gir1.2-gtksource-3.0 python3-decorator python3-tk python3-requests python3-pil python3-openssl python3-gi-cairo`
+`# apt install gir1.2-webkit2-4.0 gir1.2-gtksource-3.0 python3-decorator python3-requests python3-pil python3-openssl python3-gi-cairo`
 
 * Development dependencies
 
@@ -33,7 +33,7 @@ Requires [WebKit](https://webkitgtk.org/) 2.12.3 or higher.
 
 * Required dependencies
 
-`# apt install gir1.2-webkit2-4.0 python3-decorator python3-tk python3-openssl`
+`# apt install gir1.2-webkit2-4.0 python3-decorator python3-openssl`
 
 * Development dependencies
 
@@ -49,7 +49,7 @@ Then download and install `evince-browser-plugin` package from [Ubuntu Packages]
 
 * Required dependencies
 
-`# apt install python3-decorator python3-tk`
+`# apt install python3-decorator`
 
 * Development dependencies
 
@@ -63,7 +63,7 @@ Then download and install `evince-browser-plugin` package from [Ubuntu Packages]
 
 * Required dependencies
 
-`# dnf install python3 webkitgtk4 webkitgtk4-jsc gtksourceview3 python3-tkinter python3-pillow python3-pyOpenSSL pygobject3`
+`# dnf install python3 webkitgtk4 webkitgtk4-jsc gtksourceview3 python3-pillow python3-pyOpenSSL pygobject3`
 
 * Development dependencies
 

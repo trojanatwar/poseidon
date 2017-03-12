@@ -17,6 +17,7 @@
 # along with Poseidon. If not, see <http://www.gnu.org/licenses/>.
 
 import os, platform, gettext, pickle, sqlite3 as lite, subprocess, shutil
+from gi.repository import Gtk
 
 '''
 #####################
@@ -265,6 +266,29 @@ cookies_con = lite.connect("{}/{}".format(cookies_path, cookies_db))
 ###########
 '''
 
+def get_descendant(widget, name, level, doPrint=False):
+
+  if widget is not None:
+    if doPrint: print("-"*level + str(Gtk.Buildable.get_name(widget)) + " :: " + widget.get_name())
+  else:
+    if doPrint: print("-"*level + "None")
+    return None
+
+  if (Gtk.Buildable.get_name(widget) == name): return widget;
+
+  if (hasattr(widget, 'get_child') and callable(getattr(widget, 'get_child')) and name != ""):
+    child = widget.get_child()
+    if child is not None: return get_descendant(child, name, level+1, doPrint)
+
+  elif (hasattr(widget, 'get_children') and callable(getattr(widget, 'get_children')) and name !=""):
+    children = widget.get_children()
+    found = None
+
+    for child in children:
+      if child is not None:
+        found = get_descendant(child, name, level+1, doPrint)
+        if found: return found
+
 def get_available_shells():
 
      list = []
@@ -275,18 +299,18 @@ def get_available_shells():
 
      return list
 
-def get_font_families():
+def get_font_family_list():
 
-    list = []
+    widget = Gtk.FontChooserWidget()
+    treeview = get_descendant(widget, "family_face_list", level=0, doPrint=False)
+    famlist = ["serif", "sans-serif", "monospace"]
 
-    from tkinter import Tk, font
-    root = Tk()
-    default = ("serif", "sans-serif", "monospace")
-    for i in default: list.append(i)
-    for i in font.families():
-        if i not in list: list.append(i)
+    if type(treeview) == Gtk.TreeView:
+        for i in treeview.get_model():
+            fam = i[0].get_name()
+            if fam not in famlist: famlist.append(fam)
 
-    return list
+    return famlist
 
 '''
 ####################
@@ -400,7 +424,7 @@ cookies_policy_list = ["Always Enabled",\
 geolocation_policy_list = ["Always Enabled",\
 "Never Enabled", "Ask Everytime"]
 shell_list = get_available_shells()
-font_list = get_font_families()
+font_list = get_font_family_list()
 
 
 '''
@@ -455,7 +479,7 @@ text_height_desc = _("Default height size for normal window")
 '''
 
 settings_db_path = "{}{}".format(settings_path, settings_db)
-settings_db_code = "4"
+settings_db_code = "5"
 
 def create_settings_db():
 
