@@ -16845,6 +16845,7 @@
 127.0.0.1	ads.dfiles.ru
 127.0.0.1	ads.dgonn.com
 127.0.0.1	ads.dhakatribune.com
+127.0.0.1	ads.diamonds
 127.0.0.1	ads.digital-digest.com
 127.0.0.1	ads.digitalhealthcare.com
 127.0.0.1	ads.digitalmedianet.com
@@ -39843,6 +39844,7 @@
 127.0.0.1	trk.vidible.tv
 127.0.0.1	trk.vindicosuite.com
 127.0.0.1	trk02.gtrk.info
+127.0.0.1	trk1.opanw.com
 127.0.0.1	trk2it4.com
 127.0.0.1	trk4.com
 127.0.0.1	trkag1.com
@@ -48014,4 +48016,4 @@
 127.0.0.1	zz.zeroredirect1.com
 127.0.0.1	zzz.clickbank.net
 127.0.0.1	_thums.ero-advertising.com
-# Hosts: 48006
+# Hosts: 48008

@@ -52,7 +52,11 @@ class BrowserTab(Gtk.VBox):
 
         context = WebKit2.WebContext.get_default()
         context.set_web_extensions_directory(path.abspath("{}/{}/".format(path.dirname(__file__), lib_path)))
-        context.set_process_model(WebKit2.ProcessModel.MULTIPLE_SECONDARY_PROCESSES)
+
+        if process_model == 0: pmodel = WebKit2.ProcessModel.SHARED_SECONDARY_PROCESS
+        if process_model == 1: pmodel = WebKit2.ProcessModel.MULTIPLE_SECONDARY_PROCESSES
+
+        context.set_process_model(pmodel)
         webview = WebKit2.WebView.new_with_context(context)
 
         self.show()
@@ -159,14 +163,12 @@ class BrowserTab(Gtk.VBox):
         main_url_entry.connect("button-press-event", self.on_url_entry_button_press)
 
         go_back = make_button(make_icon("go-previous.svg"), None, False)
-        go_back.connect("clicked", lambda x: webview.go_back())
-        go_back.connect("pressed", self.on_go_back_pressed)
-        go_back.connect("released", self.on_released)
+        go_back.connect("button-press-event", self.on_go_back_press)
+        go_back.connect("button-release-event", self.on_go_back_release)
 
         go_forward = make_button(make_icon("go-next.svg"), None, False)
-        go_forward.connect("clicked", lambda x: webview.go_forward())
-        go_forward.connect("pressed", self.on_go_forward_pressed)
-        go_forward.connect("released", self.on_released)
+        go_forward.connect("button-press-event", self.on_go_forward_press)
+        go_forward.connect("button-release-event", self.on_go_forward_release)
 
         refresh = make_button(make_icon("refresh.svg"), None, False)
         refresh.connect("clicked", lambda x: webview.reload())
@@ -465,7 +467,7 @@ class BrowserTab(Gtk.VBox):
 
     def on_url_entry_button_press(self, widget, event):
 
-        if event.button == 3:
+        if event.type == Gdk.EventType.BUTTON_PRESS and event.button == 3:
             url_entry_menu(widget)
             return True
 
@@ -478,8 +480,7 @@ class BrowserTab(Gtk.VBox):
         except ValueError: pass
         except: pass
 
-        if query and liststore:
-            autocomplete(query, liststore)
+        if query and liststore: autocomplete(query, liststore)
 
         return True
 
@@ -529,39 +530,39 @@ class BrowserTab(Gtk.VBox):
 
         return True
 
-    def on_go_back_pressed(self, widget):
+    def on_go_back_press(self, widget, event):
 
-        self.timeout_id = GObject.timeout_add(500, self.on_go_back)
+        if event.type == Gdk.EventType.BUTTON_PRESS:
+            if event.button == 1: self.timeout_id = GObject.timeout_add(500, self.on_go_back)
+            if event.button == 3: self.on_go_back()
 
-        return True
+    def on_go_forward_press(self, widget, event):
 
-    def on_go_forward_pressed(self, widget):
-
-        self.timeout_id = GObject.timeout_add(500, self.on_go_forward)
-
-        return True
-
-    def on_released(self, widget):
-
-        if self.timeout_id:
-            GObject.source_remove(self.timeout_id)
-            self.timeout_id = 0
-
-        return True
+        if event.type == Gdk.EventType.BUTTON_PRESS:
+            if event.button == 1: self.timeout_id = GObject.timeout_add(500, self.on_go_forward)
+            if event.button == 3: self.on_go_forward()
 
     def on_go_back(self):
 
+        stop_timeout(self)
         timelist(0, self.webview, self.bflist, self.go_back,\
         15, 0.0, 0.5, self.link_hover, icns)
 
-        return True
-
     def on_go_forward(self):
 
+        stop_timeout(self)
         timelist(1, self.webview, self.bflist, self.go_forward,\
         15, 0.0, 0.5, self.link_hover, icns)
 
-        return True
+    def on_go_back_release(self, widget, event):
+
+        stop_timeout(self)
+        if event.type == Gdk.EventType.BUTTON_RELEASE and event.button == 1: self.webview.go_back()
+
+    def on_go_forward_release(self, widget, event):
+
+        stop_timeout(self)
+        if event.type == Gdk.EventType.BUTTON_RELEASE and event.button == 1: self.webview.go_forward()
 
     def on_allow(self, request):
 
@@ -1265,7 +1266,7 @@ class Browser(Gtk.Window):
 
     def on_vte_button_press(self, widget, event):
 
-        if event.button == 3: vte_menu(widget)
+        if event.type == Gdk.EventType.BUTTON_PRESS and event.button == 3: vte_menu(widget)
 
     def on_menu_closed(self, int):
         
@@ -1300,7 +1301,7 @@ class Browser(Gtk.Window):
     def on_timeout(self, view, event, url):
         
         view.stop_loading()
-        self.stop_timeout()
+        stop_timeout(self)
 
         error = catch_error(url, self.tlsbool)
 
@@ -1320,7 +1321,7 @@ class Browser(Gtk.Window):
         if event == WebKit2.LoadEvent.STARTED:
 
             if int(load_timeout) != 0:
-                self.stop_timeout()
+                stop_timeout(self)
                 self.timeout_id = GObject.timeout_add(int(load_timeout), lambda x: self.on_timeout(view, event, url), None)
 
             if not verify_req: page.context.set_tls_errors_policy(WebKit2.TLSErrorsPolicy.IGNORE)
@@ -1337,7 +1338,7 @@ class Browser(Gtk.Window):
 
         if event == WebKit2.LoadEvent.FINISHED:
 
-            if int(load_timeout) != 0: self.stop_timeout()
+            if int(load_timeout) != 0: stop_timeout(self)
 
             page.refresh.show()
             page.cancel.hide()
@@ -1913,8 +1914,7 @@ class Browser(Gtk.Window):
 
                     a.set_name("")
 
-    def on_context_menu(self, view, menu, event, htr):
-        on_context_menu(self, view, menu, event, htr)
+    def on_context_menu(self, view, menu, event, htr): on_context_menu(self, view, menu, event, htr)
 
     def on_title_changed(self, view, event):
 
@@ -2100,16 +2100,6 @@ class Browser(Gtk.Window):
                 if type(i) == gi.overrides.Gtk.Label: return i
         else: return widget
 
-    def stop_timeout(self):
-
-        try:
-            if self.timeout_id:
-                GObject.source_remove(self.timeout_id)
-                self.timeout_id = 0
-        except: pass
-
-        return True
-
     def try_search(self, query):
 
         if not search_engine: return True
@@ -2147,7 +2137,7 @@ class Browser(Gtk.Window):
 
         return True
 
-    def video_popout(self, title, url):
+    def video_popout(self, url):
 
         win = Gtk.Window()
         view = WebKit2.WebView()
@@ -2156,7 +2146,7 @@ class Browser(Gtk.Window):
         view.load_uri(url)
         win.set_default_size(500, 250)
         win.set_position(Gtk.WindowPosition.CENTER)
-        if title: win.set_title(title)
+        win.set_title(url)
         win.show_all()
 
         return True

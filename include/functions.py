@@ -19,7 +19,7 @@
 import os, sys, gi, requests, re, datetime, random,\
 requests.exceptions as ecs, urllib.parse as urlparse
 from PIL import Image
-from gi.repository import Gtk, Gdk
+from gi.repository import Gtk, Gdk, GObject
 sys.path.append(".")
 from settings import verify_req, icns, set_user_agent,\
 ua_browsers_dsc, ua_browsers_val, ua_mobile_dsc,\
@@ -29,11 +29,20 @@ from dialog import *
 sys.path.append("modules")
 import validators
 
+def stop_timeout(self):
+
+    try:
+        if self.timeout_id:
+            GObject.source_remove(self.timeout_id)
+            self.timeout_id = 0
+    except: pass
+
+    return True
+
 def revealize(widget):
 
     revealer = Gtk.Revealer()
     revealer.add(widget)
-
     return revealer
 
 def reveal(widget, bool): widget.set_reveal_child(bool)
@@ -94,10 +103,8 @@ def request(url, bool):
 
 def is_image_valid(file):
 
-    try:
-        Image.open(file)
-    except IOError:
-        return False
+    try: Image.open(file)
+    except IOError: return False
     return True
 
 def is_url_valid(url, bool):
@@ -356,16 +363,11 @@ def convert_size(B):
    GB = float(KB ** 3)
    TB = float(KB ** 4)
 
-   if B < KB:
-      return '{0} {1}'.format(B,'Bytes' if 0 == B > 1 else 'Byte')
-   elif KB <= B < MB:
-      return '{0:.2f} KB'.format(B/KB)
-   elif MB <= B < GB:
-      return '{0:.2f} MB'.format(B/MB)
-   elif GB <= B < TB:
-      return '{0:.2f} GB'.format(B/GB)
-   elif TB <= B:
-      return '{0:.2f} TB'.format(B/TB)
+   if B < KB: return '{0} {1}'.format(B,'Bytes' if 0 == B > 1 else 'Byte')
+   elif KB <= B < MB: return '{0:.2f} KB'.format(B/KB)
+   elif MB <= B < GB: return '{0:.2f} MB'.format(B/MB)
+   elif GB <= B < TB: return '{0:.2f} GB'.format(B/GB)
+   elif TB <= B: return '{0:.2f} TB'.format(B/TB)
 
 def get_cache_size(path):
 
@@ -387,6 +389,7 @@ def pass_generator(self):
     window.set_position(Gtk.WindowPosition.CENTER)
     window.set_skip_taskbar_hint(True)
     window.set_transient_for(self)
+    window.set_resizable(False)
 
     entry = make_box("{} (Def: 32) (Max: 99999)".format(_("Password Length")), 5, 1)
     button = Gtk.Button(label=_("Generate"))
@@ -453,6 +456,7 @@ def user_agent(self):
     window.set_position(Gtk.WindowPosition.CENTER)
     window.set_skip_taskbar_hint(True)
     window.set_transient_for(self)
+    window.set_resizable(False)
 
     scrolled_window = Gtk.ScrolledWindow()
     scrolled_window.set_size_request(300, 300)

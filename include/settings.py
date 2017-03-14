@@ -337,7 +337,8 @@ width = 800
 height = 600
 verify_req = 1
 tab_cb = 1
-transpop = 0
+trans_pop = 0
+process_model = 1
 
 '''
 ############################
@@ -423,6 +424,7 @@ cookies_policy_list = ["Always Enabled",\
 "Never Enabled", "No Third Party"]
 geolocation_policy_list = ["Always Enabled",\
 "Never Enabled", "Ask Everytime"]
+process_model_list = ["Shared", "Multiple"]
 shell_list = get_available_shells()
 font_list = get_font_family_list()
 
@@ -450,8 +452,8 @@ text_adk_popups = _("AdKiller Pop-Ups Policy")
 text_adk_popups_desc = _("Should AdKiller block pop-ups?")
 text_tab_cb = _("Tab Close Button")
 text_tab_cb_desc = _("Show a close button in the tabs?")
-text_transpop = _("Popover Menus Transparency")
-text_transpop_desc = _("Gtk Popover menus must be transparent?")
+text_trans_pop = _("Popover Menus Transparency")
+text_trans_pop_desc = _("Gtk Popover menus must be transparent?")
 text_verify_req = _("Requests Module SSL Verification")
 text_verify_req_desc = _("Set Requests Module SSL Verification behaviour")
 text_autocomplete = _("Autocomplete")
@@ -471,6 +473,8 @@ text_width = _("Restored Window Width Size")
 text_width_desc = _("Default width size for normal window")
 text_height = _("Restored Window Height Size")
 text_height_desc = _("Default height size for normal window")
+text_process_model = _("Process Model")
+text_process_model_desc = _("Set WebKit process model (Default: Multiple)")
 
 '''
 ##################################
@@ -479,7 +483,7 @@ text_height_desc = _("Default height size for normal window")
 '''
 
 settings_db_path = "{}{}".format(settings_path, settings_db)
-settings_db_code = "5"
+settings_db_code = "6"
 
 def create_settings_db():
 
@@ -511,7 +515,7 @@ def create_settings_db():
         cur.execute(insert_string, (text_language, language, "2", text_language_desc, "1", "language_list", "language"))
         cur.execute(insert_string, ("AdKiller", adkiller, "2", text_adkiller_desc, "1", "adkiller_list", "adkiller"))
         cur.execute(insert_string, (text_tab_cb, tab_cb, "2", text_tab_cb_desc, "1", "boolean_list", "tab_cb"))
-        cur.execute(insert_string, (text_transpop, transpop, "2", text_transpop_desc, "1", "boolean_list", "transpop"))
+        cur.execute(insert_string, (text_trans_pop, trans_pop, "2", text_trans_pop_desc, "1", "boolean_list", "trans_pop"))
         cur.execute(insert_string, (text_autocomplete, autocomplete_policy, "2", text_autocomplete_desc, "2", "autocomplete_policy_list", "autocomplete_policy"))
         cur.execute(insert_string, (text_autocomplete_limit, autocomplete_limit, "1", text_autocomplete_limit_desc, "2", "", "autocomplete_limit"))
         cur.execute(insert_string, (text_find, find, "2", text_find_desc, "2", "find_list", "find"))
@@ -522,6 +526,7 @@ def create_settings_db():
         cur.execute(insert_string, (text_geolocation, geolocation_policy, "2", text_geolocation_desc, "2", "geolocation_policy_list", "geolocation_policy"))
         cur.execute(insert_string, ("Shells", shell, "2", text_shell_desc, "2", "shell_list", "shell"))
         cur.execute(insert_string, (text_load_timeout, load_timeout, "1", text_load_timeout_desc, "2", "", "load_timeout"))
+        cur.execute(insert_string, (text_process_model, process_model, "2", text_process_model_desc, "2", "process_model_list", "process_model"))
         cur.execute(insert_string, (text_width, width, "1", text_width_desc, "2", "", "width"))
         cur.execute(insert_string, (text_height, height, "1", text_height_desc, "2", "", "height"))
 

@@ -117,7 +117,7 @@ def on_context_menu(self, view, menu, event, htr):
                             new_from_stock_action_with_label(action, _("Video pop out"))
 
                             a = item.get_action()
-                            a.connect("activate", lambda x: self.video_popout(view.get_title(), url))
+                            a.connect("activate", lambda x: self.video_popout(url))
                             a.set_stock_id("gtk-fullscreen")
                             item = item.new(a)
 

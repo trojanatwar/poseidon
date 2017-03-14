@@ -19,7 +19,7 @@
 import os, sys, gi
 from gi.repository import Gtk, Gdk
 sys.path.append(".")
-from settings import theme_file, transpop
+from settings import theme_file, trans_pop
 from functions import is_image_valid
 
 def apply_css():
@@ -49,7 +49,7 @@ def apply_css():
 
     """
 
-    if transpop: css += alpha
+    if trans_pop: css += alpha
 
     if os.path.exists(theme_file):
         if is_image_valid(theme_file): css += theme
