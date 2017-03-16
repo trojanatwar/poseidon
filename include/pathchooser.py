@@ -21,7 +21,6 @@ from gi.repository import Gtk
 sys.path.append(".")
 from dialog import *
 from settings import width, height
-from functions import get_domain
 
 class pathchooser(Gtk.Window):
 
@@ -52,14 +51,6 @@ class pathchooser(Gtk.Window):
         d.destroy()
 
     def save(self, name, download, url):
-
-        if not name: name = get_domain(url).replace(".","_")
-
-        if not "." in name:
-
-            mime = download.get_response().get_mime_type()
-            suf = mime.split("/")
-            name = "{}.{}".format(name, suf[1])
 
         d = Gtk.FileChooserDialog("{}: {}".format(_("Save as"), name), self,
             Gtk.FileChooserAction.SAVE,

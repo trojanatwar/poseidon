@@ -16,7 +16,7 @@
 # You should have received a copy of the GNU General Public License
 # along with Poseidon. If not, see <http://www.gnu.org/licenses/>.
 
-import os, platform, gettext, pickle, sqlite3 as lite, subprocess, shutil
+import os, platform, gettext, sqlite3 as lite, subprocess, shutil
 from gi.repository import Gtk
 
 '''
@@ -42,9 +42,10 @@ cookies_path = "{}cookies".format(base_path)               # Cookies path
 history_path = "{}history/".format(base_path)              # History path
 bookmarks_path = "{}bookmarks/".format(base_path)          # Bookmarks path
 settings_path = "{}settings/".format(base_path)            # Settings path
-pickle_path = "{}pickle/".format(base_path)                # Pickle path
 theme_path = "{}theme/".format(base_path)                  # Theme path
 theme_file = "{}theme".format(theme_path)                  # Theme file path
+adk_path = "{}adkiller/".format(base_path)                 # AdKiller path
+adk_file = "{}adktemp".format(adk_path)                    # AdKiller temporary file path
 pages_path = "pages"                                       # Pages path
 lib_path = "lib"                                           # Library path
 lc_path = "po/locale"                                      # Languages path
@@ -55,13 +56,15 @@ bookmarks_db = "bookmarks.sqlite"                          # Bookmarks database 
 settings_db = "settings.sqlite"                            # Settings database (Default: "settings.sqlite")
 
 '''
-####################
-# Deprecated Stuff #
-####################
+##########################
+# Erase Deprecated Stuff #
+##########################
 '''
 
-cache_path = "{}cache".format(base_path)                   # Cache path (Deprecated since 0.4.1 since WebKit2.WebsiteDataManager() is now used)
+cache_path = "{}cache".format(base_path)
 if os.path.exists(cache_path): shutil.rmtree(cache_path)
+pickle_path = "{}pickle".format(base_path)
+if os.path.exists(pickle_path): shutil.rmtree(pickle_path)
 
 '''
 ########
@@ -231,8 +234,8 @@ if not os.path.exists(settings_path): os.makedirs(settings_path)
 if not os.path.exists(history_path): os.makedirs(history_path)
 if not os.path.exists(bookmarks_path): os.makedirs(bookmarks_path)
 if not os.path.exists(cookies_path): os.makedirs(cookies_path)
-if not os.path.exists(pickle_path): os.makedirs(pickle_path)
 if not os.path.exists(theme_path): os.makedirs(theme_path)
+if not os.path.exists(adk_path): os.makedirs(adk_path)
 
 '''
 #############
@@ -311,6 +314,17 @@ def get_font_family_list():
             if fam not in famlist: famlist.append(fam)
 
     return famlist
+
+def write_file(path, string):
+
+    file = open(path, "w") 
+    file.write(string) 
+    file.close()
+
+def read_file(path):
+
+    file = open(path, "r") 
+    return file.read()
 
 '''
 ####################
@@ -620,20 +634,6 @@ else: create_settings_db()
 
 settings_con = lite.connect("{}/{}".format(settings_path, settings_db))
 
-
-'''
-##########
-# Pickle #
-##########
-'''
-
-adk_name = "adkiller.p"
-adb_name = "adblocks.p"
-
-if adkiller: pickle.dump(True, open("{}{}".format(pickle_path, adk_name), "wb"))
-else: pickle.dump(False, open("{}{}".format(pickle_path, adk_name), "wb"))
-pickle.dump(0, open("{}{}".format(pickle_path, adb_name), "wb"))
-
 '''
 ####################
 # Install Language #
@@ -649,7 +649,7 @@ localedir=lc_path, languages=language_list).install()
 ################
 '''
 
-version = "0.4.8"
+version = "0.4.9"
 browser_name = "Poseidon"
 website = "https://github.com/sidus-dev/poseidon"
 authors = "Andrea Pasciuta  <sidus@arbornet.org>"

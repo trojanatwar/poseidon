@@ -16,21 +16,16 @@
 # You should have received a copy of the GNU General Public License
 # along with Poseidon. If not, see <http://www.gnu.org/licenses/>.
 
-import os, sys, pickle
+import os, sys
 from os import path
 sys.path.append("include")
-from settings import adk_filters_path, pickle_path, adk_name, adb_name, adk_policy
+from settings import read_file, adk_file, adk_filters_path, adk_policy
 from dialog import *
 
 adk_rules = []
-adk_data = []
 adk_blocks = []
 
 def initialize(extension, args):
-    
-    adk_data.append(pickle_path)
-    adk_data.append(adk_name)
-    adk_data.append(adb_name)
 
     adk_combo = adk_init(adk_filters_path)
     replacement(adk_combo)
@@ -43,15 +38,13 @@ def on_page_created(extension, webpage):
 def on_send_request(webpage, request, redirect):
 
     url = request.get_uri()
-
     if url.startswith("ftp://"): url = request.set_uri(url.replace("ftp://", "http://"))
 
-    if pickle.load(open("{}{}".format(adk_data[0], adk_data[1]), "rb")):
+    if read_file(adk_file) == "1":
 
         if "://" in url and not "file://" in url:
             if adk(url, adk_rules):
                 adk_blocks.append(" ")
-                pickle.dump(len(adk_blocks), open("{}{}".format(adk_data[0], adk_data[2]), "wb"))
                 return True
 
 '''
@@ -90,11 +83,11 @@ def adk_init(filters_path):
 
 def adk(url, rules):
 
-    if adk_policy == 0:
-        if any(c for c in rules if c in url): return True
-    else:
+    if adk_policy:
         domain = url.split("://",1)[1].split("/",1)[0]
         if any(c for c in rules if c == domain): return True
+    else:
+        if any(c for c in rules if c in url): return True
 
 def combined(filenames):
     for filename in filenames:

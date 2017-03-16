@@ -19,7 +19,7 @@
 import os, sys, gi, requests, re, datetime, random,\
 requests.exceptions as ecs, urllib.parse as urlparse
 from PIL import Image
-from gi.repository import Gtk, Gdk, GObject
+from gi.repository import Gtk, Gdk, GObject, GLib
 sys.path.append(".")
 from settings import verify_req, icns, set_user_agent,\
 ua_browsers_dsc, ua_browsers_val, ua_mobile_dsc,\
@@ -439,11 +439,11 @@ def pass_generate(length, default_length, result):
         n = random.randrange(len(charset))
         password = password + charset[n]
 
-    for i in range(random.randrange(1,3)):
+    for i in range(random.randrange(1, 3)):
         r = random.randrange(len(password)//2)
         password = password[0:r] + str(random.randrange(10)) + password[r+1:]
 
-    for i in range(random.randrange(1,3)):
+    for i in range(random.randrange(1, 3)):
         r = random.randrange(len(password)//2,len(password))
         password = password[0:r] + password[r].upper() + password[r+1:]
 

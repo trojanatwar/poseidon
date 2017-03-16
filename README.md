@@ -79,8 +79,6 @@ Then download and install `evince-browser-plugin` package from [Ubuntu Packages]
 
 `$ ./poseidon`
 
-* Note: Poseidon comes with `Python WebExtension loader` (pythonloader.so) already compiled in the `lib` folder, but in case you don't have `libpython 3.6` installed and a 64bit architecture it could not work on your system, that's why you need to install development dependencies and compile `Python WebExtension loader` before running Poseidon. Remember, this step is crucial for AdKiller, but if you don't need an ad blocker then install required dependencies only and run Poseidon.
-
 ### Other
 
 For more informations, click [here](https://sidus-dev.github.io/projects/poseidon/index.html).

@@ -15,7 +15,7 @@
 # along with Poseidon. If not, see <http://www.gnu.org/licenses/>.
 
 
-import sys, gi, getopt, os, subprocess, pickle,\
+import sys, gi, getopt, os, subprocess,\
 sqlite3 as lite, time, datetime, re, html, urllib.parse
 gi.require_version('Gtk', '3.0')
 gi.require_version('WebKit2', '4.0')
@@ -41,6 +41,22 @@ from secure import secure, certificate, cert_declarations
 browser = __file__.replace(".py", "")
 
 '''
+######################
+# Set WebKit Context #
+######################
+'''
+
+web_context = WebKit2.WebContext.get_default()
+web_context.set_web_extensions_directory(path.abspath("{}/{}/".format(path.dirname(__file__), lib_path)))
+
+if adkiller: write_file(adk_file, "1")
+else: write_file(adk_file, "0")
+
+if process_model == 0: pmodel = WebKit2.ProcessModel.SHARED_SECONDARY_PROCESS
+if process_model == 1: pmodel = WebKit2.ProcessModel.MULTIPLE_SECONDARY_PROCESSES
+web_context.set_process_model(pmodel)
+
+'''
 ###################
 # BrowserTab INIT #
 ###################
@@ -50,14 +66,7 @@ class BrowserTab(Gtk.VBox):
     def __init__(self, *args, **kwargs):
         super(BrowserTab, self).__init__(*args, **kwargs)
 
-        context = WebKit2.WebContext.get_default()
-        context.set_web_extensions_directory(path.abspath("{}/{}/".format(path.dirname(__file__), lib_path)))
-
-        if process_model == 0: pmodel = WebKit2.ProcessModel.SHARED_SECONDARY_PROCESS
-        if process_model == 1: pmodel = WebKit2.ProcessModel.MULTIPLE_SECONDARY_PROCESSES
-
-        context.set_process_model(pmodel)
-        webview = WebKit2.WebView.new_with_context(context)
+        webview = WebKit2.WebView.new_with_context(web_context)
 
         self.show()
 
@@ -141,11 +150,11 @@ class BrowserTab(Gtk.VBox):
             data_manager = WebKit2.WebsiteDataManager()
             cache_path = data_manager.get_disk_cache_directory()
 
-            context.new_with_website_data_manager(data_manager)
-            context.set_cache_model(cache_model)
-            context.set_favicon_database_directory(cache_path)
+            web_context.new_with_website_data_manager(data_manager)
+            web_context.set_cache_model(cache_model)
+            web_context.set_favicon_database_directory(cache_path)
 
-            favicondb = context.get_favicon_database()
+            favicondb = web_context.get_favicon_database()
 
         controller = webview.get_find_controller()
         bflist = webview.get_back_forward_list()
@@ -398,7 +407,6 @@ class BrowserTab(Gtk.VBox):
         '''
 
         self.security = None
-        self.context = context
         self.webview = webview
         self.controller = controller
         self.scrolled_window = scrolled_window
@@ -801,7 +809,7 @@ class Browser(Gtk.Window):
 
         if not self.is_defcon:
 
-            manager = self.tabs[self.current_page][0].context.get_cookie_manager()
+            manager = web_context.get_cookie_manager()
             manager.set_accept_policy(cookies_policy)
             manager.set_persistent_storage("{}/{}".format(cookies_path, cookies_db), WebKit2.CookiePersistentStorage.SQLITE)
 
@@ -858,7 +866,7 @@ class Browser(Gtk.Window):
         dlscroll.add(dlview)
         downloads_menu.add(dlscroll)
 
-        self.tabs[self.current_page][0].context.connect("download-started", self.on_download_started)
+        web_context.connect("download-started", self.on_download_started)
 
         '''
         ##############
@@ -909,11 +917,11 @@ class Browser(Gtk.Window):
         print_button.connect("clicked", lambda x: self.page_print())
         print_label = make_modelbutton_label("[ Ctrl+P ]", 0.95, 0.5)
 
-        adke_label_text = "<span size='small'>{}</span>\r<span size='x-small'>{}: 0</span>\r"\
-        .format(_("AdKiller (experimental)"), _("Enabled, Ads blocked"))
+        adke_label_text = "\r<span size='small'>{}</span>\r<span size='x-small'>{}</span>\r"\
+        .format("AdKiller", _("AdKiller is enabled"))
 
-        adkd_label_text = "<span size='small'>{}</span>\r<span size='x-small'>{}</span>\r"\
-        .format(_("AdKiller (experimental)"), _("Disabled"))
+        adkd_label_text = "\r<span size='small'>{}</span>\r<span size='x-small'>{}</span>\r"\
+        .format("AdKiller", _("AdKiller is disabled"))
 
         adk_label = make_label(0.0, 0.5)
         adk_label.set_markup(adke_label_text)
@@ -955,10 +963,10 @@ class Browser(Gtk.Window):
         else: self.tlsbool = True
 
         jse_label_text = "\r<span size='small'>{}</span>\r<span size='x-small'>{}</span>\r"\
-        .format("No-Script", _("Javascript is actually enabled"))
+        .format("No-Script", _("Javascript is enabled"))
 
         jsd_label_text = "\r<span size='small'>{}</span>\r<span size='x-small'>{}</span>\r"\
-        .format("No-Script", _("Javascript is actually disabled"))
+        .format("No-Script", _("Javascript is disabled"))
 
         js_label = make_label(0.0, 0.5)
         js_label.set_markup(jse_label_text)
@@ -976,10 +984,10 @@ class Browser(Gtk.Window):
             js_switch.set_active(False)
 
         pge_label_text = "\r<span size='small'>{}</span>\r<span size='x-small'>{}</span>\r"\
-        .format("No-Plugins", _("Plugins are actually enabled"))
+        .format("No-Plugins", _("Plugins are enabled"))
 
         pgd_label_text = "\r<span size='small'>{}</span>\r<span size='x-small'>{}</span>\r"\
-        .format("No-Plugins", _("Plugins are actually disabled"))
+        .format("No-Plugins", _("Plugins are disabled"))
 
         pg_label = make_label(0.0, 0.5)
         pg_label.set_markup(pge_label_text)
@@ -1047,7 +1055,7 @@ class Browser(Gtk.Window):
         manager_cookies_button.connect("clicked", lambda x: self.cookies_manager())
 
         delete_cache_button = make_modelbutton(_("Empty Cache"), 0.0, 0.5)
-        delete_cache_button.connect("clicked", lambda x: self.tabs[self.current_page][0].context.clear_cache())
+        delete_cache_button.connect("clicked", lambda x: web_context.clear_cache())
         delete_cache_label = make_label(0.95, 0.5)
 
         if not self.is_defcon:
@@ -1324,7 +1332,7 @@ class Browser(Gtk.Window):
                 stop_timeout(self)
                 self.timeout_id = GObject.timeout_add(int(load_timeout), lambda x: self.on_timeout(view, event, url), None)
 
-            if not verify_req: page.context.set_tls_errors_policy(WebKit2.TLSErrorsPolicy.IGNORE)
+            if not verify_req: web_context.set_tls_errors_policy(WebKit2.TLSErrorsPolicy.IGNORE)
 
             page.refresh.hide()
             page.cancel.show()
@@ -1381,7 +1389,7 @@ class Browser(Gtk.Window):
 
     def on_load_failed_with_tls_errors(self, view, failing_uri, certificate, errors):
 
-        if self.tabs[self.current_page][0].context.get_tls_errors_policy() == WebKit2.TLSErrorsPolicy.FAIL:
+        if web_context.get_tls_errors_policy() == WebKit2.TLSErrorsPolicy.FAIL:
 
             decision = dialog().decision(_("Invalid Certificate"), "<span size='small'>\"<b>{}</b>\" {}.\n\n{}.\n\n{}.</span>"\
             .format(minify(failing_uri, 50), _("seems to be an insecure website"),\
@@ -1635,7 +1643,7 @@ class Browser(Gtk.Window):
             cur = cookies_con.cursor()   
             cur.execute("DROP TABLE IF EXISTS moz_cookies;")
             cur.execute("CREATE TABLE moz_cookies (id INTEGER PRIMARY KEY, name TEXT, value TEXT, host TEXT, path TEXT,\
-                                 expiry INTEGER, lastAccessed INTEGER, isSecure INTEGER, isHttpOnly INTEGER);")
+            expiry INTEGER, lastAccessed INTEGER, isSecure INTEGER, isHttpOnly INTEGER);")
 
         self.close_current_tab()
         self.cookies_manager()
@@ -1649,10 +1657,10 @@ class Browser(Gtk.Window):
         page = self.tabs[self.current_page][0]
 
         if button.get_active():
-            pickle.dump(True, open("{}{}".format(pickle_path, adk_name), "wb"))
+            write_file(adk_file, "1")
             self.adk_label.set_markup(self.adke_label_text)
         else:
-            pickle.dump(False, open("{}{}".format(pickle_path, adk_name), "wb"))
+            write_file(adk_file, "0")
             self.adk_label.set_markup(self.adkd_label_text)
 
         url = page.webview.get_uri()
@@ -1662,14 +1670,12 @@ class Browser(Gtk.Window):
 
         if not verify_req: return True
 
-        page = self.tabs[self.current_page][0]
-
         if button.get_active():
-            page.context.set_tls_errors_policy(WebKit2.TLSErrorsPolicy.FAIL)
+            web_context.set_tls_errors_policy(WebKit2.TLSErrorsPolicy.FAIL)
             self.sec_label.set_markup(self.sec_label_text)
             self.tlsbool = True
         else:
-            page.context.set_tls_errors_policy(WebKit2.TLSErrorsPolicy.IGNORE)
+            web_context.set_tls_errors_policy(WebKit2.TLSErrorsPolicy.IGNORE)
             self.sec_label.set_markup(self.isec_label_text)
             self.tlsbool = False
 
@@ -1825,6 +1831,15 @@ class Browser(Gtk.Window):
 
     def on_decide_destination(self, download, name):
 
+        url = self.tabs[self.current_page][0].webview.get_uri()
+
+        if not name: name = get_domain(url).replace(".", "_")
+        if not "." in name:
+
+            mime = download.get_response().get_mime_type()
+            suf = mime.split("/")
+            name = "{}.{}".format(name, suf[1])
+
         for i in self.dlview:
             for a in i:
                 if type(a) == Gtk.ModelButton:
@@ -1832,7 +1847,6 @@ class Browser(Gtk.Window):
                         self.downloads_menu.show()
                         return True
 
-        url = self.tabs[self.current_page][0].webview.get_uri()
         if url: pathchooser().save(name, download, url)
 
     def on_cancel_download(self):
@@ -2020,16 +2034,6 @@ class Browser(Gtk.Window):
 
         if view.can_go_back(): page.go_back.set_sensitive(True)
         else: page.go_back.set_sensitive(False)
-
-        if self.adk_switch.get_active():
-
-            try:
-                adk_blocks = pickle.load(open("{}{}".format(pickle_path, adb_name), "rb"))
-                if adk_blocks > 9999:
-                    adk_blocks = _("LOTS!")
-                self.adk_label.set_markup("<span size='small'>{}</span>\r<span size='x-small'>{}: {}</span>\r"\
-                .format(_("AdKiller (experimental)"),_("Enabled, Ads blocked"), str(adk_blocks)))
-            except: pass
 
     def close_current_tab(self):
 
@@ -2670,8 +2674,7 @@ class Browser(Gtk.Window):
 
     def view_plugins(self):
 
-        page = self.tabs[self.current_page][0]
-        page.context.get_plugins(None, self.get_plugins, None)
+        web_context.get_plugins(None, self.get_plugins, None)
 
         self.open_new_tab()
         page = self.current_page
