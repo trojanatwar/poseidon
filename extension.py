@@ -23,7 +23,6 @@ from settings import read_file, adk_file, adk_filters_path, adk_policy
 from dialog import *
 
 adk_rules = []
-adk_blocks = []
 
 def initialize(extension, args):
 
@@ -43,9 +42,7 @@ def on_send_request(webpage, request, redirect):
     if read_file(adk_file) == "1":
 
         if "://" in url and not "file://" in url:
-            if adk(url, adk_rules):
-                adk_blocks.append(" ")
-                return True
+            if adk(url, adk_rules): return True
 
 '''
 ############
