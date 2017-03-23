@@ -16,7 +16,7 @@
 
 
 import sys, gi, getopt, os, subprocess,\
-sqlite3 as lite, time, datetime, re, html, urllib.parse
+sqlite3 as lite, time, datetime, re, html, urllib.parse as urlparse
 gi.require_version('Gtk', '3.0')
 gi.require_version('WebKit2', '4.0')
 gi.require_version('GtkSource', '3.0')
@@ -521,7 +521,6 @@ class BrowserTab(Gtk.VBox):
     def on_uri_changed(self, view, uri):
 
        url = view.get_uri()
-
        if url: self.main_url_entry.set_text(url)
 
        try:
@@ -1375,8 +1374,7 @@ class Browser(Gtk.Window):
     def on_load_failed(self, view, event, failing_uri, error):
 
         if type(error) == GLib.GError:
-            if not error.code == 2:
-                return True
+            if not error.code == 2: return True
 
         elif type(error) == int: return True
 
@@ -1429,7 +1427,7 @@ class Browser(Gtk.Window):
             self.cookies_manager()
             return True
 
-        format = "{}{}".format("http://", url)
+        format = "{}{}".format("http://", urlparse.quote(url, safe=''))
 
         if not url: return True
 
@@ -1444,11 +1442,11 @@ class Browser(Gtk.Window):
         if validators.url(url):
             page.webview.load_uri(url)
             return True
+
         else:
-            if not "." in url: self.try_search(url)
-            else:
+            if validators.url(format):
                 if is_url_valid(format, self.tlsbool): page.webview.load_uri(format)
-                else: self.try_search(url)
+            else: self.try_search(url)
 
     def on_click_bookmark(self, button):
 
@@ -1587,7 +1585,6 @@ class Browser(Gtk.Window):
     def on_iter_clicked(self, view, iter, column):
 
         url = view.get_model()[iter][3]
-
         if url: self.open_blank(url)
 
         return True
@@ -2108,7 +2105,7 @@ class Browser(Gtk.Window):
 
         if not search_engine: return True
 
-        query = "{}{}".format(search_engine, urllib.parse.quote(query, safe=''))
+        query = "{}{}".format(search_engine, query)
         self.tabs[self.current_page][0].webview.load_uri(query)
 
         return True
