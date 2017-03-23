@@ -1446,6 +1446,7 @@ class Browser(Gtk.Window):
         else:
             if validators.url(format):
                 if is_url_valid(format, self.tlsbool): page.webview.load_uri(format)
+                else: self.try_search(url)
             else: self.try_search(url)
 
     def on_click_bookmark(self, button):
