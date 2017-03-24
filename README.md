@@ -31,19 +31,9 @@ Requires [WebKit](https://webkitgtk.org/) 2.12.3 or higher.
 
 **Mint (tested on Serena)**
 
-* Required dependencies
+[Deb Package (0.4.9 - amd64)](https://sidus-dev.github.io/projects/poseidon/downloads/poseidon_0.4.9-1_amd64.deb)
 
-`# apt install gir1.2-webkit2-4.0 python3-decorator python3-openssl`
-
-* Development dependencies
-
-`# apt install libwebkit2gtk-4.0-dev python3-dev python-gi-dev`
-
-* Optional dependencies
-
-`# apt install gir1.2-evince-3.0`
-
-Then download and install `evince-browser-plugin` package from [Ubuntu Packages](http://packages.ubuntu.com/zesty/browser-plugin-evince)
+For evince support install `evince-browser-plugin` package from [Ubuntu Packages](http://packages.ubuntu.com/zesty/browser-plugin-evince)
 
 **Ubuntu (tested on Yakkety Yak 16.10)**
 
