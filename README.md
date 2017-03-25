@@ -18,6 +18,7 @@ Requires [WebKit](https://webkitgtk.org/) 2.12.3 or higher.
 **Debian, Mint, Ubuntu**
 
 [Poseidon (for Python 3.5 - 0.4.9 - amd64)](https://sidus-dev.github.io/projects/poseidon/downloads/poseidon_0.4.9-1_py3.5_amd64.deb)
+
 [Poseidon (for Python 3.5 - 0.4.9 - i386)](https://sidus-dev.github.io/projects/poseidon/downloads/poseidon_0.4.9_py3.5_i386.deb)
 
 * Optional dependencies
