@@ -34,7 +34,7 @@ def apply_css():
     /* Tested on Gtk 3.18/3.20 */
 
     #notebook.header.top, #notebook header tabs { background: none; }
-    #notebook tab { padding: 10px 15px 10px 15px; }
+    #notebook tab { padding: 5px 10px 5px 10px; }
     #frame_main border, #frame_find border, #frame_vte border, #frame_status border,
     #frame_permission border, #frame_cert border, #frame_cookies border { border-style: none; }
     #frame_main, #frame_find, #frame_vte, #frame_status, #frame_permission, #frame_cert, #frame_cookies,

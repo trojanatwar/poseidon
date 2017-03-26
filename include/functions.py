@@ -206,8 +206,8 @@ def make_tab_box(text):
     box = Gtk.HBox(False)
     button = make_button(make_icon("edit-delete.svg"), None, False)
     label = Gtk.Label(text)
-    box.pack_start(label, False, False, 5)
-    box.pack_start(button, False, False, 5)
+    box.pack_start(label, True, False, 5)
+    box.pack_end(button, False, False, 0)
     box.show_all()
 
     return box

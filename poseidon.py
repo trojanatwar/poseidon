@@ -195,7 +195,7 @@ class BrowserTab(Gtk.VBox):
         bookmarks_button = make_button(make_icon("bookmarks.svg"), None, True)
         tools = make_button(make_icon("open-menu.svg"), None, True)
 
-        url_box = Gtk.HBox(False)
+        url_box = Gtk.HBox()
         url_box.pack_start(go_back, False, False, 0)
         url_box.pack_start(go_forward, False, False, 0)
         url_box.pack_start(refresh, False, False, 0)
