@@ -720,7 +720,7 @@ class Browser(Gtk.Window):
         save_button = make_button(make_icon("document-save.svg"), _("Save / Export"), False)
         save_button.connect("clicked", lambda x: self.save())
 
-        headerbar = Gtk.HeaderBar()
+        headerbar = Gtk.HeaderBar(name="headerbar")
         headerbar.set_title(browser_name)
         headerbar.set_show_close_button(True)
         headerbar.set_decoration_layout("")

@@ -46,6 +46,7 @@ def apply_css():
     #frame_x509 border, #frame_x509 { border-width: 0px 1px 1px 0px; border-color: rgba(50, 50, 50, 0.20); }
     #frame_x509 border, #frame_x509, #frame_mime border, #frame_mime { border-radius: 0px; }
     #label_x509 { padding: 10px; }
+    #headerbar button { padding: 0px; }
 
     """
 
