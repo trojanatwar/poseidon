@@ -160,6 +160,7 @@ class BrowserTab(Gtk.VBox):
         bflist = webview.get_back_forward_list()
         download_icon = make_icon("go-down.svg")
         scrolled_window = Gtk.ScrolledWindow(name="webview")
+        scrolled_window.set_shadow_type(Gtk.ShadowType.IN)
         apply_css()
 
         '''
@@ -937,11 +938,11 @@ class Browser(Gtk.Window):
             adk_switch.set_sensitive(False)
             adk_switch.set_active(False)
 
-        sec_label_text = "<span size='small'>{}</span>\r<span size='x-small'>{}\r{}</span>\r"\
-        .format(_("SSL Navigation Secure"), _("Access to insecure SSL"),_("websites will be denied"))
+        sec_label_text = "\r<span size='small'>{}</span>\r<span size='x-small'>{}</span>\r"\
+        .format(_("SSL Navigation Secure"), _("SNS is enabled"))
 
-        isec_label_text = "<span size='small'>{}</span>\r<span size='x-small'>{}\r{}</span>\r"\
-        .format(_("SSL Navigation Insecure"), _("Access to insecure SSL"),_("websites will be allowed"))
+        isec_label_text = "\r<span size='small'>{}</span>\r<span size='x-small'>{}</span>\r"\
+        .format(_("SSL Navigation Secure"), _("SNS is disabled"))
 
         sec_label = make_label(0.0, 0.5)
         sec_label.set_markup(sec_label_text)

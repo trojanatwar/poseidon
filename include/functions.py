@@ -245,6 +245,7 @@ def make_plugin_grid(icon, plg, mdesc, mexts, mtype):
     plg_grid.attach(plg, 1, 0, 1, 1)
 
     mime_grid = Gtk.Grid()
+    mime_grid.set_hexpand(True)
     mime_grid.set_column_spacing(100)
     mime_grid.attach(make_mime_label("<b>{}</b>".format(_("MIME Type")), 1,), 0, 0, 1, 1)
     mime_grid.attach(make_mime_label("<b>{}</b>".format(_("Description")), 1), 1, 0, 1, 1)

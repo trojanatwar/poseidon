@@ -2,15 +2,15 @@
 #
 # For more information about this list, see: https://pgl.yoyo.org/adservers/
 # ----
-# last updated:   Tue, 14 Mar 2017 08:31:33 GMT
-# entries:        2353
+# last updated:   Thu, 23 Mar 2017 10:38:17 GMT
+# entries:        2349
 # format:         hosts (hosts -- in hosts file format)
 # credits:        Peter Lowe - pgl@yoyo.org - https://pgl.yoyo.org/ - https://twitter.com/pgl
 # this URL:       https://pgl.yoyo.org/adservers/serverlist.php?hostformat=hosts&showintro=0&mimetype=plaintext
 # other formats:  https://pgl.yoyo.org/adservers/formats.php
 # policy:         https://pgl.yoyo.org/adservers/policy.php
 #
-# start date:    Thu, 16 Mar 2017 00:00:00
+# start date:    Fri, 31 Mar 2017 00:00:00
 127.0.0.1 101com.com
 127.0.0.1 101order.com
 127.0.0.1 123found.com
@@ -121,7 +121,6 @@
 127.0.0.1 ad.leadbolt.net
 127.0.0.1 ad.liveinternet.ru
 127.0.0.1 ad.lupa.cz
-127.0.0.1 ad.m5prod.net
 127.0.0.1 ad.media-servers.net
 127.0.0.1 ad.mediastorm.hu
 127.0.0.1 ad.mgd.de
@@ -167,7 +166,6 @@
 127.0.0.1 ad1.kde.cz
 127.0.0.1 ad1.pamedia.com.au
 127.0.0.1 ad2.iinfo.cz
-127.0.0.1 ad2.ip.ro
 127.0.0.1 ad2.linxcz.cz
 127.0.0.1 ad2.lupa.cz
 127.0.0.1 ad2flash.com
@@ -456,7 +454,6 @@
 127.0.0.1 ads.gawker.com
 127.0.0.1 ads.geekswithblogs.net
 127.0.0.1 ads.glispa.com
-127.0.0.1 ads.globeandmail.com
 127.0.0.1 ads.gmodules.com
 127.0.0.1 ads.godlikeproductions.com
 127.0.0.1 ads.goyk.com
@@ -602,7 +599,6 @@
 127.0.0.1 ads.tahono.com
 127.0.0.1 ads.techtv.com
 127.0.0.1 ads.telegraph.co.uk
-127.0.0.1 ads.theglobeandmail.com
 127.0.0.1 ads.themovienation.com
 127.0.0.1 ads.thestar.com
 127.0.0.1 ads.timeout.com
@@ -659,7 +655,6 @@
 127.0.0.1 ads1.mediacapital.pt
 127.0.0.1 ads1.msn.com
 127.0.0.1 ads1.rne.com
-127.0.0.1 ads1.theglobeandmail.com
 127.0.0.1 ads1.virtual-nights.com
 127.0.0.1 ads10.speedbit.com
 127.0.0.1 ads180.com
@@ -1462,7 +1457,6 @@
 127.0.0.1 hit.webcentre.lycos.co.uk
 127.0.0.1 hitbox.com
 127.0.0.1 hitcents.com
-127.0.0.1 hitexchange.net
 127.0.0.1 hitfarm.com
 127.0.0.1 hitiz.com
 127.0.0.1 hitlist.ru
@@ -1772,7 +1766,6 @@
 127.0.0.1 onlinecash.com
 127.0.0.1 onlinecashmethod.com
 127.0.0.1 onlinerewardcenter.com
-127.0.0.1 ooyala.com
 127.0.0.1 openad.tf1.fr
 127.0.0.1 openad.travelnow.com
 127.0.0.1 openads.friendfinder.com
@@ -1857,6 +1850,7 @@
 127.0.0.1 postrelease.com
 127.0.0.1 potenza.cz
 127.0.0.1 pr-star.de
+127.0.0.1 pr-ten.de
 127.0.0.1 praddpro.de
 127.0.0.1 prchecker.info
 127.0.0.1 precisioncounter.com
@@ -1918,6 +1912,7 @@
 127.0.0.1 ranking-links.de
 127.0.0.1 ranking-liste.de
 127.0.0.1 ranking-street.de
+127.0.0.1 rankingchart.de
 127.0.0.1 rankingscout.com
 127.0.0.1 rankyou.com
 127.0.0.1 rapidcounter.com
@@ -2090,6 +2085,8 @@
 127.0.0.1 suavalds.com
 127.0.0.1 subscribe.hearstmags.com
 127.0.0.1 sugoicounter.com
+127.0.0.1 sumo.com
+127.0.0.1 sumome.com
 127.0.0.1 superclix.de
 127.0.0.1 superstats.com
 127.0.0.1 supertop.ru
@@ -2176,7 +2173,6 @@
 127.0.0.1 track.adform.net
 127.0.0.1 track.anchorfree.com
 127.0.0.1 track.gawker.com
-127.0.0.1 track.happysitewriter.com
 127.0.0.1 trackalyzer.com
 127.0.0.1 tracker.icerocket.com
 127.0.0.1 tracker.marinsm.com

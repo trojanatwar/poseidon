@@ -55,13 +55,13 @@ class pathchooser(Gtk.Window):
         d = Gtk.FileChooserDialog("{}: {}".format(_("Save as"), name), self,
             Gtk.FileChooserAction.SAVE,
             (Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL,
-             Gtk.STOCK_SAVE, Gtk.ResponseType.OK))
+             Gtk.STOCK_SAVE, Gtk.ResponseType.ACCEPT))
 
         d.set_current_name(name)
         d.set_default_size(int(width), int(height))
         response = d.run()
 
-        if response == Gtk.ResponseType.OK:
+        if response == Gtk.ResponseType.ACCEPT:
             
             if os.path.exists(d.get_filename()):
                 if self.do_decision(d.get_filename()):
@@ -79,12 +79,12 @@ class pathchooser(Gtk.Window):
         d = Gtk.FileChooserDialog(_("Open file"), self,
             Gtk.FileChooserAction.OPEN,
             (Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL,
-            Gtk.STOCK_OPEN, Gtk.ResponseType.OK))
+            Gtk.STOCK_OPEN, Gtk.ResponseType.ACCEPT))
 
         d.set_default_size(int(width), int(height))
         response = d.run()
 
-        if response == Gtk.ResponseType.OK:
+        if response == Gtk.ResponseType.ACCEPT:
 
             view.load_uri("file://{}".format(d.get_filename()))
 
@@ -95,7 +95,7 @@ class pathchooser(Gtk.Window):
         d = Gtk.FileChooserDialog(_("Import a HTML bookmark file"), self,
             Gtk.FileChooserAction.OPEN,
             (Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL,
-            Gtk.STOCK_OPEN, Gtk.ResponseType.OK))
+            Gtk.STOCK_OPEN, Gtk.ResponseType.ACCEPT))
 
         d.set_default_size(int(width), int(height))
 
@@ -106,7 +106,7 @@ class pathchooser(Gtk.Window):
 
         response = d.run()
 
-        if response == Gtk.ResponseType.OK:
+        if response == Gtk.ResponseType.ACCEPT:
 
             filename = d.get_filename()
             d.destroy()

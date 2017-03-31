@@ -198,6 +198,7 @@ def cert_declarations(data, arg):
         action = certificate(data, arg)
 
         box = Gtk.Frame(name="frame_x509")
+        box.set_shadow_type(Gtk.ShadowType.IN)
 
         if arg == 14:
 

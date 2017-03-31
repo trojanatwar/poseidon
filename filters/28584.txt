@@ -36418,7 +36418,6 @@
 127.0.0.1	roia.hutchmedia.com
 127.0.0.1	roiadtracker.com
 127.0.0.1	roitracker.com
-127.0.0.1	rollbar.com
 127.0.0.1	romanticfm.2cnt.net
 127.0.0.1	romview.atdmt.com.915.9004.302br.net
 127.0.0.1	ronaldheft.com
@@ -46922,7 +46921,6 @@
 127.0.0.1	www.robotreplay.com
 127.0.0.1	www.roiadtracker.com
 127.0.0.1	www.roitracker.com
-127.0.0.1	www.rollbar.com
 127.0.0.1	www.rotrk.com
 127.0.0.1	www.roxyaffiliates.com
 127.0.0.1	www.rsmrttracking.com
@@ -48016,4 +48014,4 @@
 127.0.0.1	zz.zeroredirect1.com
 127.0.0.1	zzz.clickbank.net
 127.0.0.1	_thums.ero-advertising.com
-# Hosts: 48008
+# Hosts: 48006
