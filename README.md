@@ -1,9 +1,9 @@
-# [Poseidon](https://sidus-dev.github.io/projects/poseidon/index.html)
+# Poseidon
 A fast, minimal and lightweight browser
 
 ### Screenshot
 
-![Alt text](https://sidus-dev.github.io/projects/poseidon/images/gscreenshot_2017-01-30-114314.png "Poseidon on Arch Linux")
+![Alt text](http://arbornet.org/~sidus/images/gscreenshot_2017-03-27-154512.png "Poseidon on Arch Linux")
 
 ### Requirements
 
@@ -17,9 +17,7 @@ Requires [WebKit](https://webkitgtk.org/) 2.12.3 or higher.
 
 **Debian, Mint, Ubuntu**
 
-[Poseidon (for Python 3.5 - 0.5.0-2 - amd64)](https://github.com/sidus-dev/sidus-dev.github.io/raw/master/projects/poseidon/downloads/poseidon_0.5.0-2_py3.5_amd64.deb)
-
-[Poseidon (for Python 3.5 - 0.5.0-2 - i386)](https://github.com/sidus-dev/sidus-dev.github.io/raw/master/projects/poseidon/downloads/poseidon_0.5.0-2_py3.5_i386.deb)
+[Download & install .deb packages](https://github.com/sidus-dev/poseidon/releases)
 
 * Optional dependencies
 
@@ -45,9 +43,61 @@ Requires [WebKit](https://webkitgtk.org/) 2.12.3 or higher.
 
 `$ ./poseidon`
 
-### Other
+### Features
 
-For more informations, click [here](https://sidus-dev.github.io/projects/poseidon/index.html).
+Actually, Poseidon have some features like:
+
+* Media player (audio and video) (embedded in WebKit2).
+* PDF reader (through Evince plugin).
+* Import / Export bookmarks.
+* Strong password generator.
+* User agent switcher.
+* VTE terminal.
+* X509 decoder.
+* Source viewer.
+* Downloads manager.
+* Custom themes.
+* Video popout.
+* Cookies manager (reader and editor).
+* Protection from SSL insecure websites.
+* AdKiller. Experimental Ads / Popups blocker.
+* No-Script / No-Plugins. Useful to disable Javascript or Adobe Flash.
+* Minimalist history and bookmarks tabs.
+
+### Shortcuts
+
+In the main entry, type:
+
+* about:plugins : to get a list of loaded plugins
+* about:bookmarks : to open bookmarks tab
+* about:history : to open history tab
+* about:cookies : to open cookies manager tab
+* about:settings : to open settings tab
+
+### Available Languages
+
+Actually, supported languages are 4:
+
+* English (en_US)
+* German (de_DE)
+* Italian (it_IT)
+* Spanish (es_ES)
+
+### Themes
+
+Any image can become a theme. Right click on any image and click "Apply as theme".
+
+### Anonymity
+
+* Tor
+
+In order to use Poseidon with Tor, you need torsocks or alternatively proxychains. Once Tor is started through arm or the discontinued vidalia, you can launch Poseidon in these ways:
+
+`$ torsocks(or proxychains) ./poseidon` (default mode)
+
+`$ torsocks(or proxychains) ./poseidon -i` (defcon mode)
+
+To increase security even more, go to "Settings" > "Miles O'Brien", set "set-enable-java", "set-enable-javascript", "set-enable-plugins", "set-enable-webgl" to "False", save the new settings and re-launch Poseidon in Defcon Mode. It's also a good practice keeping your browser un-maximized during the navigation and set a custom user-agent ("set-user-agent").
 
 ### Code snippets, examples, icons, inspirations, peace to:
 
