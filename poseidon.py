@@ -2222,6 +2222,7 @@ class Browser(Gtk.Window):
         page = self.current_page
         scrolled_window = self.get_clean_page(page, "settings", False)
         scrolled_window.set_policy(Gtk.PolicyType.NEVER, Gtk.PolicyType.NEVER)
+        scrolled_window.set_shadow_type(Gtk.ShadowType.NONE)
 
         save_settings_button = make_button(make_icon("object-select.svg"), _("Save Settings"), False)
         restore_settings_button = make_button(make_icon("edit-clear-all.svg"), _("Restore Settings"), False)
