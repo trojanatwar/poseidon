@@ -16,7 +16,7 @@
 
 
 import sys, gi, getopt, os, subprocess,\
-sqlite3 as lite, time, datetime, re, html, urllib.parse as urlparse
+sqlite3 as lite, time, datetime, re, html
 gi.require_version('Gtk', '3.0')
 gi.require_version('WebKit2', '4.0')
 gi.require_version('GtkSource', '3.0')
@@ -196,7 +196,7 @@ class BrowserTab(Gtk.VBox):
         bookmarks_button = make_button(make_icon("bookmarks.svg"), None, True)
         tools = make_button(make_icon("open-menu.svg"), None, True)
 
-        url_box = Gtk.HBox()
+        url_box = Gtk.HBox(name="frame_main")
         url_box.pack_start(go_back, False, False, 0)
         url_box.pack_start(go_forward, False, False, 0)
         url_box.pack_start(refresh, False, False, 0)
@@ -207,9 +207,6 @@ class BrowserTab(Gtk.VBox):
         url_box.pack_start(download_button, False, False, 0)
         url_box.pack_start(bookmarks_button, False, False, 0)
         url_box.pack_start(tools, False, False, 0)
-
-        frame_main = Gtk.Frame(name="frame_main")
-        frame_main.add(url_box)
 
         '''
         ################
@@ -252,7 +249,7 @@ class BrowserTab(Gtk.VBox):
         ############
         '''
 
-        find_box = Gtk.HBox()
+        find_box = Gtk.HBox(name="frame_find")
 
         find_entry = Gtk.Entry()
         find_entry.set_width_chars(30)
@@ -275,9 +272,7 @@ class BrowserTab(Gtk.VBox):
         find_box.pack_start(next_button, False, False, 0)
         find_box.pack_start(close_button, False, False, 0)
 
-        frame_find = Gtk.Frame(name="frame_find")
-        frame_find.add(find_box)
-        find_revealer = revealize(frame_find)
+        find_revealer = revealize(find_box)
 
         '''
         ###########
@@ -320,12 +315,9 @@ class BrowserTab(Gtk.VBox):
         iconified_vte = Gtk.EventBox()
         iconified_vte.add(make_icon("terminal.svg"))
 
-        status_box = Gtk.HBox(False)
+        status_box = Gtk.HBox(False, name="frame_status")
         status_box.pack_start(link_hover, True, True, 10)
         status_box.pack_end(iconified_vte, False, True, 0)
-
-        frame_status = Gtk.Frame(name="frame_status")
-        frame_status.add(status_box)
 
         '''
         ##################
@@ -333,7 +325,7 @@ class BrowserTab(Gtk.VBox):
         ##################
         '''
 
-        permission_box = Gtk.HBox()
+        permission_box = Gtk.HBox(name="frame_permission")
         permission_message = make_label(0.0, 0.5)
         allow_button = make_button(make_icon("object-select.svg"), None, False)
         deny_button = make_button(make_icon("window-close.svg"), None, False)
@@ -345,9 +337,7 @@ class BrowserTab(Gtk.VBox):
         allow_button.connect("clicked", lambda x: self.on_allow(self.perm_request))
         deny_button.connect("clicked", lambda x: self.on_deny(self.perm_request))
 
-        frame_permission = Gtk.Frame(name="frame_permission")
-        frame_permission.add(permission_box)
-        permission_revealer = revealize(frame_permission)
+        permission_revealer = revealize(permission_box)
 
         '''
         ###################
@@ -376,14 +366,14 @@ class BrowserTab(Gtk.VBox):
         #################
         '''
 
-        self.pack_start(frame_main, False, False, 0)
+        self.pack_start(url_box, False, False, 0)
         self.pack_start(permission_revealer, False, False, 0)
         self.pack_start(cert_revealer, False, False, 0)
         self.pack_start(progress_box, False, False, 0)
         self.pack_start(scrolled_window, True, True, 0)
         self.pack_start(vte_revealer, False, False, 0)
         self.pack_start(find_revealer, False, False, 0)
-        self.pack_start(frame_status, False, False, 0)
+        self.pack_start(status_box, False, False, 0)
 
         '''
         ###############
@@ -391,8 +381,8 @@ class BrowserTab(Gtk.VBox):
         ###############
         '''
 
-        frame_main.show_all()
-        frame_status.show_all()
+        url_box.show_all()
+        status_box.show_all()
         iconified_vte.hide()
 
         cancel.hide()
@@ -443,6 +433,7 @@ class BrowserTab(Gtk.VBox):
         if not self.is_defcon: self.cache_path = cache_path
 
         scrolled_window.add(webview)
+        scrolled_window.show_all()
 
         '''
         ###########
@@ -1367,7 +1358,6 @@ class Browser(Gtk.Window):
                         cur.execute("DELETE FROM history WHERE date < datetime(?, '-7 days');", (today,))
                         history_con.commit()
 
-        page.scrolled_window.show_all()
         self.update_status()
 
         return True
@@ -1428,7 +1418,7 @@ class Browser(Gtk.Window):
             self.cookies_manager()
             return True
 
-        format = "{}{}".format("http://", urlparse.quote(url, safe=''))
+        format = "{}{}".format("http://", parse(url))
 
         if not url: return True
 
@@ -1447,8 +1437,8 @@ class Browser(Gtk.Window):
         else:
             if validators.url(format):
                 if is_url_valid(format, self.tlsbool): page.webview.load_uri(format)
-                else: self.try_search(url)
-            else: self.try_search(url)
+                else: self.try_search(parse(url))
+            else: self.try_search(parse(url))
 
     def on_click_bookmark(self, button):
 

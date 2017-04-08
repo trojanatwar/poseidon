@@ -127,6 +127,10 @@ def get_domain(url):
 
     return urlparse.urlunparse(urlparse.urlparse(url)[:2] + ("",) * 4).split("://",1)[1]
 
+def parse(string):
+
+    return urlparse.quote(string, safe='')
+
 def minify(arg, num):
 
     try: arg = arg[:num] + (arg[num:] and '...')
