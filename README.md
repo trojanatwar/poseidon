@@ -27,7 +27,7 @@ Requires [WebKit](https://webkitgtk.org/) 2.12.3 or higher.
 
 * Required dependencies
 
-`# dnf install python3 webkitgtk4 webkitgtk4-jsc gtksourceview3 python3-pillow python3-pyOpenSSL pygobject3`
+`# dnf install python3 python3-requests python3-six python3-decorator python3-cairo python3-pillow python3-pyOpenSSL pygobject3 webkitgtk4 webkitgtk4-jsc gtksourceview3`
 
 * Development dependencies
 
@@ -35,7 +35,7 @@ Requires [WebKit](https://webkitgtk.org/) 2.12.3 or higher.
 
 * Optional dependencies
 
-`# dnf install evince-browser-plugin vte3`
+`# dnf install evince-browser-plugin vte291`
 
 ### Compile [WebKit2GTK+ Python WebExtension loader](https://github.com/aperezdc/webkit2gtk-python-webextension-example) and run Poseidon
 

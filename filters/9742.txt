@@ -23576,6 +23576,7 @@
 127.0.0.1	callfire.com
 127.0.0.1	callloop.com
 127.0.0.1	callmd5map.com
+127.0.0.1	calltostophack.info
 127.0.0.1	calme.science
 127.0.0.1	cameraboys.com
 127.0.0.1	cameron-wolter.us
@@ -23606,6 +23607,7 @@
 127.0.0.1	cap1ss.xp1.ru4.com
 127.0.0.1	caprewards.go2cloud.org
 127.0.0.1	capture.trackjs.com
+127.0.0.1	caqm.ca
 127.0.0.1	carambo.la
 127.0.0.1	carbonads.com
 127.0.0.1	careers.112.2o7.net
@@ -29379,6 +29381,7 @@
 127.0.0.1	fxstyle.net
 127.0.0.1	fxt.go2cloud.org
 127.0.0.1	fyber.com
+127.0.0.1	fydoratot.com
 127.0.0.1	fyhjs.voluumtrk.com
 127.0.0.1	fyvzz.survey7.adsservingtwig.xyz
 127.0.0.1	fywwy.voluumtrk.com
@@ -30625,6 +30628,7 @@
 127.0.0.1	ibanners.empoweredcomms.com.au
 127.0.0.1	ibario.com
 127.0.0.1	ibeat.indiatimes.com
+127.0.0.1	ibeglobal.biz
 127.0.0.1	ibeu2.mookie1.com
 127.0.0.1	ibg.hitbox.com
 127.0.0.1	ibjk3.voluumtrk.com
@@ -33141,6 +33145,7 @@
 127.0.0.1	merchant.linksynergy.com
 127.0.0.1	merchant.myofferpal.com
 127.0.0.1	merchant.wgiftcard.com
+127.0.0.1	meredondidn.com
 127.0.0.1	meshbean.com
 127.0.0.1	mesia.com
 127.0.0.1	messagia.adcentric.proximi-t.com
@@ -34175,6 +34180,7 @@
 127.0.0.1	nvtrak.com
 127.0.0.1	nvy.sharesix.com
 127.0.0.1	nw.ads.doko.jp
+127.0.0.1	nwbusinessschool.org
 127.0.0.1	nwidget.networkedblogs.com
 127.0.0.1	nws.naltis.com
 127.0.0.1	nwz.ivwbox.de
@@ -34949,6 +34955,7 @@
 127.0.0.1	patchwork.net
 127.0.0.1	path.trackinglabs.com
 127.0.0.1	patriothealth.go2cloud.org
+127.0.0.1	paulsalendepute.fr
 127.0.0.1	pavelbagryancev.justclick.ru
 127.0.0.1	pay-ads.com
 127.0.0.1	pay-to-promote.com
@@ -37070,6 +37077,7 @@
 127.0.0.1	send4fun.com
 127.0.0.1	seniorttub.bid
 127.0.0.1	senseiproducts.com
+127.0.0.1	senseofsensation.nl
 127.0.0.1	sensor.org.ua
 127.0.0.1	seoproofits.justclick.ru
 127.0.0.1	seotoolscentral.com
@@ -37564,6 +37572,7 @@
 127.0.0.1	software.xoomcounter.com
 127.0.0.1	softwares.timesink.com
 127.0.0.1	sohh.us.intellitxt.com
+127.0.0.1	soinwarep.com
 127.0.0.1	sokrates.adtech.fr
 127.0.0.1	soldi.msn.it
 127.0.0.1	solidclix.go2cloud.org
@@ -39079,6 +39088,7 @@
 127.0.0.1	tinbuadserv.com
 127.0.0.1	ting.7eer.net
 127.0.0.1	tinglog.baidu.com
+127.0.0.1	tinjecofsand.com
 127.0.0.1	tinybar.com
 127.0.0.1	tinytracker.onion.com
 127.0.0.1	tirebuyer.go2cloud.org
@@ -39376,6 +39386,7 @@
 127.0.0.1	track.reinvigorate.net
 127.0.0.1	track.right-ads.com
 127.0.0.1	track.ringcentral.com
+127.0.0.1	track.scanguard.com
 127.0.0.1	track.scanmyphones.com
 127.0.0.1	track.scorpiointeractive.com
 127.0.0.1	track.searchignite.com
@@ -39861,6 +39872,7 @@
 127.0.0.1	trollzeweb.com
 127.0.0.1	troopersiccy.bravejournal.com
 127.0.0.1	tropo01.webtrekk.net
+127.0.0.1	troverylit.com
 127.0.0.1	trovus.co.uk
 127.0.0.1	trp.numergy.bench.cedexis.com
 127.0.0.1	trs.webprospector.de
@@ -40509,6 +40521,7 @@
 127.0.0.1	vast.moatads.com
 127.0.0.1	vastx.moatads.com
 127.0.0.1	vatrack.hinet.net
+127.0.0.1	vaulttherapy.com
 127.0.0.1	vayavicio.com
 127.0.0.1	vb1700.mgmt.somee.com
 127.0.0.1	vcm.go2cloud.org
@@ -44753,6 +44766,7 @@
 127.0.0.1	win.openvn.com
 127.0.0.1	win7affiliates.com
 127.0.0.1	window.nixnet.cz
+127.0.0.1	windowshelp44.info
 127.0.0.1	windowslive.tt.omtrdc.net
 127.0.0.1	winfaq.de.intellitxt.com
 127.0.0.1	winfreestuff.com
@@ -48014,4 +48028,4 @@
 127.0.0.1	zz.zeroredirect1.com
 127.0.0.1	zzz.clickbank.net
 127.0.0.1	_thums.ero-advertising.com
-# Hosts: 48006
+# Hosts: 48020

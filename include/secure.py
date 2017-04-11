@@ -20,6 +20,7 @@ import sys, gi, datetime
 from OpenSSL import crypto
 from gi.repository import Gtk
 from gi.repository.GtkSource import Buffer, View
+
 sys.path.append(".")
 from functions import get_domain, reveal
 
@@ -70,14 +71,8 @@ def certificate(data, arg):
 
     if pem_certificate:
 
-        x509 = crypto.load_certificate(
-            crypto.FILETYPE_PEM, pem_certificate)
-
-        extensions = [
-            x509.get_extension(i) for i in
-            range(x509.get_extension_count())
-        ]
-
+        x509 = crypto.load_certificate(crypto.FILETYPE_PEM, pem_certificate)
+        extensions = [x509.get_extension(i) for i in range(x509.get_extension_count())]
         keyed_extensions = {}
             
         for ext in extensions:
@@ -182,8 +177,18 @@ def certificate(data, arg):
 
         if arg == 13:
 
-            buf = "<b>{}</b>\n\n{}".format(_("Signature Algorithm"),\
-            x509.get_signature_algorithm().decode("utf8", "replace"))
+            t = _("Signature Algorithm")
+
+            try:
+
+                buf = "<b>{}</b>\n\n{}".format(t,\
+                x509.get_signature_algorithm().decode("utf8", "replace"))
+
+            except BaseException as e:
+
+                buf = "<b>{}</b>\n\n{}.\n{}: {}".format(t,\
+                _("In order to show signature algorithm you need to install a newer version of pyOpenSSL"),\
+                _("Error found"), e)
 
             return buf
 

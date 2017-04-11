@@ -17,12 +17,9 @@
 
 import sys, gi, getopt, os, subprocess,\
 sqlite3 as lite, time, datetime, re, html
+
 gi.require_version('Gtk', '3.0')
-gi.require_version('WebKit2', '4.0')
-gi.require_version('GtkSource', '3.0')
-from gi.repository import Gtk, Gdk, GdkPixbuf, GObject, WebKit2, GLib
-from gi.repository.GtkSource import LanguageManager, Buffer,\
-View, SearchContext, SearchSettings
+from gi.repository import Gtk, Gdk, GdkPixbuf, GObject, GLib
 from os import path
 
 sys.path.append("modules")
@@ -32,11 +29,48 @@ sys.path.append("include")
 from settings import *
 from theme import *
 from functions import *
-from menu import *
 from pathchooser import *
 from database import *
 from dialog import *
-from secure import secure, certificate, cert_declarations
+
+'''
+########################################
+# Start Missing Dependencies Detection #
+########################################
+'''
+
+try: gi.require_version('WebKit2', '4.0')
+except:
+    dialog().error(_("WebKit2 is missing"),\
+    "<span size='small'>{} {} WebKit2 {}.</span>"\
+    .format(browser_name, _("requires"), _("installed on your system")))
+    exit()
+else:
+    from gi.repository import WebKit2
+    from menu import *
+
+try: gi.require_version('GtkSource', '3.0')
+except:
+    dialog().error(_("GtkSourceView 3 is missing"),\
+    "<span size='small'>{} {} GtkSourceView 3 {}.</span>"\
+    .format(browser_name, _("requires"), _("installed on your system")))
+    exit()
+else: from gi.repository.GtkSource import LanguageManager, Buffer,\
+View, SearchContext, SearchSettings
+
+try: from OpenSSL import crypto
+except:
+    dialog().error(_("pyOpenSSL is missing"),\
+     "<span size='small'>{} {} pyOpenSSL {}.</span>"\
+    .format(browser_name, _("requires"), _("installed on your system")))
+    exit()
+else: from secure import secure, certificate, cert_declarations
+
+'''
+######################################
+# End Missing Dependencies Detection #
+######################################
+'''
 
 browser = __file__.replace(".py", "")
 
