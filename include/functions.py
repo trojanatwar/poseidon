@@ -18,8 +18,10 @@
 
 import os, sys, gi, requests, re, datetime, random,\
 requests.exceptions as ecs, urllib.parse as urlparse
+
 from PIL import Image
 from gi.repository import Gtk, Gdk, GObject, GLib
+
 sys.path.append(".")
 from settings import verify_req, icns, set_user_agent,\
 ua_browsers_dsc, ua_browsers_val, ua_mobile_dsc,\
@@ -28,6 +30,17 @@ from dialog import *
 
 sys.path.append("modules")
 import validators
+
+'''
+###########
+# Methods #
+###########
+'''
+
+def val_sec_string(str):
+
+    if not str.strip(): return "\n{}.".format(_("Data not available"))
+    else: return str
 
 def stop_timeout(self):
 
@@ -390,22 +403,32 @@ def get_cache_size(path):
 
     return convert_size(total_size)
 
+def build_headerbar(title, name, close_button):
+
+    headerbar = Gtk.HeaderBar(name=name, title=title)
+    if close_button == 1: headerbar.set_show_close_button(True)
+    else: headerbar.set_show_close_button(False)
+    return headerbar
+
 def pass_generator(self):
 
     window = Gtk.Window()
-    window.set_title(_("Password Generator"))
     window.set_position(Gtk.WindowPosition.CENTER)
     window.set_skip_taskbar_hint(True)
     window.set_transient_for(self)
     window.set_resizable(False)
+    window.set_titlebar(build_headerbar(_("Password Generator"), "nobg_headerbar", 1))
 
     entry = make_box("{} (Def: 32) (Max: 99999)".format(_("Password Length")), 5, 1)
     button = Gtk.Button(label=_("Generate"))
     copy = Gtk.Button(label=_("Copy"))
     result = Gtk.TextView()
+    result.set_top_margin(10)
+    result.set_left_margin(10)
     result.set_wrap_mode(Gtk.WrapMode.WORD)
     scrolled_window = Gtk.ScrolledWindow()
-    scrolled_window.set_size_request(500, 200)
+    scrolled_window.set_shadow_type(Gtk.ShadowType.IN)
+    scrolled_window.set_size_request(400, 200)
     scrolled_window.add(result)
 
     bt_grid = Gtk.Grid()
@@ -460,14 +483,14 @@ def pass_generate(length, default_length, result):
 def user_agent(self):
 
     window = Gtk.Window()
-    window.set_title("User Agent")
     window.set_position(Gtk.WindowPosition.CENTER)
     window.set_skip_taskbar_hint(True)
     window.set_transient_for(self)
     window.set_resizable(False)
+    window.set_titlebar(build_headerbar("User Agent", "nobg_headerbar", 1))
 
     scrolled_window = Gtk.ScrolledWindow()
-    scrolled_window.set_size_request(300, 300)
+    scrolled_window.set_size_request(400, 300)
 
     tree = Gtk.TreeView()
     tree.connect('row-activated', self.new_user_agent)
@@ -506,5 +529,117 @@ def user_agent(self):
     scrolled_window.add(tree)
 
     window.add(scrolled_window)
+    window.show_all()
+
+def on_proxy_switch(button, name, element):
+
+    name = int(name)
+
+    if button.get_active(): state = 1
+    else: state = 0
+
+    if name == 2 and state == 1:
+        for i in element: i.set_sensitive(True)
+    else:
+        for i in element: i.set_sensitive(False)
+
+def on_proxy_type(button):
+
+    if button.get_active(): return 0
+    else: return 1
+
+def on_proxy_mode(element):
+
+    for i in element:
+        if i.get_active(): return i.get_name()
+
+def proxy(self):
+
+    window = Gtk.Window()
+    window.set_position(Gtk.WindowPosition.CENTER)
+    window.set_skip_taskbar_hint(True)
+    window.set_transient_for(self)
+    window.set_resizable(False)
+    window.set_size_request(400, 200)
+    window.set_titlebar(build_headerbar("{} ({})".format(\
+    _("Proxy Manager"), _("Experimental")), "nobg_headerbar", 1))
+
+    default = Gtk.RadioButton(label=_("Default (use system proxy settings)"), name=1)
+    custom = Gtk.RadioButton(label=_("Custom (manual proxy configuration)"), name=2, group=default)
+    noproxy = Gtk.RadioButton(label=_("No Proxy"), name=3, group=default)
+
+    url_entry = Gtk.Entry(text="127.0.0.1")
+    url_entry.set_width_chars(40)
+    port_entry = Gtk.Entry(name=1, text=0)
+    port_entry.set_width_chars(5)
+    port_entry.set_max_length(5)
+
+    port_entry.connect("changed", digits_only)
+
+    url_entry_dsc = Gtk.Label("{}:".format(_("Proxy URL")))
+    port_entry_dsc = Gtk.Label("{}:".format(_("Port")))
+
+    egrid = Gtk.Grid()
+    egrid.set_property("margin-top", 20)
+    egrid.set_column_spacing(10)
+    egrid.attach(url_entry_dsc, 0, 0, 1, 1)
+    egrid.attach(url_entry, 1, 0, 1, 1)
+    egrid.attach(port_entry_dsc, 2, 0, 1, 1)
+    egrid.attach(port_entry, 3, 0, 1, 1)
+
+    socks = Gtk.RadioButton(label="SOCKS")
+    http = Gtk.RadioButton(label="HTTP[S]", group=socks)
+
+    mgrid = Gtk.Grid()
+    mgrid.set_property("margin-top", 20)
+    mgrid.set_column_spacing(10)
+    mgrid.attach(socks, 0, 0, 1, 1)
+    mgrid.attach(http, 1, 0, 1, 1)
+
+    elist = [egrid, mgrid]
+
+    default.connect("toggled", on_proxy_switch, default.get_name(), elist)
+    custom.connect("toggled", on_proxy_switch, custom.get_name(), elist)
+    noproxy.connect("toggled", on_proxy_switch, noproxy.get_name(), elist)
+
+    apply_button = Gtk.Button(label=_("Set Proxy"))
+    apply_button.connect("clicked", lambda x:\
+    self.set_proxy(on_proxy_mode([default, custom, noproxy]),\
+    url_entry.get_text(), port_entry.get_text(), on_proxy_type(socks)))
+
+    box = Gtk.HBox()
+    box.set_property("margin-top", 20)
+    box.pack_end(apply_button, False, False, 0)
+
+    grid = Gtk.Grid()
+    grid.set_property("margin", 20)
+    grid.attach(default, 0, 0, 1, 1)
+    grid.attach(custom, 0, 1, 1, 1)
+    grid.attach(noproxy, 0, 2, 1, 1)
+    grid.attach(egrid, 0, 3, 1, 1)
+    grid.attach(mgrid, 0, 4, 1, 1)
+    grid.attach(box, 0, 5, 1, 1)
+
+    egrid.set_sensitive(False)
+    mgrid.set_sensitive(False)
+
+    db = self.get_proxy()
+
+    if db:
+
+        if db[0] == str(2):
+
+            custom.set_active(True)
+            egrid.set_sensitive(True)
+            mgrid.set_sensitive(True)
+            
+            if db[1] != "socks": http.set_active(True)
+
+            url_entry.set_text(db[2])
+            port_entry.set_text(db[3])
+
+        if db[0] == str(3): noproxy.set_active(True)
+
+    window.add(grid)
     window.show_all()
 

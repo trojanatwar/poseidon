@@ -76,6 +76,20 @@ browser = __file__.replace(".py", "")
 
 '''
 ######################
+# Get WebKit Version #
+######################
+'''
+
+try: webkit_ver = WebKit2.get_major_version(), WebKit2.get_minor_version(), WebKit2.get_micro_version()
+except: webkit_ver = None
+
+wk12 = (2,12,3)
+wk16 = (2,16,0)
+
+if webkit_ver and webkit_ver < wk12: webkit_ver = None
+
+'''
+######################
 # Set WebKit Context #
 ######################
 '''
@@ -100,10 +114,6 @@ class BrowserTab(Gtk.VBox):
     def __init__(self, *args, **kwargs):
         super(BrowserTab, self).__init__(*args, **kwargs)
 
-        webview = WebKit2.WebView.new_with_context(web_context)
-
-        self.show()
-
         '''
         #############
         # Is Defcon #
@@ -112,6 +122,16 @@ class BrowserTab(Gtk.VBox):
 
         if self.get_name() == "defcon": self.is_defcon = True
         else: self.is_defcon = False
+
+        '''
+        ################
+        # Show WebView #
+        ################
+        '''
+
+        webview = WebKit2.WebView.new_with_context(web_context)
+
+        self.show()
 
         '''
         ###################
@@ -146,7 +166,6 @@ class BrowserTab(Gtk.VBox):
         settings.set_property("enable-offline-web-application-cache", set_enable_offline_web_application_cache)
         settings.set_property("enable-page-cache", set_enable_page_cache)
         settings.set_property("enable-plugins", set_enable_plugins)
-        settings.set_property("enable-private-browsing", self.is_defcon)
         settings.set_property("enable-resizable-text-areas", set_enable_resizable_text_areas)
         settings.set_property("enable-site-specific-quirks", set_enable_site_specific_quirks)
         settings.set_property("enable-smooth-scrolling", set_enable_smooth_scrolling)
@@ -171,6 +190,22 @@ class BrowserTab(Gtk.VBox):
         settings.set_property("user-agent", set_user_agent)
         settings.set_property("zoom-text-only", set_zoom_text_only)
 
+        '''
+        ########################################
+        # Deprecated Symbols for WebKit 2.16.x #
+        ########################################
+        '''
+
+        if webkit_ver < wk16:
+
+            settings.set_property("enable-private-browsing", self.is_defcon)
+
+        '''
+        #######################
+        # Set WebKit Settings #
+        #######################
+        '''
+
         webview.set_settings(settings)
 
         '''
@@ -183,12 +218,12 @@ class BrowserTab(Gtk.VBox):
 
             data_manager = WebKit2.WebsiteDataManager()
             cache_path = data_manager.get_disk_cache_directory()
-
+            favicondb = web_context.get_favicon_database()
             web_context.new_with_website_data_manager(data_manager)
             web_context.set_cache_model(cache_model)
             web_context.set_favicon_database_directory(cache_path)
 
-            favicondb = web_context.get_favicon_database()
+        else: web_context.set_cache_model(0)
 
         controller = webview.get_find_controller()
         bflist = webview.get_back_forward_list()
@@ -746,9 +781,7 @@ class Browser(Gtk.Window):
         save_button = make_button(make_icon("document-save.svg"), _("Save / Export"), False)
         save_button.connect("clicked", lambda x: self.save())
 
-        headerbar = Gtk.HeaderBar(name="headerbar")
-        headerbar.set_title(browser_name)
-        headerbar.set_show_close_button(True)
+        headerbar = build_headerbar(browser_name, "headerbar", 0)
         headerbar.set_decoration_layout("")
         self.set_titlebar(headerbar)
 
@@ -1056,6 +1089,12 @@ class Browser(Gtk.Window):
         usagent_button.connect("clicked", lambda x: user_agent(self))
         usagent_label = make_modelbutton_label("[ Ctrl+G ]", 0.95, 0.5)
 
+        if webkit_ver > wk16:
+
+            proxy_button = make_modelbutton(_("Proxy Manager"), 0.0, 0.5)
+            proxy_button.connect("clicked", lambda x: proxy(self))
+            proxy_label = make_modelbutton_label("[ Ctrl+X ]", 0.95, 0.5)
+
         vte_button = make_modelbutton(_("VTE Terminal"), 0.0, 0.5)
         vte_button.connect("clicked", lambda x: self.vte())
         vte_label = make_modelbutton_label("[ F4 ]", 0.95, 0.5)
@@ -1078,15 +1117,11 @@ class Browser(Gtk.Window):
 
         manager_cookies_button = make_modelbutton(_("Cookies Manager"), 0.0, 0.5)
         manager_cookies_button.connect("clicked", lambda x: self.cookies_manager())
+        manager_cookies_label = make_modelbutton_label("[ Ctrl+O ]", 0.95, 0.5)
 
         delete_cache_button = make_modelbutton(_("Empty Cache"), 0.0, 0.5)
         delete_cache_button.connect("clicked", lambda x: web_context.clear_cache())
         delete_cache_label = make_label(0.95, 0.5)
-
-        if not self.is_defcon:
-
-            delete_cache_label.set_markup("<span size='x-small'>{}: {}</span>".\
-            format(_("Cache used"), get_cache_size(self.cache_path)))
 
         grid_buttons = Gtk.Grid()
         grid_buttons.set_column_spacing(10)
@@ -1137,23 +1172,30 @@ class Browser(Gtk.Window):
         grid_utilities.attach(pass_gen_label, 0, 4, 1, 1)
         grid_utilities.attach(usagent_button, 0, 5, 1, 1)
         grid_utilities.attach(usagent_label, 0, 5, 1, 1)
-        grid_utilities.attach(vte_button, 0, 6, 1, 1)
-        grid_utilities.attach(vte_label, 0, 6, 1, 1)
-        grid_utilities.attach(Gtk.Separator.new(Gtk.Orientation.HORIZONTAL), 0, 7, 1, 1)
-        grid_utilities.attach(plugins_button, 0, 8, 1, 1)
-        grid_utilities.attach(plugins_label, 0, 8, 1, 1)
-        grid_utilities.attach(source_button, 0, 9, 1, 1)
-        grid_utilities.attach(source_label, 0, 9, 1, 1)
-        grid_utilities.attach(history_button, 0, 10, 1, 1)
-        grid_utilities.attach(history_label, 0, 10, 1, 1)
-        grid_utilities.attach(bookmarks_button, 0, 11, 1, 1)
-        grid_utilities.attach(bookmarks_label, 0, 11, 1, 1)
-        grid_utilities.attach(Gtk.Separator.new(Gtk.Orientation.HORIZONTAL), 0, 12, 1, 1)
-        grid_utilities.attach(manager_cookies_button, 0, 13, 1, 1)
-        grid_utilities.attach(delete_cache_button, 0, 14, 1, 1)
-        grid_utilities.attach(delete_cache_label, 0, 14, 1, 1)
-        grid_utilities.attach(Gtk.Separator.new(Gtk.Orientation.HORIZONTAL), 0, 15, 1, 1)
-        grid_utilities.attach(back_main_button, 0, 16, 1, 1)
+
+        if webkit_ver > wk16:
+
+            grid_utilities.attach(proxy_button, 0, 6, 1, 1)
+            grid_utilities.attach(proxy_label, 0, 6, 1, 1)
+
+        grid_utilities.attach(vte_button, 0, 7, 1, 1)
+        grid_utilities.attach(vte_label, 0, 7, 1, 1)
+        grid_utilities.attach(Gtk.Separator.new(Gtk.Orientation.HORIZONTAL), 0, 8, 1, 1)
+        grid_utilities.attach(plugins_button, 0, 9, 1, 1)
+        grid_utilities.attach(plugins_label, 0, 9, 1, 1)
+        grid_utilities.attach(source_button, 0, 10, 1, 1)
+        grid_utilities.attach(source_label, 0, 10, 1, 1)
+        grid_utilities.attach(history_button, 0, 11, 1, 1)
+        grid_utilities.attach(history_label, 0, 11, 1, 1)
+        grid_utilities.attach(bookmarks_button, 0, 12, 1, 1)
+        grid_utilities.attach(bookmarks_label, 0, 12, 1, 1)
+        grid_utilities.attach(Gtk.Separator.new(Gtk.Orientation.HORIZONTAL), 0, 13, 1, 1)
+        grid_utilities.attach(manager_cookies_button, 0, 14, 1, 1)
+        grid_utilities.attach(manager_cookies_label, 0, 14, 1, 1)
+        grid_utilities.attach(delete_cache_button, 0, 15, 1, 1)
+        grid_utilities.attach(delete_cache_label, 0, 15, 1, 1)
+        grid_utilities.attach(Gtk.Separator.new(Gtk.Orientation.HORIZONTAL), 0, 16, 1, 1)
+        grid_utilities.attach(back_main_button, 0, 17, 1, 1)
         grid_utilities.set_column_homogeneous(True)
 
         menu.pack_start(grid_buttons, False, False, 0)
@@ -1242,6 +1284,22 @@ class Browser(Gtk.Window):
         try:
             if sys.argv[1] and not sys.argv[1] == "-i": self.on_load_url(sys.argv[1])
         except: pass
+
+        '''
+        ###############
+        # Check Proxy #
+        ###############
+        '''
+
+        if webkit_ver > wk16:
+
+            db = self.get_proxy()
+
+            if db:
+
+                if db[1] != "socks": tp = 1
+                else: tp = 0
+                if db[0] != str(1): self.set_proxy(db[0], db[2], db[3], tp)
 
     '''
     ###########
@@ -1758,7 +1816,7 @@ class Browser(Gtk.Window):
 
         if not self.is_defcon:
             self.delete_cache_label.set_markup("<span size='x-small'>{}: {}</span>".\
-            format(_("Cache used"), get_cache_size(self.cache_path)))
+            format(_("In use"), get_cache_size(self.cache_path)))
 
         self.tools_menu.show_all()
         self.update_status()
@@ -2154,6 +2212,46 @@ class Browser(Gtk.Window):
 
         return True
 
+    def get_proxy(self):
+
+        with proxy_con:
+            cur = proxy_con.cursor()
+            cur.execute("SELECT * FROM proxy;")
+            opts = cur.fetchall()
+
+        if opts: return opts[0]
+
+    def set_proxy(self, mode, url, port, type):
+
+        mode = int(mode)
+
+        if mode == 1: web_context.set_network_proxy_settings(\
+                      WebKit2.NetworkProxyMode.DEFAULT)
+
+        if mode == 2:
+
+            if type == 0: type = "socks"
+            else: type = "http"
+            if not url: url = "127.0.0.1"
+            if not port: port = 0
+
+            proxy = "{}://{}:{}".format(type, url, port)
+
+            web_context.set_network_proxy_settings(\
+            WebKit2.NetworkProxyMode.CUSTOM, WebKit2.NetworkProxySettings.new(proxy))
+
+        if mode == 3: web_context.set_network_proxy_settings(\
+                      WebKit2.NetworkProxyMode.NO_PROXY)
+
+        with proxy_con:
+            cur = proxy_con.cursor()
+            cur.execute("DELETE FROM proxy;")
+            cur.execute("INSERT INTO proxy VALUES(?, ?, ?, ?);", (mode, type, url, port))
+
+        self.tabs[self.current_page][0].webview.reload()
+
+        return True
+
     def new_user_agent(self, view, iter, column):
 
         page = self.tabs[self.current_page][0]
@@ -2456,8 +2554,7 @@ class Browser(Gtk.Window):
 
         liststore = Gtk.ListStore(int, str, str, str, str, int, int, int, int, str)
 
-        for i in cookies:
-            liststore.append(list(i))
+        for i in cookies: liststore.append(list(i))
 
         view = Gtk.TreeView(model=liststore)
 
@@ -2951,11 +3048,16 @@ class Browser(Gtk.Window):
                    Gdk.KEY_k: self.delete_theme,
                    Gdk.KEY_i: self.defcon,
                    Gdk.KEY_l: self.view_plugins,
+                   Gdk.KEY_o: self.cookies_manager,
                    Gdk.KEY_j: lambda: pass_generator(self),
                    Gdk.KEY_g: lambda: user_agent(self),
                    Gdk.KEY_d: lambda: self.view_bookmarks(None, None),
                    Gdk.KEY_n: lambda: init(),
                    Gdk.KEY_q: lambda: quit(self)}
+
+        if webkit_ver > wk16:
+
+            mapping.update({Gdk.KEY_x: lambda: proxy(self)})
 
         if event.state & modifiers == Gdk.ModifierType.CONTROL_MASK\
         and event.keyval in mapping:
@@ -2981,14 +3083,7 @@ class Browser(Gtk.Window):
 
 def init():
 
-    try: ver = WebKit2.get_major_version(), WebKit2.get_minor_version(), WebKit2.get_micro_version()
-    except:
-        ver = None
-        pass
-
-    if ver and ver < (2,12,3): ver = None
-
-    if not ver:
+    if not webkit_ver:
 
         dialog().error(_("WebKit Error"), "<span size='small'>{} {}.\n{}.</span>"\
         .format(browser_name, _("requires at least WebKit 2.12.3 or higher"),\

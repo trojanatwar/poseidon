@@ -42,6 +42,7 @@ cookies_path = "{}cookies".format(base_path)               # Cookies path
 history_path = "{}history/".format(base_path)              # History path
 bookmarks_path = "{}bookmarks/".format(base_path)          # Bookmarks path
 settings_path = "{}settings/".format(base_path)            # Settings path
+proxy_path = "{}proxy/".format(base_path)                  # Proxy path
 theme_path = "{}theme/".format(base_path)                  # Theme path
 theme_file = "{}theme".format(theme_path)                  # Theme file path
 adk_path = "{}adkiller/".format(base_path)                 # AdKiller path
@@ -54,6 +55,7 @@ cookies_db = "cookies.sqlite"                              # Cookies database (D
 history_db = "history.sqlite"                              # History database (Default: "history.sqlite")
 bookmarks_db = "bookmarks.sqlite"                          # Bookmarks database (Default: "bookmarks.sqlite")
 settings_db = "settings.sqlite"                            # Settings database (Default: "settings.sqlite")
+proxy_db = "proxy.sqlite"                                  # Proxy database (Default: "proxy.sqlite")
 
 '''
 ##########################
@@ -236,6 +238,7 @@ if not os.path.exists(bookmarks_path): os.makedirs(bookmarks_path)
 if not os.path.exists(cookies_path): os.makedirs(cookies_path)
 if not os.path.exists(theme_path): os.makedirs(theme_path)
 if not os.path.exists(adk_path): os.makedirs(adk_path)
+if not os.path.exists(proxy_path): os.makedirs(proxy_path)
 
 '''
 #############
@@ -259,9 +262,18 @@ if not os.path.exists("{}{}".format(bookmarks_path, bookmarks_db)):
         cur = con.cursor()
         cur.execute("CREATE TABLE bookmarks(title TEXT, url TEXT, date TEXT);")
 
+if not os.path.exists("{}{}".format(proxy_path, proxy_db)):
+
+    con = lite.connect("{}/{}".format(proxy_path, proxy_db))
+
+    with con:
+        cur = con.cursor()
+        cur.execute("CREATE TABLE proxy(mode TEXT, type TEXT, url TEXT, port TEXT);")
+
 history_con = lite.connect("{}/{}".format(history_path, history_db))
 bookmarks_con = lite.connect("{}/{}".format(bookmarks_path, bookmarks_db))
 cookies_con = lite.connect("{}/{}".format(cookies_path, cookies_db))
+proxy_con = lite.connect("{}/{}".format(proxy_path, proxy_db))
 
 '''
 ###########
@@ -649,7 +661,7 @@ localedir=lc_path, languages=language_list).install()
 ################
 '''
 
-version = "0.5.4"
+version = "0.5.5"
 browser_name = "Poseidon"
 website = "https://github.com/sidus-dev/poseidon"
 authors = "Andrea Pasciuta  <sidus@arbornet.org>"

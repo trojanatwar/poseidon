@@ -43,6 +43,7 @@ def apply_css():
     #label_x509 { padding: 10px; }
     #frame_x509 border { border-width: 0px 1px 1px 0px; }
     #headerbar button { padding: 0px; }
+    #nobg_headerbar { background: none; }
 
     """
 

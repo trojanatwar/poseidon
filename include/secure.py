@@ -22,7 +22,7 @@ from gi.repository import Gtk
 from gi.repository.GtkSource import Buffer, View
 
 sys.path.append(".")
-from functions import get_domain, reveal
+from functions import get_domain, reveal, val_sec_string
 
 def time_parse(raw):
     raw = raw.decode("utf8", "replace").replace('Z', '')
@@ -110,14 +110,14 @@ def certificate(data, arg):
         if arg == 4:
 
             buf = "<b>{}</b>\n\n".format(_("Subject Alternative Names"))
-            buf += keyed_extensions.get("subjectAltName", "").replace(", ", "\n")
+            buf += val_sec_string(keyed_extensions.get("subjectAltName", "").replace(", ", "\n"))
 
             return buf
 
         if arg == 5:
 
             buf = "<b>{}</b>\n\n".format(_("Subject Key Identifier"))
-            skeyid = keyed_extensions.get("subjectKeyIdentifier", "").replace(", ", "\n")
+            skeyid = val_sec_string(keyed_extensions.get("subjectKeyIdentifier", "").replace(", ", "\n"))
 
             if skeyid:
                 buf += skeyid
@@ -129,49 +129,49 @@ def certificate(data, arg):
         if arg == 6:
 
             buf = "<b>{}</b>\n\n".format(_("Key Usage"))
-            buf += keyed_extensions.get("keyUsage", "").replace(", ", "\n")
+            buf += val_sec_string(keyed_extensions.get("keyUsage", "").replace(", ", "\n"))
 
             return buf
 
         if arg == 7:
 
             buf = "<b>{}</b>\n\n".format(_("Extended Key Usage"))
-            buf += keyed_extensions.get("extendedKeyUsage", "").replace(", ", "\n")
+            buf += val_sec_string(keyed_extensions.get("extendedKeyUsage", "").replace(", ", "\n"))
 
             return buf
 
         if arg == 8:
 
             buf = "<b>{}</b>\n".format(_("Distribution Points"))
-            buf += keyed_extensions.get("crlDistributionPoints", "").replace(", ", "\n")
+            buf += val_sec_string(keyed_extensions.get("crlDistributionPoints", "").replace(", ", "\n"))
 
             return buf
 
         if arg == 9:
 
             buf = "<b>{}</b>\n\n".format(_("Certificate Policies"))
-            buf += keyed_extensions.get("certificatePolicies", "").replace(", ", "\n")
+            buf += val_sec_string(keyed_extensions.get("certificatePolicies", "").replace(", ", "\n"))
 
             return buf
 
         if arg == 10:
 
             buf = "<b>{}</b>\n\n".format(_("Basic Constraints"))
-            buf += keyed_extensions.get("basicConstraints", "").replace(", ", "\n")
+            buf += val_sec_string(keyed_extensions.get("basicConstraints", "").replace(", ", "\n"))
 
             return buf
 
         if arg == 11:
 
             buf = "<b>{}</b>\n\n".format(_("Authority Key Identifier"))
-            buf += keyed_extensions.get("authorityKeyIdentifier", "").replace(", ", "\n").replace("keyid:", "")
+            buf += val_sec_string(keyed_extensions.get("authorityKeyIdentifier", "").replace(", ", "\n").replace("keyid:", ""))
 
             return buf
 
         if arg == 12:
 
             buf = "<b>{}</b>\n\n".format(_("Authority Info Access"))
-            buf += keyed_extensions.get("authorityInfoAccess", "").replace(", ", "\n")
+            buf += val_sec_string(keyed_extensions.get("authorityInfoAccess", "").replace(", ", "\n"))
 
             return buf
 

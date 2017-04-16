@@ -1,21 +1,21 @@
 # Poseidon
 A fast, minimal and lightweight browser
 
-### Screenshot
+## Screenshot
 
 ![Alt text](http://arbornet.org/~sidus/images/gscreenshot_2017-03-27-154512.png "Poseidon on Arch Linux")
 
-### Requirements
+## Requirements
 
 Requires [WebKit](https://webkitgtk.org/) 2.12.3 or higher.
 
-### Installation
+## Installation
 
-**Arch Linux**
+### Arch Linux
 
 `$ yaourt -Sy poseidon-browser-git`
 
-**Debian, Mint, Ubuntu**
+### Debian, Mint, Ubuntu
 
 [Download & install .deb packages](https://github.com/sidus-dev/poseidon/releases)
 
@@ -23,7 +23,7 @@ Requires [WebKit](https://webkitgtk.org/) 2.12.3 or higher.
 
 `# apt install gir1.2-evince-3.0 browser-plugin-evince`
 
-**Fedora (tested on 25 Workstation)**
+### Fedora (tested on 25 Workstation)
 
 * Required dependencies
 
@@ -43,7 +43,7 @@ Requires [WebKit](https://webkitgtk.org/) 2.12.3 or higher.
 
 `$ ./poseidon`
 
-### Features
+## Features
 
 Actually, Poseidon have some features like:
 
@@ -63,8 +63,10 @@ Actually, Poseidon have some features like:
 * AdKiller. Experimental Ads / Popups blocker.
 * No-Script / No-Plugins. Useful to disable Javascript or Adobe Flash.
 * Minimalist history and bookmarks tabs.
+* Proxy manager (since Poseidon 0.5.5. Requires WebKit 2.16.x or higher)
+* Incognito mode (aka. Defcon mode)
 
-### Shortcuts
+## Shortcuts
 
 In the main entry, type:
 
@@ -74,7 +76,7 @@ In the main entry, type:
 * about:cookies : to open cookies manager tab
 * about:settings : to open settings tab
 
-### Available Languages
+## Available Languages
 
 Actually, supported languages are 4:
 
@@ -83,23 +85,32 @@ Actually, supported languages are 4:
 * Italian (it_IT)
 * Spanish (es_ES)
 
-### Themes
+## Themes
 
 Any image can become a theme. Right click on any image and click "Apply as theme".
 
-### Anonymity
+## Anonymity (Proxy)
 
-* Tor
+In order to use Poseidon with a proxy, you can use:
 
-In order to use Poseidon with Tor, you need torsocks or alternatively proxychains. Once Tor is started through arm or the discontinued vidalia, you can launch Poseidon in these ways:
+### Torsocks or Proxychains
+
+Once Tor is started through arm or the discontinued vidalia, you can launch Poseidon in these ways:
 
 `$ torsocks(or proxychains) ./poseidon` (default mode)
 
 `$ torsocks(or proxychains) ./poseidon -i` (defcon mode)
 
+### Proxy Manager
+
+If you have the WebKit version 2.16.x or higher and Poseidon 0.5.5 then you might want to use `Proxy Manager`.
+You can find it in the "Utilites" tab or just press "Ctrl+X".
+
+### Other tips
+
 To increase security even more, go to "Settings" > "Miles O'Brien", set "set-enable-java", "set-enable-javascript", "set-enable-plugins", "set-enable-webgl" to "False", save the new settings and re-launch Poseidon in Defcon Mode. It's also a good practice keeping your browser un-maximized during the navigation and set a custom user-agent ("set-user-agent").
 
-### Code snippets, examples, icons, inspirations, peace to:
+## Code snippets, examples, icons, inspirations, peace to:
 
 * https://gist.github.com/kklimonda/890640 (pybrowser.py)
 * https://github.com/kvesteri/validators (validators)
@@ -107,7 +118,7 @@ To increase security even more, go to "Settings" > "Miles O'Brien", set "set-ena
 * https://www.gnome-look.org/p/1012545/ (Faenza)
 * http://www.gnome.org (Adwaita)
 
-### Contribution
+## Contribution
 
 You can help:
 
