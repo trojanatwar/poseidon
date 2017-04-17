@@ -410,13 +410,21 @@ def build_headerbar(title, name, close_button):
     else: headerbar.set_show_close_button(False)
     return headerbar
 
-def pass_generator(self):
+def build_window(self, width, height):
 
     window = Gtk.Window()
     window.set_position(Gtk.WindowPosition.CENTER)
     window.set_skip_taskbar_hint(True)
     window.set_transient_for(self)
     window.set_resizable(False)
+    window.set_keep_above(True)
+    window.set_modal(True)
+    window.set_size_request(width, height)
+    return window
+
+def pass_generator(self):
+
+    window = build_window(self, 0, 0)
     window.set_titlebar(build_headerbar(_("Password Generator"), "nobg_headerbar", 1))
 
     entry = make_box("{} (Def: 32) (Max: 99999)".format(_("Password Length")), 5, 1)
@@ -482,11 +490,7 @@ def pass_generate(length, default_length, result):
 
 def user_agent(self):
 
-    window = Gtk.Window()
-    window.set_position(Gtk.WindowPosition.CENTER)
-    window.set_skip_taskbar_hint(True)
-    window.set_transient_for(self)
-    window.set_resizable(False)
+    window = build_window(self, 0, 0)
     window.set_titlebar(build_headerbar("User Agent", "nobg_headerbar", 1))
 
     scrolled_window = Gtk.ScrolledWindow()
@@ -555,12 +559,7 @@ def on_proxy_mode(element):
 
 def proxy(self):
 
-    window = Gtk.Window()
-    window.set_position(Gtk.WindowPosition.CENTER)
-    window.set_skip_taskbar_hint(True)
-    window.set_transient_for(self)
-    window.set_resizable(False)
-    window.set_size_request(400, 200)
+    window = build_window(self, 400, 200)
     window.set_titlebar(build_headerbar("{} ({})".format(\
     _("Proxy Manager"), _("Experimental")), "nobg_headerbar", 1))
 
