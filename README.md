@@ -91,7 +91,7 @@ Any image can become a theme. Right click on any image and click "Apply as theme
 
 ## Anonymity (Proxy)
 
-In order to use Poseidon with a proxy, you can use:
+In order to use Poseidon with a proxy, you can try:
 
 ### Torsocks or Proxychains
 
@@ -103,8 +103,8 @@ Once Tor is started through arm or the discontinued vidalia, you can launch Pose
 
 ### Proxy Manager
 
-If you have the WebKit version 2.16.x or higher and Poseidon 0.5.5 then you might want to use `Proxy Manager`.
-You can find it in the "Utilites" tab or just press "Ctrl+X".
+If you installed WebKit 2.16.x (or higher) and Poseidon 0.5.5 then you might want to use `Proxy Manager`.
+You can find it in the "Utilites" tab or just press its shortcut key "Ctrl+X".
 
 ### Other tips
 
