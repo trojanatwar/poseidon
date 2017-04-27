@@ -24,14 +24,14 @@ from functions import is_image_valid
 
 def apply_css():
 
+    # Tested on Gtk 3.18/3.20
+
     alpha = "popover, .popover { opacity: 0.95; }"
 
     theme = "#notebook.header.top, #notebook header tabs { background: url('"\
     + theme_file + "') no-repeat center; background-size: cover; }"
 
     css = """
-
-    /* Tested on Gtk 3.18/3.20 */
 
     #notebook.header.top, #notebook header tabs { background: none; }
     #notebook tab { padding: 5px 10px 5px 10px; }
@@ -43,7 +43,6 @@ def apply_css():
     #label_x509 { padding: 10px; }
     #frame_x509 border { border-width: 0px 1px 1px 0px; }
     #headerbar button { padding: 0px; }
-    #nobg_headerbar { background: none; }
 
     """
 

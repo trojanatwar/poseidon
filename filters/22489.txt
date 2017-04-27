@@ -3,14 +3,14 @@
 # For more information about this list, see: https://pgl.yoyo.org/adservers/
 # ----
 # last updated:   Thu, 23 Mar 2017 10:38:17 GMT
-# entries:        2348
+# entries:        2346
 # format:         hosts (hosts -- in hosts file format)
 # credits:        Peter Lowe - pgl@yoyo.org - https://pgl.yoyo.org/ - https://twitter.com/pgl
 # this URL:       https://pgl.yoyo.org/adservers/serverlist.php?hostformat=hosts&showintro=0&mimetype=plaintext
 # other formats:  https://pgl.yoyo.org/adservers/formats.php
 # policy:         https://pgl.yoyo.org/adservers/policy.php
 #
-# start date:    Sun, 16 Apr 2017 00:00:00
+# start date:    Thu, 27 Apr 2017 00:00:00
 127.0.0.1 101com.com
 127.0.0.1 101order.com
 127.0.0.1 123found.com
@@ -592,7 +592,6 @@
 127.0.0.1 ads.space.com
 127.0.0.1 ads.sptimes.com
 127.0.0.1 ads.stackoverflow.com
-127.0.0.1 ads.stationplay.com
 127.0.0.1 ads.sun.com
 127.0.0.1 ads.supplyframe.com
 127.0.0.1 ads.t-online.de
@@ -1269,7 +1268,6 @@
 127.0.0.1 didtheyreadit.com
 127.0.0.1 direct-xxx-access.com
 127.0.0.1 directaclick.com
-127.0.0.1 directivepub.com
 127.0.0.1 directleads.com
 127.0.0.1 directorym.com
 127.0.0.1 directtrack.com

@@ -25,19 +25,21 @@ translators, comments, website
 
 class dialog(Gtk.Window):
 
-    def fix_dialog(self, dialog):
+    def fix_dialog(self, dialog, text):
 
-        for i in dialog.get_children():
-            if type(i) == Gtk.HeaderBar: headerbar = i
+        if text: dialog.set_markup(text)
+        dialog.set_modal(True)
 
-        # This is a temporary fix for the duplicate buttons bug
-        # in 'Gtk.AboutDialog' when 'use_header_bar' property is set.
+        headerbar = dialog.get_header_bar()
 
-        if type(dialog) == Gtk.AboutDialog:
-            for i in headerbar:
-                if type(i) != Gtk.StackSwitcher: i.destroy()
+        if headerbar:
 
-        headerbar.set_name("nobg_headerbar")
+            # This is a temporary fix for the duplicate buttons bug
+            # in 'Gtk.AboutDialog' when 'use_header_bar' property is set.
+
+            if type(dialog) == Gtk.AboutDialog:
+                for i in headerbar:
+                    if type(i) != Gtk.StackSwitcher: i.destroy()
 
         box = dialog.get_content_area()
         box.set_border_width(10)
@@ -55,16 +57,15 @@ class dialog(Gtk.Window):
         dialog.set_comments(comments)
         dialog.set_license_type(Gtk.License.GPL_3_0)
         dialog.set_transient_for(window)
-        self.fix_dialog(dialog)
+        self.fix_dialog(dialog, None)
         dialog.run()
         dialog.destroy()
 
     def info(self, first, second):
 
         dialog = Gtk.MessageDialog(self, 0, Gtk.MessageType.INFO,\
-        Gtk.ButtonsType.NONE, None, use_header_bar=True, title=first)
-        dialog.set_markup(second)
-        self.fix_dialog(dialog)
+        Gtk.ButtonsType.NONE, None, title=first)
+        self.fix_dialog(dialog, second)
 
         dialog.show_now()
         while Gtk.events_pending(): Gtk.main_iteration()
@@ -73,9 +74,8 @@ class dialog(Gtk.Window):
     def error(self, first, second):
 
         dialog = Gtk.MessageDialog(self, 0, Gtk.MessageType.ERROR,\
-        Gtk.ButtonsType.NONE, None, use_header_bar=True, title=first)
-        dialog.set_markup(second)
-        self.fix_dialog(dialog)
+        Gtk.ButtonsType.OK, None, title=first)
+        self.fix_dialog(dialog, second)
 
         dialog.run()
         dialog.destroy()
@@ -83,9 +83,8 @@ class dialog(Gtk.Window):
     def decision(self, first, second):
 
         dialog = Gtk.MessageDialog(self, 0, Gtk.MessageType.QUESTION,\
-        Gtk.ButtonsType.OK_CANCEL, None, use_header_bar=True, title=first)
-        dialog.set_markup(second)
-        self.fix_dialog(dialog)
+        Gtk.ButtonsType.OK_CANCEL, None, title=first)
+        self.fix_dialog(dialog, second)
 
         response = dialog.run()
 

@@ -656,12 +656,20 @@ lang = gettext.translation(language_list[language],\
 localedir=lc_path, languages=language_list).install()
 
 '''
-################
-# Dev Settings #
-################
+#################
+# Misc Settings #
+#################
 '''
 
-version = "0.5.5"
+tab_name = _("Empty")
+
+'''
+##################
+# About Settings #
+##################
+'''
+
+version = "0.5.6"
 browser_name = "Poseidon"
 website = "https://github.com/sidus-dev/poseidon"
 authors = "Andrea Pasciuta  <sidus@arbornet.org>"
@@ -670,5 +678,4 @@ translators = "de - Marius Messerschmidt <marius.messerschmidt@googlemail.com>, 
                es - Andrea Pasciuta  <sidus@arbornet.org>\n\
                it - Andrea Pasciuta  <sidus@arbornet.org>"
 comments = _("A fast, minimal and lightweight browser")
-tab_name = _("Empty")
 
