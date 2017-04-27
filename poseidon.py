@@ -1882,8 +1882,8 @@ class Browser(Gtk.Window):
 
         download.connect("decide-destination", self.on_decide_destination)
         download.connect("created-destination", self.on_created_destination)
-        download.connect("finished", self.on_finished)
         download.connect("received-data", self.on_received_data)
+        download.connect("finished", self.on_finished)
         download.connect("failed", self.on_failed)
 
     def on_failed(self, download, error):
@@ -1942,8 +1942,9 @@ class Browser(Gtk.Window):
     def on_created_destination(self, download, destination):
 
         name = get_filename(destination)
+        unname = unparse(destination)
 
-        item = Gtk.ModelButton(name=destination)
+        item = Gtk.ModelButton(name=unname)
         item.set_alignment(0.0, 0.5)
 
         item.set_label("<span size='small'>{}: {}</span>\r<span size='x-small'>{}: {}</span>"\
@@ -1965,7 +1966,7 @@ class Browser(Gtk.Window):
         self.dlview.remove(grid), self.on_cancel_download(),\
         self.on_restart_download(download)])
 
-        pbar = Gtk.ProgressBar(name=destination)
+        pbar = Gtk.ProgressBar(name=unname)
 
         grid = Gtk.Grid()
         grid.set_column_spacing(0)
@@ -1979,13 +1980,19 @@ class Browser(Gtk.Window):
         self.dlview.reorder_child(grid, 0)
         self.on_download_menu()
 
-    def on_received_data(self, download, data_length):
+    def get_progress_bar(self, download):
 
         for i in self.dlview:
             for a in i:
                 if a.get_name() == download.get_destination():
-                    if type(a) == Gtk.ProgressBar:
-                        a.set_fraction(download.props.estimated_progress)
+                    if type(a) == Gtk.ProgressBar: return a
+
+    def on_received_data(self, download, data_length):
+
+        bar = self.get_progress_bar(download)
+
+        if download.props.estimated_progress <= 0: bar.pulse()
+        else: bar.set_fraction(download.props.estimated_progress)
 
     def on_finished(self, download):
 

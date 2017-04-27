@@ -144,6 +144,10 @@ def parse(string):
 
     return urlparse.quote(string, safe='')
 
+def unparse(string):
+
+    return urlparse.unquote(string)
+
 def minify(arg, num):
 
     try: arg = arg[:num] + (arg[num:] and '...')

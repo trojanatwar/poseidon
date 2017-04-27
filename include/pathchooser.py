@@ -38,8 +38,7 @@ class pathchooser(Gtk.Window):
         if response == Gtk.ResponseType.OK:
 
             if os.path.exists(d.get_filename()):
-                if self.do_decision(name):
-                    pass
+                if self.do_decision(name): pass
                 else:
                     d.destroy()
                     return True
@@ -64,8 +63,7 @@ class pathchooser(Gtk.Window):
         if response == Gtk.ResponseType.ACCEPT:
             
             if os.path.exists(d.get_filename()):
-                if self.do_decision(d.get_filename()):
-                    download.set_allow_overwrite(True)
+                if self.do_decision(d.get_filename()): download.set_allow_overwrite(True)
 
             download.set_destination("file://{}".format(d.get_filename()))
 
