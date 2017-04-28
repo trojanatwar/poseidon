@@ -148,6 +148,11 @@ def unparse(string):
 
     return urlparse.unquote(string)
 
+def rtags(string):
+
+    return string.replace("=", "").\
+    replace("<", "").replace(">", "")
+
 def minify(arg, num):
 
     try: arg = arg[:num] + (arg[num:] and '...')
@@ -429,7 +434,7 @@ def build_window(self, width, height):
 def pass_generator(self):
 
     window = build_window(self, 0, 0)
-    window.set_titlebar(build_headerbar(_("Password Generator"), "nobg_headerbar", 1))
+    window.set_titlebar(build_headerbar(_("Password Generator"), None, 1))
 
     entry = make_box("{} (Def: 32) (Max: 99999)".format(_("Password Length")), 5, 1)
     button = Gtk.Button(label=_("Generate"))
@@ -495,7 +500,7 @@ def pass_generate(length, default_length, result):
 def user_agent(self):
 
     window = build_window(self, 0, 0)
-    window.set_titlebar(build_headerbar("User Agent", "nobg_headerbar", 1))
+    window.set_titlebar(build_headerbar("User Agent", None, 1))
 
     scrolled_window = Gtk.ScrolledWindow()
     scrolled_window.set_size_request(400, 300)
@@ -565,7 +570,7 @@ def proxy(self):
 
     window = build_window(self, 400, 200)
     window.set_titlebar(build_headerbar("{} ({})".format(\
-    _("Proxy Manager"), _("Experimental")), "nobg_headerbar", 1))
+    _("Proxy Manager"), _("Experimental")), None, 1))
 
     default = Gtk.RadioButton(label=_("Default (use system proxy settings)"), name=1)
     custom = Gtk.RadioButton(label=_("Custom (manual proxy configuration)"), name=2, group=default)

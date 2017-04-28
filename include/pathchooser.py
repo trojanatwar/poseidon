@@ -21,6 +21,7 @@ from gi.repository import Gtk
 sys.path.append(".")
 from dialog import *
 from settings import width, height
+from functions import rtags
 
 class pathchooser(Gtk.Window):
 
@@ -61,11 +62,13 @@ class pathchooser(Gtk.Window):
         response = d.run()
 
         if response == Gtk.ResponseType.ACCEPT:
-            
-            if os.path.exists(d.get_filename()):
-                if self.do_decision(d.get_filename()): download.set_allow_overwrite(True)
 
-            download.set_destination("file://{}".format(d.get_filename()))
+            f = rtags(d.get_filename())
+            
+            if os.path.exists(f):
+                if self.do_decision(f): download.set_allow_overwrite(True)
+
+            download.set_destination("file://{}".format(f))
 
         elif response == Gtk.ResponseType.CANCEL\
         or response == Gtk.ResponseType.DELETE_EVENT: download.cancel()

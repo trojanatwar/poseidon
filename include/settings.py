@@ -430,7 +430,7 @@ set_zoom_text_only = 0
 #########
 '''
 
-language_list = ["de_DE", "en_US", "es_ES", "it_IT"]
+language_list = ["de_DE", "en_US", "es_ES", "fr_FR", "it_IT"]
 boolean_list = ["False", "True"]
 adkiller_list = ["Disabled", "Enabled"]
 adk_policy_list = ["Fastest", "Precise"]
@@ -509,7 +509,7 @@ text_process_model_desc = _("Set WebKit process model (Default: Multiple)")
 '''
 
 settings_db_path = "{}{}".format(settings_path, settings_db)
-settings_db_code = "6"
+settings_db_code = "7"
 
 def create_settings_db():
 
@@ -669,13 +669,14 @@ tab_name = _("Empty")
 ##################
 '''
 
-version = "0.5.6"
+version = "0.5.7"
 browser_name = "Poseidon"
 website = "https://github.com/sidus-dev/poseidon"
 authors = "Andrea Pasciuta  <sidus@arbornet.org>"
 translators = "de - Marius Messerschmidt <marius.messerschmidt@googlemail.com>, Andrea Pasciuta  <sidus@arbornet.org>\n\
                en - Andrea Pasciuta  <sidus@arbornet.org>\n\
                es - Andrea Pasciuta  <sidus@arbornet.org>\n\
+               fr - Andrea Pasciuta  <sidus@arbornet.org>\n\
                it - Andrea Pasciuta  <sidus@arbornet.org>"
 comments = _("A fast, minimal and lightweight browser")
 

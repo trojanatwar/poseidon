@@ -1889,7 +1889,15 @@ class Browser(Gtk.Window):
     def on_failed(self, download, error):
 
         if type(error) == GLib.GError:
+
+            if error.code == 401:
+
+                dialog().error(_("Permission denied"), "<span size='small'>{}.</span>"\
+                .format(_("It seems you don't have permission to access this folder")))
+                return True
+
             if not error.code == 499: return True
+
         else: return True
 
         url = download.get_request().get_uri()
@@ -1990,7 +1998,6 @@ class Browser(Gtk.Window):
     def on_received_data(self, download, data_length):
 
         bar = self.get_progress_bar(download)
-
         if download.props.estimated_progress <= 0: bar.pulse()
         else: bar.set_fraction(download.props.estimated_progress)
 

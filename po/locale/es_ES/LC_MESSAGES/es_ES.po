@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2017-04-16 23:12+0200\n"
-"PO-Revision-Date: 2017-04-16 23:13+0200\n"
+"POT-Creation-Date: 2017-04-28 13:37+0200\n"
+"PO-Revision-Date: 2017-04-28 13:38+0200\n"
 "Last-Translator: \n"
 "Language-Team: Andrea Pasciuta <sidus@arbornet.org>\n"
 "Language: es_ES\n"
@@ -50,71 +50,71 @@ msgstr "¡Ups!, la importación ha fallado"
 msgid "could be corrupted or a invalid HTML bookmark file"
 msgstr "podría estar dañado o un archivo de marcador HTML no válido"
 
-#: include/functions.py:89 poseidon.py:2731 poseidon.py:2983
+#: include/functions.py:89 poseidon.py:2745 poseidon.py:2997
 msgid "Bookmarks"
 msgstr "Marcadores"
 
-#: include/functions.py:270
+#: include/functions.py:279
 msgid "MIME Type"
 msgstr "Tipo MIME"
 
-#: include/functions.py:271
+#: include/functions.py:280
 msgid "Description"
 msgstr "Descripción"
 
-#: include/functions.py:272
+#: include/functions.py:281
 msgid "Extension"
 msgstr "Extensión"
 
-#: include/functions.py:420 poseidon.py:1084
+#: include/functions.py:437 poseidon.py:1084
 msgid "Password Generator"
 msgstr "Generador de Contraseñas"
 
-#: include/functions.py:422
+#: include/functions.py:439
 msgid "Password Length"
 msgstr "Longitud de la Contraseña"
 
-#: include/functions.py:423
+#: include/functions.py:440
 msgid "Generate"
 msgstr "Genera"
 
-#: include/functions.py:424
+#: include/functions.py:441
 msgid "Copy"
 msgstr "Copia"
 
-#: include/functions.py:498
+#: include/functions.py:511
 msgid "Double click item to switch"
 msgstr "Haga doble clic en el elemento para cambiar"
 
-#: include/functions.py:565 poseidon.py:1094
+#: include/functions.py:573 poseidon.py:1094
 msgid "Proxy Manager"
 msgstr "Gestor de Proxy"
 
-#: include/functions.py:565
+#: include/functions.py:573
 msgid "Experimental"
 msgstr "Experiential"
 
-#: include/functions.py:567
+#: include/functions.py:575
 msgid "Default (use system proxy settings)"
 msgstr "Default (utilizar la configuración proxy del sistema)"
 
-#: include/functions.py:568
+#: include/functions.py:576
 msgid "Custom (manual proxy configuration)"
 msgstr "Custom (configuración manual del proxy)"
 
-#: include/functions.py:569
+#: include/functions.py:577
 msgid "No Proxy"
 msgstr "Sin Proxy"
 
-#: include/functions.py:579
+#: include/functions.py:587
 msgid "Proxy URL"
 msgstr "URL del Proxy"
 
-#: include/functions.py:580
+#: include/functions.py:588
 msgid "Port"
 msgstr "Puerta"
 
-#: include/functions.py:605
+#: include/functions.py:613
 msgid "Set Proxy"
 msgstr "Establece Proxy"
 
@@ -142,23 +142,23 @@ msgstr "Busca"
 msgid "in the web"
 msgstr "en la red"
 
-#: include/pathchooser.py:29 include/pathchooser.py:55
+#: include/pathchooser.py:30 include/pathchooser.py:55
 msgid "Save as"
 msgstr "Guardar como"
 
-#: include/pathchooser.py:79
+#: include/pathchooser.py:80
 msgid "Open file"
 msgstr "Abri un file"
 
-#: include/pathchooser.py:95
+#: include/pathchooser.py:96
 msgid "Import a HTML bookmark file"
 msgstr "Importa un archivo de marcador HTML"
 
-#: include/pathchooser.py:118
+#: include/pathchooser.py:119
 msgid "Overwrite"
 msgstr "sobrescriba"
 
-#: include/pathchooser.py:120
+#: include/pathchooser.py:121
 msgid "already exists, wanna overwrite it?"
 msgstr "ya existe, ¿quiere sobrescribirlo?"
 
@@ -439,13 +439,13 @@ msgstr "Modelo de Proceso"
 msgid "Set WebKit process model (Default: Multiple)"
 msgstr "Establecer el modelo de proceso de WebKit (Default: Multiple)"
 
-#: include/settings.py:672
-msgid "A fast, minimal and lightweight browser"
-msgstr "Un navegador rápido, minimalista y ligero"
-
-#: include/settings.py:673
+#: include/settings.py:664
 msgid "Empty"
 msgstr "Vacío"
+
+#: include/settings.py:680
+msgid "A fast, minimal and lightweight browser"
+msgstr "Un navegador rápido, minimalista y ligero"
 
 #: poseidon.py:44
 msgid "WebKit2 is missing"
@@ -499,7 +499,7 @@ msgstr "Añadir esta página a los marcadores"
 msgid "New Window"
 msgstr "Nueva Ventana"
 
-#: poseidon.py:954 poseidon.py:2400
+#: poseidon.py:954 poseidon.py:2414
 msgid "Settings"
 msgstr "Ajustes"
 
@@ -575,7 +575,7 @@ msgstr "Dejar"
 msgid "Go Fullscreen"
 msgstr "Ir a Pantalla Completa"
 
-#: poseidon.py:1080 poseidon.py:2283
+#: poseidon.py:1080 poseidon.py:2297
 msgid "Delete Theme"
 msgstr "Elimina el Tema"
 
@@ -583,7 +583,7 @@ msgstr "Elimina el Tema"
 msgid "VTE Terminal"
 msgstr "VTE Terminal"
 
-#: poseidon.py:1102 poseidon.py:2351
+#: poseidon.py:1102 poseidon.py:2365
 msgid "View Plugins"
 msgstr "Ver Plugins"
 
@@ -591,15 +591,15 @@ msgstr "Ver Plugins"
 msgid "View Source"
 msgstr "Ver Código Fuente"
 
-#: poseidon.py:1110 poseidon.py:2353
+#: poseidon.py:1110 poseidon.py:2367
 msgid "View History"
 msgstr "Ver Historia"
 
-#: poseidon.py:1114 poseidon.py:2352
+#: poseidon.py:1114 poseidon.py:2366
 msgid "View Bookmarks"
 msgstr "Ver Favoritos"
 
-#: poseidon.py:1118 poseidon.py:2354
+#: poseidon.py:1118 poseidon.py:2368
 msgid "Cookies Manager"
 msgstr "Gestor Cookies"
 
@@ -607,7 +607,7 @@ msgstr "Gestor Cookies"
 msgid "Empty Cache"
 msgstr "Borrar Caché"
 
-#: poseidon.py:1336 poseidon.py:1353 poseidon.py:3005
+#: poseidon.py:1336 poseidon.py:1353 poseidon.py:3019
 msgid "Are you sure?"
 msgstr "Estás seguro?"
 
@@ -672,17 +672,25 @@ msgstr ""
 msgid "In use"
 msgstr "En uso"
 
-#: poseidon.py:1897
+#: poseidon.py:1895
+msgid "Permission denied"
+msgstr "Permiso denegado"
+
+#: poseidon.py:1896
+msgid "It seems you don't have permission to access this folder"
+msgstr "Parece que no tienes permiso para acceder a esta carpeta"
+
+#: poseidon.py:1905
 msgid "Hmm, 499 Error..."
 msgstr "Hmm, 499 Error..."
 
-#: poseidon.py:1899
+#: poseidon.py:1907
 msgid "Seems that WebKit2 got some issues downloading this file or web page"
 msgstr ""
 "Parece que WebKit2 tiene algunos problemas al descargar este archivo o "
 "página web"
 
-#: poseidon.py:1900
+#: poseidon.py:1908
 msgid ""
 "But there is a trick, wanna try forcing the download using the requests "
 "module"
@@ -690,225 +698,225 @@ msgstr ""
 "Pero hay un truco, quiero tratar de forzar la descarga mediante el módulo "
 "requests"
 
-#: poseidon.py:1950
+#: poseidon.py:1959
 msgid "Downloading"
 msgstr "Descargando"
 
-#: poseidon.py:1951
+#: poseidon.py:1960
 msgid "In"
 msgstr "En"
 
-#: poseidon.py:2000
+#: poseidon.py:2014
 msgid "Download complete for"
 msgstr "Descarga completa para"
 
-#: poseidon.py:2199
+#: poseidon.py:2213
 msgid "Setting a new theme"
 msgstr "Establecer un nuevo tema"
 
-#: poseidon.py:2200
+#: poseidon.py:2214
 msgid "This operation may take a while"
 msgstr "Esta operación puede tomar un tiempo"
 
-#: poseidon.py:2201
+#: poseidon.py:2215
 msgid "It all depends on your internet speed and requested image size"
 msgstr ""
 "Todo depende de su velocidad de Internet y el tamaño de la imagen solicitada"
 
-#: poseidon.py:2284
+#: poseidon.py:2298
 msgid "Do you really want to delete this theme"
 msgstr "¿Realmente desea eliminar este tema?"
 
-#: poseidon.py:2349
+#: poseidon.py:2363
 msgid "Save Settings"
 msgstr "Guardar Ajustes"
 
-#: poseidon.py:2350
+#: poseidon.py:2364
 msgid "Restore Settings"
 msgstr "Restaurar Ajustes"
 
-#: poseidon.py:2408
+#: poseidon.py:2422
 msgid "General"
 msgstr "General"
 
-#: poseidon.py:2409
+#: poseidon.py:2423
 msgid "Advanced"
 msgstr "Avanzado"
 
-#: poseidon.py:2493
+#: poseidon.py:2507
 msgid "Source"
 msgstr "Código Fuente"
 
-#: poseidon.py:2505
+#: poseidon.py:2519
 msgid "Clear cookies"
 msgstr "Eliminar cookies"
 
-#: poseidon.py:2507
+#: poseidon.py:2521
 msgid "Remove the selected cookie"
 msgstr "Eliminar la cookie seleccionada"
 
-#: poseidon.py:2509 poseidon.py:2562
+#: poseidon.py:2523 poseidon.py:2576
 msgid "Name"
 msgstr "Nombre"
 
-#: poseidon.py:2510 poseidon.py:2562
+#: poseidon.py:2524 poseidon.py:2576
 msgid "Value"
 msgstr "Valor"
 
-#: poseidon.py:2511 poseidon.py:2562
+#: poseidon.py:2525 poseidon.py:2576
 msgid "Host"
 msgstr "Host"
 
-#: poseidon.py:2512 poseidon.py:2562
+#: poseidon.py:2526 poseidon.py:2576
 msgid "Path"
 msgstr "Ruta"
 
-#: poseidon.py:2513 poseidon.py:2563
+#: poseidon.py:2527 poseidon.py:2577
 msgid "Expiry"
 msgstr "Expiración"
 
-#: poseidon.py:2514 poseidon.py:2563
+#: poseidon.py:2528 poseidon.py:2577
 msgid "LastAccessed"
 msgstr "Último Accedido (LastAccessed)"
 
-#: poseidon.py:2515 poseidon.py:2563
+#: poseidon.py:2529 poseidon.py:2577
 msgid "IsSecure"
 msgstr "Es Seguro (IsSecure)"
 
-#: poseidon.py:2516 poseidon.py:2563
+#: poseidon.py:2530 poseidon.py:2577
 msgid "IsHttpOnly"
 msgstr "Es Sólo Http (IsHttpOnly)"
 
-#: poseidon.py:2520
+#: poseidon.py:2534
 msgid "Edit the selected cookie"
 msgstr "Editar la cookie seleccionada"
 
-#: poseidon.py:2521
+#: poseidon.py:2535
 msgid "Add a new cookie with set data"
 msgstr "Agregar una nueva cookie con datos de conjunto"
 
-#: poseidon.py:2562
+#: poseidon.py:2576
 msgid "Id"
 msgstr "Id"
 
-#: poseidon.py:2583
+#: poseidon.py:2597
 msgid "Cookies"
 msgstr "Cookies"
 
-#: poseidon.py:2610
+#: poseidon.py:2624
 msgid "Clear history"
 msgstr "Eliminar el historial"
 
-#: poseidon.py:2612 poseidon.py:2684
+#: poseidon.py:2626 poseidon.py:2698
 msgid "Add to bookmarks"
 msgstr "Añadir a favoritos"
 
-#: poseidon.py:2628
+#: poseidon.py:2642
 msgid "Today"
 msgstr "Hoy"
 
-#: poseidon.py:2629
+#: poseidon.py:2643
 msgid "Yesterday"
 msgstr "Ayer"
 
-#: poseidon.py:2630
+#: poseidon.py:2644
 msgid "Two days ago"
 msgstr "Hace dos días"
 
-#: poseidon.py:2631
+#: poseidon.py:2645
 msgid "This week"
 msgstr "Esta semana"
 
-#: poseidon.py:2643 poseidon.py:2714
+#: poseidon.py:2657 poseidon.py:2728
 msgid "Date"
 msgstr "Fecha"
 
-#: poseidon.py:2643 poseidon.py:2714
+#: poseidon.py:2657 poseidon.py:2728
 msgid "Title"
 msgstr "Título"
 
-#: poseidon.py:2643 poseidon.py:2714
+#: poseidon.py:2657 poseidon.py:2728
 msgid "URL"
 msgstr "URL"
 
-#: poseidon.py:2661
+#: poseidon.py:2675
 msgid "History"
 msgstr "Historial"
 
-#: poseidon.py:2681
+#: poseidon.py:2695
 msgid "Erase all bookmarks"
 msgstr "Borrar todos los marcadores"
 
-#: poseidon.py:2683
+#: poseidon.py:2697
 msgid "Remove the selected bookmark"
 msgstr "Eliminar el marcador seleccionado"
 
-#: poseidon.py:2698
+#: poseidon.py:2712
 msgid "Type here your description"
 msgstr "Escriba aquí su descripción"
 
-#: poseidon.py:2699
+#: poseidon.py:2713
 msgid "Type here your URL address"
 msgstr "Escriba aquí su dirección URL"
 
-#: poseidon.py:2808
+#: poseidon.py:2822
 msgid "Plugins"
 msgstr "Plugins"
 
-#: poseidon.py:2919
+#: poseidon.py:2933
 msgid "VTE missing"
 msgstr "VTE que falta"
 
-#: poseidon.py:2920
+#: poseidon.py:2934
 msgid "requires at least Vte 2.91 or higher"
 msgstr "requiere al menos Vte 2.91 o superior"
 
-#: poseidon.py:2993
+#: poseidon.py:3007
 msgid "new bookmark will be imported"
 msgstr "se importará un nuevo marcador"
 
-#: poseidon.py:2994
+#: poseidon.py:3008
 msgid "new bookmarks will be imported"
 msgstr "se importarán nuevos marcadores"
 
-#: poseidon.py:3007
+#: poseidon.py:3021
 msgid "Clicking on OK"
 msgstr "Haciendo clic en OK"
 
-#: poseidon.py:3008
+#: poseidon.py:3022
 msgid "Bookmarks with identical urls will be automatically ignored"
 msgstr "Los marcadores con urls idénticas se ignorarán automáticamente"
 
-#: poseidon.py:3088
+#: poseidon.py:3102
 msgid "WebKit Error"
 msgstr "WebKit Error"
 
-#: poseidon.py:3089
+#: poseidon.py:3103
 msgid "requires at least WebKit 2.12.3 or higher"
 msgstr "requiere por lo menos WebKit 2.12.3 o superior"
 
-#: poseidon.py:3090
+#: poseidon.py:3104
 msgid "In some distros you probably need to add a third-party repository"
 msgstr ""
 "En algunas distribuciones es probable que necesite agregar un repositorio de "
 "terceros"
 
-#: poseidon.py:3100
+#: poseidon.py:3114
 msgid "Welcome to"
 msgstr "Bienvenido a"
 
-#: poseidon.py:3100
+#: poseidon.py:3114
 msgid "shows this menu"
 msgstr "muestra este menú"
 
-#: poseidon.py:3100
+#: poseidon.py:3114
 msgid "opens the browser in defcon mode"
 msgstr "abre el navegador en modo defcon"
 
-#: poseidon.py:3101
+#: poseidon.py:3115
 msgid "shows the version"
 msgstr "muestra la versión"
 
-#: poseidon.py:3101
+#: poseidon.py:3115
 msgid "Usage"
 msgstr "Uso"
