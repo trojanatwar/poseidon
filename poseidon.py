@@ -1894,6 +1894,7 @@ class Browser(Gtk.Window):
 
                 dialog().error(_("Permission denied"), "<span size='small'>{}.</span>"\
                 .format(_("It seems you don't have permission to access this folder")))
+
                 return True
 
             if not error.code == 499: return True
@@ -1920,7 +1921,7 @@ class Browser(Gtk.Window):
 
     def on_decide_destination(self, download, name):
 
-        url = self.tabs[self.current_page][0].webview.get_uri()
+        url = download.get_request().get_uri()
 
         if not name: name = get_domain(url).replace(".", "_")
         if not "." in name:
@@ -1945,7 +1946,7 @@ class Browser(Gtk.Window):
     def on_restart_download(self, download):
 
         url = download.get_request().get_uri()
-        self.tabs[self.current_page][0].webview.download_uri(url)
+        if url: download.get_web_view().download_uri(url)
 
     def on_created_destination(self, download, destination):
 
@@ -1998,8 +1999,10 @@ class Browser(Gtk.Window):
     def on_received_data(self, download, data_length):
 
         bar = self.get_progress_bar(download)
-        if download.props.estimated_progress <= 0: bar.pulse()
-        else: bar.set_fraction(download.props.estimated_progress)
+
+        if bar:
+            if download.props.estimated_progress <= 0: bar.pulse()
+            else: bar.set_fraction(download.props.estimated_progress)
 
     def on_finished(self, download):
 
