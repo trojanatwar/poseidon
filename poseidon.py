@@ -1532,9 +1532,22 @@ class Browser(Gtk.Window):
                 else: self.try_search(parse(url))
             else: self.try_search(parse(url))
 
+    '''
+    ###############
+    # S:Bookmarks #
+    ###############
+    '''
+
     def on_click_bookmark(self, button):
 
         self.tabs[self.current_page][0].webview.load_uri(button.get_name())
+
+        return True
+
+    def on_iter_clicked(self, view, iter, column):
+
+        url = view.get_model()[iter][3]
+        if url: self.open_blank(url)
 
         return True
 
@@ -1560,8 +1573,8 @@ class Browser(Gtk.Window):
             cur.execute("INSERT INTO bookmarks VALUES(?, ?, ?);",\
             (title.replace("\n","").strip(), url, time.strftime("%Y-%m-%d %H:%M")))
 
-            self.close_current_tab()
-            self.view_bookmarks(None, None)
+            self.refresh_liststore(1)
+
             return True
 
     def on_rem_bookmarks(self, selection):
@@ -1581,23 +1594,10 @@ class Browser(Gtk.Window):
                     if url == i[1]:
                         cur.execute("DELETE FROM bookmarks WHERE url=?;", (url,))
                         bookmarks_con.commit()
-                        self.close_current_tab()
-                        self.view_bookmarks(None, None)
+
+                        self.refresh_liststore(1)
+
                         return True
-
-    def on_rem_cookies(self, selection):
-
-        (model, iter) = selection.get_selected()
-
-        if iter is not None:
-
-            with cookies_con:
-                cur = cookies_con.cursor()
-                cur.execute("DELETE FROM moz_cookies WHERE id=?;", (model[iter][0],))
-                cookies_con.commit()
-                self.close_current_tab()
-                self.cookies_manager()
-                return True
 
     def on_bookmarks_selected(self, selection):
 
@@ -1611,6 +1611,95 @@ class Browser(Gtk.Window):
         self.rem_bookmarks_button.set_sensitive(True)
 
         return True
+
+    def on_clear_bookmarks(self):
+
+        with bookmarks_con:
+            cur = bookmarks_con.cursor()   
+            cur.execute("DROP TABLE IF EXISTS bookmarks;")
+            cur.execute("CREATE TABLE bookmarks(title TEXT, url TEXT, date TEXT);")
+
+        self.refresh_liststore(1)
+
+        return True
+
+    def on_bookmarks_history(self, selection):
+
+        (model, iter) = selection.get_selected()
+
+        if iter is not None:
+
+            try:
+                title = model[iter][1]
+                url = model[iter][3]
+            except: title, url = (None, None)
+
+            self.view_bookmarks(title, url)
+
+            return True
+
+    def on_bookmarks_menu(self):
+
+        for i in self.bkview:
+            if i: self.bkview.remove(i)
+
+        bookmarks = bookmarksview()
+
+        for i in bookmarks:
+
+            item = Gtk.ModelButton(name=i[3])
+            item.set_alignment(0.0, 0.5)
+            min_title = minify(i[1], 50)
+            item.set_label("<span size='small'>{}</span>\r<span size='x-small'>{}</span>".\
+            format(html.escape(min_title), html.escape(i[2])))
+            item.get_child().set_use_markup(True)
+            item.get_child().set_padding(5, 5)
+            item.connect("clicked", self.on_click_bookmark)
+
+            self.bkview.add(item)
+
+        if len(self.bkview) != 0:
+            if len(self.bkgrid) == 1: self.bkgrid.attach(self.bkscroll, 0, 0, 1, 1)
+            if len(self.bkview) < 7:
+                self.bkscroll.set_size_request(300, 0)
+                self.bkscroll.set_policy(Gtk.PolicyType.NEVER, Gtk.PolicyType.NEVER)
+            if len(self.bkview) >= 7:
+                self.bkscroll.set_size_request(300, 250)
+                self.bkscroll.set_policy(Gtk.PolicyType.NEVER, Gtk.PolicyType.AUTOMATIC)
+        else: self.bkgrid.remove(self.bkscroll)
+
+        self.bookmarks_menu.set_relative_to(self.tabs[self.current_page][0].bookmarks_button)
+        self.bookmarks_menu.show_all()
+
+    def on_download_menu(self):
+
+        page = self.tabs[self.current_page][0]
+        button = page.download_button
+        button.set_image(page.download_icon)
+
+        for i, item in enumerate(self.tabs):
+            self.tabs[i][0].download_button.\
+            set_image(self.tabs[i][0].download_icon)
+
+        if self.dlview.get_children():
+
+            if len(self.dlview) < 7:
+                self.dlscroll.set_size_request(200, 0)
+                self.dlscroll.set_policy(Gtk.PolicyType.NEVER, Gtk.PolicyType.NEVER)
+            if len(self.dlview) >= 7:
+                self.dlscroll.set_size_request(200, 300)
+                self.dlscroll.set_policy(Gtk.PolicyType.NEVER, Gtk.PolicyType.AUTOMATIC)
+
+            self.downloads_menu.set_relative_to(button)
+            self.downloads_menu.show_all()
+
+        else: button.set_active(False)
+
+    '''
+    #############
+    # S:Cookies #
+    #############
+    '''
 
     def on_cookies_selected(self, selection):
 
@@ -1632,6 +1721,33 @@ class Browser(Gtk.Window):
         self.add_cookies_button.set_sensitive(True)
 
         return True
+
+    def on_clear_cookies(self):
+
+        with cookies_con:
+            cur = cookies_con.cursor()   
+            cur.execute("DROP TABLE IF EXISTS moz_cookies;")
+            cur.execute("CREATE TABLE moz_cookies (id INTEGER PRIMARY KEY, name TEXT, value TEXT, host TEXT, path TEXT,\
+            expiry INTEGER, lastAccessed INTEGER, isSecure INTEGER, isHttpOnly INTEGER);")
+
+        self.refresh_liststore(2)
+
+        return True
+
+    def on_rem_cookies(self, selection):
+
+        (model, iter) = selection.get_selected()
+
+        if iter is not None:
+
+            with cookies_con:
+                cur = cookies_con.cursor()
+                cur.execute("DELETE FROM moz_cookies WHERE id=?;", (model[iter][0],))
+                cookies_con.commit()
+
+                self.refresh_liststore(2)
+
+                return True
 
     def on_edit_cookies(self, selection, action):
 
@@ -1661,44 +1777,15 @@ class Browser(Gtk.Window):
                     (name,value,host,path,expiry,lastacc,issec,ishttp,id,))
 
                     cookies_con.commit()
-                    self.close_current_tab()
-                    self.cookies_manager()
+                    self.refresh_liststore(2)
 
         return True
 
-    def on_iter_clicked(self, view, iter, column):
-
-        url = view.get_model()[iter][3]
-        if url: self.open_blank(url)
-
-        return True
-
-    def on_clear_bookmarks(self):
-
-        with bookmarks_con:
-            cur = bookmarks_con.cursor()   
-            cur.execute("DROP TABLE IF EXISTS bookmarks;")
-            cur.execute("CREATE TABLE bookmarks(title TEXT, url TEXT, date TEXT);")
-
-        self.close_current_tab()
-        self.view_bookmarks(None, None)
-
-        return True
-
-    def on_bookmarks_history(self, selection):
-
-        (model, iter) = selection.get_selected()
-
-        if iter is not None:
-
-            try:
-                title = model[iter][1]
-                url = model[iter][3]
-            except: title, url = (None, None)
-
-            self.view_bookmarks(title, url)
-
-            return True
+    '''
+    #############
+    # S:History #
+    #############
+    '''
 
     def on_history_selected(self, selection):
 
@@ -1713,23 +1800,15 @@ class Browser(Gtk.Window):
             cur.execute("DROP TABLE IF EXISTS history;")
             cur.execute("CREATE TABLE history(title TEXT, url TEXT, date TEXT);")
 
-        self.close_current_tab()
-        self.view_history()
+        self.refresh_liststore(3)
 
         return True
 
-    def on_clear_cookies(self):
-
-        with cookies_con:
-            cur = cookies_con.cursor()   
-            cur.execute("DROP TABLE IF EXISTS moz_cookies;")
-            cur.execute("CREATE TABLE moz_cookies (id INTEGER PRIMARY KEY, name TEXT, value TEXT, host TEXT, path TEXT,\
-            expiry INTEGER, lastAccessed INTEGER, isSecure INTEGER, isHttpOnly INTEGER);")
-
-        self.close_current_tab()
-        self.cookies_manager()
-
-        return True
+    '''
+    ###########
+    # S:Other #
+    ###########
+    '''
 
     def on_adk_switch(self, button, active):
 
@@ -1820,63 +1899,6 @@ class Browser(Gtk.Window):
 
         self.tools_menu.show_all()
         self.update_status()
-
-    def on_bookmarks_menu(self):
-
-        for i in self.bkview:
-            if i: self.bkview.remove(i)
-
-        bookmarks = bookmarksview()
-
-        for i in bookmarks:
-
-            item = Gtk.ModelButton(name=i[3])
-            item.set_alignment(0.0, 0.5)
-            min_title = minify(i[1], 50)
-            item.set_label("<span size='small'>{}</span>\r<span size='x-small'>{}</span>".\
-            format(html.escape(min_title), html.escape(i[2])))
-            item.get_child().set_use_markup(True)
-            item.get_child().set_padding(5, 5)
-            item.connect("clicked", self.on_click_bookmark)
-
-            self.bkview.add(item)
-
-        if len(self.bkview) != 0:
-            if len(self.bkgrid) == 1: self.bkgrid.attach(self.bkscroll, 0, 0, 1, 1)
-            if len(self.bkview) < 7:
-                self.bkscroll.set_size_request(300, 0)
-                self.bkscroll.set_policy(Gtk.PolicyType.NEVER, Gtk.PolicyType.NEVER)
-            if len(self.bkview) >= 7:
-                self.bkscroll.set_size_request(300, 250)
-                self.bkscroll.set_policy(Gtk.PolicyType.NEVER, Gtk.PolicyType.AUTOMATIC)
-        else: self.bkgrid.remove(self.bkscroll)
-
-        self.bookmarks_menu.set_relative_to(self.tabs[self.current_page][0].bookmarks_button)
-        self.bookmarks_menu.show_all()
-
-    def on_download_menu(self):
-
-        page = self.tabs[self.current_page][0]
-        button = page.download_button
-        button.set_image(page.download_icon)
-
-        for i, item in enumerate(self.tabs):
-            self.tabs[i][0].download_button.\
-            set_image(self.tabs[i][0].download_icon)
-
-        if self.dlview.get_children():
-
-            if len(self.dlview) < 7:
-                self.dlscroll.set_size_request(200, 0)
-                self.dlscroll.set_policy(Gtk.PolicyType.NEVER, Gtk.PolicyType.NEVER)
-            if len(self.dlview) >= 7:
-                self.dlscroll.set_size_request(200, 300)
-                self.dlscroll.set_policy(Gtk.PolicyType.NEVER, Gtk.PolicyType.AUTOMATIC)
-
-            self.downloads_menu.set_relative_to(button)
-            self.downloads_menu.show_all()
-
-        else: button.set_active(False)
 
     def on_download_started(self, context, download):
 
@@ -1988,13 +2010,6 @@ class Browser(Gtk.Window):
         self.dlview.add(grid)
         self.dlview.reorder_child(grid, 0)
         self.on_download_menu()
-
-    def get_progress_bar(self, download):
-
-        for i in self.dlview:
-            for a in i:
-                if a.get_name() == download.get_destination():
-                    if type(a) == Gtk.ProgressBar: return a
 
     def on_received_data(self, download, data_length):
 
@@ -2132,6 +2147,30 @@ class Browser(Gtk.Window):
 
         if view.can_go_back(): page.go_back.set_sensitive(True)
         else: page.go_back.set_sensitive(False)
+
+    def refresh_liststore(self, tp):
+
+        for i in self.tabs[self.current_page][0]:
+            if type(i) == Gtk.ScrolledWindow:
+                for t in i:
+                    if type(t) == Gtk.TreeView:
+
+                        ls = t.get_model()
+                        ls.clear()
+
+                        if tp == 1: l = bookmarksview()
+                        if tp == 2: l = cookiesview()
+                        if tp == 3: l = historyview()
+
+                        for a in l: ls.append(list(a))
+                        t.set_model(ls)
+
+    def get_progress_bar(self, download):
+
+        for i in self.dlview:
+            for a in i:
+                if a.get_name() == download.get_destination():
+                    if type(a) == Gtk.ProgressBar: return a
 
     def close_current_tab(self):
 

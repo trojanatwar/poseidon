@@ -2,7 +2,7 @@
 #
 # For more information about this list, see: https://pgl.yoyo.org/adservers/
 # ----
-# last updated:   Thu, 23 Mar 2017 10:38:17 GMT
+# last updated:   Fri, 28 Apr 2017 17:41:10 GMT
 # entries:        2344
 # format:         hosts (hosts -- in hosts file format)
 # credits:        Peter Lowe - pgl@yoyo.org - https://pgl.yoyo.org/ - https://twitter.com/pgl
@@ -10,7 +10,7 @@
 # other formats:  https://pgl.yoyo.org/adservers/formats.php
 # policy:         https://pgl.yoyo.org/adservers/policy.php
 #
-# start date:    Fri, 28 Apr 2017 00:00:00
+# start date:    Sun, 30 Apr 2017 00:00:00
 127.0.0.1 101com.com
 127.0.0.1 101order.com
 127.0.0.1 123found.com
@@ -1788,7 +1788,7 @@
 127.0.0.1 pagerank-united.de
 127.0.0.1 pagerank4you.com
 127.0.0.1 pageranktop.com
-127.0.0.1 parse.ly
+127.0.0.1 parse.ly.invalid
 127.0.0.1 parsely.com
 127.0.0.1 partage-facile.com
 127.0.0.1 partner-ads.com
