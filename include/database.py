@@ -17,10 +17,12 @@
 # along with Poseidon. If not, see <http://www.gnu.org/licenses/>.
 
 import sys, requests, sqlite3 as lite, json
+
 sys.path.append(".")
 from functions import minify
 from settings import autocomplete_policy, autocomplete_limit,\
-history_con, bookmarks_con, cookies_con, verify_req
+history_con, bookmarks_con, cookies_con, verify_req, language,\
+language_list
 
 def autocomplete(query, liststore):
 
@@ -49,12 +51,12 @@ def autocomplete(query, liststore):
         else:
 
             if autocomplete_policy == 2: url = ("https://ac.duckduckgo.com/ac/?q={}&type=list".format(query))
-            if autocomplete_policy == 3: url = ("https://en.wikipedia.org/w/api.php?action=opensearch&search={}".format(query))
+            if autocomplete_policy == 3: url = ("https://{}.wikipedia.org/w/api.php?action=opensearch&search={}".format(language_list[language].split("_")[0], query))
             if autocomplete_policy == 4: url = ("https://suggestqueries.google.com/complete/search?json&client=firefox&q={}".format(query))
             if autocomplete_policy == 5: url = ("https://suggestqueries.google.com/complete/search?json&client=firefox&ds=yt&q={}".format(query))
             if autocomplete_policy == 6: url = ("https://completion.amazon.co.uk/search/complete?method=completion&q={}&search-alias=aps&mkt=4".format(query))
 
-            request = requests.get(url, stream=True, verify=verify_req)
+            request = requests.get(url, stream=True, verify=bool(verify_req))
             request = json.loads(request.content.decode('utf-8'))
 
             for i in request:

@@ -23,7 +23,7 @@ from PIL import Image
 from gi.repository import Gtk, Gdk, GObject, GLib
 
 sys.path.append(".")
-from settings import verify_req, icns, set_user_agent,\
+from settings import icns, set_user_agent,\
 ua_browsers_dsc, ua_browsers_val, ua_mobile_dsc,\
 ua_mobile_val, ua_crawlers_dsc, ua_crawlers_val
 from dialog import *
