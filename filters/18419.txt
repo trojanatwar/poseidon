@@ -2,21 +2,20 @@
 #
 # For more information about this list, see: https://pgl.yoyo.org/adservers/
 # ----
-# last updated:   Fri, 28 Apr 2017 17:41:10 GMT
-# entries:        2344
+# last updated:   Sat, 06 May 2017 07:58:47 GMT
+# entries:        2341
 # format:         hosts (hosts -- in hosts file format)
 # credits:        Peter Lowe - pgl@yoyo.org - https://pgl.yoyo.org/ - https://twitter.com/pgl
 # this URL:       https://pgl.yoyo.org/adservers/serverlist.php?hostformat=hosts&showintro=0&mimetype=plaintext
 # other formats:  https://pgl.yoyo.org/adservers/formats.php
 # policy:         https://pgl.yoyo.org/adservers/policy.php
 #
-# start date:    Sun, 30 Apr 2017 00:00:00
+# start date:    Sun, 14 May 2017 00:00:00
 127.0.0.1 101com.com
 127.0.0.1 101order.com
 127.0.0.1 123found.com
 127.0.0.1 180hits.de
 127.0.0.1 180searchassistant.com
-127.0.0.1 1x1rank.com
 127.0.0.1 207.net
 127.0.0.1 247media.com
 127.0.0.1 24log.com
@@ -62,7 +61,6 @@
 127.0.0.1 ad-balancer.at
 127.0.0.1 ad-balancer.net
 127.0.0.1 ad-center.com
-127.0.0.1 ad-images.suntimes.com
 127.0.0.1 ad-pay.de
 127.0.0.1 ad-rotator.com
 127.0.0.1 ad-server.gulasidorna.se
@@ -150,7 +148,6 @@
 127.0.0.1 ad.twitchguru.com
 127.0.0.1 ad.usatoday.com
 127.0.0.1 ad.virtual-nights.com
-127.0.0.1 ad.watch.impress.co.jp
 127.0.0.1 ad.wavu.hu
 127.0.0.1 ad.way.cz
 127.0.0.1 ad.weatherbug.com
@@ -573,7 +570,6 @@
 127.0.0.1 ads.redtube.com
 127.0.0.1 ads.resoom.de
 127.0.0.1 ads.returnpath.net
-127.0.0.1 ads.rpgdot.com
 127.0.0.1 ads.s3.sitepoint.com
 127.0.0.1 ads.satyamonline.com
 127.0.0.1 ads.savannahnow.com
@@ -783,7 +779,6 @@
 127.0.0.1 adstat.4u.pl
 127.0.0.1 adstest.weather.com
 127.0.0.1 adsupply.com
-127.0.0.1 adswitcher.com
 127.0.0.1 adsymptotic.com
 127.0.0.1 adsynergy.com
 127.0.0.1 adsys.townnews.com
@@ -1557,6 +1552,7 @@
 127.0.0.1 kindads.com
 127.0.0.1 kissmetrics.com
 127.0.0.1 kliks.nl
+127.0.0.1 kniverto.com
 127.0.0.1 komoona.com
 127.0.0.1 kompasads.com
 127.0.0.1 kontera.com
@@ -1967,6 +1963,7 @@
 127.0.0.1 s.adroll.com
 127.0.0.1 s2d6.com
 127.0.0.1 sageanalyst.net
+127.0.0.1 sail-horizon.com
 127.0.0.1 samsungacr.com
 127.0.0.1 samsungads.com
 127.0.0.1 sbx.pagesjaunes.fr
@@ -1989,7 +1986,6 @@
 127.0.0.1 servedby-buysellads.com
 127.0.0.1 servedbyadbutler.com
 127.0.0.1 servedbyopenx.com
-127.0.0.1 servethis.com
 127.0.0.1 services.hearstmags.com
 127.0.0.1 serving-sys.com
 127.0.0.1 sexaddpro.de
@@ -2220,6 +2216,7 @@
 127.0.0.1 ultramercial.com
 127.0.0.1 unanimis.co.uk
 127.0.0.1 untd.com
+127.0.0.1 updated.com
 127.0.0.1 urlcash.net
 127.0.0.1 us.a1.yimg.com
 127.0.0.1 usapromotravel.com

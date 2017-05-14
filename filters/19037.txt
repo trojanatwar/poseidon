@@ -20521,7 +20521,6 @@
 127.0.0.1	bam-3.nr-data.net
 127.0.0.1	bam-4.nr-data.net
 127.0.0.1	bam-5.nr-data.net
-127.0.0.1	bam.nr-data.net
 127.0.0.1	ban.krooncasino.com
 127.0.0.1	ban.promotools.biz
 127.0.0.1	ban3ers.ero-advertising.com
@@ -38996,7 +38995,6 @@
 127.0.0.1	thehitsusa.com
 127.0.0.1	theinterwebs.space
 127.0.0.1	theoads.com
-127.0.0.1	theoads.com.
 127.0.0.1	theodosium.com
 127.0.0.1	thepoint.go2cloud.org
 127.0.0.1	theresa-buchman.us
@@ -39611,6 +39609,7 @@
 127.0.0.1	tracking.netzathleten-media.de
 127.0.0.1	tracking.nuasti.com
 127.0.0.1	tracking.olx-st.com
+127.0.0.1	tracking.orixa-media.com
 127.0.0.1	tracking.perfecttoolmedia.com
 127.0.0.1	tracking.performancerevenues.com
 127.0.0.1	tracking.plattformad.com
@@ -48020,4 +48019,4 @@
 127.0.0.1	zz.zeroredirect1.com
 127.0.0.1	zzz.clickbank.net
 127.0.0.1	_thums.ero-advertising.com
-# Hosts: 48012
+# Hosts: 48011

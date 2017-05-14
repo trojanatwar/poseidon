@@ -18,6 +18,7 @@
 
 import os, sys, gi
 from gi.repository import Gtk
+
 sys.path.append(".")
 from dialog import *
 from settings import width, height

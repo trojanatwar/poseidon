@@ -18,8 +18,10 @@
 
 import sys, gi
 from gi.repository import Gtk, Gdk, WebKit2
+
 sys.path.append("modules")
 import validators
+
 sys.path.append(".")
 from settings import search_engine
 from functions import minify
@@ -90,12 +92,6 @@ def vte_menu(widget):
     return True
 
 def on_context_menu(self, view, menu, event, htr):
-
-    '''
-    ################
-    # Custom Items #
-    ################
-    '''
 
     context = htr.get_context()
     action = WebKit2.ContextMenuAction.OUTLINE

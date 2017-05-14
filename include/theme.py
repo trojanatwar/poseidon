@@ -18,6 +18,7 @@
 
 import os, sys, gi
 from gi.repository import Gtk, Gdk
+
 sys.path.append(".")
 from settings import theme_file, trans_pop
 from functions import is_image_valid

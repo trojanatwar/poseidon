@@ -1237,6 +1237,7 @@ class Browser(Gtk.Window):
         '''
 
         self.is_fullscreen = False
+        self.is_human_choice = bool()
 
         self.remtab = remtab
         self.headerbar = headerbar
@@ -1314,12 +1315,13 @@ class Browser(Gtk.Window):
 
         tab.webview.connect("load-changed", self.on_load_changed)
         tab.webview.connect("context-menu", self.on_context_menu)
+        tab.webview.connect("context-menu-dismissed", self.on_context_menu_dismissed)  
         tab.webview.connect("notify::title", self.on_title_changed)
         tab.webview.connect("decide-policy", self.on_decide_policy)
         tab.webview.connect("enter-fullscreen", self.on_enter_fullscreen)
         tab.webview.connect("leave-fullscreen", self.on_leave_fullscreen)
         tab.webview.connect("load-failed", self.on_load_failed)
-        tab.webview.connect("load-failed-with-tls-errors", self.on_load_failed_with_tls_errors)
+        tab.webview.connect("load-failed-with-tls-errors", self.on_load_failed_with_tls_errors) 
         tab.webview.connect("create", self.on_create)
         tab.download_button.connect("clicked", lambda x: self.on_download_menu())
         tab.bookmarks_button.connect("clicked", lambda x: self.on_bookmarks_menu())
@@ -1532,12 +1534,6 @@ class Browser(Gtk.Window):
                 else: self.try_search(parse(url))
             else: self.try_search(parse(url))
 
-    '''
-    ###############
-    # S:Bookmarks #
-    ###############
-    '''
-
     def on_click_bookmark(self, button):
 
         self.tabs[self.current_page][0].webview.load_uri(button.get_name())
@@ -1695,12 +1691,6 @@ class Browser(Gtk.Window):
 
         else: button.set_active(False)
 
-    '''
-    #############
-    # S:Cookies #
-    #############
-    '''
-
     def on_cookies_selected(self, selection):
 
         (model, iter) = selection.get_selected()
@@ -1781,12 +1771,6 @@ class Browser(Gtk.Window):
 
         return True
 
-    '''
-    #############
-    # S:History #
-    #############
-    '''
-
     def on_history_selected(self, selection):
 
         self.bookmarks_history_button.set_sensitive(True)
@@ -1803,12 +1787,6 @@ class Browser(Gtk.Window):
         self.refresh_liststore(3)
 
         return True
-
-    '''
-    ###########
-    # S:Other #
-    ###########
-    '''
 
     def on_adk_switch(self, button, active):
 
@@ -2043,6 +2021,8 @@ class Browser(Gtk.Window):
 
     def on_context_menu(self, view, menu, event, htr): on_context_menu(self, view, menu, event, htr)
 
+    def on_context_menu_dismissed(self, view): self.is_human_choice = True
+
     def on_title_changed(self, view, event):
 
         if event.name == "title":
@@ -2065,6 +2045,7 @@ class Browser(Gtk.Window):
 
         if decision_type == WebKit2.PolicyDecisionType.NEW_WINDOW_ACTION:
 
+            self.is_human_choice = False
             self.open_blank(url)
 
             return True
@@ -2084,11 +2065,16 @@ class Browser(Gtk.Window):
 
     def on_create(self, view, action):
 
-        if self.adk_switch.get_active() and adk_popups:
-            if action.is_user_gesture(): return
-        else:
-            if not action.get_navigation_type() == WebKit2.NavigationType.OTHER: return
+        t = action.get_navigation_type()
+        g = action.is_user_gesture()
+        m = action.get_mouse_button()
 
+        if self.adk_switch.get_active() and adk_popups:
+            if not self.is_human_choice:
+                if t == WebKit2.NavigationType.OTHER and not g: return
+
+        self.is_human_choice = False
+        if t == WebKit2.NavigationType.LINK_CLICKED and g and m: return
         self.open_blank(action.get_request().get_uri())
 
     def on_tab_changed(self, notebook, page, index):
@@ -2386,12 +2372,8 @@ class Browser(Gtk.Window):
                 page.remove(i)
 
         scrolled_window = page.scrolled_window
-
-        for i in scrolled_window:
-            scrolled_window.remove(i)
-
+        for i in scrolled_window: scrolled_window.remove(i)
         scrolled_window.set_name(name)
-
         return scrolled_window
 
     def view_settings(self):
