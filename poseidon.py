@@ -3071,6 +3071,7 @@ class Browser(Gtk.Window):
     def on_key_pressed(self, widget, event):
 
         modifiers = Gtk.accelerator_get_default_mod_mask()
+        vte_revealed = self.tabs[self.current_page][0].vte_revealer.get_child_revealed()
 
         mapping = {Gdk.KEY_r: self.reload_tab,
                    Gdk.KEY_w: self.close_current_tab,
@@ -3098,7 +3099,7 @@ class Browser(Gtk.Window):
             mapping.update({Gdk.KEY_x: lambda: proxy(self)})
 
         if event.state & modifiers == Gdk.ModifierType.CONTROL_MASK\
-        and event.keyval in mapping:
+        and event.keyval in mapping and not vte_revealed:
             mapping[event.keyval]()
             return True
 
@@ -3108,7 +3109,7 @@ class Browser(Gtk.Window):
 
         try:
             if type(event.state) == gi.repository.Gdk.ModifierType\
-            and event.keyval in nomod:
+            and event.keyval in nomod and not vte_revealed:
                 nomod[event.keyval]()
                 return True
         except: pass
