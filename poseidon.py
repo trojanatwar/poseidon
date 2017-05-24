@@ -1323,6 +1323,7 @@ class Browser(Gtk.Window):
         tab.webview.connect("load-failed", self.on_load_failed)
         tab.webview.connect("load-failed-with-tls-errors", self.on_load_failed_with_tls_errors) 
         tab.webview.connect("create", self.on_create)
+        tab.webview.connect("button-press-event", self.on_button_press)
         tab.download_button.connect("clicked", lambda x: self.on_download_menu())
         tab.bookmarks_button.connect("clicked", lambda x: self.on_bookmarks_menu())
         tab.tools.connect("clicked", lambda x: self.on_tools_menu())
@@ -1332,6 +1333,12 @@ class Browser(Gtk.Window):
         tab.iconified_vte.connect("button-press-event", lambda x, y: [self.vte(), tab.iconified_vte.hide()])
 
         return tab
+
+    def on_button_press(self, widget, event):
+
+        if event.type == Gdk.EventType.BUTTON_PRESS:
+            if event.button == 8: widget.go_back()
+            if event.button == 9: widget.go_forward()
 
     def on_restore_settings(self):
 
