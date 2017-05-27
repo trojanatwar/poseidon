@@ -2,7 +2,7 @@
 #
 # For more information about this list, see: https://pgl.yoyo.org/adservers/
 # ----
-# last updated:   Sat, 06 May 2017 07:58:47 GMT
+# last updated:   Tue, 23 May 2017 01:50:44 GMT
 # entries:        2337
 # format:         hosts (hosts -- in hosts file format)
 # credits:        Peter Lowe - pgl@yoyo.org - https://pgl.yoyo.org/ - https://twitter.com/pgl
@@ -10,7 +10,7 @@
 # other formats:  https://pgl.yoyo.org/adservers/formats.php
 # policy:         https://pgl.yoyo.org/adservers/policy.php
 #
-# start date:    Mon, 22 May 2017 00:00:00
+# start date:    Sat, 27 May 2017 00:00:00
 127.0.0.1 101com.com
 127.0.0.1 101order.com
 127.0.0.1 123found.com
@@ -819,6 +819,7 @@
 127.0.0.1 advertising.guildlaunch.net
 127.0.0.1 advertisingbanners.com
 127.0.0.1 advertisingbox.com
+127.0.0.1 advertisingtag.net
 127.0.0.1 advertmarket.com
 127.0.0.1 advertmedia.de
 127.0.0.1 advertpro.sitepoint.com
@@ -1261,6 +1262,7 @@
 127.0.0.1 didtheyreadit.com
 127.0.0.1 direct-xxx-access.com
 127.0.0.1 directaclick.com
+127.0.0.1 directivepub.com
 127.0.0.1 directleads.com
 127.0.0.1 directorym.com
 127.0.0.1 directtrack.com
@@ -2039,7 +2041,6 @@
 127.0.0.1 stat.dyna.ultraweb.hu
 127.0.0.1 stat.pl
 127.0.0.1 stat.su
-127.0.0.1 stat.tudou.com
 127.0.0.1 stat.webmedia.pl
 127.0.0.1 stat.zenon.net
 127.0.0.1 stat24.com
@@ -2281,7 +2282,6 @@
 127.0.0.1 whenu.com
 127.0.0.1 whispa.com
 127.0.0.1 whoisonline.net
-127.0.0.1 wholesaletraffic.info
 127.0.0.1 widespace.com
 127.0.0.1 widgetbucks.com
 127.0.0.1 wikia-ads.wikia.com

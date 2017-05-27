@@ -105,6 +105,15 @@ if process_model == 1: pmodel = WebKit2.ProcessModel.MULTIPLE_SECONDARY_PROCESSE
 web_context.set_process_model(pmodel)
 
 '''
+########
+# Misc #
+########
+'''
+
+mem_url = []
+
+
+'''
 ###################
 # BrowserTab INIT #
 ###################
@@ -689,9 +698,17 @@ class BrowserTab(Gtk.VBox):
 
     def on_mouse_target_changed(self, view, htr, mod):
 
-        if view and htr.context_is_link(): self.link_hover\
-        .set_text(minify(htr.get_link_uri(), 100))
-        else: self.link_hover.set_text("")
+        del mem_url[:]
+
+        if view and htr.context_is_link():
+
+            self.link_hover.set_text(minify(htr.get_link_uri(), 100))
+            mem_url.append(htr.get_link_uri())
+
+        else:
+
+            self.link_hover.set_text("")
+            mem_url.append("")
 
         return True
 
@@ -1334,11 +1351,20 @@ class Browser(Gtk.Window):
 
         return tab
 
-    def on_button_press(self, widget, event):
+    def on_button_press(self, view, event):
+
+        if event.get_state() and Gdk.ModifierType.CONTROL_MASK\
+        and event.button == Gdk.BUTTON_PRIMARY:
+            if mem_url[0]: self.open_blank(mem_url[0])
 
         if event.type == Gdk.EventType.BUTTON_PRESS:
-            if event.button == 8: widget.go_back()
-            if event.button == 9: widget.go_forward()
+
+            if links_policy and event.button == Gdk.BUTTON_PRIMARY\
+            and mem_url[0]:
+                self.open_blank(mem_url[0])
+
+            if event.button == 8: view.go_back()
+            if event.button == 9: view.go_forward()
 
     def on_restore_settings(self):
 
@@ -2076,9 +2102,12 @@ class Browser(Gtk.Window):
         g = action.is_user_gesture()
         m = action.get_mouse_button()
 
-        if self.adk_switch.get_active() and adk_popups:
+        if self.adk_switch.get_active() and adk_popups == 1:
             if not self.is_human_choice:
                 if t == WebKit2.NavigationType.OTHER and not g: return
+
+        if self.adk_switch.get_active() and adk_popups == 2:
+            if not self.is_human_choice: return
 
         self.is_human_choice = False
         if t == WebKit2.NavigationType.LINK_CLICKED and g and m: return
@@ -3105,7 +3134,7 @@ class Browser(Gtk.Window):
 
             mapping.update({Gdk.KEY_x: lambda: proxy(self)})
 
-        if event.state & modifiers == Gdk.ModifierType.CONTROL_MASK\
+        if event.state and modifiers == Gdk.ModifierType.CONTROL_MASK\
         and event.keyval in mapping and not vte_revealed:
             mapping[event.keyval]()
             return True
@@ -3115,7 +3144,7 @@ class Browser(Gtk.Window):
                  Gdk.KEY_F11: self.go_fullscreen}
 
         try:
-            if type(event.state) == gi.repository.Gdk.ModifierType\
+            if type(event.state) == Gdk.ModifierType\
             and event.keyval in nomod and not vte_revealed:
                 nomod[event.keyval]()
                 return True
