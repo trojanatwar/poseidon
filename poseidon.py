@@ -1355,13 +1355,16 @@ class Browser(Gtk.Window):
 
         if event.get_state() and Gdk.ModifierType.CONTROL_MASK\
         and event.button == Gdk.BUTTON_PRIMARY:
-            if mem_url[0]: self.open_blank(mem_url[0])
+            if mem_url[0]:
+                self.open_blank(mem_url[0])
+                return True
 
         if event.type == Gdk.EventType.BUTTON_PRESS:
 
             if links_policy and event.button == Gdk.BUTTON_PRIMARY\
             and mem_url[0]:
                 self.open_blank(mem_url[0])
+                return True
 
             if event.button == 8: view.go_back()
             if event.button == 9: view.go_forward()
