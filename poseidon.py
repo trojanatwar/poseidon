@@ -3134,7 +3134,7 @@ class Browser(Gtk.Window):
 
             mapping.update({Gdk.KEY_x: lambda: proxy(self)})
 
-        if event.state and modifiers == Gdk.ModifierType.CONTROL_MASK\
+        if event.state & modifiers == Gdk.ModifierType.CONTROL_MASK\
         and event.keyval in mapping and not vte_revealed:
             mapping[event.keyval]()
             return True
