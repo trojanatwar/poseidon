@@ -66,6 +66,13 @@ except:
     exit()
 else: from secure import secure, certificate, cert_declarations
 
+try: import socks
+except:
+    dialog().error(_("PySocks is missing"),\
+     "<span size='small'>{} {} PySocks {}.</span>"\
+    .format(browser_name, _("requires"), _("installed on your system")))
+    exit()
+
 '''
 ######################################
 # End Missing Dependencies Detection #
@@ -1432,7 +1439,7 @@ class Browser(Gtk.Window):
         view.stop_loading()
         stop_timeout(self)
 
-        error = catch_error(url, self.tlsbool)
+        error = catch_error(url, self.tlsbool, self.p_req())
 
         if type(error) == requests.exceptions.SSLError: self.on_load_failed_with_tls_errors(view, url, None, None)
         else: self.on_load_failed(view, event, url, None)
@@ -1548,6 +1555,10 @@ class Browser(Gtk.Window):
             self.cookies_manager()
             return True
 
+        if url == "localhost" or "://localhost" in url:
+            page.webview.load_uri("http://127.0.0.1")
+            return True
+
         format = "{}{}".format("http://", parse(url))
 
         if not url: return True
@@ -1566,7 +1577,7 @@ class Browser(Gtk.Window):
 
         else:
             if validators.url(format):
-                if is_url_valid(format, self.tlsbool): page.webview.load_uri(format)
+                if is_url_valid(format, self.tlsbool, self.p_req()): page.webview.load_uri(format)
                 else: self.try_search(parse(url))
             else: self.try_search(parse(url))
 
@@ -1945,7 +1956,7 @@ class Browser(Gtk.Window):
         _("But there is a trick, wanna try forcing the download using the requests module")))
 
         if decision:
-            data = request(url, self.tlsbool)
+            data = request(url, self.tlsbool, self.p_req())
 
             if data:
                 content = data[0][0]
@@ -2281,7 +2292,7 @@ class Browser(Gtk.Window):
         "<span size='small'>{}...\n\n{}.</span>".format(_("This operation may take a while"),\
        _("It all depends on your internet speed and requested image size")))
 
-        data = request(url, self.tlsbool)
+        data = request(url, self.tlsbool, self.p_req())
         content = data[0][0]
 
         if content:
@@ -2292,6 +2303,16 @@ class Browser(Gtk.Window):
                 d.destroy()
 
         return True
+
+    def p_req(self):
+
+        if webkit_ver > wk16:
+
+            db = self.get_proxy()
+            if db[0] == str(2): return db
+            else: return None
+
+        else: return None
 
     def get_proxy(self):
 
@@ -2528,7 +2549,7 @@ class Browser(Gtk.Window):
 
         if url:
             
-            data = request(url, self.tlsbool)
+            data = request(url, self.tlsbool, self.p_req())
             source = data[0][0]
             content_type = data[0][1].split(";")[0]
 

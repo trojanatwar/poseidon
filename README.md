@@ -27,7 +27,7 @@ Requires [WebKit](https://webkitgtk.org/) 2.12.3 or higher.
 
 * Required dependencies
 
-`# dnf install python3 python3-requests python3-six python3-decorator python3-cairo python3-pillow python3-pyOpenSSL pygobject3 webkitgtk4 webkitgtk4-jsc gtksourceview3`
+`# dnf install python3 python3-requests python3-six python3-decorator python3-cairo python3-pillow python3-pyOpenSSL python-pysocks pygobject3 webkitgtk4 webkitgtk4-jsc gtksourceview3`
 
 * Development dependencies
 

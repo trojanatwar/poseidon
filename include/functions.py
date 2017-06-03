@@ -25,7 +25,8 @@ from gi.repository import Gtk, Gdk, GObject, GLib
 sys.path.append(".")
 from settings import icns, set_user_agent,\
 ua_browsers_dsc, ua_browsers_val, ua_mobile_dsc,\
-ua_mobile_val, ua_crawlers_dsc, ua_crawlers_val
+ua_mobile_val, ua_crawlers_dsc, ua_crawlers_val,\
+socks_version
 from dialog import *
 
 sys.path.append("modules")
@@ -104,37 +105,51 @@ def do_export_bookmarks(list):
 
     return content
 
-def request(url, bool):
+def get_requests_proxy(proxy):
+
+    if proxy:
+        if proxy[1] == "socks":
+            if socks_version == 0:   v = "4"
+            elif socks_version == 1: v = "4a"
+            elif socks_version == 2: v = "5"
+            pstr = "{}{}://{}:{}".format(proxy[1], v, proxy[2], proxy[3])
+            return {'http': pstr, 'https' : pstr}
+        else:
+            pstr = "{}:{}".format(proxy[2], proxy[3])
+            return {'http': pstr, 'https' : pstr}
+    else: return None
+
+def request(url, bool, proxy):
 
     list = []
-    request = requests.get(url, verify=bool)
+    request = requests.get(url, verify=bool, proxies=get_requests_proxy(proxy))
     source = request.content
     content_type = request.headers.get("content-type")
     list.append([source] + [content_type])
 
     return list
 
+def is_url_valid(url, bool, proxy):
+
+    try:
+        request = requests.head(url, verify=bool, proxies=get_requests_proxy(proxy))
+        if request.status_code < 400: return True
+    except ecs.ConnectionError: return False
+    except ecs.InvalidURL: return False
+
+def catch_error(url, bool, proxy):
+
+    try:
+        request = requests.get(url, verify=bool, proxies=get_requests_proxy(proxy), timeout=1)
+        if request.status_code == 200: return True
+    except ecs.RequestException as e: return e
+    except ecs.SSLError as e: return e
+
 def is_image_valid(file):
 
     try: Image.open(file)
     except IOError: return False
     return True
-
-def is_url_valid(url, bool):
-
-    try:
-        request = requests.head(url, verify=bool)
-        if request.status_code < 400: return True
-    except ecs.ConnectionError: return False
-    except ecs.InvalidURL: return False
-
-def catch_error(url, bool):
-
-    try:
-        request = requests.get(url, verify=bool, timeout=1)
-        if request.status_code == 200: return True
-    except ecs.RequestException as e: return e
-    except ecs.SSLError as e: return e
 
 def get_domain(url):
 

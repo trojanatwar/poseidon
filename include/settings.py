@@ -366,6 +366,7 @@ tab_cb = 1
 trans_pop = 0
 process_model = 1
 links_policy = 0
+socks_version = 2
 
 '''
 ############################
@@ -453,6 +454,7 @@ geolocation_policy_list = ["Always Enabled",\
 "Never Enabled", "Ask Everytime"]
 process_model_list = ["Shared", "Multiple"]
 links_policy_list = ["Default", "Force Opening in a New Tab"]
+socks_version_list = ["SOCKS4", "SOCKS4a", "SOCKS5"]
 shell_list = get_available_shells()
 font_list = get_font_family_list()
 
@@ -505,6 +507,8 @@ text_process_model = _("Process Model")
 text_process_model_desc = _("Set WebKit process model (Default: Multiple)")
 text_links_policy = _("Links Policy")
 text_links_policy_desc = _("Set links opening behaviour")
+text_socks_version = _("SOCKS Version")
+text_socks_version_desc = _("Set SOCKS version for requests module")
 
 '''
 ##################################
@@ -513,7 +517,7 @@ text_links_policy_desc = _("Set links opening behaviour")
 '''
 
 settings_db_path = "{}{}".format(settings_path, settings_db)
-settings_db_code = "8"
+settings_db_code = "9"
 
 def create_settings_db():
 
@@ -552,6 +556,7 @@ def create_settings_db():
         cur.execute(insert_string, (text_adk_policy, adk_policy, "2", text_adk_policy_desc, "2", "adk_policy_list", "adk_policy"))
         cur.execute(insert_string, (text_adk_popups, adk_popups, "2", text_adk_popups_desc, "2", "adk_popups_list", "adk_popups"))
         cur.execute(insert_string, (text_links_policy, links_policy, "2", text_links_policy_desc, "2", "links_policy_list", "links_policy"))
+        cur.execute(insert_string, (text_socks_version, socks_version, "2", text_socks_version_desc, "2", "socks_version_list", "socks_version"))
         cur.execute(insert_string, (text_verify_req, verify_req, "2", text_verify_req_desc, "2", "verify_req_list", "verify_req"))
         cur.execute(insert_string, (text_cache_model, cache_model, "2", text_cache_model_desc, "2", "cache_model_list", "cache_model"))
         cur.execute(insert_string, (text_geolocation, geolocation_policy, "2", text_geolocation_desc, "2", "geolocation_policy_list", "geolocation_policy"))
@@ -674,7 +679,7 @@ tab_name = _("Empty")
 ##################
 '''
 
-version = "0.6.1"
+version = "0.6.2"
 browser_name = "Poseidon"
 website = "https://github.com/sidus-dev/poseidon"
 authors = "Andrea Pasciuta  <sidus@arbornet.org>"

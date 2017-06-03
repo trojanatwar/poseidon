@@ -3,14 +3,14 @@
 # For more information about this list, see: https://pgl.yoyo.org/adservers/
 # ----
 # last updated:   Tue, 23 May 2017 01:50:44 GMT
-# entries:        2337
+# entries:        2333
 # format:         hosts (hosts -- in hosts file format)
 # credits:        Peter Lowe - pgl@yoyo.org - https://pgl.yoyo.org/ - https://twitter.com/pgl
 # this URL:       https://pgl.yoyo.org/adservers/serverlist.php?hostformat=hosts&showintro=0&mimetype=plaintext
 # other formats:  https://pgl.yoyo.org/adservers/formats.php
 # policy:         https://pgl.yoyo.org/adservers/policy.php
 #
-# start date:    Sat, 27 May 2017 00:00:00
+# start date:    Sat, 03 Jun 2017 00:00:00
 127.0.0.1 101com.com
 127.0.0.1 101order.com
 127.0.0.1 123found.com
@@ -1134,7 +1134,6 @@
 127.0.0.1 class-act-clicks.com
 127.0.0.1 click.absoluteagency.com
 127.0.0.1 click.fool.com
-127.0.0.1 click.kmindex.ru
 127.0.0.1 click2freemoney.com
 127.0.0.1 click2paid.com
 127.0.0.1 clickability.com
@@ -1216,7 +1215,6 @@
 127.0.0.1 counter.sparklit.com
 127.0.0.1 counter.yadro.ru
 127.0.0.1 counters.honesty.com
-127.0.0.1 counting.kmindex.ru
 127.0.0.1 counts.tucows.com
 127.0.0.1 coupling-media.de
 127.0.0.1 cpalead.com
@@ -2040,7 +2038,6 @@
 127.0.0.1 stat.dealtime.com
 127.0.0.1 stat.dyna.ultraweb.hu
 127.0.0.1 stat.pl
-127.0.0.1 stat.su
 127.0.0.1 stat.webmedia.pl
 127.0.0.1 stat.zenon.net
 127.0.0.1 stat24.com
@@ -2136,7 +2133,6 @@
 127.0.0.1 top20free.com
 127.0.0.1 top90.ro
 127.0.0.1 topbarh.box.sk
-127.0.0.1 topblogarea.se
 127.0.0.1 topbucks.com
 127.0.0.1 topforall.com
 127.0.0.1 topgamesites.net

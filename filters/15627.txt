@@ -16029,6 +16029,7 @@
 127.0.0.1	addeppo.com
 127.0.0.1	addesktop.com
 127.0.0.1	addfreestats.com
+127.0.0.1	addiliate.com
 127.0.0.1	addiply.com
 127.0.0.1	addltest.timesink.com
 127.0.0.1	addoer.com
@@ -34168,6 +34169,7 @@
 127.0.0.1	nuera.go2cloud.org
 127.0.0.1	nuggad.net
 127.0.0.1	numb.hotshare.biz
+127.0.0.1	nurno.com
 127.0.0.1	nv.ad.naver.com
 127.0.0.1	nv4n8.voluumtrk.com
 127.0.0.1	nvk.realsecuredredirect.com
@@ -45090,6 +45092,7 @@
 127.0.0.1	www.adclix.com
 127.0.0.1	www.adclub.net
 127.0.0.1	www.adcron.com
+127.0.0.1	www.addiliate.com
 127.0.0.1	www.addinto.com
 127.0.0.1	www.addme.com
 127.0.0.1	www.addthis.com
@@ -46693,6 +46696,7 @@
 127.0.0.1	www.noelle-trotter.us
 127.0.0.1	www.nonames.tk
 127.0.0.1	www.noowho.com
+127.0.0.1	www.nurno.com
 127.0.0.1	www.nvtrak.com
 127.0.0.1	www.nxsrv1.com
 127.0.0.1	www.o2onbusiness.de
@@ -48019,4 +48023,4 @@
 127.0.0.1	zz.zeroredirect1.com
 127.0.0.1	zzz.clickbank.net
 127.0.0.1	_thums.ero-advertising.com
-# Hosts: 48011
+# Hosts: 48015
