@@ -76,7 +76,7 @@ if os.path.exists(pickle_path): shutil.rmtree(pickle_path)
 
 mime_view = [
 
-"application/xml", "application/rss+xml", "application/atom+xml", "application/json"
+"application/xml", "application/rss+xml", "application/xhtml+xml", "application/atom+xml", "application/json"
 
 ]
 
@@ -220,9 +220,9 @@ ua_crawlers_val = [
 '''
 ##########################
 # Settings for GUI usage #
-###############################################
-# Following settings doesn't requires editing #
-###############################################
+##############################################
+# Following settings doesn't require editing #
+##############################################
 '''
 
 '''
@@ -454,7 +454,7 @@ geolocation_policy_list = ["Always Enabled",\
 "Never Enabled", "Ask Everytime"]
 process_model_list = ["Shared", "Multiple"]
 links_policy_list = ["Default", "Force Opening in a New Tab"]
-socks_version_list = ["SOCKS4", "SOCKS4a", "SOCKS5"]
+socks_version_list = ["4", "4a", "5"]
 shell_list = get_available_shells()
 font_list = get_font_family_list()
 
@@ -679,7 +679,7 @@ tab_name = _("Empty")
 ##################
 '''
 
-version = "0.6.2"
+version = "0.6.3"
 browser_name = "Poseidon"
 website = "https://github.com/sidus-dev/poseidon"
 authors = "Andrea Pasciuta  <sidus@arbornet.org>"

@@ -105,24 +105,23 @@ def do_export_bookmarks(list):
 
     return content
 
-def get_requests_proxy(proxy):
+def get_req_proxy(proxy):
 
     if proxy:
         if proxy[1] == "socks":
-            if socks_version == 0:   v = "4"
+            if socks_version == 0: v = "4"
             elif socks_version == 1: v = "4a"
             elif socks_version == 2: v = "5"
             pstr = "{}{}://{}:{}".format(proxy[1], v, proxy[2], proxy[3])
-            return {'http': pstr, 'https' : pstr}
         else:
             pstr = "{}:{}".format(proxy[2], proxy[3])
-            return {'http': pstr, 'https' : pstr}
+        return {'http': pstr, 'https' : pstr}
     else: return None
 
 def request(url, bool, proxy):
 
     list = []
-    request = requests.get(url, verify=bool, proxies=get_requests_proxy(proxy))
+    request = requests.get(url, verify=bool, proxies=get_req_proxy(proxy))
     source = request.content
     content_type = request.headers.get("content-type")
     list.append([source] + [content_type])
@@ -132,7 +131,7 @@ def request(url, bool, proxy):
 def is_url_valid(url, bool, proxy):
 
     try:
-        request = requests.head(url, verify=bool, proxies=get_requests_proxy(proxy))
+        request = requests.head(url, verify=bool, proxies=get_req_proxy(proxy))
         if request.status_code < 400: return True
     except ecs.ConnectionError: return False
     except ecs.InvalidURL: return False
@@ -140,7 +139,7 @@ def is_url_valid(url, bool, proxy):
 def catch_error(url, bool, proxy):
 
     try:
-        request = requests.get(url, verify=bool, proxies=get_requests_proxy(proxy), timeout=1)
+        request = requests.get(url, verify=bool, proxies=get_req_proxy(proxy), timeout=1)
         if request.status_code == 200: return True
     except ecs.RequestException as e: return e
     except ecs.SSLError as e: return e

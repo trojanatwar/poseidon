@@ -118,6 +118,7 @@ web_context.set_process_model(pmodel)
 '''
 
 mem_url = []
+local_ip = "127.0.0.1"
 
 
 '''
@@ -1556,7 +1557,7 @@ class Browser(Gtk.Window):
             return True
 
         if url == "localhost" or "://localhost" in url:
-            page.webview.load_uri("http://127.0.0.1")
+            page.webview.load_uri("http://{}".format(local_ip))
             return True
 
         format = "{}{}".format("http://", parse(url))
@@ -2334,7 +2335,7 @@ class Browser(Gtk.Window):
 
             if type == 0: type = "socks"
             else: type = "http"
-            if not url: url = "127.0.0.1"
+            if not url: url = local_ip
             if not port: port = 0
 
             proxy = "{}://{}:{}".format(type, url, port)
