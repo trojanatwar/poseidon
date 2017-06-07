@@ -3,7 +3,7 @@ A fast, minimal and lightweight browser
 
 ## Screenshot
 
-![Alt text](http://arbornet.org/~sidus/images/gscreenshot_2017-03-27-154512.png "Poseidon on Arch Linux")
+![Alt text](https://raw.githubusercontent.com/sidus-dev/screenshots/master/poseidon-0.6.3.png "Poseidon on Arch Linux")
 
 ## Requirements
 
