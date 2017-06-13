@@ -367,6 +367,7 @@ trans_pop = 0
 process_model = 1
 links_policy = 0
 socks_version = 2
+init_home_page = 1
 
 '''
 ############################
@@ -455,6 +456,7 @@ geolocation_policy_list = ["Always Enabled",\
 process_model_list = ["Shared", "Multiple"]
 links_policy_list = ["Default", "Force Opening in a New Tab"]
 socks_version_list = ["4", "4a", "5"]
+init_home_page_list = ["Show an Empty Page", "Load on Startup", "Load on New Tab Opening"]
 shell_list = get_available_shells()
 font_list = get_font_family_list()
 
@@ -509,6 +511,8 @@ text_links_policy = _("Links Policy")
 text_links_policy_desc = _("Set links opening behaviour")
 text_socks_version = _("SOCKS Version")
 text_socks_version_desc = _("Set SOCKS version for requests module")
+text_init_home_page = _("Home Page Startup")
+text_init_home_page_desc = _("Home page must be loaded on startup?")
 
 '''
 ##################################
@@ -517,7 +521,7 @@ text_socks_version_desc = _("Set SOCKS version for requests module")
 '''
 
 settings_db_path = "{}{}".format(settings_path, settings_db)
-settings_db_code = "9"
+settings_db_code = "10"
 
 def create_settings_db():
 
@@ -548,6 +552,7 @@ def create_settings_db():
         cur.execute(insert_string, (text_app_launcher, app_launcher, "1", text_app_launcher_desc, "1", "", "app_launcher"))
         cur.execute(insert_string, (text_language, language, "2", text_language_desc, "1", "language_list", "language"))
         cur.execute(insert_string, ("AdKiller", adkiller, "2", text_adkiller_desc, "1", "adkiller_list", "adkiller"))
+        cur.execute(insert_string, (text_init_home_page, init_home_page, "2", text_init_home_page_desc, "1", "init_home_page_list", "init_home_page"))
         cur.execute(insert_string, (text_tab_cb, tab_cb, "2", text_tab_cb_desc, "1", "boolean_list", "tab_cb"))
         cur.execute(insert_string, (text_trans_pop, trans_pop, "2", text_trans_pop_desc, "1", "boolean_list", "trans_pop"))
         cur.execute(insert_string, (text_autocomplete, autocomplete_policy, "2", text_autocomplete_desc, "2", "autocomplete_policy_list", "autocomplete_policy"))
@@ -679,7 +684,7 @@ tab_name = _("Empty")
 ##################
 '''
 
-version = "0.6.3"
+version = "0.6.4"
 browser_name = "Poseidon"
 website = "https://github.com/sidus-dev/poseidon"
 authors = "Andrea Pasciuta  <sidus@arbornet.org>"

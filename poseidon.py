@@ -896,12 +896,6 @@ class Browser(Gtk.Window):
             manager.set_accept_policy(cookies_policy)
             manager.set_persistent_storage("{}/{}".format(cookies_path, cookies_db), WebKit2.CookiePersistentStorage.SQLITE)
 
-            '''
-            #######################
-            # Retrieve Page Stuff #
-            #######################
-            '''
-
             self.cache_path = self.tabs[self.current_page][0].cache_path
 
         '''
@@ -1322,7 +1316,6 @@ class Browser(Gtk.Window):
             db = self.get_proxy()
 
             if db:
-
                 if db[1] != "socks": tp = 1
                 else: tp = 0
                 if db[0] != str(1): self.set_proxy(db[0], db[2], db[3], tp)
@@ -1356,6 +1349,16 @@ class Browser(Gtk.Window):
         tab.go_button.connect("clicked", self.on_load_url)
         tab.main_url_entry.connect("activate", self.on_load_url)
         tab.iconified_vte.connect("button-press-event", lambda x, y: [self.vte(), tab.iconified_vte.hide()])
+
+        global init_home_page
+
+        if home_page and init_home_page != 0:
+
+            if init_home_page == 1:
+                tab.webview.load_uri(home_page)
+                init_home_page = 0
+
+            if init_home_page == 2: tab.webview.load_uri(home_page)
 
         return tab
 
@@ -1452,7 +1455,6 @@ class Browser(Gtk.Window):
         page = self.tabs[self.current_page][0]
         url = view.get_uri()
         title = view.get_title()
-
         self.dynamic_title(view, title)
 
         if event == WebKit2.LoadEvent.STARTED:
