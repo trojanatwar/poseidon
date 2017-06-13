@@ -18660,6 +18660,7 @@
 127.0.0.1	adsvr.adknowledge.com
 127.0.0.1	adsvr.adsparc.net
 127.0.0.1	adsvr.taipeilink.net
+127.0.0.1	adswakeup.com
 127.0.0.1	adswap.com
 127.0.0.1	adsweb.tiscali.de
 127.0.0.1	adsweb.tiscali.it
@@ -48023,4 +48024,4 @@
 127.0.0.1	zz.zeroredirect1.com
 127.0.0.1	zzz.clickbank.net
 127.0.0.1	_thums.ero-advertising.com
-# Hosts: 48015
+# Hosts: 48016
