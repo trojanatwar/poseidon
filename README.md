@@ -107,15 +107,15 @@ Once Tor is started through arm or the discontinued vidalia, you can launch Pose
 If you installed WebKit 2.16.x (or higher) and Poseidon 0.5.5 then you might want to use `Proxy Manager`.
 You can find it in the "Utilites" tab or just press its shortcut key "Ctrl+X".
 
+### Other tips
+
+To increase security even more, go to "Settings" > "Miles O'Brien", set "set-enable-java", "set-enable-javascript", "set-enable-plugins", "set-enable-webgl" to "False", save the new settings and re-launch Poseidon in Defcon Mode. It's also a good practice keeping your browser un-maximized during the navigation and set a custom user-agent ("set-user-agent").
+
 ## Make Poseidon as default browser
 
 Install [xdg-utils](https://www.freedesktop.org/wiki/Software/xdg-utils/) then execute:
 
 `$ xdg-settings set default-web-browser poseidon.desktop`
-
-### Other tips
-
-To increase security even more, go to "Settings" > "Miles O'Brien", set "set-enable-java", "set-enable-javascript", "set-enable-plugins", "set-enable-webgl" to "False", save the new settings and re-launch Poseidon in Defcon Mode. It's also a good practice keeping your browser un-maximized during the navigation and set a custom user-agent ("set-user-agent").
 
 ## Code snippets, examples, icons, inspirations, peace to:
 
