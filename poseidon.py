@@ -2090,7 +2090,7 @@ class Browser(Gtk.Window):
             for i in uri_schemes:
                 if i in url:
                     decision.ignore()
-                    subprocess.call([app_launcher, url])
+                    subprocess.Popen([app_launcher, url])
                     return True
 
         if decision_type == WebKit2.PolicyDecisionType.NEW_WINDOW_ACTION:
