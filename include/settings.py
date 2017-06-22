@@ -368,6 +368,7 @@ process_model = 1
 links_policy = 0
 socks_version = 2
 init_home_page = 1
+https_redirect = 0
 
 '''
 ############################
@@ -513,6 +514,8 @@ text_socks_version = _("SOCKS Version")
 text_socks_version_desc = _("Set SOCKS version for requests module")
 text_init_home_page = _("Home Page Startup")
 text_init_home_page_desc = _("Home page must be loaded on startup?")
+text_https_redirect = _("HTTPS Redirect")
+text_https_redirect_desc = _("URLs automatically redirect to HTTPS")
 
 '''
 ##################################
@@ -521,7 +524,7 @@ text_init_home_page_desc = _("Home page must be loaded on startup?")
 '''
 
 settings_db_path = "{}{}".format(settings_path, settings_db)
-settings_db_code = "10"
+settings_db_code = "11"
 
 def create_settings_db():
 
@@ -563,6 +566,7 @@ def create_settings_db():
         cur.execute(insert_string, (text_links_policy, links_policy, "2", text_links_policy_desc, "2", "links_policy_list", "links_policy"))
         cur.execute(insert_string, (text_socks_version, socks_version, "2", text_socks_version_desc, "2", "socks_version_list", "socks_version"))
         cur.execute(insert_string, (text_verify_req, verify_req, "2", text_verify_req_desc, "2", "verify_req_list", "verify_req"))
+        cur.execute(insert_string, (text_https_redirect, https_redirect, "2", text_https_redirect_desc, "2", "boolean_list", "https_redirect"))
         cur.execute(insert_string, (text_cache_model, cache_model, "2", text_cache_model_desc, "2", "cache_model_list", "cache_model"))
         cur.execute(insert_string, (text_geolocation, geolocation_policy, "2", text_geolocation_desc, "2", "geolocation_policy_list", "geolocation_policy"))
         cur.execute(insert_string, ("Shells", shell, "2", text_shell_desc, "2", "shell_list", "shell"))
@@ -684,7 +688,7 @@ tab_name = _("Empty")
 ##################
 '''
 
-version = "0.6.4"
+version = "0.6.5"
 browser_name = "Poseidon"
 website = "https://github.com/sidus-dev/poseidon"
 authors = "Andrea Pasciuta  <sidus@arbornet.org>"

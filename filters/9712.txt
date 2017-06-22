@@ -33621,7 +33621,6 @@
 127.0.0.1	mwc.velti.com
 127.0.0.1	mx.adserver.yahoo.com
 127.0.0.1	mx.ero-advertising.com
-127.0.0.1	mx.yandex.ru
 127.0.0.1	mx1.revsci.net
 127.0.0.1	mx3ih.voluumtrk.com
 127.0.0.1	mxmacromedia.112.2o7.net
@@ -48024,4 +48023,4 @@
 127.0.0.1	zz.zeroredirect1.com
 127.0.0.1	zzz.clickbank.net
 127.0.0.1	_thums.ero-advertising.com
-# Hosts: 48016
+# Hosts: 48015

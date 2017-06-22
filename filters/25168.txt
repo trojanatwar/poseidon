@@ -3,14 +3,14 @@
 # For more information about this list, see: https://pgl.yoyo.org/adservers/
 # ----
 # last updated:   Tue, 23 May 2017 01:50:44 GMT
-# entries:        2333
+# entries:        2331
 # format:         hosts (hosts -- in hosts file format)
 # credits:        Peter Lowe - pgl@yoyo.org - https://pgl.yoyo.org/ - https://twitter.com/pgl
 # this URL:       https://pgl.yoyo.org/adservers/serverlist.php?hostformat=hosts&showintro=0&mimetype=plaintext
 # other formats:  https://pgl.yoyo.org/adservers/formats.php
 # policy:         https://pgl.yoyo.org/adservers/policy.php
 #
-# start date:    Fri, 16 Jun 2017 00:00:00
+# start date:    Thu, 22 Jun 2017 00:00:00
 127.0.0.1 101com.com
 127.0.0.1 101order.com
 127.0.0.1 123found.com
@@ -901,7 +901,6 @@
 127.0.0.1 analytics.yahoo.com
 127.0.0.1 anm.intelli-direct.com
 127.0.0.1 annonser.dagbladet.no
-127.0.0.1 apex-ad.com
 127.0.0.1 api.intensifier.de
 127.0.0.1 apture.com
 127.0.0.1 arc1.msn.com
@@ -1484,7 +1483,6 @@
 127.0.0.1 icptrack.com
 127.0.0.1 idcounter.com
 127.0.0.1 identads.com
-127.0.0.1 idot.cz
 127.0.0.1 idregie.com
 127.0.0.1 idtargeting.com
 127.0.0.1 ientrymail.com

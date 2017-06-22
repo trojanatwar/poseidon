@@ -1534,6 +1534,8 @@ class Browser(Gtk.Window):
     def on_load_url(self, widget):
 
         page = self.tabs[self.current_page][0]
+        pt = "http://"
+        pts = "https://"
 
         if type(widget) == str: url = widget
         else: url = page.main_url_entry.get_text()
@@ -1559,10 +1561,12 @@ class Browser(Gtk.Window):
             return True
 
         if url == "localhost" or "://localhost" in url:
-            page.webview.load_uri("http://{}".format(local_ip))
+            if https_redirect: pt = pts
+            page.webview.load_uri("{}{}".format(pt, local_ip))
             return True
 
-        format = "{}{}".format("http://", parse(url))
+        format = "{}{}".format(pt, parse(url))
+        sec_format = "{}{}".format(pts, parse(url))
 
         if not url: return True
 
@@ -1575,12 +1579,16 @@ class Browser(Gtk.Window):
             return True
 
         if validators.url(url):
+            if https_redirect:
+                if url.startswith(pt): url = url.replace(pt, pts)
             page.webview.load_uri(url)
             return True
 
         else:
             if validators.url(format):
-                if is_url_valid(format, self.tlsbool, self.p_req()): page.webview.load_uri(format)
+                if is_url_valid(format, self.tlsbool, self.p_req()):
+                    if https_redirect: page.webview.load_uri(sec_format)
+                    else: page.webview.load_uri(format)
                 else: self.try_search(parse(url))
             else: self.try_search(parse(url))
 
