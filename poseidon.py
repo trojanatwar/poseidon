@@ -2320,7 +2320,9 @@ class Browser(Gtk.Window):
         if webkit_ver > wk16:
 
             db = self.get_proxy()
-            if db[0] == str(2): return db
+
+            if db:
+                if db[0] == str(2): return db
             else: return None
 
         else: return None
