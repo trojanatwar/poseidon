@@ -880,7 +880,7 @@ class Browser(Gtk.Window):
         self.connect("button-press-event", self.on_key_pressed)
         notebook.connect("switch-page", self.on_tab_changed)
 
-        self.tabs[self.current_page][0].main_url_entry.grab_focus()
+        self.focus_tab()
 
         notebook.show()
 
@@ -2267,7 +2267,7 @@ class Browser(Gtk.Window):
     def open_new_tab(self):
 
         self.tab_data()
-        self.tabs[self.current_page][0].main_url_entry.grab_focus()
+        self.focus_tab()
 
     def open_blank(self, url):
 
