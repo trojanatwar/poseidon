@@ -99,8 +99,17 @@ evince_mime = [
 
 uri_schemes = [
 
-"aim:", "apt:", "bitcoin:", "callto:", "ed2k:", "fax:", "gtalk:", "irc:", "irc6:", "ircs:", "lastfm:", "magnet:?xt=urn:",\
-"mailto:", "secondlife:", "skype:", "smb:", "sms:", "steam:", "tel:", "unreal:", "ut2004:"
+"aaa:", "aaas:", "acap:", "adiumxtra:", "afp:", "aim:", "apt:", "aw:", "beshare:", "bitcoin:", "bolo:", "callto:", "cap:",\
+"chrome:", "cid:", "coap:", "content:", "crid:", "cvs:", "data:", "dav:", "dict:", "dns:", "doi:", "ed2k:", "facetime:", "fax:", "feed:",\
+"finger:", "fish:", "geo:", "gg:", "git:", "gizmoproject:", "go:", "gopher:", "gtalk:", "h323:", "iax:",\
+"icap:", "im:", "imap:", "info:", "ipp:", "irc:", "irc6:", "ircs:", "iris.beep:", "iris.lws:", "iris.xpcs:", "iris.xpc:", "iris:",\
+"itms:", "keyparc:", "lastfm:", "ldap:", "ldaps:", "lsid:", "magnet:", "mailto:", "maps:", "market:", "message:",\
+"mid:", "mms:", "modem:", "msnim:", "msrps:", "msrp:", "mtqp:", "mumble:", "mupdate:", "mvn:", "news:", "nfs:", "nntp:", "notes:",\
+"opaquelocktoken:", "palm:", "paparazzi:", "platform:", "pop:", "pres:", "prospero:", "proxy:", "psyc:", "query:", "rmi:", "rsync:",\
+"rtmp:", "rtsp:", "secondlife:", "service:", "sgn:", "sieve:", "sip:", "sips:", "skype:", "smb:", "sms:", "snmp:",\
+"soap.beeps:", "soap.beep:", "soldat:", "spotify:", "ssh:", "steam:", "svn:", "tag:", "teamspeak:", "tel:", "telnet:", "things:",\
+"thismessage:", "tip:", "ts3server:", "tv:", "udp:", "unreal:", "urn:", "ut2004:", "uuid:", "vemmi:", "ventrilo:", "wais:", "webcal:",\
+"wss:", "ws:", "wtai:", "wyciwyg:", "xfire:", "xmlrpc.beeps:", "xmlrpc.beep :", "xmpp:", "xri:", "ymsgr:", "z39.50r:", "z39.50s:"
 
 ]
 
@@ -688,7 +697,7 @@ tab_name = _("Empty")
 ##################
 '''
 
-version = "0.6.5"
+version = "0.6.6"
 browser_name = "Poseidon"
 website = "https://github.com/sidus-dev/poseidon"
 authors = "Andrea Pasciuta  <sidus@arbornet.org>"

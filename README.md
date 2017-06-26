@@ -65,6 +65,9 @@ Actually, Poseidon have some features like:
 * Minimalist history and bookmarks tabs.
 * Proxy manager (since Poseidon 0.5.5. Requires WebKit 2.16.x or higher)
 * Incognito mode (aka. Defcon mode)
+* HTTPS Redirect.
+
+And much more...
 
 ## Shortcuts
 

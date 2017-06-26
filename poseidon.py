@@ -1120,7 +1120,7 @@ class Browser(Gtk.Window):
 
         plugins_button = make_modelbutton(_("View Plugins"), 0.0, 0.5)
         plugins_button.connect("clicked", lambda x: self.view_plugins())
-        plugins_label = make_modelbutton_label("[ Ctrl+L ]", 0.95, 0.5)
+        plugins_label = make_modelbutton_label("[ Ctrl+B ]", 0.95, 0.5)
 
         source_button = make_modelbutton(_("View Source"), 0.0, 0.5)
         source_button.connect("clicked", lambda x: self.view_source())
@@ -2021,7 +2021,7 @@ class Browser(Gtk.Window):
         item.get_child().set_use_markup(True)
         item.get_child().set_padding(5, 5)
 
-        item.connect("clicked", lambda x: subprocess.call\
+        item.connect("clicked", lambda x: subprocess.Popen\
         ([app_launcher, os.path.dirname(destination)]))
 
         canc = make_button(make_icon("edit-delete.svg"), None, False)
@@ -3066,6 +3066,12 @@ class Browser(Gtk.Window):
 
         return True
 
+    def focus_tab(self):
+
+        self.tabs[self.current_page][0].main_url_entry.grab_focus()
+
+        return True
+
     def save(self):
 
         page = self.tabs[self.current_page][0]
@@ -3159,8 +3165,9 @@ class Browser(Gtk.Window):
                    Gdk.KEY_m: self.zoom_restore,
                    Gdk.KEY_k: self.delete_theme,
                    Gdk.KEY_i: self.defcon,
-                   Gdk.KEY_l: self.view_plugins,
+                   Gdk.KEY_b: self.view_plugins,
                    Gdk.KEY_o: self.cookies_manager,
+                   Gdk.KEY_l: self.focus_tab,
                    Gdk.KEY_j: lambda: pass_generator(self),
                    Gdk.KEY_g: lambda: user_agent(self),
                    Gdk.KEY_d: lambda: self.view_bookmarks(None, None),
