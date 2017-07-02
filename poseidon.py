@@ -235,7 +235,6 @@ class BrowserTab(Gtk.VBox):
 
             data_manager = WebKit2.WebsiteDataManager()
             cache_path = data_manager.get_disk_cache_directory()
-            favicondb = web_context.get_favicon_database()
             web_context.new_with_website_data_manager(data_manager)
             web_context.set_cache_model(cache_model)
             web_context.set_favicon_database_directory(cache_path)
@@ -631,13 +630,13 @@ class BrowserTab(Gtk.VBox):
 
         stop_timeout(self)
         timelist(0, self.webview, self.bflist, self.go_back,\
-        15, 0.0, 0.5, self.link_hover, icns)
+        15, 0.0, 0.5, self.link_hover, icns, self.is_defcon)
 
     def on_go_forward(self):
 
         stop_timeout(self)
         timelist(1, self.webview, self.bflist, self.go_forward,\
-        15, 0.0, 0.5, self.link_hover, icns)
+        15, 0.0, 0.5, self.link_hover, icns, self.is_defcon)
 
     def on_go_back_release(self, widget, event):
 
@@ -698,8 +697,8 @@ class BrowserTab(Gtk.VBox):
         icon = view.get_favicon()
 
         if icon:
-           icon = Gdk.pixbuf_get_from_surface(icon, 0, 0, icon.get_width(), icon.get_height())
-           self.main_url_entry.set_icon_from_pixbuf(Gtk.EntryIconPosition.PRIMARY, icon)
+            icon = Gdk.pixbuf_get_from_surface(icon, 0, 0, icon.get_width(), icon.get_height())
+            self.main_url_entry.set_icon_from_pixbuf(Gtk.EntryIconPosition.PRIMARY, icon)
         else: self.main_url_entry.set_icon_from_pixbuf(Gtk.EntryIconPosition.PRIMARY, None)
 
         return True
@@ -709,12 +708,9 @@ class BrowserTab(Gtk.VBox):
         del mem_url[:]
 
         if view and htr.context_is_link():
-
             self.link_hover.set_text(minify(htr.get_link_uri(), 100))
             mem_url.append(htr.get_link_uri())
-
         else:
-
             self.link_hover.set_text("")
             mem_url.append("")
 
@@ -1470,9 +1466,7 @@ class Browser(Gtk.Window):
 
         if event == WebKit2.LoadEvent.COMMITTED:
 
-            trust = view.get_tls_info()[0]
-
-            if trust: page.is_secure()
+            if view.get_tls_info()[0]: page.is_secure()
             else: page.is_nosecure()
 
         if event == WebKit2.LoadEvent.FINISHED:
@@ -1592,8 +1586,9 @@ class Browser(Gtk.Window):
                 else: self.try_search(parse(url))
             else: self.try_search(parse(url))
 
-    def on_click_bookmark(self, button):
+    def on_click_bookmark(self, button, event):
 
+        self.bookmarks_menu.hide()
         self.tabs[self.current_page][0].webview.load_uri(button.get_name())
 
         return True
@@ -1701,16 +1696,28 @@ class Browser(Gtk.Window):
 
         for i in bookmarks:
 
+            icon = Gtk.Image()
+            icon.set_from_file("{}text-x-generic.svg".format(icns))
+
+            if not self.is_defcon:
+                favicon = get_favicon(self.tabs[self.current_page][0].webview, i[3], (16, 16))
+                if favicon: icon.set_from_pixbuf(favicon)
+
             item = Gtk.ModelButton(name=i[3])
             item.set_alignment(0.0, 0.5)
-            min_title = minify(i[1], 50)
             item.set_label("<span size='small'>{}</span>\r<span size='x-small'>{}</span>".\
-            format(html.escape(min_title), html.escape(i[2])))
+            format(html.escape(minify(i[1], 50)), html.escape(i[2])))
             item.get_child().set_use_markup(True)
             item.get_child().set_padding(5, 5)
-            item.connect("clicked", self.on_click_bookmark)
+            item.connect("button-press-event", self.on_click_bookmark)
 
-            self.bkview.add(item)
+            grid_bookmarks = Gtk.Grid()
+            grid_bookmarks.set_column_spacing(10)
+            grid_bookmarks.attach(icon, 0, 1, 1, 1)
+            grid_bookmarks.attach(item, 1, 1, 1, 1)
+            grid_bookmarks.set_column_homogeneous(False)
+
+            self.bkview.add(grid_bookmarks)
 
         if len(self.bkview) != 0:
             if len(self.bkgrid) == 1: self.bkgrid.attach(self.bkscroll, 0, 0, 1, 1)
@@ -2105,7 +2112,6 @@ class Browser(Gtk.Window):
 
             self.is_human_choice = False
             self.open_blank(url)
-
             return True
 
         if decision_type == WebKit2.PolicyDecisionType.RESPONSE:

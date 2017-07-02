@@ -17,10 +17,12 @@
 # along with Poseidon. If not, see <http://www.gnu.org/licenses/>.
 
 import os, sys, gi, requests, re, datetime, random,\
-requests.exceptions as ecs, urllib.parse as urlparse
+requests.exceptions as ecs, urllib.parse as urlparse,\
+sqlite3 as lite
 
+from io import BytesIO
 from PIL import Image
-from gi.repository import Gtk, Gdk, GObject, GLib
+from gi.repository import Gtk, Gdk, GdkPixbuf, GObject, GLib
 
 sys.path.append(".")
 from settings import icns, set_user_agent,\
@@ -358,7 +360,7 @@ def digits_only(entry):
 
     return True
 
-def timelist(action, view, bflist, button, margin, xalign, yalign, hover, icns):
+def timelist(action, view, bflist, button, margin, xalign, yalign, hover, icns, defcon):
 
     if action == 0: timelist = bflist.get_back_list_with_limit(10)
     else: timelist = bflist.get_forward_list_with_limit(10)
@@ -385,6 +387,10 @@ def timelist(action, view, bflist, button, margin, xalign, yalign, hover, icns):
         link_icon = Gtk.Image()
         link_icon.set_from_file("{}text-x-generic.svg".format(icns))
 
+        if not defcon:
+            favicon = get_favicon(view, url, (16, 16))
+            if favicon: link_icon.set_from_pixbuf(favicon)
+
         grid_timelist = Gtk.Grid()
         grid_timelist.set_column_spacing(10)
         grid_timelist.attach(link_icon, 0, 1, 1, 1)
@@ -398,6 +404,51 @@ def timelist(action, view, bflist, button, margin, xalign, yalign, hover, icns):
         menu.pack_start(grid_timelist, False, False, 0)
 
     popover.show_all()
+
+def data2pixbuf(data, size):
+
+    fp = Image.open(BytesIO(data))
+    output = BytesIO()
+    fp.thumbnail(size, Image.ANTIALIAS)
+    fp.save(output, format="png")
+    data = output.getvalue()
+    output.close()
+
+    loader = GdkPixbuf.PixbufLoader()
+    loader.write(data)
+    loader.close()
+    pixbuf = loader.get_pixbuf()
+
+    if pixbuf: return pixbuf
+    else: return None
+
+def get_favicon(view, url, size):
+
+    nm = "WebpageIcons.db"
+    db = view.get_context().get_favicon_database_directory()
+    if not os.path.exists("{}/{}".format(db, nm)): return None
+
+    con = lite.connect("{}/{}".format(db, nm))
+
+    list_icns = []
+    list_urls = []
+
+    with con:    
+        cur = con.cursor()
+        cur.execute("SELECT * FROM IconData;")
+        for i in cur.fetchall(): list_icns.append([i[0], i[1]])
+        cur.execute("SELECT * FROM PageURL;")
+        for i in cur.fetchall(): list_urls.append([i[1], i[0]])
+
+    dict1 = dict(list_urls)
+    dict2 = dict(list_icns)
+    flist = [(i, dict1[i], dict2[i]) for i in sorted(dict1)]
+
+    for i in flist:
+        if url in i[1]:
+            if i[2] and type(i[2]) == bytes:
+                return data2pixbuf(i[2], size)
+            else: return None
 
 def convert_size(B):
 

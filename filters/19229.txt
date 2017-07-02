@@ -2,7 +2,7 @@
 #
 # For more information about this list, see: https://pgl.yoyo.org/adservers/
 # ----
-# last updated:   Tue, 23 May 2017 01:50:44 GMT
+# last updated:   Sat, 01 Jul 2017 19:18:29 GMT
 # entries:        2329
 # format:         hosts (hosts -- in hosts file format)
 # credits:        Peter Lowe - pgl@yoyo.org - https://pgl.yoyo.org/ - https://twitter.com/pgl
@@ -10,7 +10,7 @@
 # other formats:  https://pgl.yoyo.org/adservers/formats.php
 # policy:         https://pgl.yoyo.org/adservers/policy.php
 #
-# start date:    Mon, 26 Jun 2017 00:00:00
+# start date:    Sun, 02 Jul 2017 00:00:00
 127.0.0.1 101com.com
 127.0.0.1 101order.com
 127.0.0.1 123found.com
@@ -211,6 +211,7 @@
 127.0.0.1 adecn.com
 127.0.0.1 ademails.com
 127.0.0.1 adengage.com
+127.0.0.1 adexchangeprediction.com
 127.0.0.1 adexpose.com
 127.0.0.1 adext.inkclub.com
 127.0.0.1 adf.ly
@@ -518,7 +519,6 @@
 127.0.0.1 ads.multimania.lycos.fr
 127.0.0.1 ads.nationalgeographic.com
 127.0.0.1 ads.ncm.com
-127.0.0.1 ads.netclusive.de
 127.0.0.1 ads.netmechanic.com
 127.0.0.1 ads.networksolutions.com
 127.0.0.1 ads.newdream.net
@@ -1132,6 +1132,7 @@
 127.0.0.1 class-act-clicks.com
 127.0.0.1 click.absoluteagency.com
 127.0.0.1 click.fool.com
+127.0.0.1 click.kmindex.ru
 127.0.0.1 click2freemoney.com
 127.0.0.1 click2paid.com
 127.0.0.1 clickability.com
@@ -1212,6 +1213,7 @@
 127.0.0.1 counter.sparklit.com
 127.0.0.1 counter.yadro.ru
 127.0.0.1 counters.honesty.com
+127.0.0.1 counting.kmindex.ru
 127.0.0.1 counts.tucows.com
 127.0.0.1 coupling-media.de
 127.0.0.1 cpalead.com
@@ -1320,7 +1322,6 @@
 127.0.0.1 eu1.madsone.com
 127.0.0.1 eur.a1.yimg.com
 127.0.0.1 eurekster.com
-127.0.0.1 euro-linkindex.de
 127.0.0.1 euroclick.com
 127.0.0.1 euros4click.de
 127.0.0.1 eusta.de
@@ -1421,7 +1422,6 @@
 127.0.0.1 grafstat.ro
 127.0.0.1 grapeshot.co.uk
 127.0.0.1 greystripe.com
-127.0.0.1 gtop.ro
 127.0.0.1 gtop100.com
 127.0.0.1 gunggo.com
 127.0.0.1 harrenmedia.com
@@ -1645,6 +1645,7 @@
 127.0.0.1 metaffiliation.com
 127.0.0.1 metanetwork.com
 127.0.0.1 methodcash.com
+127.0.0.1 metrics.cnn.com
 127.0.0.1 metrics.windowsitpro.com
 127.0.0.1 mgid.com
 127.0.0.1 miarroba.com
@@ -1838,7 +1839,6 @@
 127.0.0.1 prchecker.info
 127.0.0.1 precisioncounter.com
 127.0.0.1 predictad.com
-127.0.0.1 premium-offers.com
 127.0.0.1 primaryads.com
 127.0.0.1 primetime.net
 127.0.0.1 privatecash.com
@@ -1912,7 +1912,6 @@
 127.0.0.1 realtechnetwork.com
 127.0.0.1 realtracker.com
 127.0.0.1 reduxmedia.com
-127.0.0.1 reduxmediagroup.com
 127.0.0.1 reedbusiness.com.invalid
 127.0.0.1 referralware.com
 127.0.0.1 regnow.com
@@ -2052,7 +2051,6 @@
 127.0.0.1 stats.mirrorfootball.co.uk
 127.0.0.1 stats.multiup.org
 127.0.0.1 stats.olark.com
-127.0.0.1 stats.suite101.com
 127.0.0.1 stats.townnews.com
 127.0.0.1 stats.unwired-i.net
 127.0.0.1 stats.wordpress.com
@@ -2168,6 +2166,7 @@
 127.0.0.1 traffic-exchange.com
 127.0.0.1 traffic.liveuniversenetwork.com
 127.0.0.1 trafficadept.com
+127.0.0.1 trafficbalancerouting.com
 127.0.0.1 trafficcdn.liveuniversenetwork.com
 127.0.0.1 trafficfactory.biz
 127.0.0.1 trafficholder.com
@@ -2274,6 +2273,7 @@
 127.0.0.1 whenu.com
 127.0.0.1 whispa.com
 127.0.0.1 whoisonline.net
+127.0.0.1 wholesaletraffic.info
 127.0.0.1 widespace.com
 127.0.0.1 widgetbucks.com
 127.0.0.1 wikia-ads.wikia.com
