@@ -419,7 +419,9 @@ def data2pixbuf(data, size):
     loader.close()
     pixbuf = loader.get_pixbuf()
 
-    if pixbuf: return pixbuf
+    if pixbuf:
+        if (pixbuf.get_width(), pixbuf.get_height()) != size: return None
+        else: return pixbuf
     else: return None
 
 def get_favicon(view, url, size):
@@ -445,7 +447,7 @@ def get_favicon(view, url, size):
     flist = [(i, dict1[i], dict2[i]) for i in sorted(dict1)]
 
     for i in flist:
-        if url in i[1]:
+        if get_domain(url) == get_domain(i[1]):
             if i[2] and type(i[2]) == bytes:
                 return data2pixbuf(i[2], size)
             else: return None
