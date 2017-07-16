@@ -1360,7 +1360,7 @@ class Browser(Gtk.Window):
 
     def on_button_press(self, view, event):
 
-        if event.get_state() and Gdk.ModifierType.CONTROL_MASK\
+        if event.get_state() & Gdk.ModifierType.CONTROL_MASK\
         and event.button == Gdk.BUTTON_PRIMARY:
             if mem_url[0]:
                 self.open_blank(mem_url[0])
