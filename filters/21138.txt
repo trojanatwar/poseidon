@@ -32457,7 +32457,6 @@
 127.0.0.1	logs-01.loggly.com
 127.0.0.1	logs.51cto.com
 127.0.0.1	logs.aiya.com.cn
-127.0.0.1	logs.cafewell.com
 127.0.0.1	logs.dashlane.com
 127.0.0.1	logs.eresmas.com
 127.0.0.1	logs.eternityco.net
@@ -40587,7 +40586,6 @@
 127.0.0.1	video.oms.eu
 127.0.0.1	video.unrulymedia.com
 127.0.0.1	videoads.theonion.com
-127.0.0.1	videobug.net
 127.0.0.1	videocodezone.us.intellitxt.com
 127.0.0.1	videofun.me
 127.0.0.1	videoplus.vo.llnwd.net
@@ -48023,4 +48021,4 @@
 127.0.0.1	zz.zeroredirect1.com
 127.0.0.1	zzz.clickbank.net
 127.0.0.1	_thums.ero-advertising.com
-# Hosts: 48015
+# Hosts: 48013

@@ -2,15 +2,15 @@
 #
 # For more information about this list, see: https://pgl.yoyo.org/adservers/
 # ----
-# last updated:   Sat, 01 Jul 2017 19:18:29 GMT
-# entries:        2329
+# last updated:   Thu, 13 Jul 2017 08:31:08 GMT
+# entries:        2327
 # format:         hosts (hosts -- in hosts file format)
 # credits:        Peter Lowe - pgl@yoyo.org - https://pgl.yoyo.org/ - https://twitter.com/pgl
 # this URL:       https://pgl.yoyo.org/adservers/serverlist.php?hostformat=hosts&showintro=0&mimetype=plaintext
 # other formats:  https://pgl.yoyo.org/adservers/formats.php
 # policy:         https://pgl.yoyo.org/adservers/policy.php
 #
-# start date:    Tue, 04 Jul 2017 00:00:00
+# start date:    Sun, 16 Jul 2017 00:00:00
 127.0.0.1 101com.com
 127.0.0.1 101order.com
 127.0.0.1 123found.com
@@ -205,7 +205,6 @@
 127.0.0.1 adcontent.gamespy.com
 127.0.0.1 adcycle.com
 127.0.0.1 add.newmedia.cz
-127.0.0.1 addealing.com
 127.0.0.1 addfreestats.com
 127.0.0.1 addme.com
 127.0.0.1 adecn.com
@@ -406,6 +405,7 @@
 127.0.0.1 ads.digitalmedianet.com
 127.0.0.1 ads.digitalpoint.com
 127.0.0.1 ads.directionsmag.com
+127.0.0.1 ads.domain.com
 127.0.0.1 ads.domeus.com
 127.0.0.1 ads.eagletribune.com
 127.0.0.1 ads.easy-forex.com
@@ -519,7 +519,6 @@
 127.0.0.1 ads.multimania.lycos.fr
 127.0.0.1 ads.nationalgeographic.com
 127.0.0.1 ads.ncm.com
-127.0.0.1 ads.netmechanic.com
 127.0.0.1 ads.networksolutions.com
 127.0.0.1 ads.newdream.net
 127.0.0.1 ads.newgrounds.com
@@ -692,13 +691,11 @@
 127.0.0.1 adserv.iafrica.com
 127.0.0.1 adserv.qconline.com
 127.0.0.1 adserve.ams.rhythmxchange.com
-127.0.0.1 adserver-live.yoc.mobi
 127.0.0.1 adserver.43plc.com
 127.0.0.1 adserver.71i.de
 127.0.0.1 adserver.adultfriendfinder.com
 127.0.0.1 adserver.aidameter.com
 127.0.0.1 adserver.aol.fr
-127.0.0.1 adserver.beggarspromo.com
 127.0.0.1 adserver.betandwin.de
 127.0.0.1 adserver.bing.com
 127.0.0.1 adserver.bizhat.com
@@ -788,6 +785,7 @@
 127.0.0.1 adthis.com
 127.0.0.1 adtiger.de
 127.0.0.1 adtoll.com
+127.0.0.1 adtology.com
 127.0.0.1 adtoma.com
 127.0.0.1 adtrace.org
 127.0.0.1 adtrade.net
@@ -885,6 +883,7 @@
 127.0.0.1 alclick.com
 127.0.0.1 alenty.com
 127.0.0.1 alexa-sitestats.s3.amazonaws.com
+127.0.0.1 alipromo.com
 127.0.0.1 all4spy.com
 127.0.0.1 alladvantage.com
 127.0.0.1 allosponsor.com
@@ -1123,7 +1122,7 @@
 127.0.0.1 checkstat.nl
 127.0.0.1 chestionar.ro
 127.0.0.1 chitika.net
-127.0.0.1 cibleclick.com
+127.0.0.1 cibleclick.com.invalid
 127.0.0.1 cityads.telus.net
 127.0.0.1 cj.com
 127.0.0.1 cjbmanagement.com
@@ -1210,6 +1209,7 @@
 127.0.0.1 counter.nowlinux.com
 127.0.0.1 counter.rambler.ru
 127.0.0.1 counter.search.bg
+127.0.0.1 counter.snackly.co
 127.0.0.1 counter.sparklit.com
 127.0.0.1 counter.yadro.ru
 127.0.0.1 counters.honesty.com
@@ -1409,7 +1409,6 @@
 127.0.0.1 globe7.com
 127.0.0.1 globus-inter.com
 127.0.0.1 gmads.net
-127.0.0.1 go-clicks.de
 127.0.0.1 go-rank.de
 127.0.0.1 goingplatinum.com
 127.0.0.1 goldstats.com
@@ -1514,7 +1513,6 @@
 127.0.0.1 inringtone.com
 127.0.0.1 insightexpress.com
 127.0.0.1 insightexpressai.com
-127.0.0.1 inspectorclick.com
 127.0.0.1 instantmadness.com
 127.0.0.1 intelliads.com
 127.0.0.1 intellitxt.com
@@ -1588,6 +1586,7 @@
 127.0.0.1 liverail.com
 127.0.0.1 loading321.com
 127.0.0.1 log.btopenworld.com
+127.0.0.1 logger.snackly.co
 127.0.0.1 logua.com
 127.0.0.1 lop.com
 127.0.0.1 lucidmedia.com
@@ -1833,7 +1832,6 @@
 127.0.0.1 porntrack.com
 127.0.0.1 postrelease.com
 127.0.0.1 potenza.cz
-127.0.0.1 pr-star.de
 127.0.0.1 pr-ten.de
 127.0.0.1 praddpro.de
 127.0.0.1 prchecker.info
@@ -2051,10 +2049,12 @@
 127.0.0.1 stats.mirrorfootball.co.uk
 127.0.0.1 stats.multiup.org
 127.0.0.1 stats.olark.com
+127.0.0.1 stats.self.com
 127.0.0.1 stats.townnews.com
 127.0.0.1 stats.unwired-i.net
 127.0.0.1 stats.wordpress.com
 127.0.0.1 stats.x14.eu
+127.0.0.1 stats2.self.com
 127.0.0.1 stats4all.com
 127.0.0.1 statsie.com
 127.0.0.1 statxpress.com
@@ -2193,7 +2193,6 @@
 127.0.0.1 truehits.net
 127.0.0.1 truehits1.gits.net.th
 127.0.0.1 truehits2.gits.net.th
-127.0.0.1 tsms-ad.tsms.com
 127.0.0.1 tubemogul.com
 127.0.0.1 turn.com
 127.0.0.1 tvmtracker.com
@@ -2324,7 +2323,6 @@
 127.0.0.1 yieldmanager.net
 127.0.0.1 yieldmo.com
 127.0.0.1 yieldtraffic.com
-127.0.0.1 yoc.mobi
 127.0.0.1 yoggrt.com
 127.0.0.1 z5x.net
 127.0.0.1 zangocash.com
