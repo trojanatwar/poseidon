@@ -959,7 +959,7 @@ class Browser(Gtk.Window):
         tools_menu.child_set_property(utilities_menu, "submenu", "utilities-menu")
 
         new_window_button = make_modelbutton(_("New Window"), 0.0, 0.5)
-        new_window_button.connect("clicked", lambda x: init())
+        new_window_button.connect("clicked", lambda x: self.open_new_window())
         new_window_label = make_modelbutton_label("[ Ctrl+N ]", 0.95, 0.5)
 
         defcon_button = make_modelbutton(_("Defcon Mode"), 0.0, 0.5)
@@ -2424,11 +2424,11 @@ class Browser(Gtk.Window):
             widget = self.check_tab(widget)
 
             if tab.webview is view:
+                if widget:
+                    widget.set_text(minify(title, 50))
+                    widget.set_tooltip_text("")
 
-                widget.set_text(minify(title, 50))
-                widget.set_tooltip_text("")
-
-                if len(title) > 50: widget.set_tooltip_text(title)
+                    if len(title) > 50: widget.set_tooltip_text(title)
 
             counter += 1
 
@@ -3139,6 +3139,12 @@ class Browser(Gtk.Window):
 
         return True
 
+    def open_new_window(self):
+
+        subprocess.Popen([browser])
+
+        return True
+
     def defcon(self):
 
         subprocess.Popen([browser, "-i"])
@@ -3170,6 +3176,7 @@ class Browser(Gtk.Window):
                    Gdk.KEY_minus: self.zoom_out,
                    Gdk.KEY_m: self.zoom_restore,
                    Gdk.KEY_k: self.delete_theme,
+                   Gdk.KEY_n: self.open_new_window,
                    Gdk.KEY_i: self.defcon,
                    Gdk.KEY_b: self.view_plugins,
                    Gdk.KEY_o: self.cookies_manager,
@@ -3177,7 +3184,6 @@ class Browser(Gtk.Window):
                    Gdk.KEY_j: lambda: pass_generator(self),
                    Gdk.KEY_g: lambda: user_agent(self),
                    Gdk.KEY_d: lambda: self.view_bookmarks(None, None),
-                   Gdk.KEY_n: lambda: init(),
                    Gdk.KEY_q: lambda: quit(self)}
 
         if webkit_ver > wk16:

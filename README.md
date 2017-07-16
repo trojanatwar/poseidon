@@ -107,7 +107,7 @@ Once Tor is started through arm or the discontinued vidalia, you can launch Pose
 
 ### Proxy Manager
 
-If you installed WebKit 2.16.x (or higher) and Poseidon 0.5.5 then you might want to use `Proxy Manager`.
+If you installed WebKit 2.16.x and Poseidon 0.5.5 (or higher) then you might want to use `Proxy Manager`.
 You can find it in the "Utilites" tab or just press its shortcut key "Ctrl+X".
 
 ### Other tips
