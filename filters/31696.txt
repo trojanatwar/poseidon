@@ -2,15 +2,15 @@
 #
 # For more information about this list, see: https://pgl.yoyo.org/adservers/
 # ----
-# last updated:   Thu, 13 Jul 2017 08:31:08 GMT
-# entries:        2327
+# last updated:   Mon, 17 Jul 2017 14:25:48 GMT
+# entries:        2325
 # format:         hosts (hosts -- in hosts file format)
 # credits:        Peter Lowe - pgl@yoyo.org - https://pgl.yoyo.org/ - https://twitter.com/pgl
 # this URL:       https://pgl.yoyo.org/adservers/serverlist.php?hostformat=hosts&showintro=0&mimetype=plaintext
 # other formats:  https://pgl.yoyo.org/adservers/formats.php
 # policy:         https://pgl.yoyo.org/adservers/policy.php
 #
-# start date:    Sun, 16 Jul 2017 00:00:00
+# start date:    Thu, 27 Jul 2017 00:00:00
 127.0.0.1 101com.com
 127.0.0.1 101order.com
 127.0.0.1 123found.com
@@ -519,6 +519,7 @@
 127.0.0.1 ads.multimania.lycos.fr
 127.0.0.1 ads.nationalgeographic.com
 127.0.0.1 ads.ncm.com
+127.0.0.1 ads.netmechanic.com
 127.0.0.1 ads.networksolutions.com
 127.0.0.1 ads.newdream.net
 127.0.0.1 ads.newgrounds.com
@@ -872,7 +873,6 @@
 127.0.0.1 affiliatetracking.com
 127.0.0.1 affiliatetracking.net
 127.0.0.1 affiliatewindow.com
-127.0.0.1 affiliation-france.com
 127.0.0.1 afftracking.justanswer.com
 127.0.0.1 ah-ha.com
 127.0.0.1 ahalogy.com
@@ -1280,6 +1280,7 @@
 127.0.0.1 doublepimp.com
 127.0.0.1 drumcash.com
 127.0.0.1 dynamic.fmpub.net
+127.0.0.1 dynamicyield.com
 127.0.0.1 e-adimages.scrippsnetworks.com
 127.0.0.1 e-bannerx.com
 127.0.0.1 e-debtconsolidation.com
@@ -1591,7 +1592,6 @@
 127.0.0.1 lop.com
 127.0.0.1 lucidmedia.com
 127.0.0.1 lzjl.com
-127.0.0.1 m.webtrends.com
 127.0.0.1 m1.webstats4u.com
 127.0.0.1 m4n.nl
 127.0.0.1 mackeeperapp.mackeeper.com
@@ -2046,6 +2046,7 @@
 127.0.0.1 stats.cts-bv.nl
 127.0.0.1 stats.directnic.com
 127.0.0.1 stats.hyperinzerce.cz
+127.0.0.1 stats.merriam-webster.com
 127.0.0.1 stats.mirrorfootball.co.uk
 127.0.0.1 stats.multiup.org
 127.0.0.1 stats.olark.com
@@ -2157,17 +2158,14 @@
 127.0.0.1 tracking.crunchiemedia.com
 127.0.0.1 tracking.gajmp.com
 127.0.0.1 tracking.internetstores.de
-127.0.0.1 tracking.yourfilehost.com
 127.0.0.1 tracking101.com
 127.0.0.1 trackingsoft.com
 127.0.0.1 trackmysales.com
 127.0.0.1 tradeadexchange.com
 127.0.0.1 tradedoubler.com
 127.0.0.1 traffic-exchange.com
-127.0.0.1 traffic.liveuniversenetwork.com
 127.0.0.1 trafficadept.com
 127.0.0.1 trafficbalancerouting.com
-127.0.0.1 trafficcdn.liveuniversenetwork.com
 127.0.0.1 trafficfactory.biz
 127.0.0.1 trafficholder.com
 127.0.0.1 traffichunt.com

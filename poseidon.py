@@ -1954,35 +1954,14 @@ class Browser(Gtk.Window):
     def on_failed(self, download, error):
 
         if type(error) == GLib.GError:
-
-            if error.code == 401:
-
-                dialog().error(_("Permission denied"), "<span size='small'>{}.</span>"\
-                .format(_("It seems you don't have permission to access this folder")))
-
+            msg = error.message.encode("ascii", "replace").\
+            decode("utf8", "replace").replace("?", "")
+            if msg:
+                dialog().error(_("GLib Notification"),\
+                "<span size='small'>{}.</span>".format(msg))
                 return True
-
-            if not error.code == 499: return True
-
+            else: return True
         else: return True
-
-        url = download.get_request().get_uri()
-
-        decision = dialog().decision(_("Hmm, 499 Error..."),\
-        "<span size='small'>{}...\n\n{}?</span>"\
-        .format(_("Seems that WebKit2 got some issues downloading this file or web page"),\
-        _("But there is a trick, wanna try forcing the download using the requests module")))
-
-        if decision:
-            data = request(url, self.tlsbool, self.p_req())
-
-            if data:
-                content = data[0][0]
-                content_type = data[0][1].split(";")[0].split("/")[-1]
-                pathchooser().force_save(content.decode("utf8", "replace"), "{}.{}".\
-                format(get_domain(url).replace(".","_"), content_type))
-
-        return True
 
     def on_decide_destination(self, download, name):
 
@@ -2436,8 +2415,7 @@ class Browser(Gtk.Window):
 
         page = self.tabs[page][0]
 
-        for child in page.url_box.get_children():
-            child.destroy()
+        for child in page.url_box.get_children(): child.destroy()
 
         list = ["frame_main"]
 

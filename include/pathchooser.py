@@ -68,6 +68,10 @@ class pathchooser(Gtk.Window):
             
             if os.path.exists(f):
                 if self.do_decision(f): download.set_allow_overwrite(True)
+                else:
+                    download.cancel()
+                    d.destroy()
+                    return True
 
             download.set_destination("file://{}".format(f))
 
@@ -117,6 +121,7 @@ class pathchooser(Gtk.Window):
         d.destroy()
 
     def do_decision(self, name):
+
         return dialog().decision("{}?".format(_("Overwrite")),\
         "<span size='small'>\"<b>{}</b>\" {}</span>"\
         .format(name, _("already exists, wanna overwrite it?")))
