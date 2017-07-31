@@ -697,7 +697,7 @@ tab_name = _("Empty")
 ##################
 '''
 
-version = "0.6.8"
+version = "0.6.9"
 browser_name = "Poseidon"
 website = "https://github.com/sidus-dev/poseidon"
 authors = "Andrea Pasciuta  <sidus@arbornet.org>"

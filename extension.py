@@ -37,7 +37,6 @@ def on_page_created(extension, webpage):
 def on_send_request(webpage, request, redirect):
 
     url = request.get_uri()
-    if url.startswith("ftp://"): url = request.set_uri(url.replace("ftp://", "http://"))
 
     if read_file(adk_file) == "1":
 

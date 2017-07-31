@@ -534,7 +534,6 @@ class BrowserTab(Gtk.VBox):
             self.webview.connect("notify::uri", self.on_uri_changed)
             self.webview.connect("notify::estimated-load-progress", self.on_estimated_load_progress)
             self.controller.connect("counted-matches", self.on_counted_matches)
-            self.main_url_entry.connect("icon-press", self.on_icon_pressed)
             if autocomplete_policy != 0: self.main_url_entry.connect("changed",\
             lambda x: self.on_entry_timeout(main_url_entry.get_text(), liststore))
         except: pass
@@ -606,13 +605,6 @@ class BrowserTab(Gtk.VBox):
        except: pass
 
        return True
-
-    def on_icon_pressed(self, entry, pos, event):
-
-        if pos == pos.SECONDARY: secure(self.security, self.webview.get_uri(),\
-        self.cert_message, self.cert_revealer, self.allow_cert_button)
-
-        return True
 
     def on_go_back_press(self, widget, event):
 
@@ -1341,10 +1333,11 @@ class Browser(Gtk.Window):
         tab.download_button.connect("clicked", lambda x: self.on_download_menu())
         tab.bookmarks_button.connect("clicked", lambda x: self.on_bookmarks_menu())
         tab.tools.connect("clicked", lambda x: self.on_tools_menu())
-        tab.allow_cert_button.connect("clicked", lambda x: self.cert())
         tab.go_button.connect("clicked", self.on_load_url)
         tab.main_url_entry.connect("activate", self.on_load_url)
         tab.iconified_vte.connect("button-press-event", lambda x, y: [self.vte(), tab.iconified_vte.hide()])
+        tab.main_url_entry.connect("icon-press", self.on_icon_pressed)
+        tab.allow_cert_button.connect("clicked", lambda x: self.cert())
 
         global init_home_page
 
@@ -1568,6 +1561,11 @@ class Browser(Gtk.Window):
             page.webview.load_uri(url)
             return True
 
+        if url.startswith("ftp.") or url.startswith("www."):
+            if https_redirect: pt = pts
+            page.webview.load_uri("{}{}".format(pt, url))
+            return True
+
         if re.match(r"^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}$", url):
             page.webview.load_uri(format)
             return True
@@ -1709,6 +1707,7 @@ class Browser(Gtk.Window):
             format(html.escape(minify(i[1], 50)), html.escape(i[2])))
             item.get_child().set_use_markup(True)
             item.get_child().set_padding(5, 5)
+            item.set_hexpand(True)
             item.connect("button-press-event", self.on_click_bookmark)
 
             grid_bookmarks = Gtk.Grid()
@@ -1720,13 +1719,16 @@ class Browser(Gtk.Window):
             self.bkview.add(grid_bookmarks)
 
         if len(self.bkview) != 0:
+
             if len(self.bkgrid) == 1: self.bkgrid.attach(self.bkscroll, 0, 0, 1, 1)
+
             if len(self.bkview) < 7:
-                self.bkscroll.set_size_request(300, 0)
+                self.bkscroll.set_size_request(200, 0)
                 self.bkscroll.set_policy(Gtk.PolicyType.NEVER, Gtk.PolicyType.NEVER)
             if len(self.bkview) >= 7:
-                self.bkscroll.set_size_request(300, 250)
+                self.bkscroll.set_size_request(200, 300)
                 self.bkscroll.set_policy(Gtk.PolicyType.NEVER, Gtk.PolicyType.AUTOMATIC)
+
         else: self.bkgrid.remove(self.bkscroll)
 
         self.bookmarks_menu.set_relative_to(self.tabs[self.current_page][0].bookmarks_button)
@@ -1954,6 +1956,9 @@ class Browser(Gtk.Window):
     def on_failed(self, download, error):
 
         if type(error) == GLib.GError:
+            
+            if error.code == 400: return True
+
             msg = error.message.encode("ascii", "replace").\
             decode("utf8", "replace").replace("?", "")
             if msg:
@@ -2134,6 +2139,17 @@ class Browser(Gtk.Window):
 
         if self.is_maximized(): self.unmaximize()
         else: self.maximize()
+
+        return True
+
+    def on_icon_pressed(self, entry, pos, event):
+
+        page = self.tabs[self.current_page][0]
+
+        if pos == pos.SECONDARY:
+            if page.security == 0: self.cert()
+            else: secure(page.security, page.webview.get_uri(),\
+                  page.cert_message, page.cert_revealer, page.allow_cert_button)
 
         return True
 
@@ -2542,9 +2558,7 @@ class Browser(Gtk.Window):
 
         url = self.tabs[self.current_page][0].webview.get_uri()
 
-        if not validators.url(url): return True
-
-        if url:
+        if url and validators.url(url):
             
             data = request(url, self.tlsbool, self.p_req())
             source = data[0][0]
@@ -2909,44 +2923,24 @@ class Browser(Gtk.Window):
     def cert(self):
 
         page = self.tabs[self.current_page][0]
-        url = page.webview.get_uri()
         reveal(page.cert_revealer, False)
         data = page.webview.get_tls_info()
 
-        self.open_new_tab()
-        page = self.current_page
-        scrolled_window = self.get_clean_page(page, "x509", False)
-
-        self.tabs[page][0].url_box.pack_start(Gtk.Label(), False, False, 0)
-        self.tabs[page][0].show_all()
+        popover = build_scrollable_popover(Gtk.PositionType.BOTTOM, -1, 500)
 
         grid = Gtk.Grid()
-        grid.set_column_spacing(0)
-
-        grid.attach(cert_declarations(data, 1), 0, 0, 1, 1)
-        grid.attach(cert_declarations(data, 2), 1, 0, 1, 1)
-        grid.attach(cert_declarations(data, 3), 0, 3, 1, 1)
-        grid.attach(cert_declarations(data, 4), 0, 6, 1, 1)
-        grid.attach(cert_declarations(data, 5), 0, 4, 1, 1)
-        grid.attach(cert_declarations(data, 6), 0, 2, 1, 1)
-        grid.attach(cert_declarations(data, 7), 1, 2, 1, 1)
-        grid.attach(cert_declarations(data, 8), 1, 1, 1, 1)
-        grid.attach(cert_declarations(data, 9), 0, 1, 1, 1)
-        grid.attach(cert_declarations(data, 10), 0, 5, 1, 1)
-        grid.attach(cert_declarations(data, 11), 1, 4, 1, 1)
-        grid.attach(cert_declarations(data, 12), 1, 5, 1, 1)
-        grid.attach(cert_declarations(data, 13), 1, 3, 1, 1)
-        grid.attach(cert_declarations(data, 14), 1, 6, 1, 1)
-
         grid.set_column_homogeneous(True)
 
-        scrolled_window.add(grid)
-        scrolled_window.show_all()
+        for x in range(0, 14): grid.attach(cert_declarations(data, x+1), 0, x, 1, 1)
 
-        domain = get_domain(url)
+        for i in popover:
+            if type(i) == Gtk.ScrolledWindow: i.add(grid)
 
-        tab = self.check_tab(self.tabs[page][1])
-        tab.set_text("X.509: {}".format(domain))
+        entry = page.main_url_entry
+
+        popover.set_relative_to(entry)
+        popover.set_pointing_to(entry.get_icon_area(Gtk.EntryIconPosition.SECONDARY))
+        popover.show_all()
 
         self.update_status()
 
@@ -3091,10 +3085,10 @@ class Browser(Gtk.Window):
         scrolled_window = page.scrolled_window
         name = scrolled_window.get_name()
 
-        s = _("new bookmark will be imported")
-        p = _("new bookmarks will be imported")
-
         if name == "bookmarks":
+
+            s = _("new bookmark will be imported")
+            p = _("new bookmarks will be imported")
 
             filename = pathchooser().import_bookmarks()
             if filename: content = do_import_bookmarks(filename)

@@ -31735,6 +31735,7 @@
 127.0.0.1	kewlrank.com
 127.0.0.1	keydownload.go2cloud.org
 127.0.0.1	keynotedeviceanywhere.com
+127.0.0.1	keyoptimize.com
 127.0.0.1	keystat.com
 127.0.0.1	keyword.daumdn.com
 127.0.0.1	keyword.netscape.com
@@ -33200,6 +33201,7 @@
 127.0.0.1	metrics.veryfunnyads.com
 127.0.0.1	metrics.wikinvest.com
 127.0.0.1	metrics.zales.com
+127.0.0.1	metricskey.net
 127.0.0.1	metrika.yandex.by
 127.0.0.1	metrika.yandex.com
 127.0.0.1	metrika.yandex.com.tr
@@ -38566,6 +38568,7 @@
 127.0.0.1	t.acxiom-online.com
 127.0.0.1	t.adbuyer.com
 127.0.0.1	t.adonly.com
+127.0.0.1	t.afftrackr.com
 127.0.0.1	t.appsflyer.com
 127.0.0.1	t.atdmt.com
 127.0.0.1	t.bimvid.com
@@ -46324,6 +46327,7 @@
 127.0.0.1	www.kerrie-bedoya.us
 127.0.0.1	www.kerrie-felker.us
 127.0.0.1	www.kewlrank.com
+127.0.0.1	www.keyoptimize.com
 127.0.0.1	www.keywordblocks.com
 127.0.0.1	www.keywordmax.com
 127.0.0.1	www.kilopog.com
@@ -46550,6 +46554,7 @@
 127.0.0.1	www.metabesttours.com
 127.0.0.1	www.metacount.com
 127.0.0.1	www.metricology.com
+127.0.0.1	www.metricskey.net
 127.0.0.1	www.mfsuite.com
 127.0.0.1	www.mgcash.com
 127.0.0.1	www.mgcashgate.com
@@ -48022,4 +48027,4 @@
 127.0.0.1	zz.zeroredirect1.com
 127.0.0.1	zzz.clickbank.net
 127.0.0.1	_thums.ero-advertising.com
-# Hosts: 48014
+# Hosts: 48019

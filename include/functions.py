@@ -154,7 +154,8 @@ def is_image_valid(file):
 
 def get_domain(url):
 
-    return urlparse.urlunparse(urlparse.urlparse(url)[:2] + ("",) * 4).split("://",1)[1]
+    if validators.url(url): return urlparse.urlunparse(urlparse.urlparse(url)[:2] + ("",) * 4).split("://",1)[1]
+    else: return None
 
 def parse(string):
 
@@ -174,6 +175,24 @@ def minify(arg, num):
     try: arg = arg[:num] + (arg[num:] and '...')
     except: pass
     return arg
+
+def wrap(text, width):
+
+    lines = []
+    for paragraph in text.split('\n'):
+        line = []
+        len_line = 0
+        for word in paragraph.split(' '):
+            len_word = len(word)
+            if len_line + len_word <= width:
+                line.append(word)
+                len_line += len_word + 1
+            else:
+                lines.append(' '.join(line))
+                line = [word]
+                len_line = len_word + 1
+        lines.append(' '.join(line))
+    return ('\n'.join(lines))
 
 def clean_html(raw):
 
@@ -383,6 +402,7 @@ def timelist(action, view, bflist, button, margin, xalign, yalign, hover, icns, 
         link = Gtk.ModelButton()
         link.set_alignment(xalign, yalign)
         link.set_label(title)
+        link.set_hexpand(True)
 
         link_icon = Gtk.Image()
         link_icon.set_from_file("{}text-x-generic.svg".format(icns))
@@ -447,6 +467,9 @@ def get_favicon(view, url, size):
     flist = [(i, dict1[i], dict2[i]) for i in sorted(dict1)]
 
     for i in flist:
+
+        if not get_domain(url): return None
+
         if get_domain(url) == get_domain(i[1]):
             if i[2] and type(i[2]) == bytes:
                 return data2pixbuf(i[2], size)
@@ -497,6 +520,16 @@ def build_window(self, width, height):
     window.set_modal(True)
     window.set_size_request(width, height)
     return window
+
+def build_scrollable_popover(pos, width, height):
+
+    popover = Gtk.Popover()
+    popover.set_position(pos)
+    scrolled_window = Gtk.ScrolledWindow()
+    scrolled_window.set_policy(Gtk.PolicyType.NEVER, Gtk.PolicyType.AUTOMATIC)
+    scrolled_window.set_size_request(width, height)
+    popover.add(scrolled_window)
+    return popover
 
 def pass_generator(self):
 

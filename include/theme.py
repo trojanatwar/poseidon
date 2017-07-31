@@ -42,7 +42,7 @@ def apply_css():
     #frame_mime border, #frame_mime { padding: 5px; }
     #entry border { border-style: solid; }
     #label_x509 { padding: 10px; }
-    #frame_x509 border { border-width: 0px 1px 1px 0px; }
+    #frame_x509 border { border-width: 0px 0px 1px 0px; }
     #headerbar button { padding: 0px; }
 
     """

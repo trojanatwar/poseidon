@@ -22,7 +22,7 @@ from gi.repository import Gtk
 from gi.repository.GtkSource import Buffer, View
 
 sys.path.append(".")
-from functions import get_domain, reveal, val_sec_string
+from functions import get_domain, reveal, val_sec_string, wrap
 
 def time_parse(raw):
     raw = raw.decode("utf8", "replace").replace('Z', '')
@@ -52,9 +52,6 @@ def secure(sec, url, message, box, button):
         reveal(box, True)
         button.hide()
         return
-
-    if sec == 0: message.set_markup("<span size='small'>{} {}\r{}</span>".format(_("Connected to"),\
-    url, _("Your connection seems to be secure. Want to know more about?")))
 
     if sec == 2: message.set_markup("<span size='small'>{} {}\r{}</span>".format(_("Connected to"),\
     url, _("This web site did not properly secure your connection. Want to know more about?")))
@@ -150,7 +147,7 @@ def certificate(data, arg):
         if arg == 9:
 
             buf = "<b>{}</b>\n\n".format(_("Certificate Policies"))
-            buf += val_sec_string(keyed_extensions.get("certificatePolicies", "").replace(", ", "\n"))
+            buf += wrap( val_sec_string(keyed_extensions.get("certificatePolicies", "").replace(", ", "\n")) , 80)
 
             return buf
 
