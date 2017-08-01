@@ -443,7 +443,7 @@ set_zoom_text_only = 0
 #########
 '''
 
-language_list = ["de_DE", "en_US", "es_ES", "fr_FR", "it_IT"]
+language_list = ["de_DE", "en_US", "es_ES", "fr_FR", "it_IT", "pl_PL"]
 boolean_list = ["False", "True"]
 adkiller_list = ["Disabled", "Enabled"]
 adk_policy_list = ["Fastest", "Precise"]
@@ -533,7 +533,7 @@ text_https_redirect_desc = _("URLs automatically redirect to HTTPS")
 '''
 
 settings_db_path = "{}{}".format(settings_path, settings_db)
-settings_db_code = "11"
+settings_db_code = "12"
 
 def create_settings_db():
 
@@ -701,10 +701,11 @@ version = "0.6.9"
 browser_name = "Poseidon"
 website = "https://github.com/sidus-dev/poseidon"
 authors = "Andrea Pasciuta  <sidus@arbornet.org>"
-translators = "de - Marius Messerschmidt <marius.messerschmidt@googlemail.com>, Andrea Pasciuta  <sidus@arbornet.org>\n\
+translators = "de - Marius Messerschmidt <marius.messerschmidt@googlemail.com>\n\
                en - Andrea Pasciuta  <sidus@arbornet.org>\n\
                es - Andrea Pasciuta  <sidus@arbornet.org>\n\
                fr - Andrea Pasciuta  <sidus@arbornet.org>\n\
-               it - Andrea Pasciuta  <sidus@arbornet.org>"
+               it - Andrea Pasciuta  <sidus@arbornet.org>\n\
+               pl - Wojciech Gromelski <wojciechgromelski@protonmail.com>"
 comments = _("A fast, minimal and lightweight browser")
 

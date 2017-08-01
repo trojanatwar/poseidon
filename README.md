@@ -81,13 +81,14 @@ In the main entry, type:
 
 ## Available Languages
 
-Actually, supported languages are 5:
+Actually, supported languages are 6:
 
 * German (de_DE)
 * English (en_US)
 * Spanish (es_ES)
 * French (fr_FR)
 * Italian (it_IT)
+* Polish (pl_PL)
 
 ## Themes
 
