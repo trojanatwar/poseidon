@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2017-08-01 13:33+0200\n"
-"PO-Revision-Date: 2017-08-01 13:36+0200\n"
+"POT-Creation-Date: 2017-08-01 18:41+0200\n"
+"PO-Revision-Date: 2017-08-01 18:43+0200\n"
 "Last-Translator: \n"
 "Language-Team: Wojciech Gromelski <wojciechgromelski@protonmail.com>\n"
 "Language: pl_PL\n"
@@ -284,7 +284,7 @@ msgstr "Znaleziono błąd"
 
 #: include/settings.py:483
 msgid "Leave it empty to disable it"
-msgstr "Zostaw puste by wyłączyć"
+msgstr "Pozostaw puste pole by wyłączyć"
 
 #: include/settings.py:484
 msgid "Home Page"
@@ -352,7 +352,7 @@ msgstr "Moduł Żądań Weryfikacji SSL"
 
 #: include/settings.py:500
 msgid "Set Requests Module SSL Verification behaviour"
-msgstr "Ustaw zachowanie Moduł Żądań Weryfikacji SSL"
+msgstr "Ustaw zachowanie Modułu Żądań Weryfikacji SSL"
 
 #: include/settings.py:501
 msgid "Autocomplete"
@@ -411,7 +411,7 @@ msgstr ""
 
 #: include/settings.py:514
 msgid "Restored Window Width Size"
-msgstr "Przywrócono szerokość okna"
+msgstr "Szerokość przywróconego okna"
 
 #: include/settings.py:515
 msgid "Default width size for normal window"
@@ -419,7 +419,7 @@ msgstr "Domyślna szerokość okna"
 
 #: include/settings.py:516
 msgid "Restored Window Height Size"
-msgstr "Przywrócono wysokość okna"
+msgstr "Wysokość przywracanego okna"
 
 #: include/settings.py:517
 msgid "Default height size for normal window"
@@ -469,7 +469,7 @@ msgstr "Adresy URL są automatycznie przekierowywane do HTTPS"
 msgid "Empty"
 msgstr "Pusty"
 
-#: include/settings.py:709
+#: include/settings.py:710
 msgid "A fast, minimal and lightweight browser"
 msgstr "Szybka, minimalistyczna i lekka przeglądarka"
 
