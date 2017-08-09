@@ -2,15 +2,15 @@
 #
 # For more information about this list, see: https://pgl.yoyo.org/adservers/
 # ----
-# last updated:   Mon, 17 Jul 2017 14:25:48 GMT
-# entries:        2324
+# last updated:   Wed, 09 Aug 2017 07:58:23 GMT
+# entries:        2327
 # format:         hosts (hosts -- in hosts file format)
 # credits:        Peter Lowe - pgl@yoyo.org - https://pgl.yoyo.org/ - https://twitter.com/pgl
 # this URL:       https://pgl.yoyo.org/adservers/serverlist.php?hostformat=hosts&showintro=0&mimetype=plaintext
 # other formats:  https://pgl.yoyo.org/adservers/formats.php
 # policy:         https://pgl.yoyo.org/adservers/policy.php
 #
-# start date:    Mon, 31 Jul 2017 00:00:00
+# start date:    Wed, 09 Aug 2017 00:00:00
 127.0.0.1 101com.com
 127.0.0.1 101order.com
 127.0.0.1 123found.com
@@ -690,7 +690,6 @@
 127.0.0.1 adserv.evo-x.de
 127.0.0.1 adserv.gamezone.de
 127.0.0.1 adserv.iafrica.com
-127.0.0.1 adserv.qconline.com
 127.0.0.1 adserve.ams.rhythmxchange.com
 127.0.0.1 adserver.43plc.com
 127.0.0.1 adserver.71i.de
@@ -812,6 +811,7 @@
 127.0.0.1 adverticus.de
 127.0.0.1 advertise.com
 127.0.0.1 advertiseireland.com
+127.0.0.1 advertiserurl.com
 127.0.0.1 advertisespace.com
 127.0.0.1 advertising.com
 127.0.0.1 advertising.guildlaunch.net
@@ -900,6 +900,7 @@
 127.0.0.1 anm.intelli-direct.com
 127.0.0.1 annonser.dagbladet.no
 127.0.0.1 api.intensifier.de
+127.0.0.1 appsflyer.com
 127.0.0.1 apture.com
 127.0.0.1 arc1.msn.com
 127.0.0.1 arcadebanners.com
@@ -1167,6 +1168,7 @@
 127.0.0.1 clicmanager.fr
 127.0.0.1 clientmetrics-pa.googleapis.com
 127.0.0.1 clients.tbo.com
+127.0.0.1 cliksolution.com
 127.0.0.1 clixgalore.com
 127.0.0.1 clk.konflab.com
 127.0.0.1 clkads.com
@@ -1279,7 +1281,6 @@
 127.0.0.1 doublepimp.com
 127.0.0.1 drumcash.com
 127.0.0.1 dynamic.fmpub.net
-127.0.0.1 dynamicyield.com
 127.0.0.1 e-adimages.scrippsnetworks.com
 127.0.0.1 e-bannerx.com
 127.0.0.1 e-debtconsolidation.com
@@ -1359,7 +1360,6 @@
 127.0.0.1 feedbackresearch.com
 127.0.0.1 feedjit.com
 127.0.0.1 ffxcam.fairfax.com.au
-127.0.0.1 fimc.net
 127.0.0.1 fimserve.com
 127.0.0.1 findcommerce.com
 127.0.0.1 findyourcasino.com
@@ -1409,6 +1409,7 @@
 127.0.0.1 globe7.com
 127.0.0.1 globus-inter.com
 127.0.0.1 gmads.net
+127.0.0.1 go-clicks.de
 127.0.0.1 go-rank.de
 127.0.0.1 goingplatinum.com
 127.0.0.1 goldstats.com
@@ -1510,6 +1511,7 @@
 127.0.0.1 infinityads.com
 127.0.0.1 infolinks.com
 127.0.0.1 information.com
+127.0.0.1 inmobi.com
 127.0.0.1 inringtone.com
 127.0.0.1 insightexpress.com
 127.0.0.1 insightexpressai.com
@@ -1529,7 +1531,6 @@
 127.0.0.1 itfarm.com
 127.0.0.1 itop.cz
 127.0.0.1 its-that-easy.com
-127.0.0.1 itsptp.com
 127.0.0.1 jcount.com
 127.0.0.1 jinkads.de
 127.0.0.1 joetec.net
@@ -1714,6 +1715,7 @@
 127.0.0.1 newt1.adultadworld.com
 127.0.0.1 newt1.adultworld.com
 127.0.0.1 newtopsites.com
+127.0.0.1 nexage.com
 127.0.0.1 ng3.ads.warnerbros.com
 127.0.0.1 ngs.impress.co.jp
 127.0.0.1 nitroclicks.com
@@ -1831,11 +1833,13 @@
 127.0.0.1 porntrack.com
 127.0.0.1 postrelease.com
 127.0.0.1 potenza.cz
+127.0.0.1 pr-star.de
 127.0.0.1 pr-ten.de
 127.0.0.1 praddpro.de
 127.0.0.1 prchecker.info
 127.0.0.1 precisioncounter.com
 127.0.0.1 predictad.com
+127.0.0.1 premium-offers.com
 127.0.0.1 primaryads.com
 127.0.0.1 primetime.net
 127.0.0.1 privatecash.com
@@ -1868,6 +1872,7 @@
 127.0.0.1 pubmatic.com
 127.0.0.1 pubs.lemonde.fr
 127.0.0.1 pulse360.com
+127.0.0.1 px.dynamicyield.com
 127.0.0.1 q.azcentral.com
 127.0.0.1 qctop.com
 127.0.0.1 qnsr.com
@@ -2105,7 +2110,6 @@
 127.0.0.1 tfag.de
 127.0.0.1 theadhost.com
 127.0.0.1 theads.me
-127.0.0.1 thebugs.ws
 127.0.0.1 thecounter.com
 127.0.0.1 therapistla.com
 127.0.0.1 therichkids.com
@@ -2204,7 +2208,6 @@
 127.0.0.1 urlcash.net
 127.0.0.1 us.a1.yimg.com
 127.0.0.1 usapromotravel.com
-127.0.0.1 usmsad.tom.com
 127.0.0.1 utarget.co.uk
 127.0.0.1 utils.mediageneral.net
 127.0.0.1 v1.cnzz.com

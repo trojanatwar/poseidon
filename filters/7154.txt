@@ -37753,6 +37753,7 @@
 127.0.0.1	sshowads.pubmatic.com
 127.0.0.1	sshtunnel.at
 127.0.0.1	ssi.go2cloud.org
+127.0.0.1	ssl-cd.com
 127.0.0.1	ssl-default.2cnt.net
 127.0.0.1	ssl-error.2cnt.net
 127.0.0.1	ssl-g.searchgist.com
@@ -47101,6 +47102,7 @@
 127.0.0.1	www.srver110.xyz
 127.0.0.1	www.srvpub.com
 127.0.0.1	www.ssangyong.co.il
+127.0.0.1	www.ssl-cd.com
 127.0.0.1	www.stacia-jose.us
 127.0.0.1	www.stacia-ware.us
 127.0.0.1	www.stargamesaffiliate.com
@@ -48027,4 +48029,4 @@
 127.0.0.1	zz.zeroredirect1.com
 127.0.0.1	zzz.clickbank.net
 127.0.0.1	_thums.ero-advertising.com
-# Hosts: 48019
+# Hosts: 48021

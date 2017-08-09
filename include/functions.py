@@ -28,7 +28,7 @@ sys.path.append(".")
 from settings import icns, set_user_agent,\
 ua_browsers_dsc, ua_browsers_val, ua_mobile_dsc,\
 ua_mobile_val, ua_crawlers_dsc, ua_crawlers_val,\
-socks_version
+socks_version, icons_pop
 from dialog import *
 
 sys.path.append("modules")
@@ -266,10 +266,13 @@ def make_tab_box(text):
 
     box = Gtk.HBox(False)
     button = make_button(make_icon("edit-delete.svg"), None, False)
+    icon = make_icon("volume.svg")
     label = Gtk.Label(text)
     box.pack_start(label, True, False, 5)
     box.pack_end(button, False, False, 0)
+    box.pack_end(icon, False, False, 5)
     box.show_all()
+    icon.hide()
 
     return box
      
@@ -407,7 +410,7 @@ def timelist(action, view, bflist, button, margin, xalign, yalign, hover, icns, 
         link_icon = Gtk.Image()
         link_icon.set_from_file("{}text-x-generic.svg".format(icns))
 
-        if not defcon:
+        if not defcon and icons_pop:
             favicon = get_favicon(view, url, (16, 16))
             if favicon: link_icon.set_from_pixbuf(favicon)
 

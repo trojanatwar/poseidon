@@ -368,7 +368,7 @@ class BrowserTab(Gtk.VBox):
         frame_vte = Gtk.Frame(name="frame_vte")
 
         vte_sw = Gtk.ScrolledWindow()
-        vte_sw.set_size_request(-1,250)
+        vte_sw.set_size_request(-1,300)
 
         close_vte_button = make_button(make_icon("close.svg"), None, False)
         close_vte_button.connect("clicked", lambda x: [self.on_close_terminal(vte_sw, vte_revealer), iconified_vte.hide()])
@@ -1330,6 +1330,7 @@ class Browser(Gtk.Window):
         tab.webview.connect("load-failed-with-tls-errors", self.on_load_failed_with_tls_errors) 
         tab.webview.connect("create", self.on_create)
         tab.webview.connect("button-press-event", self.on_button_press)
+        tab.webview.connect("notify::is-playing-audio", self.on_playing_audio)
         tab.download_button.connect("clicked", lambda x: self.on_download_menu())
         tab.bookmarks_button.connect("clicked", lambda x: self.on_bookmarks_menu())
         tab.tools.connect("clicked", lambda x: self.on_tools_menu())
@@ -1350,6 +1351,17 @@ class Browser(Gtk.Window):
             if init_home_page == 2: tab.webview.load_uri(home_page)
 
         return tab
+
+    def on_playing_audio(self, view, gobject):
+
+        if not tab_cb: return
+
+        for widget in self.tabs[self.current_page]:
+            if type(widget) == gi.repository.Gtk.HBox:
+                for i in widget:
+                    if type(i) == gi.repository.Gtk.Image:
+                        if view.is_playing_audio(): i.show()
+                        else: i.hide()
 
     def on_button_press(self, view, event):
 
@@ -1697,7 +1709,7 @@ class Browser(Gtk.Window):
             icon = Gtk.Image()
             icon.set_from_file("{}text-x-generic.svg".format(icns))
 
-            if not self.is_defcon:
+            if not self.is_defcon and icons_pop:
                 favicon = get_favicon(self.tabs[self.current_page][0].webview, i[3], (16, 16))
                 if favicon: icon.set_from_pixbuf(favicon)
 

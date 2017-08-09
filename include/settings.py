@@ -373,6 +373,7 @@ height = 600
 verify_req = 1
 tab_cb = 1
 trans_pop = 0
+icons_pop = 1
 process_model = 1
 links_policy = 0
 socks_version = 2
@@ -447,7 +448,7 @@ language_list = ["de_DE", "en_US", "es_ES", "fr_FR", "it_IT", "pl_PL"]
 boolean_list = ["False", "True"]
 adkiller_list = ["Disabled", "Enabled"]
 adk_policy_list = ["Fastest", "Precise"]
-adk_popups_list = ["Don't Block Pop-Ups", "Block Pop-Ups", "Block Pop-Ups (Hard Way)"]
+adk_popups_list = ["Don't Block Pop-Ups", "Block Pop-Ups (simple mode)", "You shall not pass! (Gandalf mode)"]
 verify_req_list = ["Insecure", "Secure"]
 autocomplete_policy_list = ["Disable Autocomplete",\
 "Secure: History", "Secure: DuckDuckGo",\
@@ -492,10 +493,12 @@ text_adk_policy = _("AdKiller Policy")
 text_adk_policy_desc = _("Set AdKiller behaviour")
 text_adk_popups = _("AdKiller Pop-Ups Policy")
 text_adk_popups_desc = _("Should AdKiller block pop-ups?")
-text_tab_cb = _("Tab Close Button")
-text_tab_cb_desc = _("Show a close button in the tabs?")
+text_tab_cb = _("Tab Icons")
+text_tab_cb_desc = _("Show buttons and icons in the tabs?")
 text_trans_pop = _("Popover Menus Transparency")
 text_trans_pop_desc = _("Gtk Popover menus must be transparent?")
+text_icons_pop = _("Popover Favicons")
+text_icons_pop_desc = _("Gtk Popover menus must show favicons?")
 text_verify_req = _("Requests Module SSL Verification")
 text_verify_req_desc = _("Set Requests Module SSL Verification behaviour")
 text_autocomplete = _("Autocomplete")
@@ -533,7 +536,7 @@ text_https_redirect_desc = _("URLs automatically redirect to HTTPS")
 '''
 
 settings_db_path = "{}{}".format(settings_path, settings_db)
-settings_db_code = "12"
+settings_db_code = "13"
 
 def create_settings_db():
 
@@ -567,6 +570,7 @@ def create_settings_db():
         cur.execute(insert_string, (text_init_home_page, init_home_page, "2", text_init_home_page_desc, "1", "init_home_page_list", "init_home_page"))
         cur.execute(insert_string, (text_tab_cb, tab_cb, "2", text_tab_cb_desc, "1", "boolean_list", "tab_cb"))
         cur.execute(insert_string, (text_trans_pop, trans_pop, "2", text_trans_pop_desc, "1", "boolean_list", "trans_pop"))
+        cur.execute(insert_string, (text_icons_pop, icons_pop, "2", text_icons_pop_desc, "1", "boolean_list", "icons_pop"))
         cur.execute(insert_string, (text_autocomplete, autocomplete_policy, "2", text_autocomplete_desc, "2", "autocomplete_policy_list", "autocomplete_policy"))
         cur.execute(insert_string, (text_autocomplete_limit, autocomplete_limit, "1", text_autocomplete_limit_desc, "2", "", "autocomplete_limit"))
         cur.execute(insert_string, (text_find, find, "2", text_find_desc, "2", "find_list", "find"))
@@ -697,7 +701,7 @@ tab_name = _("Empty")
 ##################
 '''
 
-version = "0.6.9"
+version = "0.7.0"
 browser_name = "Poseidon"
 website = "https://github.com/sidus-dev/poseidon"
 authors = "Andrea Pasciuta  <sidus@arbornet.org>"
