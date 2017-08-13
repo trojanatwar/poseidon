@@ -772,46 +772,14 @@ class Browser(Gtk.Window):
         ##############
         '''
 
-        addtab = make_button(make_icon("list-add.svg"), "{} [Ctrl+T]".format(_("Open a new tab")), False)
-        addtab.connect("clicked", lambda x: self.open_new_tab())
-
-        remtab = make_button(make_icon("list-remove.svg"), "{} [Ctrl+W]".format(_("Close current tab")), False)
-        remtab.connect("clicked", lambda x: self.close_current_tab())
-        remtab.set_sensitive(False)
-
-        close = make_button(make_icon("close.svg"), None, False)
-        close.connect("clicked", lambda x: quit(self))
-
-        minimize = make_button(make_icon("minimize.svg"), None, False)
-        minimize.connect("clicked", lambda x: self.iconify())
-
-        maximize = make_button(make_icon("maximize.svg"), None, False)
-        maximize.connect("clicked", lambda x: self.on_maximize())
-
-        open_button = make_button(make_icon("document-open.svg"), _("Open / Import"), False)
-        open_button.connect("clicked", lambda x: self.open())
-
-        save_button = make_button(make_icon("document-save.svg"), _("Save / Export"), False)
-        save_button.connect("clicked", lambda x: self.save())
-
-        headerbar = build_headerbar(browser_name, "headerbar", 0)
-        headerbar.set_decoration_layout("")
+        headerbar = build_headerbar(browser_name, "headerbar", 1)
+        headerbar.set_decoration_layout("menu:minimize,maximize,close")
         self.set_titlebar(headerbar)
 
-        logo_button = make_button(make_icon("poseidon-logo.png"), None, False)
-        logo_button.connect("clicked", lambda x: self.on_logo())
+        logo_button_hb = make_button(make_icon("poseidon-logo.png"), None, False)
+        logo_button_hb.connect("clicked", self.on_logo)
 
-        headerbar.pack_start(logo_button)
-        headerbar.pack_start(Gtk.Separator.new(Gtk.Orientation.VERTICAL))
-        headerbar.pack_start(open_button)
-        headerbar.pack_start(save_button)
-        headerbar.pack_end(close)
-        headerbar.pack_end(maximize)
-        headerbar.pack_end(minimize)
-        headerbar.pack_end(Gtk.Separator.new(Gtk.Orientation.VERTICAL))
-        headerbar.pack_end(addtab)
-        headerbar.pack_end(remtab)
-        headerbar.show_all()
+        headerbar.pack_start(logo_button_hb)
 
         '''
         #############
@@ -861,11 +829,79 @@ class Browser(Gtk.Window):
 
             self.sensitive_tab(False)
 
+        addtab = make_button(make_icon("list-add.svg"), "{} [Ctrl+T]".format(_("Open a new tab")), False)
+        addtab.connect("clicked", lambda x: self.open_new_tab())
+
+        remtab = make_button(make_icon("list-remove.svg"), "{} [Ctrl+W]".format(_("Close current tab")), False)
+        remtab.connect("clicked", lambda x: self.close_current_tab())
+        remtab.set_sensitive(False)
+
+        close = make_button(make_icon("close.svg"), None, False)
+        close.connect("clicked", lambda x: quit(self))
+
+        minimize = make_button(make_icon("minimize.svg"), None, False)
+        minimize.connect("clicked", lambda x: self.iconify())
+
+        maximize = make_button(make_icon("maximize.svg"), None, False)
+        maximize.connect("clicked", lambda x: self.on_maximize())
+
+        logo_button = make_button(make_icon("poseidon-logo.png"), None, False)
+        logo_button.connect("clicked", self.on_logo)
+
+        logo_menu = Gtk.PopoverMenu()
+        logo_menu.set_position(Gtk.PositionType.BOTTOM)
+
+        open_button = make_modelbutton_markup(_("Open"),\
+        _("Open a file or import bookmarks"), 0.0, 0.5)
+        open_button.connect("clicked", lambda x: self.open())
+
+        save_button = make_modelbutton_markup(_("Save"),\
+        _("Save a file, export bookmarks or save an HTML source file"), 0.0, 0.5)
+        save_button.connect("clicked", lambda x: self.save())
+
+        about_button = make_modelbutton("{} {} ...".format(_("About"), browser_name), 0.0, 0.5)
+        about_button.connect("clicked", lambda x: self.on_about())
+
+        logo_menu_grid = Gtk.Grid()
+        logo_menu_grid.set_property("margin", 5)
+        logo_menu_grid.attach(open_button, 0, 1, 1, 1)
+        logo_menu_grid.attach(save_button, 0, 2, 1, 1)
+        logo_menu_grid.attach(Gtk.Separator.new(Gtk.Orientation.HORIZONTAL), 0, 3, 1, 1)
+        logo_menu_grid.attach(about_button, 0, 4, 1, 1)
+        logo_menu_grid.set_column_homogeneous(True)
+
+        logo_menu.add(logo_menu_grid)
+
+        action_box_logo = Gtk.HBox()
+        action_box_logo.pack_start(logo_button, False, False, 0)
+        action_box_logo.pack_start(Gtk.Separator.new(Gtk.Orientation.VERTICAL), False, False, 0)
+
+        action_box_tabs = Gtk.HBox()
+        action_box_tabs.pack_start(Gtk.Separator.new(Gtk.Orientation.VERTICAL), False, False, 0)
+        action_box_tabs.pack_start(remtab, False, False, 0)
+        action_box_tabs.pack_start(addtab, False, False, 0)
+
+        action_box_wmgm = Gtk.HBox()
+        action_box_wmgm.pack_start(Gtk.Separator.new(Gtk.Orientation.VERTICAL), False, False, 0)
+        action_box_wmgm.pack_start(minimize, False, False, 0)
+        action_box_wmgm.pack_start(maximize, False, False, 0)
+        action_box_wmgm.pack_start(close, False, False, 0)
+
+        action_box_tabs.pack_end(action_box_wmgm, False, False, 0)
+
+        notebook.set_action_widget(action_box_logo, 0)
+        notebook.set_action_widget(action_box_tabs, 1)
+
+        action_box_logo.show_all()
+        action_box_tabs.show_all()
+        action_box_wmgm.show_all()
+
         self.add(notebook)
 
         self.connect("destroy", lambda x: quit(self))
         self.connect("key-press-event", self.on_key_pressed)
         self.connect("button-press-event", self.on_key_pressed)
+        self.connect("window-state-event", self.on_window_state)
         notebook.connect("switch-page", self.on_tab_changed)
 
         self.focus_tab()
@@ -1285,6 +1321,9 @@ class Browser(Gtk.Window):
         self.zoom_in_button = zoom_in_button
         self.zoom_out_button = zoom_out_button
         self.vte_button = vte_button
+        self.logo_menu = logo_menu
+        self.action_box_logo = action_box_logo
+        self.action_box_wmgm = action_box_wmgm
 
         self.update_status()
         self.show()
@@ -1352,7 +1391,20 @@ class Browser(Gtk.Window):
 
         return tab
 
-    def on_playing_audio(self, view, gobject):
+    def on_window_state(self, widget, event):
+
+        state = event.window.get_state()
+        opts = Gdk.WindowState.FULLSCREEN | Gdk.WindowState.MAXIMIZED
+        if (state & opts):
+            self.headerbar.hide()
+            self.action_box_wmgm.show_all()
+            self.action_box_logo.show_all()
+        else:
+            self.headerbar.show_all()
+            self.action_box_wmgm.hide()
+            self.action_box_logo.hide()
+
+    def on_playing_audio(self, view, boolean):
 
         if not tab_cb: return
 
@@ -1417,7 +1469,14 @@ class Browser(Gtk.Window):
         if int == 3: button = page.bookmarks_button
         button.set_active(False)
 
-    def on_logo(self):
+    def on_logo(self, widget):
+
+        self.logo_menu.set_relative_to(widget)
+        self.logo_menu.show_all()
+
+        return True
+
+    def on_about(self):
 
         ver = WebKit2.get_major_version(), WebKit2.get_minor_version(), WebKit2.get_micro_version()
         ver = str(ver).replace("(", "").replace(")", "").replace(", ", ".")

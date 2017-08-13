@@ -254,6 +254,18 @@ def make_modelbutton(text, xalign, yalign):
 
     return button
 
+def make_modelbutton_markup(title, description, xalign, yalign):
+
+    button = Gtk.ModelButton(label="")
+    button.set_alignment(xalign, yalign)
+    button.get_child().set_padding(5, 5)
+    for i in button.get_children():
+        if type(i) == Gtk.Label:
+            i.set_markup("{}\r<span color='gray' size='x-small'>{}</span>"\
+            .format(title, description))
+
+    return button
+
 def make_modelbutton_label(text, xalign, yalign):
 
     label = Gtk.Label()

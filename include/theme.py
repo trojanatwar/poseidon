@@ -29,21 +29,20 @@ def apply_css():
 
     alpha = "popover, .popover { opacity: 0.95; }"
 
-    theme = "#notebook.header.top, #notebook header tabs { background: url('"\
+    theme = "#notebook header { background: url('"\
     + theme_file + "') no-repeat center; background-size: cover; }"
 
     css = """
 
-    #notebook.header.top, #notebook header tabs { background: none; }
     #notebook tab { padding: 5px 10px 5px 10px; }
     #frame_main border, #frame_find border, #frame_vte border, #frame_status border,
     #frame_permission border, #frame_cert border, #frame_cookies border { border-style: none; }
     #frame_main, #frame_find, #frame_vte, #frame_status, #frame_permission, #frame_cert, #frame_cookies,
     #frame_mime border, #frame_mime { padding: 5px; }
+    #notebook header { background: none; }
     #entry border { border-style: solid; }
     #label_x509 { padding: 10px; }
     #frame_x509 border { border-width: 0px 0px 1px 0px; }
-    #headerbar button { padding: 0px; }
 
     """
 
