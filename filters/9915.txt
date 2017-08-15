@@ -2,15 +2,15 @@
 #
 # For more information about this list, see: https://pgl.yoyo.org/adservers/
 # ----
-# last updated:   Sun, 13 Aug 2017 20:13:01 GMT
-# entries:        2449
+# last updated:   Sun, 13 Aug 2017 20:28:36 GMT
+# entries:        2450
 # format:         hosts (hosts -- in hosts file format)
 # credits:        Peter Lowe - pgl@yoyo.org - https://pgl.yoyo.org/ - https://twitter.com/pgl
 # this URL:       https://pgl.yoyo.org/adservers/serverlist.php?hostformat=hosts&showintro=0&mimetype=plaintext
 # other formats:  https://pgl.yoyo.org/adservers/formats.php
 # policy:         https://pgl.yoyo.org/adservers/policy.php
 #
-# start date:    Sun, 13 Aug 2017 00:00:00
+# start date:    Tue, 15 Aug 2017 00:00:00
 127.0.0.1 101com.com
 127.0.0.1 101order.com
 127.0.0.1 123found.com
@@ -215,6 +215,7 @@
 127.0.0.1 ademails.com
 127.0.0.1 adengage.com
 127.0.0.1 adexchangeprediction.com
+127.0.0.1 adexcite.com
 127.0.0.1 adexpose.com
 127.0.0.1 adext.inkclub.com
 127.0.0.1 adf.ly
