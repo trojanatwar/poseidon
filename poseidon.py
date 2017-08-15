@@ -813,16 +813,16 @@ class Browser(Gtk.Window):
 
         self.tabs = []
         
-        if tab_cb == 0: self.tabs.append((self.create_tab(), Gtk.Label(tab_name)))
+        if not tab_cb: self.tabs.append((self.create_tab(), Gtk.Label(tab_name)))
 
-        if tab_cb == 1:
+        if tab_cb:
             tab_box = make_tab_box(tab_name)
             page_tuple = (self.create_tab(), tab_box)
             self.tabs.append(page_tuple)
 
         notebook.append_page(*self.tabs[0])
 
-        if tab_cb == 1:
+        if tab_cb:
             for i in tab_box:
                 if type(i) == gi.overrides.Gtk.Button:
                     i.connect("clicked", self.close_clicked_tab, page_tuple[0])
@@ -1369,7 +1369,7 @@ class Browser(Gtk.Window):
         tab.webview.connect("load-failed-with-tls-errors", self.on_load_failed_with_tls_errors) 
         tab.webview.connect("create", self.on_create)
         tab.webview.connect("button-press-event", self.on_button_press)
-        tab.webview.connect("notify::is-playing-audio", self.on_playing_audio)
+        if tab_cb: tab.webview.connect("notify::is-playing-audio", self.on_playing_audio)
         tab.download_button.connect("clicked", lambda x: self.on_download_menu())
         tab.bookmarks_button.connect("clicked", lambda x: self.on_bookmarks_menu())
         tab.tools.connect("clicked", lambda x: self.on_tools_menu())
@@ -1406,14 +1406,14 @@ class Browser(Gtk.Window):
 
     def on_playing_audio(self, view, boolean):
 
-        if not tab_cb: return
+        for tab, widget in self.tabs:
 
-        for widget in self.tabs[self.current_page]:
-            if type(widget) == gi.repository.Gtk.HBox:
-                for i in widget:
-                    if type(i) == gi.repository.Gtk.Image:
-                        if view.is_playing_audio(): i.show()
-                        else: i.hide()
+            widget = self.check_tab(widget, 1)
+
+            if tab.webview is view:
+                if widget:
+                    if view.is_playing_audio(): widget.show()
+                    else: widget.hide()
 
     def on_button_press(self, view, event):
 
@@ -2203,7 +2203,7 @@ class Browser(Gtk.Window):
 
         self.current_page = index
         self.remtab.set_sensitive(True)
-        if tab_cb == 1: self.sensitive_tab(True)
+        if tab_cb: self.sensitive_tab(True)
         self.update_status()
 
     def on_maximize(self):
@@ -2302,7 +2302,7 @@ class Browser(Gtk.Window):
 
             if self.notebook.get_n_pages() == 1:
                 self.remtab.set_sensitive(False)
-                if tab_cb == 1: self.sensitive_tab(False)
+                if tab_cb: self.sensitive_tab(False)
 
     def close_clicked_tab(self, sender, widget):
 
@@ -2321,9 +2321,9 @@ class Browser(Gtk.Window):
 
         page = self.current_page
 
-        if tab_cb == 0: page_tuple = (self.create_tab(), Gtk.Label(tab_name))
+        if not tab_cb: page_tuple = (self.create_tab(), Gtk.Label(tab_name))
 
-        if tab_cb == 1:
+        if tab_cb:
             tab_box = make_tab_box(tab_name)
             page_tuple = (self.create_tab(), tab_box)
 
@@ -2331,7 +2331,7 @@ class Browser(Gtk.Window):
         self.notebook.insert_page(page_tuple[0], page_tuple[1], page + 1)
         self.notebook.set_current_page(page + 1)
 
-        if tab_cb == 1:
+        if tab_cb:
             for i in tab_box:
                 if type(i) == gi.overrides.Gtk.Button:
                     i.connect("clicked", self.close_clicked_tab, page_tuple[0])
@@ -2353,11 +2353,12 @@ class Browser(Gtk.Window):
     ###########
     '''
 
-    def check_tab(self, widget):
+    def check_tab(self, widget, img):
 
         if type(widget) == gi.repository.Gtk.HBox:
             for i in widget:
-                if type(i) == gi.overrides.Gtk.Label: return i
+                if type(i) == gi.overrides.Gtk.Label and not img: return i
+                if type(i) == gi.repository.Gtk.Image and img: return i
         else: return widget
 
     def try_search(self, query):
@@ -2485,15 +2486,15 @@ class Browser(Gtk.Window):
         if not title: title = url
 
         counter = 0
+
         for tab, widget in self.tabs:
 
-            widget = self.check_tab(widget)
+            widget = self.check_tab(widget, 0)
 
             if tab.webview is view:
                 if widget:
                     widget.set_text(minify(title, 50))
                     widget.set_tooltip_text("")
-
                     if len(title) > 50: widget.set_tooltip_text(title)
 
             counter += 1
@@ -2578,7 +2579,7 @@ class Browser(Gtk.Window):
         history_button.connect("clicked", lambda x: self.view_history())
         cookies_button.connect("clicked", lambda x: self.cookies_manager())
 
-        tab = self.check_tab(self.tabs[page][1])
+        tab = self.check_tab(self.tabs[page][1], 0)
         tab.set_text(_("Settings"))
 
         general_sw.add(general_grid)
@@ -2669,7 +2670,7 @@ class Browser(Gtk.Window):
             entry.connect("changed", lambda x: self.find_source(entry, view))
             entry.grab_focus()
 
-            tab = self.check_tab(self.tabs[page][1])
+            tab = self.check_tab(self.tabs[page][1], 0)
             tab.set_text("{}: {}".format(_("Source"), minify(url, 50)))
 
             self.update_status()
@@ -2759,7 +2760,7 @@ class Browser(Gtk.Window):
         scrolled_window.add(view)
         scrolled_window.show_all()
 
-        tab = self.check_tab(self.tabs[page][1])
+        tab = self.check_tab(self.tabs[page][1], 0)
         tab.set_text(_("Cookies"))
 
         grid.set_property("margin-left", 10)
@@ -2837,7 +2838,7 @@ class Browser(Gtk.Window):
         scrolled_window.add(view)
         scrolled_window.show_all()
 
-        tab = self.check_tab(self.tabs[page][1])
+        tab = self.check_tab(self.tabs[page][1], 0)
         tab.set_text(_("History"))
 
         self.bookmarks_history_button = bookmarks_history_button
@@ -2907,7 +2908,7 @@ class Browser(Gtk.Window):
         scrolled_window.add(view)
         scrolled_window.show_all()
 
-        tab = self.check_tab(self.tabs[page][1])
+        tab = self.check_tab(self.tabs[page][1], 0)
         tab.set_text(_("Bookmarks"))
 
         add_bookmarks_button.connect("clicked", lambda x:\
@@ -2984,7 +2985,7 @@ class Browser(Gtk.Window):
         self.tabs[page][0].url_box.pack_start(Gtk.Label(), False, False, 0)
         self.tabs[page][0].show_all()
 
-        tab = self.check_tab(self.tabs[page][1])
+        tab = self.check_tab(self.tabs[page][1], 0)
         tab.set_text(_("Plugins"))
 
         self.update_status()
