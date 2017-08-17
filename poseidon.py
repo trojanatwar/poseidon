@@ -1632,7 +1632,7 @@ class Browser(Gtk.Window):
             return True
 
         if url.startswith("ftp.") or url.startswith("www.") or \
-        re.match(r"^\w+([-+.']\w+)*[A-Za-z\d]+\.*[A-Za-z]$", url):
+        re.match(r"(\w*\.)+\w*", url) and not re.match(r".*\..*\..*", url):
             if https_redirect: pt = pts
             page.webview.load_uri("{}{}".format(pt, url))
             return True
