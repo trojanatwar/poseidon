@@ -1597,6 +1597,7 @@ class Browser(Gtk.Window):
 
         if type(widget) == str: url = widget
         else: url = page.main_url_entry.get_text()
+        if not url: return True
 
         if url == "about:settings":
             self.view_settings()
@@ -1623,22 +1624,21 @@ class Browser(Gtk.Window):
             page.webview.load_uri("{}{}".format(pt, local_ip))
             return True
 
-        format = "{}{}".format(pt, parse(url))
-        sec_format = "{}{}".format(pts, parse(url))
-
-        if not url: return True
+        fmt = "{}{}".format(pt, parse(url))
+        sec_fmt = "{}{}".format(pts, parse(url))
 
         if url.startswith("file://"):
             page.webview.load_uri(url)
             return True
 
-        if url.startswith("ftp.") or url.startswith("www."):
+        if url.startswith("ftp.") or url.startswith("www.") or \
+        re.match(r"^\w+([-+.']\w+)*[A-Za-z\d]+\.*[A-Za-z]$", url):
             if https_redirect: pt = pts
             page.webview.load_uri("{}{}".format(pt, url))
             return True
 
         if re.match(r"^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}$", url):
-            page.webview.load_uri(format)
+            page.webview.load_uri(fmt)
             return True
 
         if validators.url(url):
@@ -1648,10 +1648,10 @@ class Browser(Gtk.Window):
             return True
 
         else:
-            if validators.url(format):
-                if is_url_valid(format, self.tlsbool, self.p_req()):
-                    if https_redirect: page.webview.load_uri(sec_format)
-                    else: page.webview.load_uri(format)
+            if validators.url(fmt):
+                if is_url_valid(fmt, self.tlsbool, self.p_req()):
+                    if https_redirect: page.webview.load_uri(sec_fmt)
+                    else: page.webview.load_uri(fmt)
                 else: self.try_search(parse(url))
             else: self.try_search(parse(url))
 
