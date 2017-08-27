@@ -2,15 +2,15 @@
 #
 # For more information about this list, see: https://pgl.yoyo.org/adservers/
 # ----
-# last updated:   Wed, 16 Aug 2017 09:14:57 GMT
-# entries:        2451
+# last updated:   Mon, 21 Aug 2017 08:43:04 GMT
+# entries:        2449
 # format:         hosts (hosts -- in hosts file format)
 # credits:        Peter Lowe - pgl@yoyo.org - https://pgl.yoyo.org/ - https://twitter.com/pgl
 # this URL:       https://pgl.yoyo.org/adservers/serverlist.php?hostformat=hosts&showintro=0&mimetype=plaintext
 # other formats:  https://pgl.yoyo.org/adservers/formats.php
 # policy:         https://pgl.yoyo.org/adservers/policy.php
 #
-# start date:    Thu, 17 Aug 2017 00:00:00
+# start date:    Sun, 27 Aug 2017 00:00:00
 127.0.0.1 101com.com
 127.0.0.1 101order.com
 127.0.0.1 123found.com
@@ -180,7 +180,6 @@
 127.0.0.1 adapt.tv
 127.0.0.1 adbanner.ro
 127.0.0.1 adbard.net
-127.0.0.1 adbers.com
 127.0.0.1 adblade.com
 127.0.0.1 adblockanalytics.com
 127.0.0.1 adboost.de.vu
@@ -782,6 +781,7 @@
 127.0.0.1 adstat.4u.pl
 127.0.0.1 adstest.weather.com
 127.0.0.1 adsupply.com
+127.0.0.1 adswizz.com
 127.0.0.1 adsymptotic.com
 127.0.0.1 adsynergy.com
 127.0.0.1 adsys.townnews.com
@@ -880,6 +880,7 @@
 127.0.0.1 affiliatetracking.com
 127.0.0.1 affiliatetracking.net
 127.0.0.1 affiliatewindow.com
+127.0.0.1 affiliation-france.com
 127.0.0.1 afftracking.justanswer.com
 127.0.0.1 ah-ha.com
 127.0.0.1 ahalogy.com
@@ -909,6 +910,7 @@
 127.0.0.1 annonser.dagbladet.no
 127.0.0.1 anxiousapples.com
 127.0.0.1 api.intensifier.de
+127.0.0.1 app.adblockhyper.us
 127.0.0.1 appsflyer.com
 127.0.0.1 apture.com
 127.0.0.1 arc1.msn.com
@@ -1285,7 +1287,6 @@
 127.0.0.1 decisiveducks.com
 127.0.0.1 decknetwork.net
 127.0.0.1 delightdriving.com
-127.0.0.1 deloo.de
 127.0.0.1 demandbase.com
 127.0.0.1 demdex.net
 127.0.0.1 di1.shopping.com
@@ -1401,7 +1402,6 @@
 127.0.0.1 feedbackresearch.com
 127.0.0.1 feedjit.com
 127.0.0.1 ffxcam.fairfax.com.au
-127.0.0.1 fimc.net
 127.0.0.1 fimserve.com
 127.0.0.1 findcommerce.com
 127.0.0.1 findyourcasino.com
@@ -1841,7 +1841,6 @@
 127.0.0.1 oxado.com
 127.0.0.1 oxcash.com
 127.0.0.1 oxen.hillcountrytexas.com
-127.0.0.1 p.adpdx.com
 127.0.0.1 pagead.l.google.com
 127.0.0.1 pagefair.com
 127.0.0.1 pagerank-ranking.de
@@ -2188,7 +2187,6 @@
 127.0.0.1 superstats.com
 127.0.0.1 supertop.ru
 127.0.0.1 supertop100.com
-127.0.0.1 suptullog.com
 127.0.0.1 surfmusik-adserver.de
 127.0.0.1 swan-swan-goose.com
 127.0.0.1 swissadsolutions.com
@@ -2220,11 +2218,11 @@
 127.0.0.1 text-link-ads.com
 127.0.0.1 textad.sexsearch.com
 127.0.0.1 textads.biz
-127.0.0.1 textads.opera.com
 127.0.0.1 textlinks.com
 127.0.0.1 tfag.de
 127.0.0.1 theadhost.com
 127.0.0.1 theads.me
+127.0.0.1 thebugs.ws
 127.0.0.1 thecounter.com
 127.0.0.1 therapistla.com
 127.0.0.1 therichkids.com
