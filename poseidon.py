@@ -208,6 +208,16 @@ class BrowserTab(Gtk.VBox):
         settings.set_property("zoom-text-only", set_zoom_text_only)
 
         '''
+        #########################################
+        # New Symbols for WebKit 2.16.x, 2.18.x #
+        #########################################
+        '''
+
+        if webkit_ver > wk16:
+
+            settings.set_property("hardware-acceleration-policy", set_hardware_acceleration_policy)
+
+        '''
         ########################################
         # Deprecated Symbols for WebKit 2.16.x #
         ########################################

@@ -152,6 +152,18 @@ charset_list = [
 ]
 
 '''
+##############################
+# Hardware Acceleration List #
+##############################
+'''
+
+acc_list = [
+
+"On Demand", "Always", "Never"
+
+]
+
+'''
 ###################
 # User Agent List #
 ###################
@@ -424,6 +436,7 @@ set_enable_webgl = 1
 set_enable_write_console_messages_to_stdout = 0
 set_enable_xss_auditor = 1
 set_fantasy_font_family = 0
+set_hardware_acceleration_policy = 0
 set_javascript_can_access_clipboard = 0
 set_javascript_can_open_windows_automatically = 1
 set_load_icons_ignoring_image_load_setting = 0
@@ -536,7 +549,7 @@ text_https_redirect_desc = _("URLs automatically redirect to HTTPS")
 '''
 
 settings_db_path = "{}{}".format(settings_path, settings_db)
-settings_db_code = "13"
+settings_db_code = "14"
 
 def create_settings_db():
 
@@ -629,6 +642,7 @@ def create_settings_db():
         cur.execute(insert_string, ("set-enable-write-console-messages-to-stdout", set_enable_write_console_messages_to_stdout, "2", "Default: False", "3", "boolean_list", "set_enable_write_console_messages_to_stdout"))
         cur.execute(insert_string, ("set-enable-xss-auditor", set_enable_xss_auditor, "2", "Default: True", "3", "boolean_list", "set_enable_xss_auditor"))
         cur.execute(insert_string, ("set-fantasy-font-family", set_fantasy_font_family, "2", "Default: serif", "3", "font_list", "set_fantasy_font_family"))
+        cur.execute(insert_string, ("set-hardware-acceleration-policy", set_hardware_acceleration_policy, "2", "Default: On Demand", "3", "acc_list", "set_hardware_acceleration_policy"))
         cur.execute(insert_string, ("set-javascript-can-access-clipboard", set_javascript_can_access_clipboard, "2", "Default: False", "3", "boolean_list", "set_javascript_can_access_clipboard"))
         cur.execute(insert_string, ("set-javascript-can-open-windows-automatically", set_javascript_can_open_windows_automatically, "2", "Default: False", "3", "boolean_list", "set_javascript_can_open_windows_automatically"))
         cur.execute(insert_string, ("set-load-icons-ignoring-image-load-setting", set_load_icons_ignoring_image_load_setting, "2", "Default: False", "3", "boolean_list", "set_load_icons_ignoring_image_load_setting"))
