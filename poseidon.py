@@ -546,6 +546,9 @@ class BrowserTab(Gtk.VBox):
             self.controller.connect("counted-matches", self.on_counted_matches)
             if autocomplete_policy != 0: self.main_url_entry.connect("changed",\
             lambda x: self.on_entry_timeout(main_url_entry.get_text(), liststore))
+
+            if webkit_ver > wk16: self.webview.get_inspector()
+
         except: pass
 
     def on_estimated_load_progress(self, view, load):

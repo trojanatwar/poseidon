@@ -20261,6 +20261,7 @@
 127.0.0.1	atrack.art.com
 127.0.0.1	atsfi.de
 127.0.0.1	attadworks.turn.com
+127.0.0.1	attawala.com.sa
 127.0.0.1	atti.velti.com
 127.0.0.1	atticwicket.com
 127.0.0.1	attirer.science
@@ -24271,6 +24272,7 @@
 127.0.0.1	chromatographie.science
 127.0.0.1	chronicads.com
 127.0.0.1	chtatic.appspot.com
+127.0.0.1	chukskel.ddns.net
 127.0.0.1	ci.categoria.hpg.com.br
 127.0.0.1	ci22.actonsoftware.com
 127.0.0.1	ci23.actonsoftware.com
@@ -26374,6 +26376,7 @@
 127.0.0.1	cpm.tz4.com
 127.0.0.1	cpm.wargaming.net
 127.0.0.1	cpm.worldofwarplanes.com
+127.0.0.1	cpm10.com
 127.0.0.1	cpmfun.com
 127.0.0.1	cpmleader.com
 127.0.0.1	cpro.baidu.com
@@ -27265,7 +27268,6 @@
 127.0.0.1	digitaladvisor.go2cloud.org
 127.0.0.1	digitalfernsehen.de.intellitxt.com
 127.0.0.1	digitalone.go2cloud.org
-127.0.0.1	digitalriver.com
 127.0.0.1	digitalsalesmedia.go2cloud.org
 127.0.0.1	digitrack.go2cloud.org
 127.0.0.1	digits.com
@@ -28373,6 +28375,7 @@
 127.0.0.1	ezbng.voluumtrk.com
 127.0.0.1	ezcybersearch.com
 127.0.0.1	ezec.co.uk
+127.0.0.1	ezpa.ga
 127.0.0.1	ezpoll.superstats.com
 127.0.0.1	ezpolls.superstats.com
 127.0.0.1	ezrsd.voluumtrk.com
@@ -28683,6 +28686,7 @@
 127.0.0.1	focusin.com
 127.0.0.1	focusworks.com
 127.0.0.1	foi8q.voluumtrk.com
+127.0.0.1	fojasoftwareaudio.ignorelist.com
 127.0.0.1	followup.adlandpro.com
 127.0.0.1	folloyu.com
 127.0.0.1	foo.freelogs.com
@@ -29989,6 +29993,7 @@
 127.0.0.1	gr2hk6ze.com
 127.0.0.1	gr8.com
 127.0.0.1	gr8nk.voluumtrk.com
+127.0.0.1	grabify.link
 127.0.0.1	grace-hansley.us
 127.0.0.1	graffix.adition.com
 127.0.0.1	grafix.xxxcounter.com
@@ -30292,6 +30297,7 @@
 127.0.0.1	hld.jmp9.com
 127.0.0.1	hlgsolutions.go2cloud.org
 127.0.0.1	hlok.qertewrt.com
+127.0.0.1	hlookehab.top
 127.0.0.1	hlrke.voluumtrk.com
 127.0.0.1	hlt6o.voluumtrk.com
 127.0.0.1	hm-analytics.com
@@ -32516,6 +32522,7 @@
 127.0.0.1	logv9.xiti.com
 127.0.0.1	logyd.voluumtrk.com
 127.0.0.1	lokhlp.com
+127.0.0.1	lokpanels.info
 127.0.0.1	lolfun.com
 127.0.0.1	lon.telefonica.bench.cedexis.com
 127.0.0.1	londonprivaterentals.standard.co.uk
@@ -32740,6 +32747,7 @@
 127.0.0.1	madsuk.at.atwola.com
 127.0.0.1	maeas.voluumtrk.com
 127.0.0.1	maedge.com
+127.0.0.1	mafian222.myftp.org
 127.0.0.1	magdalena-pollak.us
 127.0.0.1	magentanews.com
 127.0.0.1	maggie-wallace.us
@@ -36132,6 +36140,7 @@
 127.0.0.1	realtechnetwork.com
 127.0.0.1	realtime.services.disqus.com
 127.0.0.1	realtracker.com
+127.0.0.1	realwire123.ddns.net
 127.0.0.1	rebecca-smythe.us
 127.0.0.1	rec.quartic.pl
 127.0.0.1	rec3.prosieben.de
@@ -39959,6 +39968,7 @@
 127.0.0.1	u-on.eu
 127.0.0.1	u-porn.mp1.mobi
 127.0.0.1	u.begun.ru
+127.0.0.1	u.cubeupload.com
 127.0.0.1	u.extreme-dm.com
 127.0.0.1	u.heatmap.it
 127.0.0.1	u.moatads.com
@@ -45702,6 +45712,7 @@
 127.0.0.1	www.cpd8.net
 127.0.0.1	www.cpm-plus.com
 127.0.0.1	www.cpm.biz
+127.0.0.1	www.cpm10.com
 127.0.0.1	www.cpmaffiliation.com
 127.0.0.1	www.cpmfun.com
 127.0.0.1	www.cpmleader.com
@@ -48029,4 +48040,4 @@
 127.0.0.1	zz.zeroredirect1.com
 127.0.0.1	zzz.clickbank.net
 127.0.0.1	_thums.ero-advertising.com
-# Hosts: 48021
+# Hosts: 48032
