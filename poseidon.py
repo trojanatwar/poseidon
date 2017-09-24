@@ -507,6 +507,7 @@ class BrowserTab(Gtk.VBox):
         self.bookmarks_button = bookmarks_button
         self.tools = tools
         self.url_box = url_box
+        self.status_box = status_box
         self.pbar = pbar
         self.progress_box = progress_box
         self.find_entry = find_entry
@@ -2308,8 +2309,11 @@ class Browser(Gtk.Window):
 
         if self.notebook.get_n_pages() != 1:
             page = self.current_page
-            self.tabs[page][0].webview.destroy()
-            self.tabs[page][0].destroy()
+            tab = self.tabs[page][0]
+
+            tab.webview.destroy()
+            tab.destroy()
+
             current_tab = self.tabs.pop(page)
             self.notebook.remove(current_tab[0])
 
@@ -2353,6 +2357,7 @@ class Browser(Gtk.Window):
 
         self.tab_data()
         self.focus_tab()
+        if self.is_fullscreen: self.do_fullscreen()
 
     def open_blank(self, url):
 
@@ -2515,7 +2520,6 @@ class Browser(Gtk.Window):
     def get_clean_page(self, page, name, status):
 
         page = self.tabs[page][0]
-
         for child in page.url_box.get_children(): child.destroy()
 
         list = ["frame_main"]
@@ -2541,6 +2545,7 @@ class Browser(Gtk.Window):
         scrolled_window = self.get_clean_page(page, "settings", False)
         scrolled_window.set_policy(Gtk.PolicyType.NEVER, Gtk.PolicyType.NEVER)
         scrolled_window.set_shadow_type(Gtk.ShadowType.NONE)
+        self.tabs[page][0].status_box.destroy()
 
         save_settings_button = make_button(make_icon("object-select.svg"), _("Save Settings"), False)
         restore_settings_button = make_button(make_icon("edit-clear-all.svg"), _("Restore Settings"), False)
@@ -2654,6 +2659,7 @@ class Browser(Gtk.Window):
 
             source = ''.join([s.decode("utf8", "replace") + "\n" for s in source.splitlines()])            
             scrolled_window = self.get_clean_page(page, "source", False)
+            self.tabs[page][0].status_box.destroy()
 
             pixbuf = GdkPixbuf.Pixbuf.new_from_file("{}system-search.svg".format(icns))
             entry = Gtk.Entry()
@@ -2800,6 +2806,7 @@ class Browser(Gtk.Window):
         self.open_new_tab()
         page = self.current_page
         scrolled_window = self.get_clean_page(page, "history", False)
+        self.tabs[page][0].status_box.destroy()
 
         clear_history_button = make_button(make_icon("edit-clear-all.svg"), _("Clear history"), False)
         clear_history_button.connect("clicked", lambda x: self.on_clear_history())
@@ -2871,6 +2878,7 @@ class Browser(Gtk.Window):
         self.open_new_tab()
         page = self.current_page
         scrolled_window = self.get_clean_page(page, "bookmarks", False)
+        self.tabs[page][0].status_box.destroy()
 
         clear_bookmarks_button = make_button(make_icon("edit-clear-all.svg"), _("Erase all bookmarks"), False)
         clear_bookmarks_button.connect("clicked", lambda x: self.on_clear_bookmarks())
@@ -2994,9 +3002,8 @@ class Browser(Gtk.Window):
         self.open_new_tab()
         page = self.current_page
         scrolled_window = self.get_clean_page(page, "plugins", False)
-
-        self.tabs[page][0].url_box.pack_start(Gtk.Label(), False, False, 0)
-        self.tabs[page][0].show_all()
+        self.tabs[page][0].url_box.destroy()
+        self.tabs[page][0].status_box.destroy()
 
         tab = self.check_tab(self.tabs[page][1], 0)
         tab.set_text(_("Plugins"))
@@ -3111,14 +3118,26 @@ class Browser(Gtk.Window):
 
         return True
 
+    def do_fullscreen(self):
+
+        page = self.tabs[self.current_page][0]
+
+        self.is_fullscreen = True
+        self.fullscreen()
+        page.url_box.hide()
+        page.status_box.hide()
+
     def go_fullscreen(self):
 
-        if not self.is_fullscreen:
-            self.is_fullscreen = True
-            self.fullscreen()
+        page = self.tabs[self.current_page][0]
+        if page.scrolled_window.get_name() != "webview": return True
+
+        if not self.is_fullscreen: self.do_fullscreen()
         else:
             self.is_fullscreen = False
             self.unfullscreen()
+            page.url_box.show()
+            page.status_box.show()
 
         return True
 

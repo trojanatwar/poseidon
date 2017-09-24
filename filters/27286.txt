@@ -2,15 +2,15 @@
 #
 # For more information about this list, see: https://pgl.yoyo.org/adservers/
 # ----
-# last updated:   Fri, 15 Sep 2017 16:12:53 GMT
-# entries:        2454
+# last updated:   Fri, 22 Sep 2017 11:45:17 GMT
+# entries:        2456
 # format:         hosts (hosts -- in hosts file format)
 # credits:        Peter Lowe - pgl@yoyo.org - https://pgl.yoyo.org/ - https://twitter.com/pgl
 # this URL:       https://pgl.yoyo.org/adservers/serverlist.php?hostformat=hosts&showintro=0&mimetype=plaintext
 # other formats:  https://pgl.yoyo.org/adservers/formats.php
 # policy:         https://pgl.yoyo.org/adservers/policy.php
 #
-# start date:    Mon, 18 Sep 2017 00:00:00
+# start date:    Sun, 24 Sep 2017 00:00:00
 127.0.0.1 101com.com
 127.0.0.1 101order.com
 127.0.0.1 123found.com
@@ -478,7 +478,6 @@
 127.0.0.1 ads.heias.com
 127.0.0.1 ads.hideyourarms.com
 127.0.0.1 ads.hollywood.com
-127.0.0.1 ads.horsehero.com
 127.0.0.1 ads.horyzon-media.com
 127.0.0.1 ads.iafrica.com
 127.0.0.1 ads.ibest.com.br
@@ -727,7 +726,6 @@
 127.0.0.1 adserver.o2.pl
 127.0.0.1 adserver.oddschecker.com
 127.0.0.1 adserver.omroepzeeland.nl
-127.0.0.1 adserver.pl
 127.0.0.1 adserver.portalofevil.com
 127.0.0.1 adserver.portugalmail.net
 127.0.0.1 adserver.portugalmail.pt
@@ -851,6 +849,8 @@
 127.0.0.1 adxpose.com
 127.0.0.1 adxvalue.com
 127.0.0.1 adyea.com
+127.0.0.1 adz2you.com
+127.0.0.1 adzbazar.com
 127.0.0.1 adzerk.net
 127.0.0.1 adzerk.s3.amazonaws.com
 127.0.0.1 adzones.com
@@ -1192,6 +1192,7 @@
 127.0.0.1 clicmanager.fr
 127.0.0.1 clientmetrics-pa.googleapis.com
 127.0.0.1 clients.tbo.com
+127.0.0.1 clikerz.net
 127.0.0.1 cliksolution.com
 127.0.0.1 clixgalore.com
 127.0.0.1 clk.konflab.com
@@ -1486,6 +1487,7 @@
 127.0.0.1 harrenmedianetwork.com
 127.0.0.1 havamedia.net
 127.0.0.1 heias.com
+127.0.0.1 hellobar.com
 127.0.0.1 hentaicounter.com
 127.0.0.1 herbalaffiliateprogram.com
 127.0.0.1 hexusads.fluent.ltd.uk
@@ -1793,7 +1795,6 @@
 127.0.0.1 newtopsites.com
 127.0.0.1 nexage.com
 127.0.0.1 ng3.ads.warnerbros.com
-127.0.0.1 ngs.impress.co.jp
 127.0.0.1 nitroclicks.com
 127.0.0.1 novem.pl
 127.0.0.1 nuggad.net
@@ -2325,6 +2326,7 @@
 127.0.0.1 tyroo.com
 127.0.0.1 uarating.com
 127.0.0.1 ukbanners.com
+127.0.0.1 ultimateclixx.com
 127.0.0.1 ultramercial.com
 127.0.0.1 unknowntray.com
 127.0.0.1 untd.com

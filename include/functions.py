@@ -548,6 +548,9 @@ def build_scrollable_popover(pos, width, height):
 
 def pass_generator(self):
 
+    if self.tabs[self.current_page][0]\
+    .scrolled_window.get_name() != "webview": return True
+
     window = build_window(self, 0, 0)
     window.set_titlebar(build_headerbar(_("Password Generator"), None, 1))
 
@@ -613,6 +616,9 @@ def pass_generate(length, default_length, result):
     result.get_buffer().set_text(password)
 
 def user_agent(self):
+
+    if self.tabs[self.current_page][0]\
+    .scrolled_window.get_name() != "webview": return True
 
     window = build_window(self, 0, 0)
     window.set_titlebar(build_headerbar("User Agent", None, 1))
@@ -682,6 +688,9 @@ def on_proxy_mode(element):
         if i.get_active(): return i.get_name()
 
 def proxy(self):
+
+    if self.tabs[self.current_page][0]\
+    .scrolled_window.get_name() != "webview": return True
 
     window = build_window(self, 400, 200)
     window.set_titlebar(build_headerbar("{} ({})".format(\
