@@ -52,9 +52,8 @@ def autocomplete(query, liststore):
 
             if autocomplete_policy == 2: url = ("https://ac.duckduckgo.com/ac/?q={}&type=list".format(query))
             if autocomplete_policy == 3: url = ("https://{}.wikipedia.org/w/api.php?action=opensearch&search={}".format(language_list[language].split("_")[0], query))
-            if autocomplete_policy == 4: url = ("https://suggestqueries.google.com/complete/search?json&client=firefox&q={}".format(query))
-            if autocomplete_policy == 5: url = ("https://suggestqueries.google.com/complete/search?json&client=firefox&ds=yt&q={}".format(query))
-            if autocomplete_policy == 6: url = ("https://completion.amazon.co.uk/search/complete?method=completion&q={}&search-alias=aps&mkt=4".format(query))
+
+            # Since 0.7.5: Dumped support for Google, Youtube and Amazon.
 
             request = requests.get(url, stream=True, verify=bool(verify_req))
             request = json.loads(request.content.decode('utf-8'))

@@ -276,7 +276,7 @@ def make_modelbutton_label(text, xalign, yalign):
 
 def make_tab_box(text):
 
-    box = Gtk.HBox(False)
+    box = make_hbox(False, "")
     button = make_button(make_icon("edit-delete.svg"), None, False)
     icon = make_icon("volume.svg")
     label = Gtk.Label(text)
@@ -285,6 +285,18 @@ def make_tab_box(text):
     box.pack_end(icon, False, False, 5)
     box.show_all()
     icon.hide()
+
+    return box
+
+# Since 0.7.5: Gtk.HBox is deprecated.
+# TODO: Migration from Gtk.Box to Gtk.Grid.
+
+def make_hbox(hgs, name):
+
+    box = Gtk.Box.new(Gtk.Orientation.HORIZONTAL, 0)
+
+    if hgs: box.set_homogeneous(hgs)
+    if name: box.set_name(name)
 
     return box
      
@@ -739,7 +751,7 @@ def proxy(self):
     self.set_proxy(on_proxy_mode([default, custom, noproxy]),\
     url_entry.get_text(), port_entry.get_text(), on_proxy_type(socks)))
 
-    box = Gtk.HBox()
+    box = make_hbox("", "")
     box.set_property("margin-top", 20)
     box.pack_end(apply_button, False, False, 0)
 

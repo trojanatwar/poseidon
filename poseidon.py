@@ -291,7 +291,7 @@ class BrowserTab(Gtk.VBox):
         bookmarks_button = make_button(make_icon("bookmarks.svg"), None, True)
         tools = make_button(make_icon("open-menu.svg"), None, True)
 
-        url_box = Gtk.HBox(name="frame_main")
+        url_box = make_hbox("", "frame_main")
         url_box.pack_start(go_back, False, False, 0)
         url_box.pack_start(go_forward, False, False, 0)
         url_box.pack_start(refresh, False, False, 0)
@@ -334,7 +334,7 @@ class BrowserTab(Gtk.VBox):
         ################
         '''
 
-        progress_box = Gtk.HBox()
+        progress_box = make_hbox("", "")
         pbar = Gtk.ProgressBar()
         progress_box.pack_start(pbar, True, True, 0)
 
@@ -344,7 +344,7 @@ class BrowserTab(Gtk.VBox):
         ############
         '''
 
-        find_box = Gtk.HBox(name="frame_find")
+        find_box = make_hbox("", "frame_find")
 
         find_entry = Gtk.Entry()
         find_entry.set_width_chars(30)
@@ -386,7 +386,7 @@ class BrowserTab(Gtk.VBox):
         hide_vte_button = make_button(make_icon("minimize.svg"), None, False)
         hide_vte_button.connect("clicked", lambda x: [reveal(vte_revealer, False), iconified_vte.show()])
 
-        vte_box = Gtk.HBox()
+        vte_box = make_hbox("", "")
         vte_box.pack_end(close_vte_button, False, True, 0)
         vte_box.pack_end(hide_vte_button, False, True, 0)
 
@@ -410,7 +410,7 @@ class BrowserTab(Gtk.VBox):
         iconified_vte = Gtk.EventBox()
         iconified_vte.add(make_icon("terminal.svg"))
 
-        status_box = Gtk.HBox(False, name="frame_status")
+        status_box = make_hbox(False, "frame_status")
         status_box.pack_start(link_hover, True, True, 10)
         status_box.pack_end(iconified_vte, False, True, 0)
 
@@ -420,7 +420,7 @@ class BrowserTab(Gtk.VBox):
         ##################
         '''
 
-        permission_box = Gtk.HBox(name="frame_permission")
+        permission_box = make_hbox("", "frame_permission")
         permission_message = make_label(0.0, 0.5)
         allow_button = make_button(make_icon("object-select.svg"), None, False)
         deny_button = make_button(make_icon("window-close.svg"), None, False)
@@ -440,7 +440,7 @@ class BrowserTab(Gtk.VBox):
         ###################
         '''
 
-        cert_box = Gtk.HBox()
+        cert_box = make_hbox("", "")
         cert_message = make_label(0.0, 0.5)
         allow_cert_button = make_button(make_icon("object-select.svg"), None, False)
         deny_cert_button = make_button(make_icon("window-close.svg"), None, False)
@@ -827,21 +827,22 @@ class Browser(Gtk.Window):
 
         self.tabs = []
         
-        if not tab_cb: self.tabs.append((self.create_tab(), Gtk.Label(tab_name)))
+        tab_box = make_tab_box(tab_name)
+        page_tuple = (self.create_tab(), tab_box)
 
-        if tab_cb:
-            tab_box = make_tab_box(tab_name)
-            page_tuple = (self.create_tab(), tab_box)
-            self.tabs.append(page_tuple)
+        ebox = Gtk.EventBox()
+        ebox.connect("button-press-event", self.on_tab_press, page_tuple[0])
+        ebox.add(page_tuple[1])
 
-        notebook.append_page(*self.tabs[0])
+        self.tabs.insert(self.current_page, page_tuple)
+        notebook.insert_page(page_tuple[0], ebox, self.current_page)
+        notebook.set_current_page(self.current_page)
 
-        if tab_cb:
-            for i in tab_box:
-                if type(i) == gi.overrides.Gtk.Button:
-                    i.connect("clicked", self.close_clicked_tab, page_tuple[0])
+        for i in tab_box:
+            if type(i) == gi.overrides.Gtk.Button:
+                i.connect("clicked", self.close_clicked_tab, page_tuple[0])
 
-            self.sensitive_tab(False)
+        self.sensitive_tab(False)
 
         addtab = make_button(make_icon("list-add.svg"), "{} [Ctrl+T]".format(_("Open a new tab")), False)
         addtab.connect("clicked", lambda x: self.open_new_tab())
@@ -886,16 +887,16 @@ class Browser(Gtk.Window):
 
         logo_menu.add(logo_menu_grid)
 
-        action_box_logo = Gtk.HBox()
+        action_box_logo = make_hbox("", "")
         action_box_logo.pack_start(logo_button, False, False, 0)
         action_box_logo.pack_start(Gtk.Separator.new(Gtk.Orientation.VERTICAL), False, False, 0)
 
-        action_box_tabs = Gtk.HBox()
+        action_box_tabs = make_hbox("", "")
         action_box_tabs.pack_start(Gtk.Separator.new(Gtk.Orientation.VERTICAL), False, False, 0)
         action_box_tabs.pack_start(remtab, False, False, 0)
         action_box_tabs.pack_start(addtab, False, False, 0)
 
-        action_box_wmgm = Gtk.HBox()
+        action_box_wmgm = make_hbox("", "")
         action_box_wmgm.pack_start(Gtk.Separator.new(Gtk.Orientation.VERTICAL), False, False, 0)
         action_box_wmgm.pack_start(minimize, False, False, 0)
         action_box_wmgm.pack_start(maximize, False, False, 0)
@@ -1383,7 +1384,7 @@ class Browser(Gtk.Window):
         tab.webview.connect("load-failed-with-tls-errors", self.on_load_failed_with_tls_errors) 
         tab.webview.connect("create", self.on_create)
         tab.webview.connect("button-press-event", self.on_button_press)
-        if tab_cb: tab.webview.connect("notify::is-playing-audio", self.on_playing_audio)
+        tab.webview.connect("notify::is-playing-audio", self.on_playing_audio)
         tab.download_button.connect("clicked", lambda x: self.on_download_menu())
         tab.bookmarks_button.connect("clicked", lambda x: self.on_bookmarks_menu())
         tab.tools.connect("clicked", lambda x: self.on_tools_menu())
@@ -1428,6 +1429,11 @@ class Browser(Gtk.Window):
                 if widget:
                     if view.is_playing_audio(): widget.show()
                     else: widget.hide()
+
+    def on_tab_press(self, widget, event, page):
+
+        if event.type == Gdk.EventType.BUTTON_PRESS:
+            if event.button == 2: self.close_clicked_tab(widget, page)
 
     def on_button_press(self, view, event):
 
@@ -2217,7 +2223,7 @@ class Browser(Gtk.Window):
 
         self.current_page = index
         self.remtab.set_sensitive(True)
-        if tab_cb: self.sensitive_tab(True)
+        self.sensitive_tab(True)
         self.update_status()
 
     def on_maximize(self):
@@ -2319,7 +2325,7 @@ class Browser(Gtk.Window):
 
             if self.notebook.get_n_pages() == 1:
                 self.remtab.set_sensitive(False)
-                if tab_cb: self.sensitive_tab(False)
+                self.sensitive_tab(False)
 
     def close_clicked_tab(self, sender, widget):
 
@@ -2330,28 +2336,27 @@ class Browser(Gtk.Window):
     def sensitive_tab(self, boolean):
 
         for tab, widget in self.tabs:
-            if type(widget) == gi.repository.Gtk.HBox:
+            if type(widget) == gi.overrides.Gtk.Box:
                 for i in widget:
                     if type(i) == gi.overrides.Gtk.Button: i.set_sensitive(boolean)
 
     def tab_data(self):
 
         page = self.current_page
+        tab_box = make_tab_box(tab_name)
+        page_tuple = (self.create_tab(), tab_box)
 
-        if not tab_cb: page_tuple = (self.create_tab(), Gtk.Label(tab_name))
-
-        if tab_cb:
-            tab_box = make_tab_box(tab_name)
-            page_tuple = (self.create_tab(), tab_box)
+        ebox = Gtk.EventBox()
+        ebox.connect("button-press-event", self.on_tab_press, page_tuple[0])
+        ebox.add(page_tuple[1])
 
         self.tabs.insert(page + 1, page_tuple)
-        self.notebook.insert_page(page_tuple[0], page_tuple[1], page + 1)
+        self.notebook.insert_page(page_tuple[0], ebox, page + 1)
         self.notebook.set_current_page(page + 1)
 
-        if tab_cb:
-            for i in tab_box:
-                if type(i) == gi.overrides.Gtk.Button:
-                    i.connect("clicked", self.close_clicked_tab, page_tuple[0])
+        for i in tab_box:
+            if type(i) == gi.overrides.Gtk.Button:
+                i.connect("clicked", self.close_clicked_tab, page_tuple[0])
 
     def open_new_tab(self):
 
@@ -2373,7 +2378,7 @@ class Browser(Gtk.Window):
 
     def check_tab(self, widget, img):
 
-        if type(widget) == gi.repository.Gtk.HBox:
+        if type(widget) == gi.overrides.Gtk.Box:
             for i in widget:
                 if type(i) == gi.overrides.Gtk.Label and not img: return i
                 if type(i) == gi.repository.Gtk.Image and img: return i
