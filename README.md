@@ -136,5 +136,4 @@ You can help:
 * Improving the source code
 * Committing new translation files
 * Reporting bugs
-* Buying me a beer! `BTC: 1Ki95pCN6drymSUY7sS45MLVDkfiKTC8t9`
 
